@@ -17,18 +17,21 @@ func _process(delta):
 	var up = Input.is_key_pressed(KEY_UP)
 	var left = Input.is_key_pressed(KEY_LEFT)
 	var right = Input.is_key_pressed(KEY_RIGHT)
-	if up or (left and right):
+	if left and right:
 		vel += vector_up * delta * 240
-		texture = thrust
-		pass
+		$AnimationPlayer.play("Thrust")
 	elif left:
-		texture = turnLeft
 		turn -= 180 * delta
+		$AnimationPlayer.play("TurnLeft")
 	elif right:
-		texture = turnRight
 		turn += 180 * delta
+		$AnimationPlayer.play("TurnRight")
+	elif up:
+		vel += vector_up * delta * 240
+		$AnimationPlayer.play("Thrust")
 	else:
-		texture = idle
+		$AnimationPlayer.play("Idle")
+		pass
 	
 	fireCooldown -= delta
 	if Input.is_key_pressed(KEY_X) && fireCooldown < 0:

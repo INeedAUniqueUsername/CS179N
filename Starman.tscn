@@ -1,16 +1,142 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/StarmanIdle.png" type="Texture" id=1]
 [ext_resource path="res://Starman.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/StarmanThrust.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/StarmanTurnLeft.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/StarmanTurnRight.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/StarmanPunchIdle.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 12, -10, 12, -32, 24, -32, 24, -16, 22, -16, 22, -8, 20, -4, 10, 4, 18, 16, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -18, 16, -10, 10, -10, 6, -14, 10, -22, 10, -22, 1, -26, -6, -26, -22, -14, -22, -14, -6, -10, -9, -10, -20, -6, -24, 6, -24, 10, -20, 10, -10 ) ]
+}
 
-[sub_resource type="AnimationNodeOneShot" id=2]
+[sub_resource type="Animation" id=8]
+resource_name = "Punch"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 14, -26, 12, -26, 12, -12, 14, -12, 14, 0, 12, 10, 12, 26, 18, 36, -18, 36, -18, 30, -12, 26, -12, 10, -14, 0, -14, -42, 14, -42 ) ]
+}
 
-[sub_resource type="AnimationNodeBlendTree" id=3]
-nodes/OneShot/node = SubResource( 2 )
-nodes/OneShot/position = Vector2( 120, 40 )
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 12, -10, 12, -32, 24, -32, 24, -16, 22, -16, 22, -8, 20, -4, 10, 4, 18, 16, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -18, 16, -10, 10, -10, 6, -14, 10, -22, 10, -22, 1, -26, -6, -26, -22, -14, -22, -14, -6, -10, -9, -10, -20, -6, -24, 6, -24, 10, -20, 10, -10 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Thrust"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "TurnLeft"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "TurnRight"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
 
 [node name="Sprite" type="Sprite" groups=["Player"]]
 scale = Vector2( 2, 2 )
@@ -31,7 +157,8 @@ polygon = PoolVector2Array( 12, -10, 12, -32, 24, -32, 24, -16, 22, -16, 22, -8,
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 3 )
-parameters/OneShot/active = false
+anims/Punch = SubResource( 8 )
+anims/RESET = SubResource( 4 )
+anims/Thrust = SubResource( 5 )
+anims/TurnLeft = SubResource( 6 )
+anims/TurnRight = SubResource( 7 )
