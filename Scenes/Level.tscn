@@ -1,44 +1,61 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Starman.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Camera.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Background0.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Background1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/HealthBarFull.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/EnergyBarFull.png" type="Texture" id=7]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
 player = NodePath("../Actors/Sprite")
+
+[node name="Control" type="Control" parent="Camera2D"]
+anchor_bottom = 1.0
+margin_left = -255.0
+margin_top = -150.0
+margin_right = 256.0
+margin_bottom = 150.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Health" type="TextureRect" parent="Camera2D/Control"]
+margin_right = 128.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+
+[node name="Energy" type="TextureRect" parent="Camera2D/Control"]
+margin_top = 32.0
+margin_right = 128.0
+margin_bottom = 72.0
+texture = ExtResource( 7 )
 
 [node name="Actors" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="Actors" instance=ExtResource( 1 )]
+scale = Vector2( 1, 1 )
 
-[node name="Control" type="Control" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Control"]
-
-[node name="0" type="ParallaxLayer" parent="Control/ParallaxBackground"]
+[node name="0" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0, 0 )
 motion_mirroring = Vector2( 128, 128 )
 
-[node name="Sprite" type="Sprite" parent="Control/ParallaxBackground/0"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/0"]
 scale = Vector2( 16, 16 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="1" type="ParallaxLayer" parent="Control/ParallaxBackground"]
+[node name="1" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.2, 0.2 )
 motion_mirroring = Vector2( 1024, 1024 )
 
-[node name="Sprite" type="Sprite" parent="Control/ParallaxBackground/1"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/1"]
 texture = ExtResource( 5 )
 centered = false
