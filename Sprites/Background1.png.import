@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Starman.png-0e4ac13aa6a31ba699e02457e71e926c.stex"
+path="res://.import/Background1.png-d101c6ec6fbb572e80e9db7475237b2b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Starman.png"
-dest_files=[ "res://.import/Starman.png-0e4ac13aa6a31ba699e02457e71e926c.stex" ]
+source_file="res://Sprites/Background1.png"
+dest_files=[ "res://.import/Background1.png-d101c6ec6fbb572e80e9db7475237b2b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

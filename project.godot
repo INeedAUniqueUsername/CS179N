@@ -8,10 +8,60 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "HBoxContainer",
+"class": "ContributorClass",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/ContributorClass.gd"
+}, {
+"base": "PanelContainer",
+"class": "GistItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/GistItem.gd"
+}, {
+"base": "",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "HBoxContainer",
+"class": "InvitationItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/InvitationItem.gd"
+}, {
+"base": "PanelContainer",
+"class": "RepositoryItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/RepositoryItem.gd"
+} ]
+_global_script_class_icons={
+"ContributorClass": "",
+"GistItem": "",
+"GitAPI": "",
+"InvitationItem": "",
+"RepositoryItem": ""
+}
+
 [application]
 
-config/name="Starboard"
+config/name="Starman"
+run/main_scene="res://Scenes/Level.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
+IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
+UserData="*res://addons/github-integration/scripts/user_data.gd"
+RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/github-integration/plugin.cfg", "res://addons/godot-git-control.funabab/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 
 [physics]
 
