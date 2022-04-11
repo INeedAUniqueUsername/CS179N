@@ -56,7 +56,6 @@ region_rect = Rect2( 32, 0, 96, 32 )
 script = ExtResource( 2 )
 
 [node name="Player" parent="Actors" instance=ExtResource( 1 )]
-scale = Vector2( 1, 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -74,5 +73,12 @@ motion_scale = Vector2( 0.2, 0.2 )
 motion_mirroring = Vector2( 1024, 1024 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/1"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1024, 1024 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/2"]
 texture = ExtResource( 5 )
 centered = false

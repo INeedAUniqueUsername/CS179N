@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Sprites/Beam.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/SwordBeam.png" type="Texture" id=1]
 [ext_resource path="res://LaserBeam.gd" type="Script" id=2]
 
-[node name="LaserBeam" type="Sprite"]
+[node name="SwordBeam" type="Sprite"]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
