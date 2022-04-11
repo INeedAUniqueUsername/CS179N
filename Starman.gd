@@ -6,11 +6,6 @@ onready var turn = 0
 onready var hp = 100
 onready var energy = 100
 
-var idle = preload("res://Sprites/StarmanIdle.png")
-var thrust = preload("res://Sprites/StarmanThrust.png")
-var turnLeft = preload("res://Sprites/StarmanTurnLeft.png")
-var turnRight = preload("res://Sprites/StarmanTurnRight.png")
-
 var fireInterval = 0.25
 var fireCooldown = 0
 
