@@ -32,7 +32,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ PoolVector2Array( 12, -10, 12, -32, 24, -32, 24, -16, 22, -16, 22, -8, 20, -4, 10, 4, 18, 16, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -18, 16, -10, 10, -10, 6, -14, 10, -22, 10, -22, 1, -26, -6, -26, -22, -14, -22, -14, -6, -10, -9, -10, -20, -6, -24, 6, -24, 10, -20, 10, -10 ) ]
+"values": [ PoolVector2Array( 12, -12, 12, -24, 10, -24, 10, -40, 22, -40, 22, -10, 10, 4, 18, 16, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -18, 16, -10, 10, -10, 6, -14, 10, -22, 10, -22, 1, -26, -6, -26, -22, -14, -22, -14, -6, -10, -9, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -105,6 +105,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 3 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 12, -12, 12, -24, 10, -24, 10, -40, 22, -40, 22, -10, 10, 4, 18, 16, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -18, 16, -10, 10, -10, 6, -14, 10, -22, 10, -22, 1, -26, -6, -26, -22, -14, -22, -14, -6, -10, -9, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "TurnLeft"
@@ -121,6 +133,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 4 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 12, -12, 12, -24, 10, -24, 10, -40, 22, -40, 22, -10, 10, 4, 10, 8, 16, 8, 24, 10, 30, 26, 14, 26, 14, 20, 4, 20, 4, 18, -2, 18, -6, 23, -6, 32, -24, 32, -18, 16, -10, 10, -10, 6, -14, 10, -22, 10, -22, 1, -26, -6, -26, -22, -14, -22, -14, -6, -10, -9, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "TurnRight"
@@ -136,6 +160,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 12, -12, 12, -24, 10, -24, 10, -40, 22, -40, 22, -10, 10, 4, 10, 8, 18, 16, 24, 32, 6, 32, 4, 20, -14, 20, -14, 26, -30, 26, -28, 18, -22, 10, -22, 1, -26, -6, -26, -22, -14, -22, -14, -6, -10, -9, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 ) ]
 }
 
 [node name="Sprite" type="Sprite" groups=["Player"]]
@@ -162,3 +198,5 @@ anims/RESET = SubResource( 4 )
 anims/Thrust = SubResource( 5 )
 anims/TurnLeft = SubResource( 6 )
 anims/TurnRight = SubResource( 7 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

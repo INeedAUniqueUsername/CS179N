@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HealthBarBack.png-b3c40f16a7befbe0f101e88b5ebd8e72.stex"
+path="res://.import/StarmanThrust-export.png-148722b9506aef8f73d3737ced8876e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/HealthBarBack.png"
-dest_files=[ "res://.import/HealthBarBack.png-b3c40f16a7befbe0f101e88b5ebd8e72.stex" ]
+source_file="res://Sprites/StarmanThrust-export.png"
+dest_files=[ "res://.import/StarmanThrust-export.png-148722b9506aef8f73d3737ced8876e1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

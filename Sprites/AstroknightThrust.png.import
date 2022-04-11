@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/EnergyBarFull.png-d81cfb65798a80a188d559da0b4de1c0.stex"
+path="res://.import/AstroknightThrust.png-81741d88b283a92f446f1c4217440740.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/EnergyBarFull.png"
-dest_files=[ "res://.import/EnergyBarFull.png-d81cfb65798a80a188d559da0b4de1c0.stex" ]
+source_file="res://Sprites/AstroknightThrust.png"
+dest_files=[ "res://.import/AstroknightThrust.png-81741d88b283a92f446f1c4217440740.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

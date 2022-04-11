@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HealthBarFull.png-30e554fabf5bc4025e3c2735c705dec4.stex"
+path="res://.import/AstroknightIdle-export.png-7460c2f5eefa1065c41bb4f950378fe5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/HealthBarFull.png"
-dest_files=[ "res://.import/HealthBarFull.png-30e554fabf5bc4025e3c2735c705dec4.stex" ]
+source_file="res://Sprites/AstroknightIdle-export.png"
+dest_files=[ "res://.import/AstroknightIdle-export.png-7460c2f5eefa1065c41bb4f950378fe5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
