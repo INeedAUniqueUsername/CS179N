@@ -51,7 +51,7 @@ func _process(delta):
 		
 		for p in [$GunLeft, $GunRight]:
 			var l = beam.instance()
-			l.vel = vel + vector_up * 256
+			l.vel = vel + vector_up * 512
 			get_parent().add_child(l)
 			l.set_global_transform(p.get_global_transform())
 			l.rotation_degrees = rotation_degrees - 90
