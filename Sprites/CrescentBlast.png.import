@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Title.png-7362e0bee3c99d95e13efe8bc4e072d5.stex"
+path="res://.import/CrescentBlast.png-542e05b0a510b5934573ff953f39cf43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Title.png"
-dest_files=[ "res://.import/Title.png-7362e0bee3c99d95e13efe8bc4e072d5.stex" ]
+source_file="res://Sprites/CrescentBlast.png"
+dest_files=[ "res://.import/CrescentBlast.png-542e05b0a510b5934573ff953f39cf43.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

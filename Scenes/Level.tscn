@@ -15,7 +15,6 @@
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
-player = NodePath("../Actors/Player")
 
 [node name="Control" type="Control" parent="Camera2D"]
 anchor_bottom = 1.0
