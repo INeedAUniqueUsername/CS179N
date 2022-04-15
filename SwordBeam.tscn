@@ -3,7 +3,7 @@
 [ext_resource path="res://Sprites/SwordBeam.png" type="Texture" id=1]
 [ext_resource path="res://LaserBeam.gd" type="Script" id=2]
 
-[node name="SwordBeam" type="Sprite"]
+[node name="SwordBeam" type="Sprite" groups=["Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -13,4 +13,7 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="ExpireTimer" to="." method="queue_free"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 14, -2, 14, 0, 9, 5, 6, 5, 6, 3, -14, 3, -14, -2 )

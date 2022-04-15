@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="CrescentBlast" type="Sprite"]
+[node name="CrescentBlast" type="Sprite" groups=["Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -48,5 +48,10 @@ autostart = true
 autoplay = "Fade"
 anims/Fade = SubResource( 3 )
 anims/RESET = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -1, -4, -1, 4, -4, 12, -8, 20, -14, 26, -28, 34, -34, 35, -34, 37, -30, 40, -24, 42, -13, 42, -3, 40, 8, 34, 17, 25, 25, 12, 27, 4, 27, -4, 25, -12, 17, -25, 8, -34, -3, -40, -13, -42, -24, -42, -30, -40, -34, -37, -34, -35, -28, -34, -14, -26, -8, -20, -4, -12 )
 
 [connection signal="timeout" from="ExpireTimer" to="." method="queue_free"]
