@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Characters/Astroknight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/Starman.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Camera.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Background0.png" type="Texture" id=4]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Sprites/EnergyBarSheet.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/HealthBarSheet.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Readout.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/FuelBarSheet.png" type="Texture" id=9]
 
 [node name="World" type="Node"]
 
@@ -15,6 +16,7 @@
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
+player = NodePath("../Actors/Player")
 
 [node name="Control" type="Control" parent="Camera2D"]
 anchor_bottom = 1.0
@@ -37,6 +39,13 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 32, 128, 32 )
 
+[node name="FuelBack" type="Sprite" parent="Camera2D/Control"]
+position = Vector2( 0, 64 )
+texture = ExtResource( 9 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 32, 128, 32 )
+
 [node name="HealthFront" type="Sprite" parent="Camera2D/Control"]
 position = Vector2( 32, 0 )
 texture = ExtResource( 7 )
@@ -47,6 +56,13 @@ region_rect = Rect2( 32, 0, 96, 32 )
 [node name="EnergyFront" type="Sprite" parent="Camera2D/Control"]
 position = Vector2( 32, 32 )
 texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 0, 96, 32 )
+
+[node name="FuelFront" type="Sprite" parent="Camera2D/Control"]
+position = Vector2( 32, 64 )
+texture = ExtResource( 9 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 32, 0, 96, 32 )

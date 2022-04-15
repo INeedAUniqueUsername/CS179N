@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Fie;BarSheet.png-34e120ba805470e02d1d930574cf52f7.stex"
+path="res://.import/FuelBarSheet.png-d05e73bea10d7dcf4aab1ca98e6aae2b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fie;BarSheet.png"
-dest_files=[ "res://.import/Fie;BarSheet.png-34e120ba805470e02d1d930574cf52f7.stex" ]
+source_file="res://Sprites/FuelBarSheet.png"
+dest_files=[ "res://.import/FuelBarSheet.png-d05e73bea10d7dcf4aab1ca98e6aae2b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
