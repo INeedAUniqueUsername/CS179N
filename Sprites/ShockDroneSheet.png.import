@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LaserSentry.png-5e5f680cb41dae465309853985d17fea.stex"
+path="res://.import/ShockDroneSheet.png-bb7e293257b77d5376f90d5b8506e925.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/LaserSentry.png"
-dest_files=[ "res://.import/LaserSentry.png-5e5f680cb41dae465309853985d17fea.stex" ]
+source_file="res://Sprites/ShockDroneSheet.png"
+dest_files=[ "res://.import/ShockDroneSheet.png-bb7e293257b77d5376f90d5b8506e925.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

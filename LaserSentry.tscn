@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/LaserSentry.png" type="Texture" id=1]
+[ext_resource path="res://SentryGun.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 100.0
+
+[node name="LaserSentry" type="Sprite" groups=["Actor"]]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Gun" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 8, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 32, 32, 16 )
+script = ExtResource( 2 )
+
+[node name="Coverage" type="Area2D" parent="Gun"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Coverage"]
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="Gun/Coverage" to="Gun" method="_on_area_entered"]

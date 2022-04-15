@@ -317,7 +317,7 @@ tracks/3/keys = {
 "values": [ Vector2( 16, -35 ) ]
 }
 
-[node name="Starman" type="Sprite" groups=["Player"]]
+[node name="Starman" type="Sprite" groups=["Actor", "Player"]]
 texture = ExtResource( 1 )
 hframes = 3
 vframes = 2

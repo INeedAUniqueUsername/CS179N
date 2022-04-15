@@ -291,7 +291,7 @@ tracks/3/keys = {
 "values": [ PoolVector2Array( -18, -32, -26, -48, -28, -48, -28, 12, -18, 12, -14, 12, -10, 8, -10, 2, -12, 2, -18, 8 ) ]
 }
 
-[node name="Astroknight" type="Sprite" groups=["Player"]]
+[node name="Astroknight" type="Sprite" groups=["Actor", "Player"]]
 texture = ExtResource( 1 )
 hframes = 17
 script = ExtResource( 2 )

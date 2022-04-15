@@ -293,7 +293,7 @@ tracks/1/keys = {
 "values": [ 3 ]
 }
 
-[node name="Lune" type="Sprite" groups=["Player"]]
+[node name="Lune" type="Sprite" groups=["Actor", "Player"]]
 texture = ExtResource( 1 )
 hframes = 9
 script = ExtResource( 2 )
