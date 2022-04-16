@@ -9,4 +9,4 @@ onready var player = get_parent().get_parent().get_node("Actors/Player")
 func _process(delta):
 	$HealthFront.region_rect.size.x = int(96 * player.hp / 100)
 	$EnergyFront.region_rect.size.x = int(96 * player.energy / 100)
-	$FuelFront.region_rect.size.x = int(96 * 100 / 100)
+	$FuelFront.region_rect.size.x = int(96 * player.fuel / 100)

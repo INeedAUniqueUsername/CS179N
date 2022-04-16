@@ -11,7 +11,7 @@ func _process(delta):
 		var offset = target.global_position - global_position
 		offset = offset.angle() - rotation
 		if offset > PI:
-			offset = 2 * PI - offset
+			offset -= 2 * PI
 		if offset < -PI:
 			offset += PI * 2
 			
