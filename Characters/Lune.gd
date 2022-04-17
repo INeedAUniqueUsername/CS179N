@@ -5,6 +5,7 @@ onready var turn = 0
 
 onready var hp = 100
 onready var energy = 100
+onready var fuel = 100
 
 const primaryFireInterval = 0.5
 const secondaryFireInterval = 2
@@ -23,30 +24,73 @@ const blast = preload("res://CrescentBlast.tscn")
 func _process(delta):
 	fireCooldown -= delta
 	if fireCooldown < 0:
-		var rechargeRate = 20 - fireCooldown*5
-		energy = min(100, energy + delta * rechargeRate)
+		var rechargeRate = 10 - fireCooldown*5
+		var inc = min(100 - energy, delta * rechargeRate)
+		if inc >= 0:
+			energy += inc
+			fuel -= inc / 90
 	
 	var vector_up = -get_global_transform().orthonormalized().y
-	if $AnimationPlayer.current_animation == "Cast":
-		vel += vector_up * delta * 240
-		return
+	
 	var up = Input.is_key_pressed(KEY_UP)
 	var left = Input.is_key_pressed(KEY_LEFT)
 	var right = Input.is_key_pressed(KEY_RIGHT)
-	if left and right:
-		vel += vector_up * delta * 240
-		$AnimationPlayer.play("Thrust")
+	
+	var fuelUsage = 1.0/90
+	var thrustSpeed = 240
+	var turnSpeed = 180
+	if $Anim.current_animation == "Slash":
+		fuel -= fuelUsage * 2
+		if left == right:
+			
+			vel += vector_up * delta * thrustSpeed * 2
+			$LeftLeg/Anim.play("StraightThrust")
+			$RightLeg/Anim.play("StraightThrust")
+		elif left:
+			vel += vector_up * delta * thrustSpeed * 6 / 4
+			turn -= delta * turnSpeed
+			$LeftLeg/Anim.play("StraightThrust")
+			$RightLeg/Anim.play("Turn")
+		elif right:
+			vel += vector_up * delta * thrustSpeed * 6 / 4
+			turn += delta * turnSpeed
+			$LeftLeg/Anim.play("Turn")
+			$RightLeg/Anim.play("StraightThrust")
+		return
+	if up:
+		fuel -= fuelUsage
+		if left == right:
+			vel += vector_up * delta * thrustSpeed
+			$LeftLeg/Anim.play("Thrust")
+			$RightLeg/Anim.play("Thrust")
+		elif left:
+			turn -= delta * turnSpeed / 2
+			vel += vector_up * delta * thrustSpeed * 3/4
+			$LeftLeg/Anim.play("Thrust")
+			$RightLeg/Anim.play("Turn")
+		elif right:
+			turn += delta * turnSpeed / 2
+			vel += vector_up * delta * thrustSpeed * 3/4
+			$LeftLeg/Anim.play("Turn")
+			$RightLeg/Anim.play("Thrust")
+	elif left and right:
+		fuel -= fuelUsage
+		vel += vector_up * delta * thrustSpeed
+		$LeftLeg/Anim.play("Turn")
+		$RightLeg/Anim.play("Turn")
 	elif left:
-		turn -= 180 * delta
-		$AnimationPlayer.play("TurnLeft")
+		fuel -= fuelUsage / 2
+		turn -= delta * turnSpeed
+		$LeftLeg/Anim.play("Idle")
+		$RightLeg/Anim.play("Turn")
 	elif right:
-		turn += 180 * delta
-		$AnimationPlayer.play("TurnRight")
-	elif up:
-		vel += vector_up * delta * 240
-		$AnimationPlayer.play("Thrust")
+		fuel -= fuelUsage / 2
+		turn += delta * turnSpeed
+		$LeftLeg/Anim.play("Turn")
+		$RightLeg/Anim.play("Idle")
 	else:
-		$AnimationPlayer.play("Idle")
+		$LeftLeg/Anim.play("Idle")
+		$RightLeg/Anim.play("Idle")
 	
 	if Input.is_key_pressed(KEY_X) && fireCooldown < 0 && energy > primaryEnergyUse:
 		energy -= primaryEnergyUse
@@ -63,7 +107,7 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_Z) && fireCooldown < 0 && energy > secondaryEnergyUse:
 		energy -= secondaryEnergyUse
 		fireCooldown = secondaryFireInterval
-		$AnimationPlayer.play("Cast")
+		$Anim.play("Cast")
 func _physics_process(delta):
 	global_translate(vel * delta)
 	rotation_degrees += turn * delta
@@ -85,3 +129,8 @@ func fire_blast():
 	get_parent().add_child(l)
 	l.set_global_transform(p.get_global_transform())
 	l.rotation_degrees = rotation_degrees - 90
+
+
+func _on_body_animation_finished(name):
+	if name == "Cast":
+		$Anim.play("Idle")

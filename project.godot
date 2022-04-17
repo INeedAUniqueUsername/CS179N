@@ -57,7 +57,7 @@ RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/github-integration/plugin.cfg", "res://addons/godot-git-control.funabab/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/batch_collisions/plugin.cfg", "res://addons/github-integration/plugin.cfg", "res://addons/godot-git-control.funabab/plugin.cfg" )
 
 [gdnative]
 

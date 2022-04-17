@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Sprites/LuneSheet.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/LuneLegSheet.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Lune.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/LuneBodySheet.png" type="Texture" id=3]
+[ext_resource path="res://Characters/Leg.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=8]
 resource_name = "Cast"
 length = 2.0
-step = 0.025
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Shape:polygon")
 tracks/0/interp = 1
@@ -14,10 +16,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -24, 26, -18, 22, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
+"values": [ PoolVector2Array( 12, -10, 26, 4, 42, 4, 42, 12, 22, 12, 10, 8, -10, 8, -22, 12, -42, 12, -42, 4, -24, 4, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ), PoolVector2Array( 12, -10, 20, -6, 40, -6, 40, 4, 20, 4, 10, 8, -10, 8, -20, 4, -40, 4, -40, -6, -20, -6, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ), PoolVector2Array( 12, -10, 22, -10, 36, -24, 42, -16, 26, 0, 10, 0, 10, 8, -10, 8, -10, 0, -26, 0, -42, -16, -36, -24, -22, -10, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ), PoolVector2Array( 12, -10, 28, -34, 36, -32, 26, -12, 14, 2, 10, 2, 10, 8, -10, 8, -10, 2, -14, 2, -26, -12, -36, -32, -28, -34, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ), PoolVector2Array( 12, -10, 18, -16, 18, -40, 28, -40, 28, -12, 14, 2, 10, 2, 10, 8, -10, 8, -10, 2, -14, 2, -28, -12, -28, -40, -18, -40, -18, -16, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:frame")
@@ -29,7 +31,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 6, 7, 8 ]
+"values": [ 1, 2, 3, 4, 5 ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -105,6 +107,30 @@ tracks/2/keys = {
 "method": "fire_blast"
 } ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area2D/LeftStaff:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array(  ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Area2D/RightStaff:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array(  ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -119,7 +145,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -24, 26, -18, 22, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
+"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 10, 8, -10, 8, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:frame")
@@ -134,7 +160,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Area2D/SwordLeft:polygon")
+tracks/2/path = NodePath("Area2D/LeftStaff:polygon")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -143,10 +169,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ PoolVector2Array( -18, -48, -20, -48, -28, -32, -28, 8, -34, 2, -36, 2, -36, 8, -32, 12, -18, 12 ) ]
+"values": [ PoolVector2Array( -18, -42, -28, -42, -32, -38, -32, -26, -28, -22, -26, -22, -26, 22, -20, 22, -20, -22, -16, -22, -14, -24, -14, -30, -20, -30, -20, -32, -24, -32, -24, -36, -22, -36, -18, -40 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Area2D/SwordRight:polygon")
+tracks/3/path = NodePath("Area2D/RightStaff:polygon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -155,7 +181,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ PoolVector2Array( -18, -32, -26, -48, -28, -48, -28, 12, -18, 12, -14, 12, -10, 8, -10, 2, -12, 2, -18, 8 ) ]
+"values": [ PoolVector2Array( -28, -42, -18, -42, -14, -38, -14, -26, -18, -22, -20, -22, -20, 22, -26, 22, -26, -22, -30, -22, -32, -24, -32, -30, -26, -30, -26, -32, -22, -32, -22, -36, -24, -36, -28, -40 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -170,7 +196,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -24, 26, -18, 22, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
+"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 10, 8, -10, 8, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:frame")
@@ -185,7 +211,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Area2D/SwordLeft:polygon")
+tracks/2/path = NodePath("Area2D/LeftStaff:polygon")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -194,10 +220,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ PoolVector2Array( -18, -48, -20, -48, -28, -32, -28, 8, -34, 2, -36, 2, -36, 8, -32, 12, -18, 12 ) ]
+"values": [ PoolVector2Array( -18, -42, -28, -42, -32, -38, -32, -26, -28, -22, -26, -22, -26, 22, -20, 22, -20, -22, -16, -22, -14, -24, -14, -30, -20, -30, -20, -32, -24, -32, -24, -36, -22, -36, -18, -40 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Area2D/SwordRight:polygon")
+tracks/3/path = NodePath("Area2D/RightStaff:polygon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -206,96 +232,12 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ PoolVector2Array( -18, -32, -26, -48, -28, -48, -28, 12, -18, 12, -14, 12, -10, 8, -10, 2, -12, 2, -18, 8 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "Thrust"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body/Shape:polygon")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -24, 26, -18, 22, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "TurnLeft"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body/Shape:polygon")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 30, 20, 30, 26, 14, 26, 14, 20, 2, 20, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -24, 26, -18, 22, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "TurnRight"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body/Shape:polygon")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 24, 32, 6, 32, 2, 18, -2, 18, -2, 20, -14, 20, -14, 26, -30, 26, -30, 20, -26, 16, -26, 12, -22, 12, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 3 ]
+"values": [ PoolVector2Array( -28, -42, -18, -42, -14, -38, -14, -26, -18, -22, -20, -22, -20, 22, -26, 22, -26, -22, -30, -22, -32, -24, -32, -30, -26, -30, -26, -32, -22, -32, -22, -36, -24, -36, -28, -40 ) ]
 }
 
 [node name="Lune" type="Sprite" groups=["Actor", "Player"]]
-texture = ExtResource( 1 )
-hframes = 9
+texture = ExtResource( 3 )
+hframes = 6
 script = ExtResource( 2 )
 
 [node name="GunLeft" type="Node2D" parent="."]
@@ -315,27 +257,33 @@ scale = Vector2( 0.5, 0.5 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Shape" type="CollisionPolygon2D" parent="Body"]
-polygon = PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 24, 32, 6, 32, 2, 18, -2, 18, -6, 23, -6, 32, -24, 32, -24, 26, -18, 22, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 )
+polygon = PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 10, 8, -10, 8, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="SwordLeft" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
+[node name="LeftStaff" type="CollisionPolygon2D" parent="Area2D"]
 scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -18, -48, -20, -48, -28, -32, -28, 8, -34, 2, -36, 2, -36, 8, -32, 12, -18, 12 )
+polygon = PoolVector2Array( -18, -42, -28, -42, -32, -38, -32, -26, -28, -22, -26, -22, -26, 22, -20, 22, -20, -22, -16, -22, -14, -24, -14, -30, -20, -30, -20, -32, -24, -32, -24, -36, -22, -36, -18, -40 )
 
-[node name="SwordRight" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
+[node name="RightStaff" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2( 23, 0 )
 scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -18, -32, -26, -48, -28, -48, -28, 12, -18, 12, -14, 12, -10, 8, -10, 2, -12, 2, -18, 8 )
+polygon = PoolVector2Array( -28, -42, -18, -42, -14, -38, -14, -26, -18, -22, -20, -22, -20, 22, -26, 22, -26, -22, -30, -22, -32, -24, -32, -30, -26, -30, -26, -32, -22, -32, -22, -36, -24, -36, -28, -40 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Anim" type="AnimationPlayer" parent="."]
 anims/Cast = SubResource( 8 )
 anims/Idle = SubResource( 1 )
 anims/RESET = SubResource( 4 )
-anims/Thrust = SubResource( 5 )
-anims/TurnLeft = SubResource( 6 )
-anims/TurnRight = SubResource( 7 )
+
+[node name="LeftLeg" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 4 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+texture = ExtResource( 1 )
+
+[node name="RightLeg" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 4 )
+texture = ExtResource( 1 )
 
 [connection signal="area_entered" from="Body" to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="Anim" to="." method="_on_body_animation_finished"]

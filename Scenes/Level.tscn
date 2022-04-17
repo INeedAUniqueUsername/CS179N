@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Characters/Starman.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/Lune.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Camera.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Background0.png" type="Texture" id=4]
@@ -16,7 +16,6 @@
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
-player = NodePath("../Actors/Player")
 
 [node name="Control" type="Control" parent="Camera2D"]
 anchor_bottom = 1.0
