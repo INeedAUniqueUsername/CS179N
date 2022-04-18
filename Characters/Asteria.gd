@@ -55,7 +55,7 @@ func _process(delta):
 		fireCount += 1
 		var p = [$LeftCannon, $RightCannon][fireCount%2]
 		var l = beam.instance()
-		l.vel = common.vel + common.vector_up * 1024 * 3 / 4
+		l.vel = common.vel + common.vector_up * 1024
 		get_parent().add_child(l)
 		l.set_global_transform(p.get_global_transform())
 		l.rotation_degrees = rotation_degrees - 90
@@ -74,3 +74,18 @@ func _on_body_animation_finished(anim_name):
 	if anim_name == "Punch":
 		for a in [$Body, $LeftLeg, $RightLeg, $LeftCannon, $RightCannon]:
 			a.get_node("Anim").play("Idle")
+func fire_burst():
+	
+	var p = $BurstOrigin
+	
+	for angle in [-30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30]:
+		var a = rotation_degrees - 90 + angle
+		
+		var l = beam.instance()
+		l.vel = common.vel + polar2cartesian(1024, a * PI / 180)
+		get_parent().add_child(l)
+		
+		l.set_global_transform(p.get_global_transform())
+		
+		l.position += polar2cartesian(20, a * PI / 180)
+		l.rotation_degrees = a
