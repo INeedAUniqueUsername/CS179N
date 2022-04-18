@@ -70,7 +70,7 @@ extents = Vector2( 3, 2.5 )
 
 [node name="Cannon" type="Sprite"]
 texture = ExtResource( 1 )
-offset = Vector2( 0, -2.5 )
+offset = Vector2( 0, -3 )
 hframes = 3
 
 [node name="Anim" type="AnimationPlayer" parent="."]

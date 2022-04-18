@@ -1,0 +1,212 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/AsteriaBodySheet.png" type="Texture" id=1]
+[ext_resource path="res://Characters/Leg.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Characters/Asteria.gd" type="Script" id=3]
+[ext_resource path="res://Characters/StarmanCannon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/AsteriaLegSheet.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Area/Shape:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 24, -12, 24, -6, 20, 2, 20, 10, 12, 10, 12, 8, -10, 8, -14, 8, -14, 10, -22, 10, -22, 1, -26, -6, -26, -12, -14, -12, -14, -8, -10, -8, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LeftCannon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -10, -6 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RightCannon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 9, -6 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Punch"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Area/Shape:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 14, -26, 14, -12, 14, 0, 10, 8, -10, 8, -14, 0, -14, -32, 14, -32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LeftCannon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -4, -16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RightCannon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4, -16 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Area/Shape:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 24, -12, 24, -6, 20, 2, 20, 10, 12, 10, 12, 8, -10, 8, -14, 8, -14, 10, -22, 10, -22, 1, -26, -6, -26, -12, -14, -12, -14, -8, -10, -8, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LeftCannon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -10, -6 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("RightCannon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 9, -6 ) ]
+}
+
+[node name="Asteria" type="Node2D" groups=["Actor", "Player"]]
+script = ExtResource( 3 )
+
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="Area" type="Area2D" parent="Body"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Shape" type="CollisionPolygon2D" parent="Body/Area"]
+polygon = PoolVector2Array( 24, -12, 24, -6, 20, 2, 20, 10, 12, 10, 12, 8, -10, 8, -14, 8, -14, 10, -22, 10, -22, 1, -26, -6, -26, -12, -14, -12, -14, -8, -10, -8, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 )
+
+[node name="Anim" type="AnimationPlayer" parent="Body"]
+root_node = NodePath("../..")
+anims/Idle = SubResource( 1 )
+anims/Punch = SubResource( 8 )
+anims/RESET = SubResource( 4 )
+
+[node name="LeftLeg" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 4 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+texture = ExtResource( 5 )
+
+[node name="RightLeg" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 4 )
+texture = ExtResource( 5 )
+
+[node name="LeftCannon" parent="." instance=ExtResource( 4 )]
+position = Vector2( -10, -6 )
+
+[node name="RightCannon" parent="." instance=ExtResource( 4 )]
+position = Vector2( 9, -6 )
+
+[connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Body/Anim" to="." method="_on_body_animation_finished"]

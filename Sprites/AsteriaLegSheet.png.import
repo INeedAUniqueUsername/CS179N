@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlasmaBall.png-bdb3b36ba9fd49b978a3df366b5f7af2.stex"
+path="res://.import/AsteriaLegSheet.png-5abc337f8ccecd71e0707d26203cc68b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PlasmaBall.png"
-dest_files=[ "res://.import/PlasmaBall.png-bdb3b36ba9fd49b978a3df366b5f7af2.stex" ]
+source_file="res://Sprites/AsteriaLegSheet.png"
+dest_files=[ "res://.import/AsteriaLegSheet.png-5abc337f8ccecd71e0707d26203cc68b.stex" ]
 
 [params]
 

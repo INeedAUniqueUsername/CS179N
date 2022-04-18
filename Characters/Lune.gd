@@ -39,7 +39,7 @@ func _process(delta):
 		get_parent().add_child(l)
 		l.set_global_transform(p.get_global_transform())
 		l.rotation_degrees = rotation_degrees - 90
-	if Input.is_key_pressed(KEY_Z) && common.canFire() < 0 && common.energy > secondaryEnergyUse:
+	if Input.is_key_pressed(KEY_Z) && common.canFire() && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
 		$Anim.play("Cast")
