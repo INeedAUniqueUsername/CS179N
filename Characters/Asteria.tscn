@@ -242,7 +242,7 @@ position = Vector2( 0, 4 )
 texture = ExtResource( 5 )
 
 [node name="BurstOrigin" type="Node2D" parent="."]
-position = Vector2( 0, -18 )
+position = Vector2( 0, -8 )
 
 [node name="LeftCannon" parent="." instance=ExtResource( 4 )]
 position = Vector2( -10, -6 )

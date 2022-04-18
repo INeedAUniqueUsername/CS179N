@@ -3,5 +3,5 @@ var vel = Vector2(0, 0)
 export(float) var damp = 1
 func _physics_process(delta):
 	if damp > 0:
-		vel -= vel * damp
+		vel -= vel.normalized() * damp * delta
 	global_translate(vel * delta)

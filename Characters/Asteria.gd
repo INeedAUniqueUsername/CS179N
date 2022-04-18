@@ -15,7 +15,7 @@ onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLe
 
 const primaryFireInterval = 0.1
 const secondaryFireInterval = 2
-const primaryEnergyUse = 5
+const primaryEnergyUse = 4
 const secondaryEnergyUse = 50
 
 var fireCount = 0
@@ -87,5 +87,5 @@ func fire_burst():
 		
 		l.set_global_transform(p.get_global_transform())
 		
-		l.position += polar2cartesian(20, a * PI / 180)
+		l.position += polar2cartesian(30, a * PI / 180)
 		l.rotation_degrees = a
