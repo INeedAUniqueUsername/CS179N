@@ -38,7 +38,7 @@ tracks/0/keys = {
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-damp = 512.0
+damp = 256.0
 
 [node name="ExpireTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -48,7 +48,7 @@ autostart = true
 [node name="Area2D" type="Area2D" parent="." groups=["Projectile"]]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( 6, -5, 8, -3, 8, -1, 6, 1, 6, 2, 3, 3, -8, 3, -8, 1, -6, -1, -6, -3, -5, -4, -3, -4, -2, -5 )
+polygon = PoolVector2Array( 8, -1, 8, 1, 7, 3, 6, 4, -6, 4, -8, 3, -8, -3, -6, -4, 6, -4, 7, -3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Fade"
