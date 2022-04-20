@@ -250,5 +250,4 @@ position = Vector2( -10, -6 )
 [node name="RightCannon" parent="." instance=ExtResource( 4 )]
 position = Vector2( 9, -6 )
 
-[connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="Body/Anim" to="." method="_on_body_animation_finished"]
