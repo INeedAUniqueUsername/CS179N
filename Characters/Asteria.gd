@@ -89,3 +89,6 @@ func fire_burst():
 		
 		l.position += polar2cartesian(30, a * PI / 180)
 		l.rotation_degrees = a
+
+func take_damage(dmg):
+	common.hp -= dmg
