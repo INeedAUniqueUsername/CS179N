@@ -31,8 +31,21 @@ func _on_Attack_Area_area_exited(body):
 		atk_target = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var patrol = Vector2(0, 0)
+var base_patrol = 4
+var curr_patrol = base_patrol
+var base_wait = 2
+var curr_wait = 0
 func _process(delta):
 	if target != null:
 		vel = forward
 	else:
-		vel = Vector2(0, 0)
+		curr_wait -= delta
+		if curr_wait < 0:
+			patrol = -patrol
+		elif curr_wait < 0:
+			curr_wait = base_wait
+			vel = patrol	
+		else:
+			curr_wait -= delta
+			patrol = Vector2(0, 0)
