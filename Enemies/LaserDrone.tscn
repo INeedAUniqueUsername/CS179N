@@ -4,10 +4,10 @@
 [ext_resource path="res://Enemies/LaserDrone.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 100.0
+radius = 300.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 200.0
+radius = 500.0
 
 [node name="LaserDrone" type="Node2D"]
 script = ExtResource( 2 )
@@ -32,5 +32,6 @@ shape = SubResource( 2 )
 
 [connection signal="area_entered" from="Damage_Area" to="." method="_on_Damage_Area_area_entered"]
 [connection signal="area_entered" from="Attack_Area" to="." method="_on_Attack_Area_area_entered"]
+[connection signal="area_exited" from="Attack_Area" to="." method="_on_Attack_Area_area_exited"]
 [connection signal="area_entered" from="Detect_Area" to="." method="_on_Detect_Area_area_entered"]
 [connection signal="area_exited" from="Detect_Area" to="." method="_on_Detect_Area_area_exited"]
