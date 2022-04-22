@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 var vel setget, get_vel
 var fireCooldown setget, get_fire_cooldown
@@ -47,3 +47,7 @@ func _physics_process(delta):
 func _on_body_animation_finished(anim_name):
 	if anim_name == "Slash":
 		$Anim.play("Idle")
+func _on_body_entered(area):
+	pass # Replace with function body.
+func _on_sword_entered(area):
+	pass # Replace with function body.

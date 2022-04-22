@@ -22,7 +22,7 @@ const beam = preload("res://LaserBeam.tscn")
 
 func _process(delta):
 	common.update_energy(delta)
-	if $Body/Anim.current_animation == "Punch":
+	if $Anim.current_animation == "Punch":
 		
 		var up = Input.is_key_pressed(KEY_UP)
 		var left = Input.is_key_pressed(KEY_LEFT)
@@ -60,7 +60,7 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
-		$Body/Anim.play("Punch")
+		$Anim.play("Punch")
 		$LeftLeg/Anim.play("StraightThrust")
 		$RightLeg/Anim.play("StraightThrust")
 		$LeftCannon/Anim.play("Punch")
@@ -69,5 +69,7 @@ func _physics_process(delta):
 	common.update_physics(delta)
 func _on_body_animation_finished(anim_name):
 	if anim_name == "Punch":
-		for a in [$Body, $LeftLeg, $RightLeg, $LeftCannon, $RightCannon]:
+		for a in [self, $LeftLeg, $RightLeg, $LeftCannon, $RightCannon]:
 			a.get_node("Anim").play("Idle")
+func _on_body_entered():
+	pass # Replace with function body.

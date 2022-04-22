@@ -7,7 +7,10 @@ func _ready():
 	if player != '':
 		player = get_node(player)
 	else:
-		player = get_parent().get_node("Actors/Player")
+		call_deferred("register_player")
+func register_player():
+	player = get_parent().get_node("Actors").player
 func _physics_process(delta):
 	#rotation_degrees = player.rotation_degrees
-	position = player.position - player.vel / 120
+	if player:
+		position = player.position - player.vel / 120

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Characters/Asteria.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/Astroknight.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Camera.gd" type="Script" id=3]
 [ext_resource path="res://Sprites/Background0.png" type="Texture" id=4]
@@ -11,6 +11,11 @@
 [ext_resource path="res://Sprites/FuelBarSheet.png" type="Texture" id=9]
 
 [node name="World" type="Node"]
+
+[node name="Actors" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Astroknight" parent="Actors" instance=ExtResource( 1 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -65,11 +70,6 @@ texture = ExtResource( 9 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 32, 0, 96, 32 )
-
-[node name="Actors" type="Node2D" parent="."]
-script = ExtResource( 2 )
-
-[node name="Player" parent="Actors" instance=ExtResource( 1 )]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -215,6 +215,11 @@ tracks/4/keys = {
 [node name="Asteria" type="Node2D" groups=["Actor", "Player"]]
 script = ExtResource( 3 )
 
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 1 )
+anims/Punch = SubResource( 8 )
+anims/RESET = SubResource( 4 )
+
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 2
@@ -224,12 +229,6 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Shape" type="CollisionPolygon2D" parent="Body/Area"]
 polygon = PoolVector2Array( 24, -12, 24, -6, 20, 2, 20, 10, 12, 10, 12, 8, -10, 8, -14, 8, -14, 10, -22, 10, -22, 1, -26, -6, -26, -12, -14, -12, -14, -8, -10, -8, -10, -20, -6, -24, 6, -24, 10, -20, 10, -12 )
-
-[node name="Anim" type="AnimationPlayer" parent="Body"]
-root_node = NodePath("../..")
-anims/Idle = SubResource( 1 )
-anims/Punch = SubResource( 8 )
-anims/RESET = SubResource( 4 )
 
 [node name="LeftLeg" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 4 )
@@ -250,4 +249,5 @@ position = Vector2( -10, -6 )
 [node name="RightCannon" parent="." instance=ExtResource( 4 )]
 position = Vector2( 9, -6 )
 
-[connection signal="animation_finished" from="Body/Anim" to="." method="_on_body_animation_finished"]
+[connection signal="animation_finished" from="Anim" to="." method="_on_body_animation_finished"]
+[connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]

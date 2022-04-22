@@ -66,3 +66,11 @@ func fire_blast():
 func _on_body_animation_finished(name):
 	if name == "Cast":
 		$Anim.play("Idle")
+
+
+func _on_area_entered():
+	pass # Replace with function body.
+
+
+func _on_body_entered():
+	pass # Replace with function body.
