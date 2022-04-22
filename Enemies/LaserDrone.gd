@@ -21,12 +21,12 @@ func _physics_process(delta):
 # Triggered when player enter's enemy's attack radius
 const beam = preload("res://LaserBeam.tscn")
 var atk_target
-func _on_Attack_Area_body_entered(body):
+func _on_Attack_Area_area_entered(body):
 	if body.is_in_group("Player"):
 		atk_target = body
 		
 # Triggered when player exits enemy's attack radius
-func _on_Attack_Area_body_exited(body):
+func _on_Attack_Area_area_exited(body):
 	if body.is_in_group("Player"):
 		atk_target = null
 
