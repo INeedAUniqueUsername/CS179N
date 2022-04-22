@@ -1,4 +1,6 @@
 class_name Common
+signal health_update(health)
+signal killed()
 var vel = Vector2(0, 0)
 var turn = 0
 
@@ -15,6 +17,8 @@ var owner
 var animBody
 var animLeftLeg
 var animRightLeg
+
+onready var health = hp setget _set_health
 
 # time remaining before weapon is ready
 # if negative, indicates excess time that has passed (used for battery recharge)
@@ -78,3 +82,18 @@ func update_controls(delta):
 	else:
 		animLeftLeg.play("Idle")
 		animRightLeg.play("Idle")
+
+func damage(amount):
+	_set_health(health - amount)
+
+func kill():
+	pass
+	
+func _set_health(value):
+	var p_hp = health
+	health = clamp(value, 0, hp)
+	if(health != p_hp):
+		emit_signal("health_update", health)
+		if health == 0:
+			kill()
+			emit_signal("killed")
