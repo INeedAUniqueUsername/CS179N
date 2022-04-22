@@ -1,16 +1,10 @@
 class_name Enemies
 extends Node2D
 
-var speed = 10
-var vel = Vector2(0, 0)
-var turn = 0
+var rotationSpeed = 50
 
 var hp = 100 setget, get_hp
 func get_hp(): return hp
-
-var atk_radius = 40 setget set_radius, get_radius
-func set_radius(r): atk_radius = r
-func get_radius(): return atk_radius
 
 func takeDamage(dmg: int): hp -= dmg
 
@@ -28,22 +22,12 @@ func _on_Detect_Area_area_entered(area):
 	if p.is_in_group("Player"):
 		target = p
 
-func _on_area_entered(area):
+func _on_Detect_Area_area_exited(area):
 	var p = area.get_parent()
 	if p.is_in_group("Player"):
-		target = p
-func _process(delta):
+		target = null
+
+func _physics_process(delta):
 	if target != null:
-		# FIX ANGLE BUG
-		var offset = target.global_position - global_position
-		offset = offset.angle() - rotation
-		if offset > PI:
-			offset -= 2 * PI
-		if offset < -PI:
-			offset += PI * 2
-			
-		var speed = PI / 90
-		offset = offset / 30
-		if abs(offset) > speed:
-			offset = sign(offset) * speed
-		rotation += offset
+		look_at(target.global_position)
+		rotate(PI/2)
