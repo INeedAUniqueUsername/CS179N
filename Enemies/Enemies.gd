@@ -16,12 +16,12 @@ func takeDamage(dmg: int): hp -= dmg
 #		area.get_parent().queue_free()
 
 # Triggered when player enters enemy's detection radius
-func _on_Detect_Area_body_entered(body):
+func _on_Detect_Area_area_entered(body):
 	if body.is_in_group("Player"):
 		target = body
 
 # Triggered when player exits enemy's detection radius 
-func _on_Detect_Area_body_exited(body):
+func _on_Detect_Area_area_exited(body):
 	if body.is_in_group("Player"):
 		target = null
 
