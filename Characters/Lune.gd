@@ -49,6 +49,7 @@ func fire_beam():
 	var p = [$GunLeft, $GunRight][fireCount%2]
 	fireCount += 1
 	var l = beam.instance()
+	l.ignore.append(self)
 	l.vel = common.vel + common.vector_up * 512
 	get_parent().add_child(l)
 	l.set_global_transform(p.get_global_transform())
@@ -57,6 +58,7 @@ func fire_beam():
 func fire_blast():
 	var p = $BeamOrigin
 	var l = blast.instance()
+	l.ignore.append(self)
 	l.vel = common.vel + common.vector_up * 750
 	get_parent().add_child(l)
 	l.set_global_transform(p.get_global_transform())

@@ -4,7 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var radius = 300
+var radius = 600
 onready var diameter = radius * 2
 var time = 0
 # Called when the node enters the scene tree for the first time.

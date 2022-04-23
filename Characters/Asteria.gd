@@ -55,6 +55,7 @@ func _process(delta):
 		fireCount += 1
 		var p = [$LeftCannon, $RightCannon][fireCount%2]
 		var l = beam.instance()
+		l.ignore.append(self)
 		l.vel = common.vel + common.vector_up * 1024 * 3/4
 		get_parent().add_child(l)
 		l.set_global_transform(p.get_global_transform())
@@ -82,6 +83,7 @@ func fire_burst():
 		var a = rotation_degrees - 90 + angle
 		
 		var l = beam.instance()
+		l.ignore.append(self)
 		l.vel = common.vel + polar2cartesian(1024 * 3/4, a * PI / 180)
 		get_parent().add_child(l)
 		
