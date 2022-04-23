@@ -38,7 +38,9 @@ tracks/0/keys = {
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-damp = 256.0
+lifespan = 1.5
+damage = 15.0
+knockback = 0.0
 
 [node name="ExpireTimer" type="Timer" parent="."]
 wait_time = 2.0

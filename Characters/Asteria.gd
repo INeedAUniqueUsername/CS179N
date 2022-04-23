@@ -23,7 +23,7 @@ var fireCount = 0
 const beam = preload("res://PlasmaBall.tscn")
 
 func _process(delta):
-	common.update_energy(delta)
+	common.update_systems(delta)
 	if $Anim.current_animation == "Punch":
 		
 		var up = Input.is_key_pressed(KEY_UP)
@@ -97,3 +97,5 @@ func take_damage(dmg):
 
 func _on_body_entered():
 	pass # Replace with function body.
+func damage(projectile):
+	common.damage(projectile)

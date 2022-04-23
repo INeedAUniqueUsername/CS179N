@@ -31,7 +31,8 @@ func update_physics(delta):
 	owner.global_translate(vel * delta)
 	owner.rotation_degrees += turn * delta
 	vector_up = -owner.get_global_transform().orthonormalized().y
-func update_energy(delta):
+func update_systems(delta):
+	damageDelay -= delta
 	fireCooldown -= delta
 	if fireCooldown < 0:
 		var rechargeRate = 10 - fireCooldown*5
@@ -39,6 +40,13 @@ func update_energy(delta):
 		if inc >= 0:
 			energy += inc
 			fuel -= inc / 90
+var damageDelay = 0
+func damage(attacker):
+	if damageDelay > 0:
+		return
+	var d = attacker.damage
+	hp -= d
+	damageDelay = 1
 var vector_up
 func update_controls(delta):
 	var up = Input.is_key_pressed(KEY_UP)

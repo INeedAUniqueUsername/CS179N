@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/ThunderDrone.gd" type="Script" id=2]
@@ -18,10 +18,26 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8, 2.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire_salvo_1"
+}, {
+"args": [  ],
+"method": "fire_salvo_2"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Flashing"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
@@ -102,6 +118,9 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=5]
 radius = 240.0
 
+[sub_resource type="CircleShape2D" id=8]
+radius = 16.0
+
 [node name="ThunderDrone" type="Node2D" groups=["Actor"]]
 script = ExtResource( 2 )
 
@@ -128,5 +147,11 @@ anims/Waiting = SubResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
 shape = SubResource( 5 )
 
+[node name="Damage" type="Area2D" parent="." groups=["Damage"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+shape = SubResource( 8 )
+
 [connection signal="area_entered" from="Body/Area" to="." method="_on_Body_area_entered"]
 [connection signal="area_entered" from="Detect" to="." method="_on_Detect_area_entered"]
+[connection signal="area_entered" from="Damage" to="." method="_on_Damage_area_entered"]

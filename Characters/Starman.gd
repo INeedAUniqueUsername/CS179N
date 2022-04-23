@@ -21,7 +21,7 @@ const secondaryEnergyUse = 50
 const beam = preload("res://LaserBeam.tscn")
 
 func _process(delta):
-	common.update_energy(delta)
+	common.update_systems(delta)
 	if $Anim.current_animation == "Punch":
 		
 		var up = Input.is_key_pressed(KEY_UP)
@@ -74,3 +74,6 @@ func _on_body_animation_finished(anim_name):
 			a.get_node("Anim").play("Idle")
 func _on_body_entered():
 	pass # Replace with function body.
+	
+func damage(projectile):
+	common.damage(projectile)

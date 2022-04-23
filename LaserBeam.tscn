@@ -10,6 +10,8 @@ extents = Vector2( 10, 2 )
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+damage = 10.0
+knockback = 0.0
 
 [node name="ExpireTimer" type="Timer" parent="."]
 wait_time = 2.0

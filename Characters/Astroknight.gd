@@ -23,7 +23,7 @@ const beam = preload("res://SwordBeam.tscn")
 
 func _process(delta):
 	
-	common.update_energy(delta)
+	common.update_systems(delta)
 	common.update_controls(delta)
 	
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
@@ -52,3 +52,5 @@ func _on_body_entered(area):
 	pass # Replace with function body.
 func _on_sword_entered(area):
 	pass # Replace with function body.
+func damage(projectile):
+	common.damage(projectile)

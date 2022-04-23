@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 var vel setget, get_vel
 var fireCooldown setget, get_fire_cooldown
@@ -25,7 +25,7 @@ const blast = preload("res://CrescentBlast.tscn")
 
 
 func _process(delta):
-	common.update_energy(delta)
+	common.update_systems(delta)
 	common.update_controls(delta)
 	if Input.is_key_pressed(KEY_X) && common.canFire() && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
@@ -35,6 +35,7 @@ func _process(delta):
 		var p = [$GunLeft, $GunRight][fireCount%2]
 		
 		var l = beam.instance()
+		l.ignore = [self]
 		l.vel = common.vel + common.vector_up * 512
 		get_parent().add_child(l)
 		l.set_global_transform(p.get_global_transform())
@@ -76,3 +77,6 @@ func _on_area_entered():
 
 func _on_body_entered():
 	pass # Replace with function body.
+	
+func damage(projectile):
+	common.damage(projectile)

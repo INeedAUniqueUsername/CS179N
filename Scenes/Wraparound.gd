@@ -18,10 +18,14 @@ func register_actors():
 	for l in d:
 		if l.is_in_group("Actor"):
 			leaves.append(l)
+			
+			l.connect("on_destroyed", self, "on_destroyed")
 			if l.is_in_group("Player"):
 				player = l
 	if player == null:
 		pass
+func on_destroyed(n):
+	leaves.erase(n)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
