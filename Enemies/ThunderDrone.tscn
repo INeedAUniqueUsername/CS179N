@@ -134,7 +134,7 @@ hframes = 21
 polygon = PoolVector2Array( -1, -13, 1, -13, 1, -13, 5, -9, 9, -9, 9, -5, 13, -1, 13, 1, 9, 5, 9, 9, 5, 9, 1, 13, -1, 13, -5, 9, -9, 9, -9, 5, -13, 1, -13, -1, -9, -5, -9, -9, -5, -9 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-autoplay = "Charging"
+autoplay = "Waiting"
 anims/Charging = SubResource( 1 )
 anims/Flashing = SubResource( 2 )
 anims/RESET = SubResource( 3 )
@@ -152,6 +152,5 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
 shape = SubResource( 8 )
 
-[connection signal="area_entered" from="Body/Area" to="." method="_on_Body_area_entered"]
 [connection signal="area_entered" from="Detect" to="." method="_on_Detect_area_entered"]
 [connection signal="area_entered" from="Damage" to="." method="_on_Damage_area_entered"]

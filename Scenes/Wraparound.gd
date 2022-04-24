@@ -4,6 +4,8 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+export(PackedScene) var bossType
+
 var radius = 600
 onready var diameter = radius * 2
 var time = 0
@@ -11,9 +13,9 @@ var time = 0
 func _ready():
 	call_deferred("register_actors")
 var player
-var leaves
+var leaves = []
+var bossSummon = []
 func register_actors():
-	leaves = []
 	var d = get_descendants(self)
 	for l in d:
 		if l.is_in_group("Actor"):
@@ -22,10 +24,25 @@ func register_actors():
 			l.connect("on_destroyed", self, "on_destroyed")
 			if l.is_in_group("Player"):
 				player = l
+			if l.is_in_group("Boss Summon"):
+				bossSummon.append(l)
 	if player == null:
 		pass
+		
+signal on_boss_summoned
+signal on_boss_destroyed
 func on_destroyed(n):
 	leaves.erase(n)
+	if n.is_in_group("Boss Summon"):
+		bossSummon.erase(n)
+		if len(bossSummon) == 0:
+			var b = bossType.instance()
+			add_child(b)
+			b.connect("on_destroyed", self, "on_boss_destroyed")
+			b.global_position = player.global_position + polar2cartesian(600, rand_range(0, PI*2))
+			emit_signal("on_boss_summoned", b)
+func on_boss_destroyed(boss):
+	emit_signal("on_boss_destroyed")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta

@@ -52,12 +52,12 @@ func damage(attacker):
 	if damageDelay > 0:
 		return
 	var d = attacker.damage
-	hp -= d
+	hp = max(0, hp - d)
 	damageDelay = 1
 var vector_up
 func thrust(dest_vel):
 	
-	var rejection = vel * (1 - vel.normalized().dot(dest_vel))
+	var rejection = vel * (1 - vel.normalized().dot(dest_vel.normalized()))
 	
 	vel -= rejection.normalized() * min(rejection.length(), thrustSpeed / 10) 
 	vel += (dest_vel - vel).normalized() * min(thrustSpeed / 10, (dest_vel - vel).length())

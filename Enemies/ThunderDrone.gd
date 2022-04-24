@@ -105,7 +105,8 @@ func _on_Damage_area_entered(area):
 		flashes = 0
 		actor.damage(self)
 		vel = -vel
-var hp = 500
+var hp_max = 500
+onready var hp = hp_max
 func damage(projectile):
 	hp -= projectile.damage
 	if hp < 1:
