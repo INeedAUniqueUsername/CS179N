@@ -14,7 +14,15 @@ func _ready():
 		button.connect("button_pressed", self, "_on_Button_pressed", [button])
 		
 func _on_Button_pressed(button : Button):
-	Global.character_choice = $Button.text
+	#Create global variable -> selected_character -> indicates whith character being selected
+	"""
+	0 -> Asteria
+	1 -> AstroKnight
+	2 -> Lune
+	3 -> Starman
+	"""
+	#GlobalVariable.selected_character(0)
+	character_choice = $Button.text
 	get_tree().change_scene("")
 
 
