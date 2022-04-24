@@ -6,7 +6,7 @@ var hp = 100
 var energy = 100
 var fuel = 100
 
-var fuelUsage = 1.0/90
+var fuelUsage = 1.0/2
 var thrustSpeed = 240
 var turnSpeed = 180
 
@@ -44,9 +44,15 @@ func update_systems(delta):
 	if fireCooldown < 0:
 		var rechargeRate = 10 - fireCooldown*5
 		var inc = min(100 - energy, delta * rechargeRate)
-		if inc >= 0:
+		if inc > 0:
 			energy += inc
-			fuel -= inc / 90
+			fuel -= inc / 60.0
+	if damageDelay < 0:
+		var rechargeRate = 1 - damageDelay
+		var inc = min(100 - hp, delta * rechargeRate)
+		if inc > 0:
+			hp += inc
+			fuel -= inc / 20.0
 var damageDelay = 0
 func damage(attacker):
 	if damageDelay > 0:
@@ -79,7 +85,7 @@ func update_controls(delta):
 	decel_vel = true
 	decel_turn = true
 	if up:
-		fuel -= fuelUsage
+		fuel -= delta * fuelUsage
 		if left == right:
 			thrust(vector_up * thrustSpeed)
 			
@@ -96,17 +102,17 @@ func update_controls(delta):
 			animLeftLeg.play("Turn")
 			animRightLeg.play("Thrust")
 	elif left and right:
-		fuel -= fuelUsage
+		fuel -= delta * fuelUsage
 		thrust(vector_up * thrustSpeed)
 		animLeftLeg.play("Turn")
 		animRightLeg.play("Turn")
 	elif left:
-		fuel -= fuelUsage / 2
+		fuel -= delta * fuelUsage / 2
 		turn(-turnSpeed, delta)
 		animLeftLeg.play("Idle")
 		animRightLeg.play("Turn")
 	elif right:
-		fuel -= fuelUsage / 2
+		fuel -= delta * fuelUsage / 2
 		turn(turnSpeed, delta)
 		animLeftLeg.play("Turn")
 		animRightLeg.play("Idle")

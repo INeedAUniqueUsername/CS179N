@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BossRingLarge.png-4b0f3b92495560c2177c639d49937e3f.stex"
+path="res://.import/HPBar.png-3154a05376941bf8a9bff0060bda6e3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BossRingLarge.png"
-dest_files=[ "res://.import/BossRingLarge.png-4b0f3b92495560c2177c639d49937e3f.stex" ]
+source_file="res://Sprites/HPBar.png"
+dest_files=[ "res://.import/HPBar.png-3154a05376941bf8a9bff0060bda6e3b.stex" ]
 
 [params]
 

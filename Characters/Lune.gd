@@ -16,7 +16,7 @@ onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLe
 
 const primaryFireInterval = 0.5
 const secondaryFireInterval = 2
-const primaryEnergyUse = 10
+const primaryEnergyUse = 8
 const secondaryEnergyUse = 50
 var fireCount = 0
 
@@ -71,11 +71,11 @@ func _on_body_animation_finished(name):
 		$Anim.play("Idle")
 
 
-func _on_area_entered():
+func _on_area_entered(area):
 	pass # Replace with function body.
 
 
-func _on_body_entered():
+func _on_body_entered(area):
 	pass # Replace with function body.
 	
 func damage(projectile):
