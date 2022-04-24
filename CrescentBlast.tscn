@@ -18,6 +18,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -33,15 +45,27 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
-[node name="CrescentBlast" type="Sprite" groups=["Projectile"]]
+[node name="CrescentBlast" type="Sprite" groups=["Actor", "Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 lifespan = 1.5
 damage = 10.0
 pierce = 3
-knockback = 1.0
+knockback = 30.0
 
 [node name="ExpireTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -59,3 +83,4 @@ anims/RESET = SubResource( 4 )
 polygon = PoolVector2Array( -1, -4, -1, 4, -4, 12, -8, 20, -14, 26, -28, 34, -34, 35, -34, 37, -30, 40, -24, 42, -13, 42, -3, 40, 8, 34, 17, 25, 25, 12, 27, 4, 27, -4, 25, -12, 17, -25, 8, -34, -3, -40, -13, -42, -24, -42, -30, -40, -34, -37, -34, -35, -28, -34, -14, -26, -8, -20, -4, -12 )
 
 [connection signal="timeout" from="ExpireTimer" to="." method="queue_free"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

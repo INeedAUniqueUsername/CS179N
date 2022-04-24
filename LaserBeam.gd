@@ -25,17 +25,19 @@ func _on_area_entered(area):
 		return
 	if area.is_in_group("Damage"):
 		return
-	if area.is_in_group("Projectile"):
-		return
 	var actor = Helper.get_parent_actor(area)
+	if !actor:
+		return
+	if actor.is_in_group("Projectile"):
+		return
 	if ignore.has(actor):
 		return
-	if actor:
-		pierce -= 1
-		actor.vel += vel.normalized() * knockback
-		var n = actor.name
-		actor.damage(self)
-		if pierce < 1:
-			queue_free()
+	pierce -= 1
+	actor.vel += vel.normalized() * knockback
+	var s = self.name
+	var n = actor.name
+	actor.damage(self)
+	if pierce < 1:
+		queue_free()
 func damage(projectile):
-	return
+	var actor = Helper.get_parent_actor(projectile)
