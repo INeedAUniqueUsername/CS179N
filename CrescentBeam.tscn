@@ -90,7 +90,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[node name="CrescentBeam" type="Node2D" groups=["Projectile"]]
+[node name="CrescentBeam" type="Node2D" groups=["Actor", "Magic", "Projectile"]]
 script = ExtResource( 2 )
 lifespan = 1.5
 damage = 10.0

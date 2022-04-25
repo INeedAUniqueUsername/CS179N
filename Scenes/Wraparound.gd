@@ -18,6 +18,8 @@ var bossSummon = []
 func register_actors():
 	var d = get_descendants(self)
 	for l in d:
+		if l.is_in_group("Projectile"):
+			continue
 		if l.is_in_group("Actor"):
 			leaves.append(l)
 			

@@ -23,7 +23,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color_ramp = SubResource( 3 )
 
-[node name="LightningBeam" type="Sprite" groups=["Actor", "Projectile"]]
+[node name="LightningBeam" type="Sprite" groups=["Actor", "Lightning", "Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

@@ -1,5 +1,5 @@
 extends Node2D
-var vel = Vector2(0, 0)
+export(Vector2) var vel = Vector2(0, 0)
 
 export(float) var lifespan = 1.0
 export(float) var damage = 25.0
@@ -7,12 +7,14 @@ export(int) var pierce = 1
 export(float) var damp = 1.0
 export(float) var knockback = 3.0
 
+var time_scale = 1
+func set_time_scale(t):
+	time_scale = t
 
-var lifetime
+onready var lifetime = lifespan
 var ignore = []
-func _ready():
-	lifetime = lifespan
 func _physics_process(delta):
+	delta *= time_scale
 	lifetime -= delta
 	if lifetime < 0:
 		queue_free()

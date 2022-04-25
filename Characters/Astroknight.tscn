@@ -373,7 +373,7 @@ scale = Vector2( 1, -1 )
 [node name="GunRight" type="Node2D" parent="."]
 position = Vector2( 11, -5 )
 
-[node name="Swords" type="Area2D" parent="."]
+[node name="Swords" type="Area2D" parent="." groups=["Damage"]]
 
 [node name="SwordLeft" type="CollisionPolygon2D" parent="Swords"]
 scale = Vector2( 0.5, 0.5 )

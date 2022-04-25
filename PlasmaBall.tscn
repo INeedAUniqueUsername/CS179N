@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[node name="PlasmaBall" type="Sprite" groups=["Projectile"]]
+[node name="PlasmaBall" type="Sprite" groups=["Actor", "Plasma", "Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -47,7 +47,7 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="." groups=["Projectile"]]
+[node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( 8, -1, 8, 1, 7, 3, 6, 4, -6, 4, -8, 3, -8, -3, -6, -4, 6, -4, 7, -3 )
@@ -58,3 +58,4 @@ anims/Fade = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
 [connection signal="timeout" from="ExpireTimer" to="." method="queue_free"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

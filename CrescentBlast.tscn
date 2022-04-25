@@ -58,7 +58,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[node name="CrescentBlast" type="Sprite" groups=["Actor", "Projectile"]]
+[node name="CrescentBlast" type="Sprite" groups=["Actor", "Magic", "Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

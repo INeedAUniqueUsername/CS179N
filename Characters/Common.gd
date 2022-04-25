@@ -7,8 +7,8 @@ var energy = 100
 var fuel = 100
 
 var fuelUsage = 1.0/2
-var thrustSpeed = 240
-var turnSpeed = 180
+var thrustSpeed = 600
+var turnSpeed = 720
 
 var owner
 
@@ -22,23 +22,32 @@ var fireCooldown = 0
 
 func canFire(): return fireCooldown < 0
 
+var time_scale = 1
+func set_time_scale(t):
+	time_scale = t
+	animBody.playback_speed = t
+	animLeftLeg.playback_speed = t
+	animRightLeg.playback_speed = t
+
 func _init(owner: Node2D, animBody: AnimationPlayer, animLeftLeg: AnimationPlayer, animRightLeg: AnimationPlayer):
 	self.owner = owner
 	self.animBody = animBody
 	self.animLeftLeg = animLeftLeg
 	self.animRightLeg = animRightLeg
 func update_physics(delta):
+	delta *= time_scale
 	owner.global_translate(vel * delta)
 	owner.rotation_degrees += turn * delta
 	vector_up = -owner.get_global_transform().orthonormalized().y
 	if decel_vel:
-		vel -= vel.normalized() * min(vel.length(), thrustSpeed * delta)
+		vel -= delta * vel.normalized() * min(vel.length() * 2, thrustSpeed * 2)
 	if decel_turn:
-		turn -= sign(turn) * min(abs(turn), 16 * turnSpeed * delta)
+		turn -= delta * sign(turn) * min(abs(turn) * 15, 16 * turnSpeed)
 	
 var decel_vel
 var decel_turn
 func update_systems(delta):
+	delta *= time_scale
 	damageDelay -= delta
 	fireCooldown -= delta
 	if fireCooldown < 0:
@@ -61,23 +70,27 @@ func damage(attacker):
 	hp = max(0, hp - d)
 	damageDelay = 1
 var vector_up
-func thrust(dest_vel):
+func thrust(dest_vel, delta):
+	
 	
 	var rejection = vel * (1 - vel.normalized().dot(dest_vel.normalized()))
 	
-	vel -= rejection.normalized() * min(rejection.length(), thrustSpeed / 10) 
-	vel += (dest_vel - vel).normalized() * min(thrustSpeed / 10, (dest_vel - vel).length())
+	vel -= delta * rejection.normalized() * min(rejection.length(), thrustSpeed) 
+	vel += delta * (dest_vel - vel).normalized() * min(thrustSpeed, (dest_vel - vel).length())
 	
 	decel_vel = false
 func turn(dest_turn, delta):
+	
 	if sign(dest_turn) == sign(turn):
 		if abs(dest_turn) > abs(turn):
-			turn += sign(dest_turn) * min(60, abs(dest_turn - turn))
+			turn += delta * sign(dest_turn) * min(turnSpeed, abs(dest_turn - turn))
 	else:
-		turn += sign(dest_turn) * min(60, abs(dest_turn - turn))
+		turn += delta * sign(dest_turn) * min(turnSpeed, abs(dest_turn - turn))
 	
 	decel_turn = false
 func update_controls(delta):
+	delta *= time_scale
+	
 	var up = Input.is_key_pressed(KEY_UP)
 	var left = Input.is_key_pressed(KEY_LEFT)
 	var right = Input.is_key_pressed(KEY_RIGHT)
@@ -87,23 +100,23 @@ func update_controls(delta):
 	if up:
 		fuel -= delta * fuelUsage
 		if left == right:
-			thrust(vector_up * thrustSpeed)
+			thrust(vector_up * thrustSpeed, delta)
 			
 			animLeftLeg.play("Thrust")
 			animRightLeg.play("Thrust")
 		elif left:
 			turn(-turnSpeed, delta)
-			thrust(vector_up * thrustSpeed * 3/4)
+			thrust(vector_up * thrustSpeed * 3/4, delta)
 			animLeftLeg.play("Thrust")
 			animRightLeg.play("Turn")
 		elif right:
 			turn(turnSpeed, delta)
-			thrust(vector_up * thrustSpeed * 3/4)
+			thrust(vector_up * thrustSpeed * 3/4, delta)
 			animLeftLeg.play("Turn")
 			animRightLeg.play("Thrust")
 	elif left and right:
 		fuel -= delta * fuelUsage
-		thrust(vector_up * thrustSpeed)
+		thrust(vector_up * thrustSpeed, delta)
 		animLeftLeg.play("Turn")
 		animRightLeg.play("Turn")
 	elif left:

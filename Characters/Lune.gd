@@ -1,5 +1,4 @@
 extends Node2D
-
 var vel setget, get_vel
 var fireCooldown setget, get_fire_cooldown
 var hp setget, get_hp
@@ -10,10 +9,7 @@ func get_fire_cooldown(): return common.fireCooldown
 func get_hp(): return common.hp
 func get_energy(): return common.energy
 func get_fuel(): return common.fuel
-
 onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLeg/Anim, $RightLeg/Anim)
-
-
 const primaryFireInterval = 0.5
 const secondaryFireInterval = 2
 const primaryEnergyUse = 8
@@ -22,8 +18,6 @@ var fireCount = 0
 
 const beam = preload("res://CrescentBeam.tscn")
 const blast = preload("res://CrescentBlast.tscn")
-
-
 func _process(delta):
 	common.update_systems(delta)
 	common.update_controls(delta)

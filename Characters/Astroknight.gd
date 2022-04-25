@@ -51,6 +51,19 @@ func _on_body_animation_finished(anim_name):
 func _on_body_entered(area):
 	pass # Replace with function body.
 func _on_sword_entered(area):
-	pass # Replace with function body.
+	if !Helper.is_area_body(area):
+		return
+	var actor = Helper.get_parent_actor(area)
+	if !actor:
+		return
+	if actor.is_in_group("Laser"):
+		actor.vel = -actor.vel
+		var na = actor.name
+		print(na)
+	elif actor.is_in_group("Lightning"):
+		damage(actor)
+	else:
+		actor.damage(self)
+var damage = 20
 func damage(projectile):
 	common.damage(projectile)
