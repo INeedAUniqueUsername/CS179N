@@ -55,7 +55,7 @@ func _on_body_animation_finished(anim_name):
 	if anim_name == "Punch":
 		for a in [self, $LeftLeg, $RightLeg, $LeftCannon, $RightCannon]:
 			a.get_node("Anim").play("Idle")
-func _on_body_entered():
+func _on_body_entered(area):
 	pass # Replace with function body.
 	
 func damage(projectile):

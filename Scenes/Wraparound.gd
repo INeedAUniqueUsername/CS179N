@@ -6,7 +6,7 @@ extends Node2D
 
 export(PackedScene) var bossType
 
-var radius = 600
+var radius = 900
 onready var diameter = radius * 2
 var time = 0
 # Called when the node enters the scene tree for the first time.
@@ -48,7 +48,7 @@ func on_boss_destroyed(boss):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	if time > 0.5:
+	if time > 0.25:
 		time = 0
 		var pl = player.global_position
 		for l in leaves:

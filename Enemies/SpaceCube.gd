@@ -49,3 +49,4 @@ func _on_TimeSlow_area_exited(area):
 	var actor = canSlow(area)
 	if actor:
 		nearby.erase(actor)
+		actor.set_time_scale(1)

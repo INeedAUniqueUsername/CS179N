@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Title.png" type="Texture" id=2]
+[ext_resource path="res://SetScene.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -29,6 +31,8 @@ margin_right = 43.0
 margin_bottom = 344.0
 custom_fonts/font = SubResource( 1 )
 text = "Start"
+script = ExtResource( 3 )
+scene = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -41,5 +45,5 @@ margin_right = -321.0
 margin_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-rect_scale = Vector2( 10, 10 )
+rect_scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
