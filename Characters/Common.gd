@@ -57,7 +57,7 @@ func update_systems(delta):
 			energy += inc
 			fuel -= inc / 60.0
 	if damageDelay < 0:
-		var rechargeRate = 1 - damageDelay
+		var rechargeRate = 0.75 * (1 - damageDelay)
 		var inc = min(100 - hp, delta * rechargeRate)
 		if inc > 0:
 			hp += inc
@@ -66,13 +66,13 @@ var damageDelay = 0
 func damage(attacker):
 	if damageDelay > 0:
 		return
-	var d = attacker.damage
-	hp = max(0, hp - d)
+	hp = max(0, hp - attacker.damage)
+	if 'drain' in attacker:
+		energy = max(0, energy - attacker.drain)
+		fireCooldown = max(0, fireCooldown)
 	damageDelay = 1
 var vector_up
 func thrust(dest_vel, delta):
-	
-	
 	var rejection = vel * (1 - vel.normalized().dot(dest_vel.normalized()))
 	
 	vel -= delta * rejection.normalized() * min(rejection.length(), thrustSpeed) 
@@ -80,7 +80,6 @@ func thrust(dest_vel, delta):
 	
 	decel_vel = false
 func turn(dest_turn, delta):
-	
 	if sign(dest_turn) == sign(turn):
 		if abs(dest_turn) > abs(turn):
 			turn += delta * sign(dest_turn) * min(turnSpeed, abs(dest_turn - turn))
@@ -88,6 +87,8 @@ func turn(dest_turn, delta):
 		turn += delta * sign(dest_turn) * min(turnSpeed, abs(dest_turn - turn))
 	
 	decel_turn = false
+func consume_fuel(f):
+	fuel = max(0, fuel - f)
 func update_controls(delta):
 	delta *= time_scale
 	
@@ -98,7 +99,7 @@ func update_controls(delta):
 	decel_vel = true
 	decel_turn = true
 	if up:
-		fuel -= delta * fuelUsage
+		consume_fuel(delta * fuelUsage)
 		if left == right:
 			thrust(vector_up * thrustSpeed, delta)
 			
@@ -115,17 +116,17 @@ func update_controls(delta):
 			animLeftLeg.play("Turn")
 			animRightLeg.play("Thrust")
 	elif left and right:
-		fuel -= delta * fuelUsage
+		consume_fuel(delta * fuelUsage)
 		thrust(vector_up * thrustSpeed, delta)
 		animLeftLeg.play("Turn")
 		animRightLeg.play("Turn")
 	elif left:
-		fuel -= delta * fuelUsage / 2
+		consume_fuel(delta * fuelUsage / 2)
 		turn(-turnSpeed, delta)
 		animLeftLeg.play("Idle")
 		animRightLeg.play("Turn")
 	elif right:
-		fuel -= delta * fuelUsage / 2
+		consume_fuel(delta * fuelUsage / 2)
 		turn(turnSpeed, delta)
 		animLeftLeg.play("Turn")
 		animRightLeg.play("Idle")

@@ -13,6 +13,9 @@ func get_fuel(): return common.fuel
 
 onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLeg/Anim, $RightLeg/Anim)
 
+func set_time_scale(t):
+	common.set_time_scale(t)
+	
 const primaryFireInterval = 0.1
 const secondaryFireInterval = 2
 const primaryEnergyUse = 4
@@ -24,30 +27,9 @@ const beam = preload("res://PlasmaBall.tscn")
 
 func _process(delta):
 	common.update_systems(delta)
-	if $Anim.current_animation == "Punch":
-		
-		var up = Input.is_key_pressed(KEY_UP)
-		var left = Input.is_key_pressed(KEY_LEFT)
-		var right = Input.is_key_pressed(KEY_RIGHT)
-		
-		common.fuel -= common.fuelUsage * 2
-		if left == right:
-			
-			common.vel += common.vector_up * delta * common.thrustSpeed * 2
-			$LeftLeg/Anim.play("StraightThrust")
-			$RightLeg/Anim.play("StraightThrust")
-		elif left:
-			common.vel += common.vector_up * delta * common.thrustSpeed * 6 / 4
-			common.turn -= delta * common.turnSpeed
-			$LeftLeg/Anim.play("StraightThrust")
-			$RightLeg/Anim.play("Turn")
-		elif right:
-			common.vel += common.vector_up * delta * common.thrustSpeed * 6 / 4
-			common.turn += delta * common.turnSpeed
-			$LeftLeg/Anim.play("Turn")
-			$RightLeg/Anim.play("StraightThrust")
-		return
 	common.update_controls(delta)
+	if $Anim.current_animation == "Punch":
+		return
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval

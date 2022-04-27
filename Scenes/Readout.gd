@@ -11,7 +11,7 @@ func register_player():
 	actors.connect("on_boss_destroyed", self, "on_boss_destroyed")
 func on_boss_summoned(b):
 	boss = b
-	$BossLabel.text = b.name
+	$BossLabel.text = b.bossName
 	$Anim.play("BossWarning")
 func on_boss_destroyed():
 	boss = null

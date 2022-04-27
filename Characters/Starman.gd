@@ -12,39 +12,18 @@ func get_energy(): return common.energy
 func get_fuel(): return common.fuel
 
 onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLeg/Anim, $RightLeg/Anim)
-
-const primaryFireInterval = 0.25
-const secondaryFireInterval = 2
-const primaryEnergyUse = 10
+func set_time_scale(t):
+	common.set_time_scale(t)
+	
+const primaryFireInterval = 0.15
+const secondaryFireInterval = 0
+const primaryEnergyUse = 6
 const secondaryEnergyUse = 50
 
 const beam = preload("res://LaserBeam.tscn")
 
 func _process(delta):
 	common.update_systems(delta)
-	if $Anim.current_animation == "Punch":
-		
-		var up = Input.is_key_pressed(KEY_UP)
-		var left = Input.is_key_pressed(KEY_LEFT)
-		var right = Input.is_key_pressed(KEY_RIGHT)
-		
-		common.fuel -= common.fuelUsage * 2
-		if left == right:
-			
-			common.vel += common.vector_up * delta * common.thrustSpeed * 2
-			$LeftLeg/Anim.play("StraightThrust")
-			$RightLeg/Anim.play("StraightThrust")
-		elif left:
-			common.vel += common.vector_up * delta * common.thrustSpeed * 6 / 4
-			common.turn -= delta * common.turnSpeed
-			$LeftLeg/Anim.play("StraightThrust")
-			$RightLeg/Anim.play("Turn")
-		elif right:
-			common.vel += common.vector_up * delta * common.thrustSpeed * 6 / 4
-			common.turn += delta * common.turnSpeed
-			$LeftLeg/Anim.play("Turn")
-			$RightLeg/Anim.play("StraightThrust")
-		return
 	common.update_controls(delta)
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
@@ -58,9 +37,13 @@ func _process(delta):
 			l.set_global_transform(p.get_global_transform())
 			l.rotation_degrees = rotation_degrees - 90
 			p.get_node("Anim").play("Fire")
+	if $Anim.current_animation == "Punch":
+		return
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
+		
+		common.vel += polar2cartesian(720, rotation - PI/2)
 		$Anim.play("Punch")
 		$LeftLeg/Anim.play("StraightThrust")
 		$RightLeg/Anim.play("StraightThrust")
@@ -77,3 +60,25 @@ func _on_body_entered():
 	
 func damage(projectile):
 	common.damage(projectile)
+
+var damage
+func _on_cannon_entered(area):
+	if $Anim.current_animation != "Punch":
+		return
+	if !Helper.is_area_body(area):
+		return
+	var actor = Helper.get_parent_actor(area)
+	if !actor:
+		return
+	if actor.is_in_group("Stationary"):
+		var velDiff = common.vel - actor.vel
+		common.vel -= velDiff * 1.5
+		damage = velDiff.length() / 8
+	else:
+		var velDiff = common.vel - actor.vel
+		actor.vel += velDiff / 2
+		common.vel -= velDiff / 2
+		damage = velDiff.length() / 8
+	actor.damage(self)
+	
+	actor.vel += polar2cartesian(120, rotation - PI/2)

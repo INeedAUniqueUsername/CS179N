@@ -10,6 +10,10 @@ func get_hp(): return common.hp
 func get_energy(): return common.energy
 func get_fuel(): return common.fuel
 onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLeg/Anim, $RightLeg/Anim)
+
+func set_time_scale(t):
+	common.set_time_scale(t)
+
 const primaryFireInterval = 0.5
 const secondaryFireInterval = 2
 const primaryEnergyUse = 8

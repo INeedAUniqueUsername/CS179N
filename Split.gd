@@ -5,6 +5,9 @@ var time
 func _ready():
 	time = get_parent().lifespan / 3.0
 func _physics_process(delta):
+	var p = get_parent()
+	if 'get_time_scale' in p:
+		delta *= p.get_time_scale()
 	time -= delta
 	if time < 0:
 		split()
@@ -18,13 +21,16 @@ func split():
 		n.vel = n.vel.rotated(rand_range(-amp, amp))
 		
 		var c = rand_range(1, 3)
-		var d = n.damage / (c + 1)
-		n.damage = d
+		var dmg = n.damage / (c + 1.0)
+		n.damage = dmg
+		var dr = n.drain / (c + 1.0)
+		n.drain = dr
 		for i in range(c):
 			var l = beam.instance()
 			ignore.append(l)
 			l.ignore = ignore
-			l.damage = d
+			l.damage = dmg
+			l.drain = dr
 			
 			n.get_parent().add_child(l)
 			l.set_global_transform(n.get_global_transform())

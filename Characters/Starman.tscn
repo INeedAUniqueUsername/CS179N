@@ -206,3 +206,8 @@ position = Vector2( 8, -15 )
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_body_animation_finished"]
 [connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]
+[connection signal="area_entered" from="LeftCannon/Area" to="." method="_on_cannon_entered"]
+[connection signal="area_entered" from="RightCannon/Area" to="." method="_on_cannon_entered"]
+
+[editable path="LeftCannon"]
+[editable path="RightCannon"]

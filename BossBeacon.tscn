@@ -39,7 +39,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[node name="BossBeacon" type="Node2D" groups=["Actor", "Boss Summon", "Stationary"]]
+[node name="BossBeacon" type="Node2D" groups=["Actor", "Boss Summon"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

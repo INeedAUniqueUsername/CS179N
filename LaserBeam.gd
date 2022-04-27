@@ -3,6 +3,7 @@ export(Vector2) var vel = Vector2(0, 0)
 
 export(float) var lifespan = 1.0
 export(float) var damage = 25.0
+export(float) var drain = 0
 export(int) var pierce = 1
 export(float) var damp = 1.0
 export(float) var knockback = 3.0

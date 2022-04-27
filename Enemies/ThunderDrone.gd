@@ -1,4 +1,6 @@
 extends Node2D
+
+var bossName = "Thunder Drone"
 var vel = Vector2(0, 0)
 func _ready():
 	$Anim.connect("animation_finished", self, "_on_animation_finished")
@@ -94,7 +96,8 @@ func _on_Detect_area_entered(area):
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
 		player = actor
-var damage = 15
+var damage = 30
+var drain = 60
 func _on_Damage_area_entered(area):
 	if $Anim.current_animation != "Flashing":
 		return

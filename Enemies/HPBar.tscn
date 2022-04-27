@@ -85,15 +85,15 @@ tracks/0/keys = {
 [node name="HPBar" type="Sprite"]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 64, 8 )
+region_rect = Rect2( 0, 0, 48, 8 )
 script = ExtResource( 2 )
 
 [node name="Front" type="Sprite" parent="."]
-position = Vector2( -32, -4 )
+position = Vector2( -24, -4 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 8, 64, 8 )
+region_rect = Rect2( 0, 8, 48, 8 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 autoplay = "Hidden"

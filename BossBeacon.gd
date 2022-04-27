@@ -14,3 +14,6 @@ func damage(projectile):
 	if hp == 0:
 		emit_signal("on_destroyed", self)
 		queue_free()
+func _physics_process(delta):
+	global_translate(vel * delta)
+	vel -= vel.normalized() * min(vel.length(), 120 * delta)

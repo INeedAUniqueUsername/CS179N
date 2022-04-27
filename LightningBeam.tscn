@@ -27,6 +27,7 @@ color_ramp = SubResource( 3 )
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+drain = 50.0
 knockback = 0.0
 
 [node name="Split" type="Node" parent="."]
