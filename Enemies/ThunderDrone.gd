@@ -2,9 +2,16 @@ extends Node2D
 
 var bossName = "Thunder Drone"
 var vel = Vector2(0, 0)
+
+var time_scale = 1.0
+func set_time_scale(t:float):
+	time_scale = t
+	$Anim.playback_speed = t
+
 func _ready():
 	$Anim.connect("animation_finished", self, "_on_animation_finished")
 	call_deferred("register_player")
+	
 	
 signal on_destroyed
 var player
@@ -12,9 +19,10 @@ func register_player():
 	player = get_parent().player
 	
 func _physics_process(delta):
+	delta *= time_scale
 	if player:
 		
-		var speed = 4
+		var speed = 180 * delta
 		var offset = (player.global_position - global_position)
 		if $Anim.current_animation == "Waiting":
 			if offset.length_squared() > 240 * 240:
