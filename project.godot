@@ -37,7 +37,16 @@ IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
 UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 Helper="*res://Helper.tscn"
+PlayerVariables="*res://Scripts/PlayerVariables.gd"
 
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=960
+window/size/test_height=540
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray(  )
