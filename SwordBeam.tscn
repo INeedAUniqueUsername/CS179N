@@ -10,11 +10,7 @@ script = ExtResource( 2 )
 lifespan = 2.0
 damage = 20.0
 pierce = 3
-
-[node name="ExpireTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-autostart = true
+knockback = 30.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
