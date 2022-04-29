@@ -9,7 +9,7 @@ func _physics_process(delta):
 	global_translate(vel * moveSpeed * delta)
 	
 	curr_cooldown -= delta
-	# Send a beam every 3 seconds
+	# Send a beam every 1.5 seconds
 	if atk_target != null and curr_cooldown < 0:
 		curr_cooldown = base_cooldown
 		var beam_load = beam.instance()
@@ -21,31 +21,30 @@ func _physics_process(delta):
 # Triggered when player enter's enemy's attack radius
 const beam = preload("res://LaserBeam.tscn")
 var atk_target
-func _on_Attack_Area_area_entered(body):
-	if body.is_in_group("Player"):
-		atk_target = body
+func _on_Attack_Area_area_entered(area):
+	if !Helper.is_area_body(area):
+		return
+	var actor = Helper.get_parent_actor(area)
+	if actor and actor.is_in_group("Player"):
+		atk_target = actor
 		
 # Triggered when player exits enemy's attack radius
-func _on_Attack_Area_area_exited(body):
-	if body.is_in_group("Player"):
+func _on_Attack_Area_area_exited(area):
+	if !Helper.is_area_body(area):
+		return
+	var actor = Helper.get_parent_actor(area)
+	if actor and actor.is_in_group("Player"):
 		atk_target = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-var patrol = Vector2(0, 0)
-var base_patrol = 4
-var curr_patrol = base_patrol
-var base_wait = 2
-var curr_wait = 0
+var patrol_time = 2
+var curr_patrol_time = 0
 func _process(delta):
-	if target != null:
-		vel = forward
-	else:
-		curr_wait -= delta
-		if curr_wait < 0:
-			patrol = -patrol
-		elif curr_wait < 0:
-			curr_wait = base_wait
-			vel = patrol	
-		else:
-			curr_wait -= delta
-			patrol = Vector2(0, 0)
+	vel = forward
+	
+	# Patrols in a square formation turning every 2 seconds when no target in sight
+	if target == null:
+		curr_patrol_time -= delta
+		if curr_patrol_time < 0:
+			curr_patrol_time = patrol_time
+			rotate(PI/2)
