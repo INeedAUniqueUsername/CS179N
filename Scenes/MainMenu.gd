@@ -1,43 +1,39 @@
-extends MarginContainer
+extends Node2D
 
-const characterSelect = preload("res://Scenes/CharacterSelect.tscn")
-#const playGame = preload("")
-
-onready var selector_one = $MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/HBoxContainer/Label
-onready var selector_two =  $MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2/HBoxContainer2/Selector2
-onready var selector_three = $MainMenu/CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer3/HBoxContainer3/Selector3
-
-var current_selection = 0
+var selected_menu = 0
 
 func _ready():
-	set_current_selection(0)
-	
-func _process(delta):
-	if Input.is_action_just_pressed("ui_down") and current_selection > 2:
-		current_selection += 1
-		set_current_selection(current_selection)
-	elif Input.is_action_just_pressed("ui_down") and current_selection > 0:
-		current_selection -= 1
-		set_current_selection(current_selection)
-	elif Input.is_action_just_pressed("ui_accept"):
-		handle_selection(current_selection)
-		
-func handle_selection(_current_selection):
-	if _current_selection == 0:
-		get_parent().add_child(characterSelect.instance())
-		queue_free()
-	elif _current_selection == 1:
-		print("OPTIONS")
-	elif _current_selection == 2:
-		get_tree().quit()
+	changeMenuColor()
 
-func set_current_selection(_current_selection):
-	selector_one.text = ""
-	selector_two.text = ""
-	selector_three.text = ""
-	if _current_selection == 0:
-		selector_one.text=">"
-	elif _current_selection == 0:
-		selector_two.text=">"
-	elif _current_selection == 0:
-		selector_three.text=">"
+func changeMenuColor():
+	$Play.color = Color.gray
+	$Resume.color = Color.gray
+	$Quit.color = Color.gray
+	
+	match selected_menu:
+		0:
+			$Play.color = Color.greenyellow
+		1:
+			$Resume.color = Color.greenyellow
+		2:
+			$Quit.color = Color.greenyellow
+	
+func _input(event):
+	if Input.is_action_just_pressed("ui_down"):
+		selected_menu = (selected_menu + 1) % 3
+		changeMenuColor()
+	elif Input.is_action_just_pressed("ui_up"):
+		if selected_menu> 0:
+			selected_menu = selected_menu - 1
+		else:
+			selected_menu = 2
+		changeMenuColor()
+	elif Input.is_action_just_pressed("ui_accept"):
+		match selected_menu:
+			0: # New Game
+				get_tree().change_scene("res://Scenes/CharacterSelection.tscn")
+			1: # Load game
+				# implement Load Game later
+				print("INITIALIZE LATER")
+			2:
+				get_tree().quit()
