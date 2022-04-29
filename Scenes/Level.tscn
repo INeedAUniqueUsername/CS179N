@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
+[ext_resource path="res://Enemies/LaserSentry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Camera.gd" type="Script" id=3]
 [ext_resource path="res://Sprites/Background0.png" type="Texture" id=4]
@@ -17,6 +18,8 @@
 [ext_resource path="res://Enemies/Hourglass.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Sprites/WhitePixel.png" type="Texture" id=17]
 [ext_resource path="res://Scenes/CreatePlayer.gd" type="Script" id=18]
+[ext_resource path="res://Enemies/LaserDrone.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=20]
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -252,6 +255,8 @@ position = Vector2( 136, -40 )
 [node name="Hourglass" parent="Actors" instance=ExtResource( 16 )]
 position = Vector2( -280, 0 )
 
+[node name="LaserDrone" parent="Actors" instance=ExtResource( 19 )]
+
 [node name="BossSummon" type="Node2D" parent="Actors"]
 
 [node name="BossBeacon" parent="Actors/BossSummon" instance=ExtResource( 12 )]
@@ -286,6 +291,9 @@ position = Vector2( -424, 72 )
 
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )
+
+[node name="LaserSentry" parent="Actors" instance=ExtResource( 1 )]
+position = Vector2( 251, 229 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -417,3 +425,10 @@ motion_mirroring = Vector2( 1024, 1024 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/2"]
 texture = ExtResource( 5 )
 centered = false
+
+[node name="random_generation_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+script = ExtResource( 20 )
+
+[connection signal="timeout" from="random_generation_timer" to="random_generation_timer" method="_on_random_generation_timer_timeout"]
