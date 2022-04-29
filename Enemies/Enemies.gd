@@ -7,13 +7,28 @@ var beamSpeed = 200
 var hp = 100 setget, get_hp
 func get_hp(): return hp
 
-func takeDamage(dmg: int): hp -= dmg
+func damage(projectile):
+	hp -= projectile.damage
+	if hp < 1:
+		emit_signal("on_destroyed", self)
+		queue_free()
 
-func _on_Damage_Area_area_entered(area):
-	var hit = area.get_parent()
-	if hit.is_in_group("projectile"):
-		takeDamage(hit.dmg)
-		area.get_parent().queue_free()
+# Triggered when player enter's enemy's attack radius
+var atk_target
+func _on_Attack_Area_area_entered(area):
+	if !Helper.is_area_body(area):
+		return
+	var actor = Helper.get_parent_actor(area)
+	if actor and actor.is_in_group("Player"):
+		atk_target = actor
+		
+# Triggered when player exits enemy's attack radius
+func _on_Attack_Area_area_exited(area):
+	if !Helper.is_area_body(area):
+		return
+	var actor = Helper.get_parent_actor(area)
+	if actor and actor.is_in_group("Player"):
+		atk_target = null
 
 # Triggered when player enters enemy's detection radius
 func _on_Detect_Area_area_entered(area):
