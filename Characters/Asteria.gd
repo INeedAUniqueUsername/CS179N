@@ -58,9 +58,7 @@ func _on_body_animation_finished(anim_name):
 		for a in [self, $LeftLeg, $RightLeg, $LeftCannon, $RightCannon]:
 			a.get_node("Anim").play("Idle")
 func fire_burst():
-	
 	var p = $BurstOrigin
-	
 	for angle in [-30, -20, -10, 0, 10, 20, 30]:
 		var a = rotation_degrees - 90 + angle
 		
@@ -77,7 +75,7 @@ func fire_burst():
 func take_damage(dmg):
 	common.hp -= dmg
 
-func _on_body_entered():
+func _on_body_entered(area):
 	pass # Replace with function body.
 func damage(projectile):
 	common.damage(projectile)
