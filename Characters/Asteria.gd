@@ -16,10 +16,12 @@ onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLe
 func set_time_scale(t):
 	common.set_time_scale(t)
 	
-const primaryFireInterval = 0.1
+const primaryFireInterval = 0.12
 const secondaryFireInterval = 2
 const primaryEnergyUse = 4
 const secondaryEnergyUse = 50
+
+var nextCooldown = primaryFireInterval
 
 var fireCount = 0
 
@@ -31,8 +33,15 @@ func _process(delta):
 	if $Anim.current_animation == "Punch":
 		return
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
-		common.energy -= primaryEnergyUse
-		common.fireCooldown = primaryFireInterval
+		
+		
+		if common.fireCooldown > -0.1:
+			nextCooldown = max(primaryFireInterval / 3, nextCooldown * nextCooldown / (nextCooldown + 0.003))
+		else:
+			nextCooldown = primaryFireInterval
+		common.fireCooldown = nextCooldown
+		
+		common.energy -= max(primaryEnergyUse * nextCooldown / primaryFireInterval, primaryEnergyUse / 3)
 		
 		fireCount += 1
 		var p = [$LeftCannon, $RightCannon][fireCount%2]
@@ -46,6 +55,8 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
+		
+		
 		$Anim.play("Punch")
 		$LeftLeg/Anim.play("StraightThrust")
 		$RightLeg/Anim.play("StraightThrust")
