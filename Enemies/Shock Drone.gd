@@ -17,6 +17,7 @@ func _ready():
 	
 	
 signal on_destroyed
+signal on_damaged
 var player
 func register_player():
 	player = get_parent().player
@@ -95,9 +96,19 @@ func _on_Damage_area_entered(area):
 		vel = -vel
 var hp_max = 100
 onready var hp = hp_max
+
 func damage(projectile):
+	if hp == 0:
+		return
+	emit_signal("on_damaged", self, projectile)
+	hp = max(hp - projectile.damage, 0)
+	if hp == 0:
+		emit_signal("on_destroyed", self)
+		$Anim.play("Destroyed")
+
+"""func damage(projectile):
 	hp -= projectile.damage
 	if hp < 1:
 		emit_signal("on_destroyed", self)
 		queue_free()
-
+"""
