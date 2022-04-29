@@ -1,11 +1,15 @@
 extends Node2D
 
-var asteria = preload("res://Characters/Asteria.tscn").instance()
-var astroknight = preload("res://Characters/Astroknight.tscn").instance()
-var lune = preload("res://Characters/Lune.tscn").instance()
-var starman = preload("res://Characters/Starman.tscn").instance()
-
 func _ready():
-	var player_character = load(asteria).instance()
-	player_character.start_position = Vector2(100,100)
-	add_child(player_character)
+	
+	#$VBoxContainer/HBoxContainer2/Asteria.connect("pressed", self, "on_button_Asteria_pressed")
+	pass
+	
+func _on_button_Asteria_pressed():
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.asteria)
+func _on_button_AstroKnight_pressed():
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.astroknight)
+func _on_button_Lune_pressed():
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.lune)
+func _on_button_Starman_pressed():
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.starman)
