@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/LaserSentry.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/LaserSentry.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/LaserSentryBody.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
@@ -15,6 +16,7 @@ radius = 250.0
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
+script = ExtResource( 3 )
 
 [node name="Gun" type="Sprite" parent="." groups=["Actor", "Stationary"]]
 texture = ExtResource( 1 )
@@ -33,7 +35,14 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Detect_Area"]
 shape = SubResource( 2 )
 
-[node name="Damage_Area" type="Area2D" parent="Gun"]
+[node name="Damage_Area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Damage_Area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage_Area"]
 shape = SubResource( 3 )
+
+[connection signal="on_destroyed" from="Gun" to="Gun" method="_on_Gun_on_destroyed"]
+[connection signal="area_entered" from="Gun/Attack_Area" to="Gun" method="_on_Attack_Area_area_entered"]
+[connection signal="area_exited" from="Gun/Attack_Area" to="Gun" method="_on_Attack_Area_area_exited"]
+[connection signal="area_entered" from="Gun/Detect_Area" to="Gun" method="_on_Detect_Area_area_entered"]
+[connection signal="area_exited" from="Gun/Detect_Area" to="Gun" method="_on_Detect_Area_area_exited"]
+[connection signal="area_entered" from="Damage_Area" to="Gun" method="_on_Damage_Area_area_entered"]
