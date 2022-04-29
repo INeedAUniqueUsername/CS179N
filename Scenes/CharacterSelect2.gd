@@ -15,13 +15,17 @@ func vis(b):
 func select_starman():
 	vis($Starman/Border)
 	$Character.texture = $Starman/Sprite.texture
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.starman)
 func select_asteria():
 	vis($Asteria/Border)
 	$Character.texture = $Asteria/Sprite.texture
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.asteria)
 func select_astroknight():
 	vis($Astroknight/Border)
 	$Character.texture = $Astroknight/Sprite.texture
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.astroknight)
 func select_lune():
 	vis($Lune/Border)
 	$Character.texture = $Lune/Sprite.texture
+	PlayerVariables.setHero(PlayerVariables.HeroTypes.lune)
 	
