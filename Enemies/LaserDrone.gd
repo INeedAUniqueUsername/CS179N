@@ -5,6 +5,8 @@ var vel = Vector2(0, 0)
 
 var base_cooldown = 1.5
 var curr_cooldown = 0
+
+const beam = preload("res://LaserBeam.tscn")
 func _physics_process(delta):
 	global_translate(vel * moveSpeed * delta)
 	
@@ -17,24 +19,6 @@ func _physics_process(delta):
 		get_parent().add_child(beam_load)
 		beam_load.set_global_transform(get_global_transform())
 		beam_load.rotation_degrees = rotation_degrees - 90
-
-# Triggered when player enter's enemy's attack radius
-const beam = preload("res://LaserBeam.tscn")
-var atk_target
-func _on_Attack_Area_area_entered(area):
-	if !Helper.is_area_body(area):
-		return
-	var actor = Helper.get_parent_actor(area)
-	if actor and actor.is_in_group("Player"):
-		atk_target = actor
-		
-# Triggered when player exits enemy's attack radius
-func _on_Attack_Area_area_exited(area):
-	if !Helper.is_area_body(area):
-		return
-	var actor = Helper.get_parent_actor(area)
-	if actor and actor.is_in_group("Player"):
-		atk_target = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var patrol_time = 2
