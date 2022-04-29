@@ -1,6 +1,8 @@
 extends Node
 
-func _ready():
+
+
+func _on_Enemy_spawner_timer_timeout():
 	var rand = RandomNumberGenerator.new()
 	var enemyscene = [
 		preload("res://Enemies/LaserDrone.tscn")

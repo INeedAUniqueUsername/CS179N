@@ -19,4 +19,3 @@ func _process(delta):
 		vel = -get_global_transform().orthonormalized().y
 	else:
 		vel = Vector2(0, 0)
-

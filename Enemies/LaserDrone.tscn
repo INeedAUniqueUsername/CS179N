@@ -9,7 +9,7 @@ radius = 100.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 200.0
 
-[node name="LaserDrone" type="Node2D"]
+[node name="LaserDrone" type="Node2D" groups=["Player"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
