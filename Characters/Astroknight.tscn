@@ -45,7 +45,7 @@ tracks/2/keys = {
 "values": [ PoolVector2Array( -18, -48, -20, -48, -28, -32, -28, 7.89178, -34, 2, -36, 2, -36, 8, -32, 12, -28, 12, -18, 12 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../RightSword/SwordRight:polygon")
+tracks/3/path = NodePath("../RightSword/Polygon:polygon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -96,7 +96,7 @@ tracks/2/keys = {
 "values": [ PoolVector2Array( -18, -48, -20, -48, -28, -32, -28, 7.89178, -34, 2, -36, 2, -36, 8, -32, 12, -28, 12, -18, 12 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../RightSword/SwordRight:polygon")
+tracks/3/path = NodePath("../RightSword/Polygon:polygon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -149,7 +149,7 @@ tracks/2/keys = {
 "values": [ PoolVector2Array( -44, 4, -106, 4, -112, 6, -114, 8, -114, 10, -112, 12, -106, 14, -44, 14 ), PoolVector2Array( -40, -10, -92, -36, -104, -38, -112, -24, -116, -6, -116, 14, -44, 14 ), PoolVector2Array( -30, -36, -72, -78, -84, -80, -98, -62, -110, -32, -44, 4 ), PoolVector2Array( -24, -44, -14, -44, -14, -106, -20, -114, -50, -104, -88, -74, -44, -28 ), PoolVector2Array( -12, -32, 0, -42, 0, -118, -20, -116, -44, -106, -70, -88 ), PoolVector2Array( -10, -44, -58, -92, -74, -82, -98, -46, -30, -12 ), PoolVector2Array( -26, -22, -90, -56, -98, -46, -30, -12 ), PoolVector2Array( -22, -18, -8, -42, -56, -88, -66, -86, -100, -44, -26, -8 ), PoolVector2Array( -12, -32, 0, -42, 0, -118, -20, -116, -44, -106, -70, -88 ), PoolVector2Array( -36, -24, -14, -44, -14, -114, -34, -112, -52, -104, -88, -76 ), PoolVector2Array( -24, -34, -74, -86, -96, -66, -110, -30, -46, 2 ), PoolVector2Array( -34, -10, -96, -40, -104, -40, -112, -24, -116, -6, -116, 14, -44, 14 ), PoolVector2Array( -42, 4, -106, 4, -112, 6, -114, 8, -114, 10, -112, 12, -106, 14, -42, 14 ), PoolVector2Array( -40, -10, -92, -36, -104, -38, -112, -24, -116, -6, -116, 14, -44, 14 ), PoolVector2Array( -30, -36, -72, -78, -84, -80, -98, -62, -110, -32, -44, 4 ), PoolVector2Array( -24, -44, -14, -44, -14, -106, -20, -114, -50, -104, -88, -74, -44, -28 ), PoolVector2Array( -12, -32, 0, -42, 0, -118, -20, -116, -44, -106, -70, -88 ), PoolVector2Array( -10, -44, -58, -92, -74, -82, -98, -46, -30, -12 ), PoolVector2Array( -26, -22, -90, -56, -98, -46, -30, -12 ), PoolVector2Array( -22, -18, -8, -42, -56, -88, -66, -86, -100, -44, -26, -8 ), PoolVector2Array( -12, -32, 0, -42, 0, -118, -20, -116, -44, -106, -70, -88 ), PoolVector2Array( -36, -24, -14, -44, -14, -114, -34, -112, -52, -104, -88, -76 ), PoolVector2Array( -24, -34, -74, -86, -96, -66, -110, -30, -46, 2 ), PoolVector2Array( -34, -10, -96, -40, -104, -40, -112, -24, -116, -6, -116, 14, -44, 14 ), PoolVector2Array( -42, 4, -106, 4, -112, 6, -114, 8, -114, 10, -112, 12, -106, 14, -42, 14 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../RightSword/SwordRight:polygon")
+tracks/3/path = NodePath("../RightSword/Polygon:polygon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -377,7 +377,7 @@ position = Vector2( 11, -5 )
 
 [node name="Polygon" type="CollisionPolygon2D" parent="RightSword"]
 scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( 44, 4, 106, 4, 112, 6, 114, 8, 114, 10, 112, 12, 106, 14, 44, 14 )
+polygon = PoolVector2Array( 28, -32, 20, -48, 18, -48, 18, 12, 32, 12, 36, 8, 36, 2, 28, 8 )
 
 [node name="LeftSword" type="Area2D" parent="." groups=["Damage"]]
 
