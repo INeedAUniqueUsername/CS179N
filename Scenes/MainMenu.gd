@@ -31,7 +31,7 @@ func _input(event):
 	elif Input.is_action_just_pressed("ui_accept"):
 		match selected_menu:
 			0: # New Game
-				get_tree().change_scene("res://Scenes/CharacterSelection.tscn")
+				get_tree().change_scene("res://Scenes/CharacterSelect.tscn")
 			1: # Load game
 				# implement Load Game later
 				print("INITIALIZE LATER")
