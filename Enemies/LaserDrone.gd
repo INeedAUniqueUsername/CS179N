@@ -3,7 +3,7 @@ extends Enemies
 var moveSpeed = 50
 var vel = Vector2(0, 0)
 
-var base_cooldown = 1.5
+var base_cooldown = 1
 var curr_cooldown = 0
 
 const beam = preload("res://LaserBeam.tscn")
@@ -12,8 +12,8 @@ func _physics_process(delta):
 	global_translate(vel * moveSpeed * delta)
 	
 	curr_cooldown -= delta
-	# Send a beam every 1.5 seconds
-	if atk_target != null and curr_cooldown < 0:
+	# Send a beam every second
+	if atk_target != null and curr_cooldown < 0 and ignore_target <= 0:
 		curr_cooldown = base_cooldown
 
 		var beam_load = beam.instance()
