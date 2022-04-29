@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Astroknight.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Lune.png" type="Texture" id=6]
 [ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Scenes/CharacterSelect.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/CharacterSelect2.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 54
@@ -63,7 +63,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Character Select"
 align = 1
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Starman" type="Button" parent="Control"]
 margin_left = -324.0
 margin_top = -180.0
 margin_right = -276.0
@@ -71,15 +71,15 @@ margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
 group = ExtResource( 1 )
 
-[node name="Border" type="Sprite" parent="Control/Button"]
+[node name="Border" type="Sprite" parent="Control/Starman"]
 texture = ExtResource( 3 )
 centered = false
 
-[node name="Starman" type="Sprite" parent="Control/Button"]
+[node name="Sprite" type="Sprite" parent="Control/Starman"]
 position = Vector2( 24, 28 )
 texture = ExtResource( 2 )
 
-[node name="Button2" type="Button" parent="Control"]
+[node name="Asteria" type="Button" parent="Control"]
 margin_left = -156.0
 margin_top = -180.0
 margin_right = -108.0
@@ -87,15 +87,15 @@ margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
 group = ExtResource( 1 )
 
-[node name="Border" type="Sprite" parent="Control/Button2"]
+[node name="Border" type="Sprite" parent="Control/Asteria"]
 texture = ExtResource( 3 )
 centered = false
 
-[node name="Asteria" type="Sprite" parent="Control/Button2"]
+[node name="Sprite" type="Sprite" parent="Control/Asteria"]
 position = Vector2( 24, 28 )
 texture = ExtResource( 4 )
 
-[node name="Button3" type="Button" parent="Control"]
+[node name="Astroknight" type="Button" parent="Control"]
 margin_left = 12.0
 margin_top = -180.0
 margin_right = 60.0
@@ -103,15 +103,15 @@ margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
 group = ExtResource( 1 )
 
-[node name="Border" type="Sprite" parent="Control/Button3"]
+[node name="Border" type="Sprite" parent="Control/Astroknight"]
 texture = ExtResource( 3 )
 centered = false
 
-[node name="Astroknight" type="Sprite" parent="Control/Button3"]
+[node name="Sprite" type="Sprite" parent="Control/Astroknight"]
 position = Vector2( 24, 28 )
 texture = ExtResource( 5 )
 
-[node name="Button4" type="Button" parent="Control"]
+[node name="Lune" type="Button" parent="Control"]
 margin_left = 180.0
 margin_top = -180.0
 margin_right = 228.0
@@ -119,11 +119,11 @@ margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
 group = ExtResource( 1 )
 
-[node name="Border" type="Sprite" parent="Control/Button4"]
+[node name="Border" type="Sprite" parent="Control/Lune"]
 texture = ExtResource( 3 )
 centered = false
 
-[node name="Lune" type="Sprite" parent="Control/Button4"]
+[node name="Sprite" type="Sprite" parent="Control/Lune"]
 position = Vector2( 24, 28 )
 texture = ExtResource( 6 )
 

@@ -30,7 +30,6 @@ func register_actors():
 				bossSummon.append(l)
 	if player == null:
 		pass
-		
 signal on_boss_summoned
 signal on_boss_destroyed
 func on_destroyed(n):
