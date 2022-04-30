@@ -44,6 +44,12 @@ func on_destroyed(n):
 			emit_signal("on_boss_summoned", b)
 func on_boss_destroyed(boss):
 	emit_signal("on_boss_destroyed")
+	
+func clear_level():
+	for c in get_children():
+		if c != player:
+			c.queue_free()
+	leaves.clear()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta

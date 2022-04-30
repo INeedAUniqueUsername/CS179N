@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Title.png" type="Texture" id=2]
@@ -8,6 +8,11 @@
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
+
+[sub_resource type="InputEventKey" id=2]
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -30,6 +35,7 @@ margin_top = 300.0
 margin_right = 43.0
 margin_bottom = 344.0
 custom_fonts/font = SubResource( 1 )
+shortcut = SubResource( 3 )
 text = "Start"
 script = ExtResource( 3 )
 scene = ExtResource( 4 )

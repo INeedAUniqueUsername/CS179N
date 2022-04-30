@@ -21,23 +21,32 @@ const primaryEnergyUse = 6
 const secondaryEnergyUse = 50
 
 const beam = preload("res://LaserBeam.tscn")
-
+const SpriteFade = preload("res://SpriteFade.tscn")
 func _process(delta):
 	common.update_systems(delta)
 	common.update_controls(delta)
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval
-		
+		var bonus = common.energy / 10
+		var ignore = [self]
 		for p in [$LeftCannon, $RightCannon]:
 			var l = beam.instance()
-			l.ignore.append(self)
+			l.damage += bonus
+			l.ignore = ignore
+			ignore.append(l)
 			l.vel = common.vel + common.vector_up * 1024
 			get_parent().add_child(l)
 			l.set_global_transform(p.get_global_transform())
 			l.rotation_degrees = rotation_degrees - 90
 			p.get_node("Anim").play("Fire")
 	if $Anim.current_animation == "Punch":
+		if false:
+			var sf = SpriteFade.instance()
+			sf.texture = $Body.texture
+			get_parent().add_child(sf)
+			sf.set_global_transform($Body.get_global_transform())
+			sf.get_node("Fade").playback_speed = 1 / 0.1
 		return
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse

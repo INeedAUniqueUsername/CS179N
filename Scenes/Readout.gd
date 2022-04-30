@@ -13,8 +13,11 @@ func on_boss_summoned(b):
 	boss = b
 	$BossLabel.text = b.bossName
 	$Anim.play("BossWarning")
+	
+const shake = preload("res://Shake.tscn")
 func on_boss_destroyed():
 	boss = null
+	get_parent().add_child(shake.instance())
 	$Anim.play("LevelCleared")
 var player
 # Called every frame. 'delta' is the elapsed time since the previous frame.

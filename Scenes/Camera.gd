@@ -14,3 +14,5 @@ func _physics_process(delta):
 	#rotation_degrees = player.rotation_degrees
 	if player:
 		position = player.position - player.vel / 120
+func shake():
+	pass

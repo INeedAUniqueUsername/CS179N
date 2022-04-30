@@ -8,3 +8,8 @@ var heroes = {
 }
 func _ready():
 	add_child(heroes[PlayerVariables.hero].instance())
+	call_deferred("remove_self")
+func remove_self():
+	for c in get_children():
+		remove_child(c)
+		get_parent().add_child(c)

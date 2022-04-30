@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/Starman.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Border.png" type="Texture" id=3]
@@ -11,6 +11,8 @@
 [sub_resource type="DynamicFont" id=1]
 size = 54
 font_data = ExtResource( 7 )
+
+[sub_resource type="ShortCut" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 36
@@ -98,6 +100,7 @@ margin_top = -180.0
 margin_right = 60.0
 margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
+shortcut = SubResource( 4 )
 
 [node name="Border" type="Sprite" parent="Control/Astroknight"]
 texture = ExtResource( 3 )
@@ -127,7 +130,7 @@ position = Vector2( -108, 116 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 
-[node name="Name" type="Label" parent="Control"]
+[node name="Desc" type="Label" parent="Control"]
 margin_left = 44.0
 margin_top = 12.0
 margin_right = 565.0

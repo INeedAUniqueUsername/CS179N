@@ -1,11 +1,23 @@
 extends Control
 func _ready():
-	$Starman.connect("pressed", self, "select_starman")
-	$Asteria.connect("pressed", self, "select_asteria")
-	$Astroknight.connect("pressed", self, "select_astroknight")
-	$Lune.connect("pressed", self, "select_lune")
+	var s = "button_down"
+	$Starman.connect(s, self, "select_starman")
+	$Asteria.connect(s, self, "select_asteria")
+	$Astroknight.connect(s, self, "select_astroknight")
+	$Lune.connect(s, self, "select_lune")
 	$"Start Game".connect("pressed", self, "start_game")
 	select_starman()
+func _process(delta):
+	if Input.is_key_pressed(KEY_1):
+		select_starman()
+	elif Input.is_key_pressed(KEY_2):
+		select_asteria()
+	elif Input.is_key_pressed(KEY_3):
+		select_astroknight()
+	elif Input.is_key_pressed(KEY_4):
+		select_lune()
+	elif Input.is_key_pressed(KEY_X):
+		start_game()
 func start_game():
 	get_tree().change_scene("res://Scenes/Level.tscn")
 func reset_borders():
@@ -15,19 +27,23 @@ func vis(b):
 	reset_borders()
 	b.visible = true
 func select_starman():
-	vis($Starman/Border)
-	$Character.texture = $Starman/Sprite.texture
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.starman)
+	vis($Starman/Border)
+	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
+	$Character.texture = $Starman/Sprite.texture
 func select_asteria():
-	vis($Asteria/Border)
-	$Character.texture = $Asteria/Sprite.texture
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.asteria)
+	vis($Asteria/Border)
+	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
+	$Character.texture = $Asteria/Sprite.texture
 func select_astroknight():
-	vis($Astroknight/Border)
-	$Character.texture = $Astroknight/Sprite.texture
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.astroknight)
+	vis($Astroknight/Border)
+	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
+	$Character.texture = $Astroknight/Sprite.texture
 func select_lune():
-	vis($Lune/Border)
-	$Character.texture = $Lune/Sprite.texture
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.lune)
+	vis($Lune/Border)
+	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
+	$Character.texture = $Lune/Sprite.texture
 	

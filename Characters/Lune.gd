@@ -14,9 +14,9 @@ onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLe
 func set_time_scale(t):
 	common.set_time_scale(t)
 
-const primaryFireInterval = 0.5
+const primaryFireInterval = 0.4
 const secondaryFireInterval = 2
-const primaryEnergyUse = 8
+const primaryEnergyUse = 7
 const secondaryEnergyUse = 50
 var fireCount = 0
 
@@ -34,7 +34,7 @@ func _process(delta):
 		
 		var l = beam.instance()
 		l.ignore = [self]
-		l.vel = common.vel + common.vector_up * 512
+		l.vel = common.vel + common.vector_up * 512 * 3 / 4.0
 		get_parent().add_child(l)
 		l.set_global_transform(p.get_global_transform())
 		l.rotation_degrees = rotation_degrees - 90
