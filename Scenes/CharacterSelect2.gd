@@ -5,8 +5,11 @@ func _ready():
 	$Asteria.connect(s, self, "select_asteria")
 	$Astroknight.connect(s, self, "select_astroknight")
 	$Lune.connect(s, self, "select_lune")
-	$"Start Game".connect("pressed", self, "start_game")
+	$BackButton.connect("pressed", self, "back")
+	$StartButton.connect("pressed", self, "start_game")
 	select_starman()
+func back():
+	get_tree().change_scene("res://Title.tscn")
 func _process(delta):
 	if Input.is_key_pressed(KEY_1):
 		select_starman()
@@ -18,7 +21,16 @@ func _process(delta):
 		select_lune()
 	elif Input.is_key_pressed(KEY_X):
 		start_game()
+const shake = preload("res://Shake.tscn")
 func start_game():
+	var s = shake.instance()
+	s.set_lifetime(4)
+	$Camera.add_child(s)
+	$BackButton.queue_free()
+	$StartButton.queue_free()
+	$Anim.play("Flash")
+	$Anim.connect("animation_finished", self, "change_scene")
+func change_scene(an):
 	get_tree().change_scene("res://Scenes/Level.tscn")
 func reset_borders():
 	for b in [$Starman, $Asteria, $Astroknight, $Lune]:

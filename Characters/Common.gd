@@ -5,6 +5,8 @@ var turn = 0
 var hp = 100
 var energy = 100
 var fuel = 100
+var levelTime = 0.0
+var levelScore = 0.0
 
 var fuelUsage = 1.0/2
 var thrustSpeed = 600
@@ -34,7 +36,10 @@ func _init(owner: Node2D, animBody: AnimationPlayer, animLeftLeg: AnimationPlaye
 	self.animBody = animBody
 	self.animLeftLeg = animLeftLeg
 	self.animRightLeg = animRightLeg
+	
+
 func update_physics(delta):
+	levelTime += delta
 	delta *= time_scale
 	owner.global_translate(vel * delta)
 	owner.rotation_degrees += turn * delta
@@ -48,6 +53,13 @@ var decel_vel
 var decel_turn
 func update_systems(delta):
 	delta *= time_scale
+	
+	if state == State.Recovering:
+		fuel = max(0, fuel - delta * 8)
+		return
+	elif state != State.Active:
+		return
+	
 	damageDelay -= delta
 	fireCooldown -= delta
 	if fireCooldown < 0:
@@ -62,8 +74,18 @@ func update_systems(delta):
 		if inc > 0:
 			hp += inc
 			fuel -= inc / 20.0
+signal on_mortal
+signal on_destroyed
+var mortalChances = 2
 var damageDelay = 0
+
+enum State {
+	Active, Recovering, Dead, Winner
+}
+var state = State.Active
 func damage(attacker):
+	if state != State.Active:
+		return
 	if damageDelay > 0:
 		return
 	hp = max(0, hp - attacker.damage)
@@ -71,6 +93,25 @@ func damage(attacker):
 		energy = max(0, energy - attacker.drain)
 		fireCooldown = max(0, fireCooldown)
 	damageDelay = 1
+	
+	if hp == 0:
+		if mortalChances > 0:
+			mortalChances -= 1
+			emit_signal("on_mortal", owner)
+			var t = Timer.new()
+			t.wait_time = 5
+			t.connect("timeout", self, "recover")
+			t.connect("timeout", t, "queue_free")
+			owner.add_child(t)
+			t.start()
+			state = State.Recovering
+		else:
+			emit_signal("on_destroyed", owner)
+			state = State.Dead
+			
+func recover():
+	hp = 100
+	state = State.Active
 var vector_up
 func thrust(dest_vel, delta):
 	var rejection = vel * (1 - vel.normalized().dot(dest_vel.normalized()))
@@ -92,6 +133,17 @@ func consume_fuel(f):
 func update_controls(delta):
 	delta *= time_scale
 	
+	match state:
+		State.Recovering, State.Dead:
+			decel_vel = false
+			decel_turn = false
+			return
+		State.Winner:
+			decel_vel = true
+			decel_turn = true
+			animLeftLeg.play("Idle")
+			animRightLeg.play("Idle")
+			return
 	var up = Input.is_key_pressed(KEY_UP)
 	var left = Input.is_key_pressed(KEY_LEFT)
 	var right = Input.is_key_pressed(KEY_RIGHT)

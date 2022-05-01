@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/LaserSentry.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/LaserSentry.gd" type="Script" id=2]
-[ext_resource path="res://Enemies/LaserSentryBody.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
@@ -20,7 +19,6 @@ extents = Vector2( 20, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 64, 64 )
-script = ExtResource( 3 )
 
 [node name="Gun" type="Sprite" parent="." groups=["Actor", "Stationary"]]
 texture = ExtResource( 1 )

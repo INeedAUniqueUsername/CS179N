@@ -31,7 +31,7 @@ func _physics_process(delta):
 		sf.set_global_transform(get_global_transform())
 		sf.get_node("Fade").playback_speed = 1 / 0.1
 	if damp > 0:
-		vel -= vel.normalized() * damp * delta
+		vel -= vel.normalized() * min(damp * delta, vel.length())
 	global_translate(vel * delta)
 func _on_area_entered(area):
 	if area.is_in_group("Behavior"):

@@ -13,11 +13,11 @@ func _physics_process(delta):
 	if atk_target != null and curr_cooldown < 0:
 		curr_cooldown = base_cooldown
 
-		var beam_load = beam.instance()
-		beam_load.vel = forward * beamSpeed
+		var b = beam.instance()
+		b.vel = forward * beamSpeed
 
-		beam_load.ignore = [self, beam_load]
+		b.ignore = [self, b]
 
-		get_parent().add_child(beam_load)
-		beam_load.set_global_transform(get_global_transform())
-		beam_load.rotation_degrees = rotation_degrees
+		get_parent().add_child(b)
+		b.set_global_transform(get_global_transform())
+		b.rotation_degrees = rotation_degrees

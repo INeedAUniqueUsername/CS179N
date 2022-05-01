@@ -7,8 +7,14 @@ func _ready():
 func register_player():
 	var actors = get_parent().get_parent().get_node("Actors")
 	player = actors.player
+	player.common.connect("on_mortal", self, "on_player_mortal")
+	player.common.connect("on_destroyed", self, "on_player_destroyed")
 	actors.connect("on_boss_summoned", self, "on_boss_summoned")
 	actors.connect("on_boss_destroyed", self, "on_boss_destroyed")
+func on_player_mortal(pl):
+	$Anim.play("MortalFlash")
+func on_player_destroyed(pl):
+	$Anim.play("GameOver")
 func on_boss_summoned(b):
 	boss = b
 	$BossLabel.text = b.bossName
@@ -19,6 +25,12 @@ func on_boss_destroyed():
 	boss = null
 	get_parent().add_child(shake.instance())
 	$Anim.play("LevelCleared")
+	player.common.state = player.common.State.Winner
+	$LevelCleared/LevelTime.text %= player.common.levelTime
+	$LevelCleared/TotalTime.text %= player.common.levelTime
+	$LevelCleared/LevelScore.text %= player.common.levelScore
+	$LevelCleared/TotalScore.text %= player.common.levelScore
+	
 var player
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -46,7 +58,9 @@ func _process(delta):
 	width.fuel += (dest_width.fuel - width.fuel)/15.0
 	width.boss += (dest_width.boss - width.boss) / 15.0
 	
-	$HealthFront.region_rect.size.x = ceil(width.hp)
-	$EnergyFront.region_rect.size.x = ceil(width.energy)
-	$FuelFront.region_rect.size.x = ceil(width.fuel)
+	$Bars/HealthFront.region_rect.size.x = ceil(width.hp)
+	$Bars/EnergyFront.region_rect.size.x = ceil(width.energy)
+	$Bars/FuelFront.region_rect.size.x = ceil(width.fuel)
+	$Bars/Time.text = "Time: %.2f sec" % player.common.levelTime
+	
 	$BossFront.region_rect.size.x = ceil(width.boss)

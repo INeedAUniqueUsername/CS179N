@@ -21,15 +21,16 @@ func register_actors():
 		if l.is_in_group("Projectile"):
 			continue
 		if l.is_in_group("Actor"):
-			leaves.append(l)
-			
-			l.connect("on_destroyed", self, "on_destroyed")
+			register(l)
 			if l.is_in_group("Player"):
 				player = l
 			if l.is_in_group("Boss Summon"):
 				bossSummon.append(l)
 	if player == null:
 		pass
+func register(a):
+	leaves.append(a)
+	a.connect("on_destroyed", self, "on_destroyed")
 signal on_boss_summoned
 signal on_boss_destroyed
 func on_destroyed(n):

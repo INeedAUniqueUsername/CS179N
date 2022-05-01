@@ -28,7 +28,7 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval
-		var bonus = common.energy / 10
+		var bonus = common.energy / 20
 		var ignore = [self]
 		for p in [$LeftCannon, $RightCannon]:
 			var l = beam.instance()

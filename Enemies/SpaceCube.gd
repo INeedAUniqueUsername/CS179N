@@ -6,10 +6,10 @@ func _ready():
 var player
 func register_player():
 	player = get_parent().player
-
-
+var open = false
+var energy = 100
 var fireCooldown = 0
-const laser = preload("res://LaserBeam.tscn")
+const laser = preload("res://LaserBeamLarge.tscn")
 func _physics_process(delta):
 	global_translate(vel * delta)
 	#vel -= vel.normalized() * min(vel.length(), 120 * delta)
@@ -18,30 +18,56 @@ func _physics_process(delta):
 		turn()
 	fireCooldown -= delta
 	if player:
-		var offset = player.global_position - $Crosshair.global_position
-		var dist = offset.length() / 15.0
-		dist = max(dist, min(3, offset.length()))
-		
-		$Crosshair.global_position += offset.normalized() * dist
-		if offset.length() < 30 and fireCooldown < 0:
-			fireCooldown = 1 / 8.0
-			var l = laser.instance()
-			
-			
-			get_parent().add_child(l)
-			l.set_global_transform($Body.get_global_transform())
-			l.ignore = [self, $LowerShell, $UpperShell]
-			offset = player.global_position - $Body.global_position
-			l.rotation = atan2(offset.y, offset.x)
-			l.vel = offset.normalized() * 640
-			
-var vel : Vector2 = polar2cartesian(200, rand_range(-PI/2, PI/2))
+		if $Anim.current_animation == "Idle":
+			$Body.frame = int(1 + (13 - 1) * (energy / 100.0))
+			if energy == 0:
+				if open:
+					$Anim.play("Close")
+				else:
+					$Anim.play("Charge")
+			else:
+				if fireCooldown < 0:
+					energy += delta * 50
+					var offset = player.global_position - $Body.global_position
+					if offset.length() < 420:
+						fireCooldown = 1 / 9.0
+						if open:
+							fire_mine()
+						else:
+							$Anim.play("Open")
+					else:
+						
+						if !open:
+							
+						
+							fireCooldown = 1 / 12.0
+							
+							var l = laser.instance()
+							l.z_index = 1
+							get_parent().add_child(l)
+							l.set_global_transform($Body.get_global_transform())
+							l.ignore = [self, $LowerShell, $UpperShell]
+							l.rotation = atan2(offset.y, offset.x)
+							l.vel = offset.normalized() * 1080
+							energy = max(0, energy - 4)
+						else:
+							$Anim.play("Close")
+const mine = preload("res://SpaceCubeMine.tscn")	
+func fire_mine():
+	var l = mine.instance()
+	l.z_index = 1
+	get_parent().add_child(l)
+	l.set_global_transform($Body.get_global_transform())
+	l.ignore = [self, $LowerShell, $UpperShell]
+	l.vel = vel + polar2cartesian(360, rand_range(0, PI*2))
+	energy = max(0, energy - 6)
+var vel : Vector2 = polar2cartesian(120, PI/2 * (randi()%4))
 var turnTime : float
 func turn():
-	turnTime = 5
-	vel = vel.rotated(rand_range(-PI/2, PI/2))
+	turnTime = 2
+	vel = polar2cartesian(120, PI/2 * (randi()%4))
 signal on_destroyed
-var hp = 600
+var hp = 900
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp < 1:
@@ -54,3 +80,29 @@ func _on_area_entered(area):
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
 		player = actor
+
+
+func _on_animation_finished(anim_name):
+	match anim_name:
+		"Charge":
+			energy = 100
+			$Anim.play("Idle")
+		"Fire":
+			if energy == 0:
+				if open:
+					$Anim.play("Close")
+				else:
+					$Anim.play("Charge")
+			else:
+				$Anim.play("Idle")
+		"Close":
+			open = false
+			if energy == 0:
+				$Anim.play("Charge")
+			else:
+				$Anim.play("Idle")
+		"Open":
+			open = true
+			$Anim.play("Idle")
+			if energy == 0:
+				$Anim.play("Close")

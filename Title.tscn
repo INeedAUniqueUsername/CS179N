@@ -1,18 +1,79 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Title.png" type="Texture" id=2]
 [ext_resource path="res://SetScene.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/CharacterSelect2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
-font_data = ExtResource( 1 )
+font_data = ExtResource( 5 )
 
 [sub_resource type="InputEventKey" id=2]
 
 [sub_resource type="ShortCut" id=3]
 shortcut = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Scroll"
+length = 40.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 35 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 0, 350 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 38, 40 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -53,3 +114,27 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 568.0
+margin_right = 876.0
+margin_bottom = 975.0
+custom_fonts/font = SubResource( 4 )
+text = "In the year 2100, the Defenders of Earth were named.
+They were Starman, Asteria, Astroknight, and Lune.
+
+Using powered exoskeletons called starskeletons,
+they could fly and fight outside of spacecraft.
+
+They were on a trip to Mars when they were suddenly
+lost in a zone where space wrapped around itself.
+
+Soon, they were surrounded by hostile drones and
+under attack by their new nemesis, Ad Dastardly Astra"
+percent_visible = -0.00294985
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Scroll"
+anims/RESET = SubResource( 5 )
+anims/Scroll = SubResource( 6 )

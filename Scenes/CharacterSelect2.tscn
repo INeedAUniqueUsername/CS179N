@@ -1,26 +1,297 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Starman.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Border.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Asteria.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Astroknight.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Lune.png" type="Texture" id=6]
-[ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Scenes/CharacterSelect2.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 54
-font_data = ExtResource( 7 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="ShortCut" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 36
-font_data = ExtResource( 7 )
+font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 48
-font_data = ExtResource( 7 )
+[sub_resource type="Animation" id=5]
+resource_name = "Flash"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StartButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Time:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "3", "2", "1", "0" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Starman:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Asteria:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Astroknight:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Lune:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Desc:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Character:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 116 ), Vector2( 0, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Character:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 5 ), Vector2( 2, 2 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StartButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Time:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "3" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Starman:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Asteria:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Astroknight:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Lune:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Desc:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Character:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 116 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Character:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, 5 ) ]
+}
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -34,6 +305,18 @@ anchor_bottom = 0.5
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 8 )
+
+[node name="Back3" type="ColorRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1940.0
+margin_top = -1100.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_scale = Vector2( 2, 2 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="Back2" type="ColorRect" parent="Control"]
 anchor_left = 0.5
@@ -54,6 +337,14 @@ margin_top = -300.0
 margin_right = 472.0
 margin_bottom = 260.0
 color = Color( 0.129412, 0.211765, 0.360784, 1 )
+
+[node name="BackButton" type="Button" parent="Control"]
+margin_left = -492.0
+margin_top = 217.0
+margin_right = -372.0
+margin_bottom = 280.0
+custom_fonts/font = SubResource( 3 )
+text = "Back"
 
 [node name="Label" type="Label" parent="Control"]
 margin_left = -236.0
@@ -125,26 +416,65 @@ centered = false
 position = Vector2( 24, 28 )
 texture = ExtResource( 6 )
 
-[node name="Character" type="Sprite" parent="Control"]
-position = Vector2( -108, 116 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 2 )
+[node name="Stats" type="Label" parent="Control"]
+margin_left = -444.0
+margin_top = 12.0
+margin_right = 77.0
+margin_bottom = 193.0
+custom_fonts/font = SubResource( 2 )
+text = "Best Time: N/A
+High Score: N/A"
 
 [node name="Desc" type="Label" parent="Control"]
-margin_left = 44.0
+margin_left = 124.0
 margin_top = 12.0
-margin_right = 565.0
+margin_right = 645.0
 margin_bottom = 193.0
 custom_fonts/font = SubResource( 2 )
 text = "Starman
 
-[X] Laser Hands
+[X] Laser Cannons
 [Z] Shooting Star"
 
-[node name="Start Game" type="Button" parent="Control"]
+[node name="Character" type="Sprite" parent="Control"]
+position = Vector2( 0, 116 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+
+[node name="Time" type="Label" parent="Control"]
+margin_left = -236.0
+margin_top = 212.0
+margin_right = 240.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 1 )
+text = "3"
+align = 1
+
+[node name="StartButton" type="Button" parent="Control"]
 margin_left = -180.0
 margin_top = 217.0
 margin_right = 180.0
 margin_bottom = 280.0
 custom_fonts/font = SubResource( 3 )
 text = "Start Game"
+
+[node name="Camera" type="Camera2D" parent="Control"]
+offset = Vector2( 58, 0 )
+current = true
+
+[node name="Flash" type="ColorRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1940.0
+margin_top = -1100.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_scale = Vector2( 2, 2 )
+mouse_filter = 2
+
+[node name="Anim" type="AnimationPlayer" parent="Control"]
+anims/Flash = SubResource( 5 )
+anims/RESET = SubResource( 6 )

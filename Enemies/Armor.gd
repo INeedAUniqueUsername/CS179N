@@ -6,7 +6,7 @@ func set_vel(v):
 func get_vel():
 	return Helper.get_parent_actor(self.get_parent()).vel
 signal on_destroyed
-export(int) var hp = 400
+export(int) var hp = 600
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp < 1:
@@ -26,4 +26,6 @@ func _on_area_entered(area):
 		damage(actor)
 		var ignore = [self, Helper.get_parent_actor(get_parent())]
 		actor.ignore = ignore
-		actor.vel = -actor.vel
+		
+		var velDiff = get_vel() - actor.vel
+		actor.vel = get_vel() + velDiff
