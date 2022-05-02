@@ -7,11 +7,28 @@ func _ready():
 func register_player():
 	var actors = get_parent().get_parent().get_node("Actors")
 	player = actors.player
-	player.common.connect("on_mortal", self, "on_player_mortal")
-	player.common.connect("on_destroyed", self, "on_player_destroyed")
+	var c = player.common
+	c.connect("on_mortal", self, "on_player_mortal")
+	c.connect("on_destroyed", self, "on_player_destroyed")
+	c.connect("on_fuel_warning", self, "on_player_fuel_warning")
+	c.connect("on_fuel_depleted", self, "on_player_fuel_depleted")
 	actors.connect("on_boss_summoned", self, "on_boss_summoned")
 	actors.connect("on_boss_destroyed", self, "on_boss_destroyed")
+func on_player_fuel_warning(pl):
+	if $Anim.current_animation == "MortalFlash":
+		$Anim.play("FuelWarningRepaired")
+	else:
+		$Anim.play("FuelWarning")
+func on_player_fuel_depleted(pl):
+	if $Anim.current_animation == "MortalFlash":
+		$Anim.play("GameOverRepairFailed")
+	elif pl.state == pl.State.Dying:
+		$Anim.play("OutOfFuel2")
+	else:
+		$Anim.play("OutOfFuel1")
 func on_player_mortal(pl):
+	if $Anim.current_animation == "MortalFlash":
+		$Anim.stop()
 	$Anim.play("MortalFlash")
 func on_player_destroyed(pl):
 	$Anim.play("GameOver")

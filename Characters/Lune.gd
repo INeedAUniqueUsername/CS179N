@@ -25,6 +25,8 @@ const blast = preload("res://CrescentBlast.tscn")
 func _process(delta):
 	common.update_systems(delta)
 	common.update_controls(delta)
+	if common.state != common.State.Active:
+		return
 	if Input.is_key_pressed(KEY_X) && common.canFire() && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval

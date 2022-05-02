@@ -26,7 +26,8 @@ func _process(delta):
 	
 	common.update_systems(delta)
 	common.update_controls(delta)
-	
+	if common.state != common.State.Active:
+		return
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval

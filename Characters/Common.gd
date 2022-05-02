@@ -37,6 +37,7 @@ func _init(owner: Node2D, animBody: AnimationPlayer, animLeftLeg: AnimationPlaye
 	self.animLeftLeg = animLeftLeg
 	self.animRightLeg = animRightLeg
 	
+	
 
 func update_physics(delta):
 	levelTime += delta
@@ -55,11 +56,21 @@ var decel_turn
 var prevFuel = 100
 func update_systems(delta):
 	delta *= time_scale
-	
 	if state == State.Recovering:
 		fuel = max(0, fuel - delta * 5)
 		if fuel == 0:
+			energy = 0
 			emit_signal("on_fuel_depleted", self)
+			state = State.Dead
+		return
+	elif state == State.Dying:
+		if energy > 0:
+			energy = max(0, energy - delta * 20)
+		else:
+			hp = max(0, hp - delta * 20)
+			if hp == 0:
+				emit_signal("on_fuel_depleted", self)
+				state = State.Dead
 		return
 	elif state != State.Active:
 		return
@@ -80,48 +91,52 @@ func update_systems(delta):
 			fuel -= inc / 20.0
 	if fuel == 0:
 		emit_signal("on_fuel_depleted", self)
+		state = State.Dying
 	elif fuel < 30 and prevFuel > 30:
 		emit_signal("on_fuel_warning", self)
 	prevFuel = fuel
 signal on_mortal
 signal on_destroyed
-var mortalChances = 3
 var damageDelay = 0
 
 enum State {
-	Active, Recovering, Dead, Winner
+	Active, Recovering, Dying, Dead, Winner
 }
 var state = State.Active
+var lastDamage = 0
+var lastDrain = 0
 func damage(attacker):
 	if state != State.Active:
 		return
 	if damageDelay > 0:
-		return
-	hp = max(0, hp - attacker.damage)
-	if 'drain' in attacker:
-		energy = max(0, energy - attacker.drain)
-		fireCooldown = max(0, fireCooldown)
-	damageDelay = 1
-	
-	if hp == 0:
-		if mortalChances > 0:
-			mortalChances -= 1
-			emit_signal("on_mortal", owner)
-			var t = Timer.new()
-			t.wait_time = 6
-			t.connect("timeout", self, "recover")
-			t.connect("timeout", t, "queue_free")
-			owner.add_child(t)
-			t.start()
-			state = State.Recovering
-			
-			animLeftLeg.play("Idle")
-			animRightLeg.play("Idle")
+		var inc = attacker.damage - lastDamage
+		if inc > 0:
+			hp = max(0, hp - inc)
+			lastDamage = attacker.damage
 		else:
-			emit_signal("on_destroyed", owner)
-			state = State.Dead
-			
+			return
+	else:
+		hp = max(0, hp - attacker.damage)
+		lastDamage = attacker.damage
+		if 'drain' in attacker:
+			energy = max(0, energy - attacker.drain)
+			lastDrain = attacker.drain
+			fireCooldown = max(0, fireCooldown)
+		damageDelay = 1
+	if hp == 0:
+		emit_signal("on_mortal", owner)
+		var t = Timer.new()
+		t.wait_time = 6
+		t.connect("timeout", self, "recover")
+		t.connect("timeout", t, "queue_free")
+		owner.add_child(t)
+		t.start()
+		state = State.Recovering
+		animLeftLeg.play("Idle")
+		animRightLeg.play("Idle")
 func recover():
+	if state == State.Dead:
+		return
 	hp = 100
 	state = State.Active
 var vector_up
@@ -146,9 +161,11 @@ func update_controls(delta):
 	delta *= time_scale
 	
 	match state:
-		State.Recovering, State.Dead:
+		State.Recovering, State.Dead, State.Dying:
 			decel_vel = false
 			decel_turn = false
+			animLeftLeg.play("Idle")
+			animRightLeg.play("Idle")
 			return
 		State.Winner:
 			decel_vel = true
