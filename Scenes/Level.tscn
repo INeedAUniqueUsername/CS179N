@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Sprites/MortalBorder.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
@@ -90,6 +90,34 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "FuelWarning"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../MortalFlash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 1.2, 1.6, 2, 2.2, 2.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../MortalFlash/Text:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Low fuel warning" ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -223,7 +251,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "MortalFlash"
-length = 9.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../MortalFlash:modulate")
 tracks/0/interp = 1
@@ -231,10 +259,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.6, 1, 1.2, 1.6, 2, 2.2, 2.6, 3, 3.2, 3.6, 4, 4.2, 6, 6.01, 8, 9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 1.2, 1.6, 2, 2.2, 2.6, 3, 3.2, 3.6, 4, 4.2, 6, 6.01, 7, 9, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 1, 0, 0, 0 ) ]
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 1, 0, 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../MortalFlash/Text:text")
@@ -477,6 +505,66 @@ position = Vector2( -280, 0 )
 [node name="BossBeacon" parent="Actors/BossSummon" instance=ExtResource( 12 )]
 position = Vector2( 72, 0 )
 
+[node name="BossBeacon2" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 328, -120 )
+
+[node name="BossBeacon3" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 448, 152 )
+
+[node name="BossBeacon4" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -192, 224 )
+
+[node name="BossBeacon5" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 216, 272 )
+
+[node name="BossBeacon6" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -488, 248 )
+
+[node name="BossBeacon7" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -336, -40 )
+
+[node name="BossBeacon8" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -432, -312 )
+
+[node name="BossBeacon18" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -736, -424 )
+
+[node name="BossBeacon19" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -288, -504 )
+
+[node name="BossBeacon20" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 216, -416 )
+
+[node name="BossBeacon21" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 720, -504 )
+
+[node name="BossBeacon9" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -48, -280 )
+
+[node name="BossBeacon10" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 592, -280 )
+
+[node name="BossBeacon11" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 664, -24 )
+
+[node name="BossBeacon12" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -696, -112 )
+
+[node name="BossBeacon13" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -824, 176 )
+
+[node name="BossBeacon14" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -664, 472 )
+
+[node name="BossBeacon15" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( -216, 512 )
+
+[node name="BossBeacon16" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 472, 480 )
+
+[node name="BossBeacon17" parent="Actors/BossSummon" instance=ExtResource( 12 )]
+position = Vector2( 808, 312 )
+
 [node name="random_generation_timer" type="Timer" parent="Actors"]
 wait_time = 5.0
 autostart = true
@@ -668,6 +756,7 @@ mouse_filter = 2
 root_node = NodePath("../BossWarning")
 autoplay = "Opening"
 anims/BossWarning = SubResource( 1 )
+anims/FuelWarning = SubResource( 9 )
 anims/GameOver = SubResource( 8 )
 anims/LevelCleared = SubResource( 3 )
 anims/MortalFlash = SubResource( 7 )

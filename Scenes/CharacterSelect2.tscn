@@ -459,7 +459,6 @@ custom_fonts/font = SubResource( 3 )
 text = "Start Game"
 
 [node name="Camera" type="Camera2D" parent="Control"]
-offset = Vector2( 58, 0 )
 current = true
 
 [node name="Flash" type="ColorRect" parent="Control"]

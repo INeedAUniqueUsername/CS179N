@@ -10,12 +10,25 @@ var open = false
 var energy = 100
 var fireCooldown = 0
 const laser = preload("res://LaserBeamLarge.tscn")
+
+var trailTime = 0
 func _physics_process(delta):
 	global_translate(vel * delta)
 	#vel -= vel.normalized() * min(vel.length(), 120 * delta)
 	turnTime -= delta
 	if turnTime < 0:
 		turn()
+		
+	var extra_vel = vel - dir_vel
+	extra_vel -= extra_vel / 90.0
+	vel = extra_vel + dir_vel
+	trailTime -= delta
+	if trailTime < 0:
+		trailTime = 0.1
+		for b in [$Body, $UpperShell, $LowerShell]:
+			if b:
+				Helper.create_sprite_fade(get_parent(), b, 0.5)
+		
 	fireCooldown -= delta
 	if player:
 		if $Anim.current_animation == "Idle":
@@ -61,20 +74,26 @@ func fire_mine():
 	l.ignore = [self, $LowerShell, $UpperShell]
 	l.vel = vel + polar2cartesian(360, rand_range(0, PI*2))
 	energy = max(0, energy - 6)
-var vel : Vector2 = polar2cartesian(120, PI/2 * (randi()%4))
+var dir_vel : Vector2 = polar2cartesian(120, PI/2 * (randi()%4))
+var vel : Vector2 = dir_vel
 var turnTime : float
 func turn():
 	turnTime = 2
-	vel = polar2cartesian(120, PI/2 * (randi()%4))
+	vel -= dir_vel
+	dir_vel = dir_vel.rotated([-PI/2, PI/2][randi()%2])
+	vel += dir_vel
 signal on_destroyed
 var hp = 900
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
-	if hp < 1:
-		emit_signal("on_destroyed", self)
-		queue_free()
-	pass
-
+	if hp > 0:
+		return
+	for s in [$UpperShell, $LowerShell, self]:
+		if s:
+			s.destroy()
+func destroy():
+	emit_signal("on_destroyed", self)
+	queue_free()
 
 func _on_area_entered(area):
 	var actor = Helper.get_parent_actor(area)

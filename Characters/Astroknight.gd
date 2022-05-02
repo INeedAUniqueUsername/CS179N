@@ -55,7 +55,7 @@ func _on_sword_entered(area):
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
-	if !actor:
+	if !actor or actor == self:
 		return
 	if actor.is_in_group("Laser"):
 		actor.vel = -actor.vel

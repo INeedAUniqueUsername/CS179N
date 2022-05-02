@@ -48,14 +48,18 @@ func update_physics(delta):
 		vel -= delta * vel.normalized() * min(vel.length() * 2, thrustSpeed * 2)
 	if decel_turn:
 		turn -= delta * sign(turn) * min(abs(turn) * 15, 16 * turnSpeed)
-	
+signal on_fuel_warning
+signal on_fuel_depleted
 var decel_vel
 var decel_turn
+var prevFuel = 100
 func update_systems(delta):
 	delta *= time_scale
 	
 	if state == State.Recovering:
-		fuel = max(0, fuel - delta * 8)
+		fuel = max(0, fuel - delta * 5)
+		if fuel == 0:
+			emit_signal("on_fuel_depleted", self)
 		return
 	elif state != State.Active:
 		return
@@ -74,9 +78,14 @@ func update_systems(delta):
 		if inc > 0:
 			hp += inc
 			fuel -= inc / 20.0
+	if fuel == 0:
+		emit_signal("on_fuel_depleted", self)
+	elif fuel < 30 and prevFuel > 30:
+		emit_signal("on_fuel_warning", self)
+	prevFuel = fuel
 signal on_mortal
 signal on_destroyed
-var mortalChances = 2
+var mortalChances = 3
 var damageDelay = 0
 
 enum State {
@@ -99,12 +108,15 @@ func damage(attacker):
 			mortalChances -= 1
 			emit_signal("on_mortal", owner)
 			var t = Timer.new()
-			t.wait_time = 5
+			t.wait_time = 6
 			t.connect("timeout", self, "recover")
 			t.connect("timeout", t, "queue_free")
 			owner.add_child(t)
 			t.start()
 			state = State.Recovering
+			
+			animLeftLeg.play("Idle")
+			animRightLeg.play("Idle")
 		else:
 			emit_signal("on_destroyed", owner)
 			state = State.Dead

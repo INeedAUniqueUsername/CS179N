@@ -1,17 +1,27 @@
 extends Button
 
 export(NodePath) var ap
-export(NodePath) var spr
 export(Array, String) var anims : Array
-var index = 0
+export(String, MULTILINE) var desc : String
+var index = -1
 func _ready():
 	ap=get_node(ap)
-	spr = get_node(spr)
-	#anims = Array(ap.get_animation_list())
-func _on_Button_pressed():
+	connect("mouse_entered", self, "show_border")
+	connect("mouse_exited", self, "hide_border")
+	
+	connect("pressed", self, "pressed")
+func show_border():
+	$Border.visible = true
+	get_parent().get_node("Desc").text = desc
+func hide_border():
+	$Border.visible = false
+	get_parent().get_node("Desc").text = ""
+func pressed():
+	if !ap:
+		return
 	var a : AnimationPlayer = ap
 	var c = a.current_animation
 	index += 1
 	var anim = anims[index % len(anims)]
-	a.get_animation(anim).set_loop(true)
+	a.get_animation(anim)
 	a.play(anim)

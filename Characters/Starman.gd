@@ -84,9 +84,14 @@ func _on_cannon_entered(area):
 		common.vel -= velDiff * 1.5
 		damage = velDiff.length() / 8
 	else:
-		var velDiff = common.vel - actor.vel
-		actor.vel += velDiff / 2
-		common.vel -= velDiff / 2
+		var mass = 1
+		var other_mass = 1
+		if actor.is_in_group("Projectile"):
+			other_mass = 0.001
+		
+		var velDiff = (common.vel * mass - actor.vel * other_mass) / 2
+		actor.vel += velDiff / other_mass
+		common.vel -= velDiff / mass
 		damage = velDiff.length() / 8
 	actor.damage(self)
 	

@@ -45,6 +45,7 @@ tracks/0/keys = {
 }
 
 [node name="Sprite" type="Sprite"]
+z_index = -1
 
 [node name="Fade" type="AnimationPlayer" parent="."]
 autoplay = "Fade"

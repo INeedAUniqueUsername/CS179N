@@ -93,7 +93,7 @@ tracks/1/keys = {
 [node name="CrescentBeam" type="Node2D" groups=["Actor", "Magic", "Projectile"]]
 script = ExtResource( 2 )
 lifespan = 1.5
-damage = 15.0
+damage = 16.0
 pierce = 6
 knockback = 90.0
 

@@ -18,8 +18,12 @@ var player
 func register_player():
 	player = get_parent().player
 	
+var trailTime = 0
 func _physics_process(delta):
 	delta *= time_scale
+	trailTime -= delta
+	if trailTime < 0:
+		trailTime = 0.1
 	if player:
 		
 		var speed = 180 * delta

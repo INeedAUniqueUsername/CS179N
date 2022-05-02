@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 640.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=11]
 resource_name = "Charge"
 length = 3.5
 step = 0.3
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=12]
 resource_name = "Close"
 length = 0.3
 tracks/0/type = "value"
@@ -53,7 +53,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 24 ), Vector2( 0, 16 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=13]
 resource_name = "Fire"
 length = 1.5
 tracks/0/type = "value"
@@ -115,7 +115,7 @@ resource_name = "Idle"
 length = 0.001
 loop = true
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=14]
 resource_name = "Open"
 length = 0.3
 tracks/0/type = "value"
@@ -143,7 +143,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 16 ), Vector2( 0, 24 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=15]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
@@ -257,12 +257,12 @@ shape = SubResource( 1 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-anims/Charge = SubResource( 2 )
-anims/Close = SubResource( 7 )
-anims/Fire = SubResource( 3 )
+anims/Charge = SubResource( 11 )
+anims/Close = SubResource( 12 )
+anims/Fire = SubResource( 13 )
 anims/Idle = SubResource( 5 )
-anims/Open = SubResource( 6 )
-anims/RESET = SubResource( 4 )
+anims/Open = SubResource( 14 )
+anims/RESET = SubResource( 15 )
 
 [connection signal="area_entered" from="UpperShell/Area" to="UpperShell" method="_on_area_entered"]
 [connection signal="area_entered" from="LowerShell/Area" to="LowerShell" method="_on_area_entered"]

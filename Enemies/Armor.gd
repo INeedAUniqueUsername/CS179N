@@ -10,8 +10,10 @@ export(int) var hp = 600
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp < 1:
-		emit_signal("on_destroyed", self)
-		queue_free()
+		destroy()
+func destroy():
+	emit_signal("on_destroyed", self)
+	queue_free()
 var reflected = []
 func _on_area_entered(area):
 	if !Helper.is_area_body(area):
@@ -20,10 +22,12 @@ func _on_area_entered(area):
 	if actor and actor.is_in_group("Projectile"):
 		if actor.ignore.has(self):
 			return
+		damage(actor)
 		if reflected.has(actor):
 			return
 		reflected.append(actor)
-		damage(actor)
+		if actor.is_in_group("Magic"):
+			return
 		var ignore = [self, Helper.get_parent_actor(get_parent())]
 		actor.ignore = ignore
 		
