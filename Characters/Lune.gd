@@ -14,7 +14,7 @@ onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLe
 func set_time_scale(t):
 	common.set_time_scale(t)
 
-const primaryFireInterval = 0.4
+const primaryFireInterval = 0.3
 const secondaryFireInterval = 2
 const primaryEnergyUse = 7
 const secondaryEnergyUse = 50

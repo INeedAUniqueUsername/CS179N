@@ -201,8 +201,12 @@ position = Vector2( 0, 4 )
 [node name="LeftCannon" parent="." instance=ExtResource( 4 )]
 position = Vector2( -10, -6 )
 
+[node name="Area" parent="LeftCannon" index="1" groups=["Damage"]]
+
 [node name="RightCannon" parent="." instance=ExtResource( 4 )]
 position = Vector2( 8, -15 )
+
+[node name="Area" parent="RightCannon" index="1" groups=["Damage"]]
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_body_animation_finished"]
 [connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]

@@ -22,6 +22,8 @@ const secondaryEnergyUse = 50
 
 const beam = preload("res://LaserBeam.tscn")
 const SpriteFade = preload("res://SpriteFade.tscn")
+
+var trailTime = 0
 func _process(delta):
 	common.update_systems(delta)
 	common.update_controls(delta)
@@ -43,12 +45,12 @@ func _process(delta):
 			l.rotation_degrees = rotation_degrees - 90
 			p.get_node("Anim").play("Fire")
 	if $Anim.current_animation == "Punch":
-		if false:
-			var sf = SpriteFade.instance()
-			sf.texture = $Body.texture
-			get_parent().add_child(sf)
-			sf.set_global_transform($Body.get_global_transform())
-			sf.get_node("Fade").playback_speed = 1 / 0.1
+		trailTime -= delta
+		if trailTime < 0:
+			trailTime = 1 / 15.0
+			for b in [$Body, $LeftLeg, $RightLeg, $LeftCannon, $RightCannon]:
+				
+				Helper.create_sprite_fade(get_parent(), b, 0.3)
 		return
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse

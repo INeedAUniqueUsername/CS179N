@@ -11,6 +11,8 @@ func _ready():
 func back():
 	get_tree().change_scene("res://Title.tscn")
 func _process(delta):
+	if $Anim.current_animation == "Flash":
+		return
 	if Input.is_key_pressed(KEY_1):
 		select_starman()
 	elif Input.is_key_pressed(KEY_2):

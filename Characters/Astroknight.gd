@@ -42,6 +42,7 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
+		$Anim.stop()
 		$Anim.play("Slash")
 func _physics_process(delta):
 	common.update_physics(delta)

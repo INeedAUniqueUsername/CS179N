@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Sprites/MortalBorder.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scenes/CreatePlayer.gd" type="Script" id=18]
 [ext_resource path="res://Sprites/GameOver.png" type="Texture" id=19]
 [ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=20]
+[ext_resource path="res://Enemies/SpaceCube.tscn" type="PackedScene" id=21]
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -105,7 +106,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.6, 1, 1.2, 1.6, 2, 2.2, 2.6, 3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0, 0, 0 ) ]
+"values": [ Color( 1, 0.937255, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 0 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 1 ), Color( 1, 0.937255, 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../MortalFlash/Text:text")
@@ -314,7 +315,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.6, 1, 1.2, 1.6, 2, 2.2, 2.6, 3, 3.2, 3.6, 4, 4.2, 6, 6.01, 7, 9, 10 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 0, 1, 0.741176, 0 ) ]
+"values": [ Color( 1, 0, 0.4, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 0, 1, 0.741176, 1 ), Color( 0, 1, 0.741176, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../MortalFlash/Text:text")
@@ -381,7 +382,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ) ]
+"values": [ Color( 1, 0, 0.4, 0 ), Color( 1, 0, 0.4, 1 ), Color( 1, 0, 0.4, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../MortalFlash/Text:text")
@@ -615,6 +616,8 @@ bossType = ExtResource( 11 )
 
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )
+
+[node name="SpaceCube" parent="Actors" instance=ExtResource( 21 )]
 
 [node name="Hourglass" parent="Actors" instance=ExtResource( 16 )]
 position = Vector2( -280, 0 )
@@ -900,10 +903,25 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Initiating emergency repairs..."
 align = 1
 
-[node name="GameOver" type="Sprite" parent="Camera2D/Control"]
+[node name="GameOver" type="Control" parent="Camera2D/Control"]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 255, 146 )
-scale = Vector2( 3, 3 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Back3" type="ColorRect" parent="Camera2D/Control/GameOver"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1920.0
+margin_top = -1080.0
+rect_scale = Vector2( 2, 2 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="GameOver" type="Sprite" parent="Camera2D/Control/GameOver"]
+scale = Vector2( 6, 6 )
 texture = ExtResource( 19 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]

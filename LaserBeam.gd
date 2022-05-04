@@ -36,9 +36,7 @@ func _physics_process(delta):
 		vel -= vel.normalized() * min(damp * delta, vel.length())
 	global_translate(vel * delta)
 func _on_area_entered(area):
-	if area.is_in_group("Behavior"):
-		return
-	if area.is_in_group("Damage"):
+	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if !actor:
