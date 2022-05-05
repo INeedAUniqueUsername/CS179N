@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Sprites/MortalBorder.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
@@ -11,16 +11,13 @@
 [ext_resource path="res://Sprites/FuelBarSheet.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/BossWarning.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/ThunderDrone.tscn" type="PackedScene" id=11]
-[ext_resource path="res://BossBeacon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Sprites/LevelCleared.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/BossBar.png" type="Texture" id=15]
-[ext_resource path="res://Enemies/Hourglass.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Sprites/WhitePixel.png" type="Texture" id=17]
 [ext_resource path="res://Scenes/CreatePlayer.gd" type="Script" id=18]
 [ext_resource path="res://Sprites/GameOver.png" type="Texture" id=19]
 [ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=20]
-[ext_resource path="res://Enemies/SpaceCube.tscn" type="PackedScene" id=21]
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -616,76 +613,6 @@ bossType = ExtResource( 11 )
 
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )
-
-[node name="SpaceCube" parent="Actors" instance=ExtResource( 21 )]
-
-[node name="Hourglass" parent="Actors" instance=ExtResource( 16 )]
-position = Vector2( -280, 0 )
-
-[node name="BossSummon" type="Node2D" parent="Actors"]
-
-[node name="BossBeacon" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 72, 0 )
-
-[node name="BossBeacon2" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 328, -120 )
-
-[node name="BossBeacon3" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 448, 152 )
-
-[node name="BossBeacon4" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -192, 224 )
-
-[node name="BossBeacon5" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 216, 272 )
-
-[node name="BossBeacon6" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -488, 248 )
-
-[node name="BossBeacon7" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -336, -40 )
-
-[node name="BossBeacon8" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -432, -312 )
-
-[node name="BossBeacon18" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -736, -424 )
-
-[node name="BossBeacon19" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -288, -504 )
-
-[node name="BossBeacon20" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 216, -416 )
-
-[node name="BossBeacon21" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 720, -504 )
-
-[node name="BossBeacon9" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -48, -280 )
-
-[node name="BossBeacon10" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 592, -280 )
-
-[node name="BossBeacon11" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 664, -24 )
-
-[node name="BossBeacon12" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -696, -112 )
-
-[node name="BossBeacon13" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -824, 176 )
-
-[node name="BossBeacon14" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -664, 472 )
-
-[node name="BossBeacon15" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -216, 512 )
-
-[node name="BossBeacon16" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 472, 480 )
-
-[node name="BossBeacon17" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 808, 312 )
 
 [node name="random_generation_timer" type="Timer" parent="Actors"]
 wait_time = 5.0

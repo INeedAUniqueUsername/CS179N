@@ -83,10 +83,6 @@ func _on_cannon_entered(area):
 	var actor = Helper.get_parent_actor(area)
 	if !actor:
 		return
-	if actor.is_in_group("Stationary"):
-		var velDiff = common.vel - actor.vel
-		common.vel -= velDiff * 1.5
-		damage = velDiff.length() / 8
 	else:
 		var mass = 1
 		var other_mass = 1

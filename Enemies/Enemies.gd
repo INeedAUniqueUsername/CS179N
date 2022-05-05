@@ -8,19 +8,16 @@ signal on_destroyed
 func damage(projectile):
 	hp -= projectile.damage
 	if hp < 1:
-		emit_signal("on_destroyed", self)
 		if(is_in_group("Stationary")):
-			print("hello")
-			get_parent().queue_free()
+			get_parent().destroyed()
 		else:
+			emit_signal("on_destroyed", self)
 			queue_free()
 
 var damage = 30
 var ignore_target = 0
-var ignore_time = 2
+var ignore_time = 1
 func _on_Damage_Area_area_entered(area):
-	print(self)
-	print(area)
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
