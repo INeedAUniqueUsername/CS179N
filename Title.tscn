@@ -156,7 +156,7 @@ lost in a zone where space wrapped around itself.
 
 Soon, they were surrounded by hostile drones and
 under attack by their new nemesis, Ad Dastardly Astra"
-percent_visible = -0.00294985
+percent_visible = -0.00286533
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Scroll"

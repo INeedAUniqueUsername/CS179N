@@ -9,12 +9,18 @@ func damage(projectile):
 	hp -= projectile.damage
 	if hp < 1:
 		emit_signal("on_destroyed", self)
-		queue_free()
+		if(is_in_group("Stationary")):
+			print("hello")
+			get_parent().queue_free()
+		else:
+			queue_free()
 
 var damage = 30
 var ignore_target = 0
 var ignore_time = 2
 func _on_Damage_Area_area_entered(area):
+	print(self)
+	print(area)
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
