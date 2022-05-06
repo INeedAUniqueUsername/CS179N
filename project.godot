@@ -68,7 +68,7 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 Helper="*res://Helper.tscn"
 PlayerVariables="*res://Scripts/PlayerVariables.gd"
-Drones="*res://Scenes/Drones.tscn"
+Levels="*res://Scenes/Levels.tscn"
 
 [display]
 

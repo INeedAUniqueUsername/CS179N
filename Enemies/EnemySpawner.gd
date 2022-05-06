@@ -1,6 +1,6 @@
 extends Node
 var rand = RandomNumberGenerator.new()
-var enemyTypes = Drones.enemyTables[0]
+var enemyTypes = Levels.enemyTables[0]
 var extents = 600
 onready var actors = get_parent()
 func rand_coord():
