@@ -16,7 +16,7 @@ func damage(projectile):
 
 var damage = 30
 var ignore_target = 0
-var ignore_time = 1
+var ignore_time = 2
 func _on_Damage_Area_area_entered(area):
 	if !Helper.is_area_body(area):
 		return
@@ -61,7 +61,7 @@ func _on_Detect_Area_area_exited(area):
 # Called every frame to constantly look at the target
 var target
 func _physics_process(delta):
-	if target != null && ignore_target <= 0:
+	if target && ignore_target <= 0:
 		look_at(target.global_position)
 		
 # Called to update forward variable
