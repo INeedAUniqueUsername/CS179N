@@ -23,6 +23,7 @@ func on_player_fuel_warning(pl):
 func on_player_done():
 	PlayerVariables.totalTime += player.common.levelTime
 	PlayerVariables.totalScore += player.common.levelScore
+	PlayerVariables.Score += player.common.Score
 		
 func on_player_fuel_depleted(pl):
 	if $Anim.current_animation == "MortalFlash":
@@ -91,6 +92,7 @@ func _process(delta):
 	$Bars/EnergyFront.region_rect.size.x = ceil(width.energy)
 	$Bars/FuelFront.region_rect.size.x = ceil(width.fuel)
 	$Bars/Time.text = "Time: %.2f sec" % player.common.levelTime
+	$Bars/Score.text = "Score: %d" % player.common.Score
 	$BossFront.region_rect.size.x = ceil(width.boss)
 	if Input.is_key_pressed(KEY_ENTER):
 		if $Anim.current_animation == "LevelCleared" and $Anim.current_animation_position < 4:

@@ -785,6 +785,13 @@ theme = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Time"
 
+[node name="Score" type="Label" parent="Camera2D/Control/Bars"]
+margin_left = 545.0
+margin_top = -1.0
+margin_right = 646.0
+margin_bottom = 24.0
+text = "Score"
+
 [node name="BossBack" type="Sprite" parent="Camera2D/Control"]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 45, 240 )

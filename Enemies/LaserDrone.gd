@@ -1,5 +1,5 @@
 extends Enemies
-
+const score = 10
 var moveSpeed = 50
 var vel = Vector2(0, 0)
 

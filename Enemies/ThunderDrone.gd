@@ -1,5 +1,5 @@
 extends Node2D
-
+const score = 800
 var bossName = "Thunder Drone"
 var vel = Vector2(0, 0)
 
