@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UIResolutionSelector.gd" type="Script" id=1]
+
+[node name="UIResolutionSelector" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 13.0
+margin_bottom = 27.0
+
+[node name="OptionButton" type="OptionButton" parent="."]
+margin_left = 4.0
+margin_right = 88.0
+margin_bottom = 40.0
+text = "640x360"
+items = [ "640x360", null, false, 0, null, "1280x720", null, false, 1, null, "1920x1080", null, false, 2, null ]
+selected = 0
+
+[connection signal="toggled" from="OptionButton" to="." method="_on_OptionButton_toggled"]

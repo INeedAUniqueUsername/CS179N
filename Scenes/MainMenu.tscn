@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://MenuFonts.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
@@ -10,7 +9,7 @@ script = ExtResource( 2 )
 margin_left = 60.0
 margin_top = 40.0
 margin_right = 260.0
-margin_bottom = 140.0
+margin_bottom = 190.0
 color = Color( 0.313726, 0.313726, 0.313726, 1 )
 
 [node name="Play" type="ColorRect" parent="."]
@@ -23,7 +22,6 @@ margin_bottom = 70.0
 margin_right = 40.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
 text = "START"
 align = 1
 valign = 1
@@ -38,10 +36,21 @@ margin_bottom = 100.0
 margin_right = 40.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
 text = "LOAD"
 align = 1
 valign = 1
+
+[node name="Settings" type="ColorRect" parent="."]
+margin_left = 70.0
+margin_top = 140.0
+margin_right = 250.0
+margin_bottom = 160.0
+
+[node name="Label" type="Label" parent="Settings"]
+margin_right = 60.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "QUIT"
 
 [node name="Quit" type="ColorRect" parent="."]
 margin_left = 70.0
@@ -53,7 +62,6 @@ margin_bottom = 130.0
 margin_right = 40.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
-text = "QUIT"
+text = "SETTINGS"
 align = 1
 valign = 1
