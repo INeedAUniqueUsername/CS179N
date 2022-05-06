@@ -6,8 +6,9 @@ var vel = Vector2(0, 0)
 var base_cooldown = 2
 var curr_cooldown = 0
 
-const beam = preload("res://Missile.tscn")
 var beamSpeed = 250
+
+const beam = preload("res://Missile.tscn")
 func _physics_process(delta):
 	global_translate(vel * moveSpeed * delta)
 	
