@@ -1,8 +1,5 @@
 extends Node2D
 
-
-
-var enemyName = "Thunder Drone"
 var vel = Vector2(0, 0)
 
 var time_scale = 1.0
