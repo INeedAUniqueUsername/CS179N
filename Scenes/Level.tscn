@@ -22,6 +22,8 @@
 [sub_resource type="GDScript" id=13]
 script/source = "extends Node
 
+signal add_score
+
 func _on_EnemySpawner_timeout():
 	var rand = RandomNumberGenerator.new()
 	var enemyTypes = [
@@ -37,8 +39,12 @@ func _on_EnemySpawner_timeout():
 		var y = rand.randf_range(0, screen_size.y)
 		enemy.position.y = y
 		enemy.position.x = x
+		enemy.connect(\"on_destroyed\", self, \"enemy_died\")
 		add_child(enemy)
-		get_parent().register(enemy)
+		#get_parent().register(enemy)
+
+func enemy_died():
+	emit_signal(\"add_score\")
 "
 
 [sub_resource type="DynamicFont" id=4]
@@ -640,11 +646,6 @@ script = ExtResource( 18 )
 frame = 9
 playing = true
 
-[node name="EnemySpawner" type="Timer" parent="Actors"]
-wait_time = 3.0
-autostart = true
-script = SubResource( 13 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.5, 0.5 )
@@ -657,6 +658,11 @@ margin_top = -150.0
 margin_right = 256.0
 margin_bottom = 150.0
 script = ExtResource( 8 )
+
+[node name="EnemySpawner" type="Timer" parent="Camera2D/Control"]
+wait_time = 3.0
+autostart = true
+script = SubResource( 13 )
 
 [node name="Bars" type="Control" parent="Camera2D/Control"]
 margin_right = 40.0
@@ -703,6 +709,13 @@ texture = ExtResource( 9 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 32, 0, 96, 32 )
+
+[node name="Score" type="Label" parent="Camera2D/Control/Bars"]
+margin_left = 577.0
+margin_top = -6.0
+margin_right = 671.0
+margin_bottom = 34.0
+text = "Score: 0"
 
 [node name="Time" type="Label" parent="Camera2D/Control/Bars"]
 margin_left = 36.0
@@ -800,6 +813,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Level Score: %d"
 
 [node name="TotalScore" type="Label" parent="Camera2D/Control/LevelCleared"]
+visible = false
 margin_left = -91.6667
 margin_top = 46.6667
 margin_right = 164.333
@@ -868,8 +882,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1920.0
-margin_top = -1080.0
+margin_left = -1810.5
+margin_top = -1078.0
+margin_right = 109.5
+margin_bottom = 2.0
 rect_scale = Vector2( 2, 2 )
 color = Color( 0, 0, 0, 1 )
 
@@ -903,4 +919,5 @@ motion_mirroring = Vector2( 1024, 1024 )
 texture = ExtResource( 5 )
 centered = false
 
-[connection signal="timeout" from="Actors/EnemySpawner" to="Actors/EnemySpawner" method="_on_EnemySpawner_timeout"]
+[connection signal="add_score" from="Camera2D/Control/EnemySpawner" to="Camera2D/Control" method="score"]
+[connection signal="timeout" from="Camera2D/Control/EnemySpawner" to="Camera2D/Control/EnemySpawner" method="_on_EnemySpawner_timeout"]

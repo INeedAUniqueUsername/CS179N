@@ -1,5 +1,12 @@
 extends Control
 
+var score = 0
+
+func score():
+	score += 1
+	$Bars/Score.text = "Score: " + str(score)
+	print("test")
+
 var boss
 # Called when the node enters the scene tree for the first time.
 func _ready():
