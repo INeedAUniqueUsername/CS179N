@@ -1,18 +1,17 @@
 extends Node
-
+var rand = RandomNumberGenerator.new()
+var enemyTypes = Drones.enemyTables[0]
+var extents = 600
+onready var actors = get_parent()
+func rand_coord():
+	return rand_range(-extents, extents)
 func _on_random_generation_timer_timeout():
-	var rand = RandomNumberGenerator.new()
-	var enemyTypes = [
-		load("res://Enemies/LaserDrone.tscn")
-	]
-	var screen_size = get_viewport().get_visible_rect().size
-	for i in range(0,1):
-		var enemy = enemyTypes[randi() % enemyTypes.size()].instance()
-		rand.randomize()		
-		var x = rand.randf_range(0, screen_size.x)
-		rand.randomize()
-		var y = rand.randf_range(0, screen_size.y)
-		enemy.position.y = y
-		enemy.position.x = x
-		add_child(enemy)
-		get_parent().register(enemy)
+	if enemyTypes.empty():
+		queue_free()
+		return
+	for i in range(1):
+		var type = enemyTypes.pick_random()
+		var enemy = type.instance()
+		actors.add_child(enemy)
+		enemy.global_position = Vector2(rand_coord(), rand_coord())
+		actors.register(enemy)

@@ -81,6 +81,7 @@ anims/RESET = SubResource( 3 )
 
 [node name="Area" type="Area2D" parent="."]
 position = Vector2( 0, -2.5 )
+priority = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 shape = SubResource( 4 )

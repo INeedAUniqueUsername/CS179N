@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var bossName = "Space Cube"
 func _ready():
 	call_deferred("register_player")
 var player
@@ -84,6 +84,7 @@ func turn():
 	vel += dir_vel
 signal on_destroyed
 var hp = 900
+var hp_max = 900
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp > 0:

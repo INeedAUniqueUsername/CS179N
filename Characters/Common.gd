@@ -176,6 +176,7 @@ func update_controls(delta):
 	var up = Input.is_key_pressed(KEY_UP)
 	var left = Input.is_key_pressed(KEY_LEFT)
 	var right = Input.is_key_pressed(KEY_RIGHT)
+	var down = Input.is_key_pressed(KEY_DOWN)
 	
 	decel_vel = true
 	decel_turn = true
@@ -214,3 +215,7 @@ func update_controls(delta):
 	else:
 		animLeftLeg.play("Idle")
 		animRightLeg.play("Idle")
+		
+	if down:
+		decel_turn = false
+		decel_vel = false

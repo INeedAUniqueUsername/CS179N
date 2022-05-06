@@ -1,7 +1,5 @@
 extends Control
-
 var boss
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	call_deferred("register_player")
 func register_player():
@@ -16,41 +14,53 @@ func register_player():
 	actors.connect("on_boss_destroyed", self, "on_boss_destroyed")
 func on_player_fuel_warning(pl):
 	if $Anim.current_animation == "MortalFlash":
+		$Anim.stop()
 		$Anim.play("FuelWarningRepaired")
 	else:
+		$Anim.stop()
 		$Anim.play("FuelWarning")
+		
+func on_player_done():
+	PlayerVariables.totalTime += player.common.levelTime
+	PlayerVariables.totalScore += player.common.levelScore
+		
 func on_player_fuel_depleted(pl):
 	if $Anim.current_animation == "MortalFlash":
+		on_player_done()
+		$Anim.stop()
 		$Anim.play("GameOverRepairFailed")
 	elif pl.state == pl.State.Dying:
+		on_player_done()
+		$Anim.stop()
 		$Anim.play("OutOfFuel2")
 	else:
+		$Anim.stop()
 		$Anim.play("OutOfFuel1")
 func on_player_mortal(pl):
-	if $Anim.current_animation == "MortalFlash":
-		$Anim.stop()
+	$Anim.stop()
 	$Anim.play("MortalFlash")
 func on_player_destroyed(pl):
+	$Anim.stop()
 	$Anim.play("GameOver")
 func on_boss_summoned(b):
 	boss = b
 	$BossLabel.text = b.bossName
+	$Anim.stop()
 	$Anim.play("BossWarning")
-	
 const shake = preload("res://Shake.tscn")
 func on_boss_destroyed():
 	boss = null
 	get_parent().add_child(shake.instance())
+	$Anim.stop()
 	$Anim.play("LevelCleared")
 	player.common.state = player.common.State.Winner
-	$LevelCleared/LevelTime.text %= player.common.levelTime
-	$LevelCleared/TotalTime.text %= player.common.levelTime
-	$LevelCleared/LevelScore.text %= player.common.levelScore
-	$LevelCleared/TotalScore.text %= player.common.levelScore
+	on_player_done()
 	
+	$LevelCleared/LevelTime.text %= player.common.levelTime
+	$LevelCleared/TotalTime.text %= PlayerVariables.totalTime
+	$LevelCleared/LevelScore.text %= player.common.levelScore
+	$LevelCleared/TotalScore.text %= PlayerVariables.totalScore
 var player
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
 var width = {
 	'hp':0,
 	'energy':0,
@@ -63,6 +73,8 @@ var dest_width = {
 	'fuel':0,
 	'boss':0
 }
+var skipLevelOutro = false
+var levelOutroReady = false
 func _process(delta):
 	dest_width.hp = int(96 * player.hp / 100)
 	dest_width.energy = int(96 * player.energy / 100)
@@ -79,5 +91,30 @@ func _process(delta):
 	$Bars/EnergyFront.region_rect.size.x = ceil(width.energy)
 	$Bars/FuelFront.region_rect.size.x = ceil(width.fuel)
 	$Bars/Time.text = "Time: %.2f sec" % player.common.levelTime
-	
 	$BossFront.region_rect.size.x = ceil(width.boss)
+	if Input.is_key_pressed(KEY_ENTER):
+		if $Anim.current_animation == "LevelCleared" and $Anim.current_animation_position < 4:
+			skipLevelOutro = true
+		elif levelOutroReady:
+			var s = shake.instance()
+			s.set_lifetime(3)
+			get_parent().add_child(s)
+			$Anim.stop()
+			$Anim.play("NextLevel")
+		elif gameOver:
+			
+			get_tree().change_scene("res://Scenes/Ending.tscn")
+func check_skip_outro():
+	if skipLevelOutro:
+		go_next_level()
+func set_outro_ready():
+	levelOutroReady = true
+func go_next_level():
+	if PlayerVariables.inc_level():
+		get_tree().change_scene("res://Scenes/Level.tscn")
+	else:
+		get_tree().change_scene("res://Scenes/Ending.tscn")
+var gameOver = false
+func game_over():
+	gameOver = true
+	PlayerVariables.set_winner(false)

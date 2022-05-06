@@ -11,7 +11,6 @@
 [ext_resource path="res://Sprites/FuelBarSheet.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/BossWarning.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/ThunderDrone.tscn" type="PackedScene" id=11]
-[ext_resource path="res://BossBeacon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Sprites/LevelCleared.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/BossBar.png" type="Texture" id=15]
@@ -20,7 +19,7 @@
 [ext_resource path="res://Scenes/CreatePlayer.gd" type="Script" id=18]
 [ext_resource path="res://Sprites/GameOver.png" type="Texture" id=19]
 [ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=20]
-[ext_resource path="res://Enemies/SpaceCube.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/PlaceBeacons.gd" type="Script" id=21]
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -188,6 +187,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ "Repair failed; fuel exhausted" ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "game_over"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "LevelCleared"
@@ -301,6 +314,23 @@ tracks/8/keys = {
 "update": 1,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/9/type = "method"
+tracks/9/path = NodePath("..")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 4, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "check_skip_outro"
+}, {
+"args": [  ],
+"method": "set_outro_ready"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "MortalFlash"
@@ -328,6 +358,36 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ "Initiating emergency repairs...", "Repairs completed" ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "NextLevel"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ClearFlash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "go_next_level"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -435,6 +495,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ "Life support failed" ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "game_over"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -607,6 +681,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
+tracks/14/type = "value"
+tracks/14/path = NodePath("..:allowNextLevel")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [node name="World" type="Node"]
 
@@ -617,77 +703,13 @@ bossType = ExtResource( 11 )
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )
 
-[node name="SpaceCube" parent="Actors" instance=ExtResource( 21 )]
-
 [node name="Hourglass" parent="Actors" instance=ExtResource( 16 )]
 position = Vector2( -280, 0 )
 
 [node name="BossSummon" type="Node2D" parent="Actors"]
+script = ExtResource( 21 )
 
-[node name="BossBeacon" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 72, 0 )
-
-[node name="BossBeacon2" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 328, -120 )
-
-[node name="BossBeacon3" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 448, 152 )
-
-[node name="BossBeacon4" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -192, 224 )
-
-[node name="BossBeacon5" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 216, 272 )
-
-[node name="BossBeacon6" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -488, 248 )
-
-[node name="BossBeacon7" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -336, -40 )
-
-[node name="BossBeacon8" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -432, -312 )
-
-[node name="BossBeacon18" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -736, -424 )
-
-[node name="BossBeacon19" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -288, -504 )
-
-[node name="BossBeacon20" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 216, -416 )
-
-[node name="BossBeacon21" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 720, -504 )
-
-[node name="BossBeacon9" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -48, -280 )
-
-[node name="BossBeacon10" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 592, -280 )
-
-[node name="BossBeacon11" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 664, -24 )
-
-[node name="BossBeacon12" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -696, -112 )
-
-[node name="BossBeacon13" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -824, 176 )
-
-[node name="BossBeacon14" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -664, 472 )
-
-[node name="BossBeacon15" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( -216, 512 )
-
-[node name="BossBeacon16" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 472, 480 )
-
-[node name="BossBeacon17" parent="Actors/BossSummon" instance=ExtResource( 12 )]
-position = Vector2( 808, 312 )
-
-[node name="random_generation_timer" type="Timer" parent="Actors"]
+[node name="EnemySpawner" type="Timer" parent="Actors"]
 wait_time = 5.0
 autostart = true
 script = ExtResource( 20 )
@@ -856,6 +878,16 @@ theme = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Total Score: %d"
 
+[node name="PressEnter" type="Label" parent="Camera2D/Control/LevelCleared"]
+margin_left = -91.6667
+margin_top = 62.6667
+margin_right = 164.333
+margin_bottom = 100.667
+rect_scale = Vector2( 0.25, 0.25 )
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "[Press Enter]"
+
 [node name="ClearFlash" type="Sprite" parent="Camera2D/Control"]
 position = Vector2( 255, 150 )
 scale = Vector2( 1e-05, 1e-05 )
@@ -883,6 +915,7 @@ anims/FuelWarningRepaired = SubResource( 12 )
 anims/GameOverRepairFailed = SubResource( 8 )
 anims/LevelCleared = SubResource( 3 )
 anims/MortalFlash = SubResource( 7 )
+anims/NextLevel = SubResource( 13 )
 anims/Opening = SubResource( 6 )
 anims/OutOfFuel1 = SubResource( 10 )
 anims/OutOfFuel2 = SubResource( 11 )
@@ -924,6 +957,16 @@ color = Color( 0, 0, 0, 1 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 19 )
 
+[node name="PressEnter" type="Label" parent="Camera2D/Control/GameOver"]
+margin_left = -300.5
+margin_top = 126.0
+margin_right = 299.5
+margin_bottom = 164.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "[Press Enter]"
+align = 1
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="0" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -950,4 +993,4 @@ motion_mirroring = Vector2( 1024, 1024 )
 texture = ExtResource( 5 )
 centered = false
 
-[connection signal="timeout" from="Actors/random_generation_timer" to="Actors/random_generation_timer" method="_on_random_generation_timer_timeout"]
+[connection signal="timeout" from="Actors/EnemySpawner" to="Actors/EnemySpawner" method="_on_random_generation_timer_timeout"]

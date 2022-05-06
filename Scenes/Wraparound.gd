@@ -12,6 +12,7 @@ var time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	call_deferred("register_actors")
+	bossType = Drones.bosses[PlayerVariables.level]
 var player
 var leaves = []
 var bossSummon = []
@@ -30,6 +31,7 @@ func register_actors():
 		pass
 func register(a):
 	leaves.append(a)
+	print('register: ' + a.name)
 	a.connect("on_destroyed", self, "on_destroyed")
 signal on_boss_summoned
 signal on_boss_destroyed

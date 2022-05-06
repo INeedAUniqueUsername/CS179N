@@ -1,6 +1,10 @@
 extends Node
-
-
+var level = 0
+func set_level(level):
+	self.level = level
+func inc_level():
+	level += 1
+	return level < 5
 enum HeroTypes {
 	asteria,
 	astroknight,
@@ -17,8 +21,15 @@ var heroDesc = {
 	HeroTypes.lune: desc("Lune", "Crescent Beam", "Moon Blast")
 }
 
-var hero
+var hero = HeroTypes.starman
 func setHero(h):
 	hero = h
-func _ready():
-	hero = HeroTypes.starman
+func set_winner(w):
+	winner = w
+var winner = true
+var totalScore = 0
+var totalTime = 0
+func reset():
+	winner = true
+	totalScore = 0
+	totalTime = 0

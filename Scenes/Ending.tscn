@@ -1,0 +1,184 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/Ending.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 54
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Flash"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Time:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "3", "2", "1", "0" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Time:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "3" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+
+[node name="Back3" type="ColorRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1940.0
+margin_top = -1100.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_scale = Vector2( 2, 2 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Back2" type="ColorRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -980.0
+margin_top = -560.0
+margin_right = 940.0
+margin_bottom = 520.0
+color = Color( 0.0588235, 0.137255, 0.27451, 1 )
+
+[node name="Back" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 472.0
+margin_bottom = 260.0
+color = Color( 0.129412, 0.211765, 0.360784, 1 )
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = -236.0
+margin_top = -252.0
+margin_right = 240.0
+margin_bottom = -176.0
+custom_fonts/font = SubResource( 1 )
+text = "The End"
+align = 1
+
+[node name="Stats" type="Label" parent="Control"]
+margin_left = -388.0
+margin_top = -188.0
+margin_right = 133.0
+margin_bottom = -7.0
+custom_fonts/font = SubResource( 2 )
+text = "Fate: %s
+Total Time: %.2f
+Total Score: %d
+"
+
+[node name="Time" type="Label" parent="Control"]
+margin_left = -236.0
+margin_top = 212.0
+margin_right = 240.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 1 )
+text = "3"
+align = 1
+
+[node name="Button" type="Button" parent="Control"]
+margin_left = -180.0
+margin_top = 217.0
+margin_right = 180.0
+margin_bottom = 280.0
+custom_fonts/font = SubResource( 3 )
+text = "Title Screen"
+
+[node name="Camera" type="Camera2D" parent="Control"]
+current = true
+
+[node name="Anim" type="AnimationPlayer" parent="Control"]
+anims/Flash = SubResource( 4 )
+anims/RESET = SubResource( 5 )
