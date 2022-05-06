@@ -4,7 +4,7 @@ export(Vector2) var vel = Vector2(0, 0)
 export(float) var lifespan = 2.0
 export(float) var damage = 25.0
 
-var beamSpeed = 125
+var beamSpeed = 250
 
 onready var lifetime = lifespan
 var ignore = []

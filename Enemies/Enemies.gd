@@ -4,6 +4,23 @@ extends Node2D
 var hp = 100 setget, get_hp
 func get_hp(): return hp
 
+func _ready():
+	for area in $Attack_Area.get_overlapping_areas():
+		if !Helper.is_area_body(area):
+			continue
+		var actor = Helper.get_parent_actor(area)
+		if actor and actor.is_in_group("Player"):
+			atk_target = actor
+			break
+	
+	for area in $Detect_Area.get_overlapping_areas():
+		if !Helper.is_area_body(area):
+			continue
+		var actor = Helper.get_parent_actor(area)
+		if actor and actor.is_in_group("Player"):
+			target = actor
+			break
+
 signal on_destroyed
 func damage(projectile):
 	hp -= projectile.damage
@@ -16,7 +33,7 @@ func damage(projectile):
 
 var damage = 30
 var ignore_target = 0
-var ignore_time = 1
+var ignore_time = 2
 func _on_Damage_Area_area_entered(area):
 	if !Helper.is_area_body(area):
 		return
@@ -61,7 +78,7 @@ func _on_Detect_Area_area_exited(area):
 # Called every frame to constantly look at the target
 var target
 func _physics_process(delta):
-	if target != null && ignore_target <= 0:
+	if target && ignore_target <= 0:
 		look_at(target.global_position)
 		
 # Called to update forward variable
