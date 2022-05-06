@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/UIResolutionSelector.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/UISettingsCheckBox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/MasterSettings.gd" type="Script" id=3]
 
 [node name="MasterSettings" type="Panel"]
 margin_right = 300.0
 margin_bottom = 150.0
-script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
@@ -74,7 +72,4 @@ margin_right = 160.0
 margin_bottom = 118.0
 text = "Apply"
 
-[connection signal="resolution_changed" from="VBoxContainer/HBoxContainer3/UIResolutionSelector" to="." method="_on_UIResolutionSelector_resolution_changed"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/UIFullScreenSelector" to="." method="_on_UIFullScreenSelector_toggled"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer2/UIVSyncCheckbox" to="." method="_on_UIVSyncCheckbox_toggled"]
 [connection signal="toggled" from="VBoxContainer/ApplyButton" to="." method="_on_ApplyButton_toggled"]
