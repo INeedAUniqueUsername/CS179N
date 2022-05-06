@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Enemies/Shield Drone.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/HPBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Barrier.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/ShieldDrone.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 243.019
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 4 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Destroyed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Barrier:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HPBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Shield Drone" type="Node2D" groups=["Actor"]]
+script = ExtResource( 1 )
+
+[node name="Detect" type="Area2D" parent="." groups=["Behavior"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+shape = SubResource( 1 )
+
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="Body"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Area2D"]
+polygon = PoolVector2Array( 4, -6, 7, -3, 7, -1, 11, -1, 11, -4, 13, -4, 13, -10, 14, -10, 14, -4, 16, -4, 16, 4, 14, 4, 14, 10, 13, 10, 13, 4, 11, 4, 11, 1, 7, 1, 7, 3, 4, 6, 10, 6, 7, 10, 4, 10, 4, 13, -4, 13, -4, 10, -7, 10, -10, 6, -3, 6, -7, 3, -7, 1, -11, 1, -11, 4, -13, 4, -13, 10, -14, 10, -14, 4, -16, 4, -16, -4, -14, -4, -14, -10, -13, -10, -13, -4, -11, -4, -11, -1, -7, -1, -7, -3, -4, -5, -4, -6, -10, -6, -7, -10, 7, -10, 10, -6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
+position = Vector2( 0, -25 )
+shape = SubResource( 4 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Destroyed = SubResource( 3 )
+
+[node name="HPBar" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 20 )
+
+[node name="Barrier" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+offset = Vector2( 0, -25 )
+
+[connection signal="area_entered" from="Detect" to="." method="_on_Detect_area_entered"]
