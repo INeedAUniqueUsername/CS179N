@@ -477,3 +477,5 @@ mouse_filter = 2
 [node name="Anim" type="AnimationPlayer" parent="Control"]
 anims/Flash = SubResource( 5 )
 anims/RESET = SubResource( 6 )
+
+[connection signal="animation_finished" from="Control/Anim" to="Control" method="change_scene"]

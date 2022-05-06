@@ -25,8 +25,7 @@ func _process(delta):
 		start_game()
 const shake = preload("res://Shake.tscn")
 func start_game():
-	
-	PlayerVariables.set_level(0)
+	PlayerVariables.reset()
 	var s = shake.instance()
 	s.set_lifetime(4)
 	$Camera.add_child(s)
@@ -62,4 +61,3 @@ func select_lune():
 	vis($Lune/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Lune/Sprite.texture
-	
