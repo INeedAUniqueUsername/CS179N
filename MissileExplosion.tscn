@@ -4,47 +4,38 @@
 [ext_resource path="res://MissileExplosion.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 224, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 256, 0, 32, 32 )
 
@@ -82,31 +73,31 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Area2D/CollisionShape2D:shape:radius")
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 10.0, 0.01 ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "queue_free"
 } ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area2D/CollisionShape2D:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -1, -1, 1, -1, 1, 1, -1, 1 ), PoolVector2Array( -1, -2, 1, -2, 2, -1, 2, 1, 1, 2, -1, 2, -2, 1, -2, -1 ), PoolVector2Array( -1, -3, 1, -3, 3, -1, 3, 1, 1, 3, -1, 3, -3, 1, -3, -1 ), PoolVector2Array( -1, -4, 1, -4, 3, -3, 4, -1, 4, 1, 3, 3, 1, 4, -1, 4, -3, 3, -4, 1, -4, -1, -3, -3 ), PoolVector2Array( -2, -5, 2, -5, 4, -4, 5, -2, 5, 2, 4, 4, 2, 5, -2, 5, -4, 4, -5, 2, -5, -2, -4, -4 ), PoolVector2Array( -3, 6, 3, 6, 5, 5, 6, 3, 6, -3, 5, -5, 3, -6, -3, -6, -5, -5, -6, -3, -6, 3, -5, 5 ), PoolVector2Array( -3, 7, 3, 7, 5, 6, 6, 5, 7, 3, 7, -3, 6, -5, 5, -6, 3, -7, -3, -7, -5, -6, -6, -5, -7, -3, -7, 3, -6, 5, -5, 6 ), PoolVector2Array( -9, -2, -9, 2, -7, 6, -6, 7, -2, 9, 2, 9, 6, 7, 7, 6, 9, 2, 9, -2, 7, -6, 6, -7, 2, -9, -2, -9, -6, -7, -7, -6 ), PoolVector2Array( -10, -3, -9, -5, -5, -9, -3, -10, 3, -10, 5, -9, 9, -5, 10, -3, 10, 3, 9, 5, 5, 9, 3, 10, -3, 10, -5, 9, -9, 5, -10, 3 ) ]
 }
 
 [sub_resource type="CircleShape2D" id=11]
@@ -162,9 +153,21 @@ tracks/3/keys = {
 "update": 0,
 "values": [ 1.0 ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Area2D/CollisionShape2D:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( -1, -1, 1, -1, 1, 1, -1, 1 ) ]
+}
 
 [node name="MissileExplosion" type="AnimatedSprite"]
-scale = Vector2( 20, 20 )
+scale = Vector2( 10, 10 )
 frames = SubResource( 10 )
 animation = "Explode"
 script = ExtResource( 2 )
@@ -175,7 +178,7 @@ anims/RESET = SubResource( 13 )
 
 [node name="Area2D" type="Area2D" parent="." groups=["Behavior"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 11 )
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -1, -1, 1, -1, 1, 1, -1, 1 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
