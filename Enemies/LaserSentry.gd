@@ -10,14 +10,18 @@ var beamSpeed = 400
 func _physics_process(delta):
 	curr_cooldown -= delta
 	# Send a beam every second
-	if atk_target != null and curr_cooldown < 0:
+	if atk_target != null and curr_cooldown < 0 and ignore_target <= 0:
 		curr_cooldown = base_cooldown
 
-		var b = beam.instance()
-		b.vel = forward * beamSpeed
+		var beam_load = beam.instance()
+		beam_load.vel = forward * beamSpeed
 
-		b.ignore = [self, b]
+		beam_load.ignore = [self, beam_load]
 
-		get_parent().add_child(b)
-		b.set_global_transform(get_global_transform())
-		b.rotation_degrees = rotation_degrees
+		get_parent().add_child(beam_load)
+		beam_load.set_global_transform(get_global_transform())
+		beam_load.rotation_degrees = rotation_degrees
+
+func _process(delta):
+	if ignore_target > 0:
+		ignore_target -= delta
