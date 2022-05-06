@@ -8,6 +8,7 @@ func _update_selected_difficulty(text: String) -> void:
 
 func _on_OptionButton_toggled(_index: int) -> void:
 	 _update_selected_difficulty(difficulty_button.text)
+<<<<<<< Updated upstream
 
 func update_settings(settings: Dictionary) -> void:
 	OS.window_fullscreen = settings.fullscreen
@@ -17,3 +18,5 @@ func update_settings(settings: Dictionary) -> void:
 
 func _on_UIVideoSettings_apply_button_pressed(settings) -> void:
 	update_settings(settings)
+=======
+>>>>>>> Stashed changes
