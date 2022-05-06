@@ -3,11 +3,11 @@ extends Enemies
 var moveSpeed = 50
 var vel = Vector2(0, 0)
 
-var base_cooldown = 1
+var base_cooldown = 2
 var curr_cooldown = 0
 
-const beam = preload("res://LaserBeam.tscn")
-var beamSpeed = 400
+const beam = preload("res://Missile.tscn")
+var beamSpeed = 250
 func _physics_process(delta):
 	global_translate(vel * moveSpeed * delta)
 	
@@ -18,8 +18,8 @@ func _physics_process(delta):
 
 		var beam_load = beam.instance()
 		beam_load.vel = forward * beamSpeed
-
 		beam_load.ignore = [self, beam_load]
+		beam_load.target = atk_target
 
 		get_parent().add_child(beam_load)
 		beam_load.set_global_transform(get_global_transform())
