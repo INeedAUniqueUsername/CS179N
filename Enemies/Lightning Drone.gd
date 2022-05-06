@@ -1,30 +1,22 @@
-extends Node2D
+extends Enemies
 
-var bossName = "Thunder Drone"
+
 var vel = Vector2(0, 0)
+
 
 var time_scale = 1.0
 func set_time_scale(t:float):
 	time_scale = t
 	$Anim.playback_speed = t
 
-func _ready():
-	$Anim.play("wait")
-	$Anim.connect("animation_finished", self, "_on_animation_finished")
-	call_deferred("register_player")
-	
-	
-signal on_destroyed
-var player
-func register_player():
-	player = get_parent().player
-	
+
+var patrol_time = 10
+var curr_patrol_time = 0
 func _physics_process(delta):
 	delta *= time_scale
-	if player:
-		
+	if target:
 		var speed = 180 * delta
-		var offset = (player.global_position - global_position)
+		var offset = (target.global_position - global_position)
 		vel -= vel.normalized() * speed / 2
 		
 		if offset.length_squared() > 180 * 180:
@@ -32,14 +24,29 @@ func _physics_process(delta):
 		else:
 			vel += offset.rotated(PI/2).normalized() * speed
 		
+	elif target == null:
+		curr_patrol_time -= delta
+		if curr_patrol_time < 0:
+			curr_patrol_time = patrol_time
+			rotate(PI/2)
+		
 	global_translate(vel * delta)
+
+func _ready():
+	hp = 50
+	$Anim.play("wait")
+	$Anim.connect("animation_finished", self, "_on_animation_finished")
+
+
 func _on_animation_finished(name):
 	if name == "wait":
 		$Anim.play("wait2")
-		fire_salvo_1()
+		if atk_target != null:
+			fire_salvo_1()
 	if name == "wait2":
 		$Anim.play("wait")
-		fire_salvo_1()
+		if atk_target != null:
+			fire_salvo_1()
 var beam = preload("res://LightningBeam.tscn")
 func fire_salvo_1():
 	var ignore = [self]
@@ -68,21 +75,6 @@ func fire_salvo_2():
 		get_parent().add_child(l)
 		l.set_global_transform(get_global_transform())
 		l.rotation += angle
+		
 
 
-func _on_Detect_area_entered(area):
-	if !Helper.is_area_body(area):
-		return
-	var actor = Helper.get_parent_actor(area)
-	if actor and actor.is_in_group("Player"):
-		player = actor
-var damage = 30
-var drain = 60
-
-var hp_max = 500
-onready var hp = hp_max
-func damage(projectile):
-	hp -= projectile.damage
-	if hp < 1:
-		emit_signal("on_destroyed", self)
-		queue_free()
