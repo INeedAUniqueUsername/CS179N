@@ -49,7 +49,6 @@ func _physics_process(delta):
 			vel += offset.normalized() * speed
 		elif $Anim.current_animation == "No Charge":
 			vel -= vel / 60
-		
 	global_translate(vel * delta)
 func _on_animation_finished(name):
 	if name == "Charge":
@@ -65,11 +64,8 @@ func _on_animation_finished(name):
 			$Anim.play("No charge")
 	elif name == "No charge":
 		$Anim.play("Charge")
-
-
 var flashes = 3
 func start_flash():
-	
 	if flashes == 3:
 		vel += (player.global_position - global_position).normalized() * 240
 	else:
@@ -100,4 +96,3 @@ func damage(projectile):
 	if hp < 1:
 		emit_signal("on_destroyed", self)
 		queue_free()
-
