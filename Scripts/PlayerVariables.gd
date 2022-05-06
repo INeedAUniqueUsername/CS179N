@@ -13,7 +13,7 @@ enum HeroTypes {
 }
 
 func desc(heroName, primary, secondary):
-	return heroName + "\n\n" + "[X] " + primary + "\n" + "[Z] " + secondary
+	return "%s\n\n[X] %s\n[Z] %s" % [heroName, primary, secondary]
 var heroDesc = {
 	HeroTypes.starman: desc("Starman", "Laser Cannons", "Shooting Star"),
 	HeroTypes.asteria: desc("Asteria", "Plasma Thrower", "Star Burst"),
