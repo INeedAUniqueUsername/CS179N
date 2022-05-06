@@ -24,9 +24,9 @@ script = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="Camera2D"]
 anchor_bottom = 1.0
-margin_left = -255.0
+margin_left = -284.0
 margin_top = -150.0
-margin_right = 256.0
+margin_right = 227.0
 margin_bottom = 150.0
 script = ExtResource( 8 )
 
