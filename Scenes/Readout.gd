@@ -11,7 +11,6 @@ func register_player():
 	c.connect("on_fuel_warning", self, "on_player_fuel_warning")
 	c.connect("on_fuel_depleted", self, "on_player_fuel_depleted")
 	actors.connect("on_boss_summoned", self, "on_boss_summoned")
-	actors.connect("on_boss_destroyed", self, "on_boss_destroyed")
 func on_player_fuel_warning(pl):
 	if $Anim.current_animation == "MortalFlash":
 		$Anim.stop()
@@ -23,7 +22,6 @@ func on_player_fuel_warning(pl):
 func on_player_done():
 	PlayerVariables.totalTime += player.common.levelTime
 	PlayerVariables.totalScore += player.common.levelScore
-	PlayerVariables.Score += player.common.Score
 		
 func on_player_fuel_depleted(pl):
 	if $Anim.current_animation == "MortalFlash":
@@ -48,8 +46,12 @@ func on_boss_summoned(b):
 	$BossLabel.text = b.bossName
 	$Anim.stop()
 	$Anim.play("BossWarning")
+	
+	
+	boss.connect("on_destroyed", self, "on_boss_destroyed")
+	
 const shake = preload("res://Shake.tscn")
-func on_boss_destroyed():
+func on_boss_destroyed(b):
 	boss = null
 	get_parent().add_child(shake.instance())
 	$Anim.stop()
@@ -92,7 +94,7 @@ func _process(delta):
 	$Bars/EnergyFront.region_rect.size.x = ceil(width.energy)
 	$Bars/FuelFront.region_rect.size.x = ceil(width.fuel)
 	$Bars/Time.text = "Time: %.2f sec" % player.common.levelTime
-	$Bars/Score.text = "Score: %d" % player.common.Score
+	$Bars/Score.text = "Score: %d" % player.common.levelScore
 	$BossFront.region_rect.size.x = ceil(width.boss)
 	if Input.is_key_pressed(KEY_ENTER):
 		if $Anim.current_animation == "LevelCleared" and $Anim.current_animation_position < 4:

@@ -12,7 +12,7 @@ func _ready():
 	pass # Replace with function body.
 func _process(delta):
 	for actor in nearby:
-		var sc = max(0.1, (actor.global_position - global_position).length() / $TimeSlow/CollisionShape2D.shape.radius)
+		var sc = max(0.01, (actor.global_position - global_position).length() / $TimeSlow/CollisionShape2D.shape.radius)
 		actor.set_time_scale(sc)
 
 func _physics_process(delta):

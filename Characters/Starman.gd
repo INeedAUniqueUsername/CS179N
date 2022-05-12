@@ -32,7 +32,7 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval
-		var bonus = common.energy / 20
+		var bonus = common.energy / 10
 		var ignore = [self]
 		for p in [$LeftCannon, $RightCannon]:
 			var l = beam.instance()
@@ -51,6 +51,13 @@ func _process(delta):
 			for b in [$Body, $LeftLeg, $RightLeg, $LeftCannon, $RightCannon]:
 				
 				Helper.create_sprite_fade(get_parent(), b, 0.3)
+		
+		for la in [$LeftLeg/Anim, $RightLeg/Anim]:
+			match la.current_animation:
+				"Idle":
+					la.play("StraightIdle")
+				"Thrust":
+					la.play("StraightThrust")
 		return
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		common.energy -= secondaryEnergyUse

@@ -7,7 +7,10 @@ export(float) var drain = 0
 export(int) var pierce = 1
 export(float) var damp = 1.0
 export(float) var knockback = 3.0
-export(bool) var trail = false
+export(NodePath) var trail = null
+func _ready():
+	if trail:
+		trail = get_node(trail)
 
 var time_scale = 1
 func set_time_scale(t):
@@ -27,11 +30,8 @@ func _physics_process(delta):
 		trailTime -= delta
 		if trailTime < 0:
 			trailTime = 1 / 90.0
-			var sf = SpriteFade.instance()
-			sf.texture = self.texture
-			get_parent().add_child(sf)
-			sf.set_global_transform(get_global_transform())
-			sf.get_node("Fade").playback_speed = 1 / 0.1
+			
+			Helper.create_sprite_fade(get_parent(), trail)
 	if damp > 0:
 		vel -= vel.normalized() * min(damp * delta, vel.length())
 	global_translate(vel * delta)
