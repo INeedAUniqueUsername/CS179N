@@ -13,7 +13,6 @@ func is_area_body(area):
 const SpriteFade = preload("res://SpriteFade.tscn")
 func create_sprite_fade(container:Node2D, spr : Sprite, time:float = 0.1):	
 	var sf = SpriteFade.instance()
-	print(container.name)
 	sf.texture = spr.texture
 	
 	sf.centered = spr.centered

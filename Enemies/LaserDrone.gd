@@ -32,7 +32,7 @@ func _process(delta):
 	vel = forward
 	
 	# Patrols in a square formation turning every 2 seconds when no target in sight
-	if target == null:
+	if !target:
 		curr_patrol_time -= delta
 		if curr_patrol_time < 0:
 			curr_patrol_time = patrol_time

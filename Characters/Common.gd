@@ -158,6 +158,13 @@ func turn(dest_turn, delta):
 	decel_turn = false
 func consume_fuel(f):
 	fuel = max(0, fuel - f)
+	
+func add_fuel(f):
+	fuel = min(100, fuel + f)
+	
+func add_hp(h):
+	hp = min(100, hp + h)
+	
 func update_controls(delta):
 	delta *= time_scale
 	
