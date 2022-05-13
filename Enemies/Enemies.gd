@@ -4,6 +4,23 @@ extends Node2D
 var hp = 100 setget, get_hp
 func get_hp(): return hp
 
+func _ready():
+	for area in $Attack_Area.get_overlapping_areas():
+		if !Helper.is_area_body(area):
+			continue
+		var actor = Helper.get_parent_actor(area)
+		if actor and actor.is_in_group("Player"):
+			atk_target = actor
+			break
+	
+	for area in $Detect_Area.get_overlapping_areas():
+		if !Helper.is_area_body(area):
+			continue
+		var actor = Helper.get_parent_actor(area)
+		if actor and actor.is_in_group("Player"):
+			target = actor
+			break
+
 signal on_destroyed
 func damage(projectile):
 	hp -= projectile.damage

@@ -1,0 +1,216 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Swarm.gd" type="Script" id=1]
+[ext_resource path="res://StarMachineHand.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/StarMachineHand.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/StarMachine.png" type="Texture" id=4]
+[ext_resource path="res://StarMachine.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 2, 180 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 15, 120 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Punch"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Shoot"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Punch"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Shoot"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[node name="StarMachine" type="Node2D"]
+script = ExtResource( 1 )
+bossName = "Star Machine"
+
+[node name="Head" type="Sprite" parent="." groups=["Actor"]]
+rotation = -1.5708
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="BeamOrigin" type="Position2D" parent="Head"]
+position = Vector2( 27, 3.8147e-06 )
+
+[node name="Area" type="Area2D" parent="Head"]
+visible = false
+rotation = 1.5708
+
+[node name="Polygon" type="CollisionPolygon2D" parent="Head/Area"]
+polygon = PoolVector2Array( -2, -27, 2, -27, 2, -22, 5, -22, 10, -17, 12, -16, 16, -12, 16, 1, 19, -2, 19, -16, 24, -16, 29, -11, 29, 16, 25, 20, 25, 21, 28, 24, 28, 25, 24, 29, 23, 29, 19, 25, 19, 24, 22, 21, 22, 20, 13, 11, 12, 11, 12, 15, 8, 23, 8, 24, 3, 24, 3, 29, -3, 29, -3, 24, -8, 24, -12, 15, -12, 11, -13, 11, -13, 11, -22, 20, -22, 21, -19, 24, -19, 25, -23, 29, -24, 29, -28, 25, -28, 24, -25, 21, -25, 20, -29, 16, -29, -11, -24, -16, -19, -16, -19, -2, -16, 1, -16, -12, -12, -16, -11, -16, -5, -22, -4, -22, -2, -22 )
+
+[node name="BeamRange" type="Area2D" parent="Head" groups=["Behavior"]]
+rotation = 1.5708
+
+[node name="Polygon" type="CollisionShape2D" parent="Head/BeamRange"]
+position = Vector2( 0, -207 )
+shape = SubResource( 11 )
+
+[node name="RightHand" type="Sprite" parent="." groups=["Actor"]]
+position = Vector2( 92, 0 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+hframes = 2
+script = ExtResource( 2 )
+head = NodePath("../Head")
+
+[node name="Area" type="Area2D" parent="RightHand"]
+visible = false
+rotation = 1.5708
+
+[node name="Polygon" type="CollisionPolygon2D" parent="RightHand/Area"]
+polygon = PoolVector2Array( -19, -3, -15, -7, -11, -15, -9, -22, -3, -22, -3, -24, 3, -24, 3, -20, 9, -20, 9, -15, 15, -15, 15, -5, 19, -1, 19, 6, 9, 16, 9, 21, -9, 21, -9, 13, -19, 3 )
+
+[node name="AttackRange" type="Area2D" parent="RightHand" groups=["Behavior"]]
+rotation = 1.5708
+
+[node name="Rect" type="CollisionShape2D" parent="RightHand/AttackRange"]
+position = Vector2( 0, -152 )
+shape = SubResource( 7 )
+
+[node name="PunchArea" type="Area2D" parent="RightHand" groups=["Damage"]]
+rotation = 1.5708
+
+[node name="Polygon" type="CollisionPolygon2D" parent="RightHand/PunchArea"]
+polygon = PoolVector2Array( -15, -8, -11, -15, -10, -16, -9, -16, -9, -21, -8, -22, -3, -22, -3, -23, -2, -24, 2, -24, 3, -23, 3, -20, 8, -20, 9, -19, 10, -15, 14, -15, 15, -14, 15, -7, -15, -7 )
+
+[node name="BeamOrigin" type="Position2D" parent="RightHand"]
+position = Vector2( 34, -6 )
+
+[node name="Anim" type="AnimationPlayer" parent="RightHand"]
+anims/Punch = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/Shoot = SubResource( 3 )
+
+[node name="LeftHand" type="Sprite" parent="." groups=["Actor"]]
+position = Vector2( -92, 0 )
+rotation = -1.5708
+scale = Vector2( 1, -1 )
+texture = ExtResource( 3 )
+hframes = 2
+script = ExtResource( 2 )
+head = NodePath("../Head")
+
+[node name="Area" type="Area2D" parent="LeftHand"]
+visible = false
+rotation = 1.5708
+
+[node name="Polygon" type="CollisionPolygon2D" parent="LeftHand/Area"]
+polygon = PoolVector2Array( -19, -3, -15, -7, -11, -15, -9, -22, -3, -22, -3, -24, 3, -24, 3, -20, 9, -20, 9, -15, 15, -15, 15, -5, 19, -1, 19, 6, 9, 16, 9, 21, -9, 21, -9, 13, -19, 3 )
+
+[node name="AttackRange" type="Area2D" parent="LeftHand" groups=["Behavior"]]
+rotation = 1.5708
+
+[node name="Rect" type="CollisionShape2D" parent="LeftHand/AttackRange"]
+position = Vector2( -7.62939e-06, -152 )
+shape = SubResource( 7 )
+
+[node name="PunchArea" type="Area2D" parent="LeftHand" groups=["Damage"]]
+rotation = 1.5708
+
+[node name="Polygon" type="CollisionPolygon2D" parent="LeftHand/PunchArea"]
+polygon = PoolVector2Array( -15, -8, -11, -15, -10, -16, -9, -16, -9, -21, -8, -22, -3, -22, -3, -23, -2, -24, 2, -24, 3, -23, 3, -20, 8, -20, 9, -19, 10, -15, 14, -15, 15, -14, 15, -7, -15, -7 )
+
+[node name="BeamOrigin" type="Position2D" parent="LeftHand"]
+position = Vector2( 34, -6.00001 )
+scale = Vector2( 1, -1 )
+
+[node name="Anim" type="AnimationPlayer" parent="LeftHand"]
+anims/Punch = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+anims/Shoot = SubResource( 10 )
+
+[connection signal="area_entered" from="Head/BeamRange" to="Head" method="_on_BeamRange_entered"]
+[connection signal="area_exited" from="Head/BeamRange" to="Head" method="_on_BeamRange_exited"]
+[connection signal="area_entered" from="RightHand/AttackRange" to="RightHand" method="_on_AttackRange_entered"]
+[connection signal="area_exited" from="RightHand/AttackRange" to="RightHand" method="_on_AttackRange_exited"]
+[connection signal="area_entered" from="RightHand/PunchArea" to="RightHand" method="_on_PunchArea_entered"]
+[connection signal="area_entered" from="LeftHand/AttackRange" to="LeftHand" method="_on_AttackRange_entered"]
+[connection signal="area_exited" from="LeftHand/AttackRange" to="LeftHand" method="_on_AttackRange_exited"]
+[connection signal="area_entered" from="LeftHand/PunchArea" to="LeftHand" method="_on_PunchArea_entered"]

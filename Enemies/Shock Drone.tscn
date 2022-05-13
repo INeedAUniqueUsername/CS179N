@@ -68,7 +68,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-resource_name = "waiting"
+resource_name = "Waiting"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
@@ -76,10 +76,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 2, 1, 2, 3, 2, 1, 2, 3 ]
+"values": [ 7, 8, 9, 10, 11, 12, 13, 12, 11, 10, 9, 8, 7 ]
 }
 
 [sub_resource type="CircleShape2D" id=2]
@@ -94,11 +94,10 @@ script = ExtResource( 2 )
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-hframes = 8
-frame = 5
+hframes = 14
+frame = 3
 
 [node name="Area" type="Area2D" parent="Body"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Area"]
 position = Vector2( 8.125, -8.125 )
@@ -110,16 +109,14 @@ anims/Charge = SubResource( 1 )
 "anims/Fully Charged" = SubResource( 4 )
 "anims/No charge" = SubResource( 5 )
 anims/Ready = SubResource( 6 )
-anims/waiting = SubResource( 7 )
+anims/Waiting = SubResource( 7 )
 
 [node name="Detect" type="Area2D" parent="." groups=["Behavior"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
 shape = SubResource( 2 )
 
 [node name="Damage" type="Area2D" parent="." groups=["Damage"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
 visible = false

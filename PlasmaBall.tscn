@@ -41,11 +41,7 @@ script = ExtResource( 2 )
 lifespan = 1.5
 damage = 15.0
 knockback = 0.0
-
-[node name="ExpireTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-autostart = true
+trail = NodePath(".")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -57,5 +53,4 @@ autoplay = "Fade"
 anims/Fade = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[connection signal="timeout" from="ExpireTimer" to="." method="queue_free"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

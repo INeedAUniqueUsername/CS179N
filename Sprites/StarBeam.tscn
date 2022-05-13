@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/StarBeam.png" type="Texture" id=1]
+[ext_resource path="res://LaserBeam.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Fragment.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Spin"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 32.0
+
+[node name="StarBeam" type="Node2D" groups=["Beam"]]
+script = ExtResource( 2 )
+lifespan = 1.5
+damage = 10.0
+drain = 30.0
+knockback = 300.0
+trail = NodePath("Body")
+
+[node name="Body" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -1 )
+
+[node name="Area2D" type="Area2D" parent="Body"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Area2D"]
+polygon = PoolVector2Array( -15, -6, -10, -7, -5, -8, -2, -14, -1, -15, 1, -15, 2, -14, 5, -8, 10, -7, 15, -6, 15, -4, 9, 2, 9, 4, 12, 10, 12, 13, 10, 13, 0, 8, -10, 13, -12, 13, -12, 10, -9, 4, -9, 2, -15, -4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Spin"
+anims/RESET = SubResource( 1 )
+anims/Spin = SubResource( 2 )
+
+[node name="Fragment" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="FragmentArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragmentArea"]
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Body/Area2D" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="FragmentArea" to="Fragment" method="_on_FragmentArea_entered"]

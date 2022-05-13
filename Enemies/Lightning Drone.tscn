@@ -9,9 +9,8 @@ radius = 8.06226
 [sub_resource type="CircleShape2D" id=2]
 radius = 715.252
 
-[sub_resource type="Animation" id=3]
-resource_name = "wait"
-length = 2.0
+[sub_resource type="Animation" id=4]
+resource_name = "Charge"
 step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
@@ -20,15 +19,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.65, 1.8, 1.95 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 7, 8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "wait2"
-length = 2.0
+[sub_resource type="Animation" id=3]
+resource_name = "Wait"
 step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
@@ -37,10 +35,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.65, 1.8, 1.95 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 7, 8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6 ]
+"values": [ 8, 9, 10, 11, 12, 13, 0 ]
 }
 
 [sub_resource type="CircleShape2D" id=5]
@@ -58,7 +56,10 @@ shape = SubResource( 1 )
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 14
+<<<<<<< HEAD
 frame = 7
+=======
+>>>>>>> c30c1653cb1a87b7493fc7f33aa745229d2ead73
 
 [node name="Detect" type="Area2D" parent="." groups=["Behavior"]]
 
@@ -66,8 +67,9 @@ frame = 7
 shape = SubResource( 2 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/wait = SubResource( 3 )
-anims/wait2 = SubResource( 4 )
+autoplay = "Wait"
+anims/Charge = SubResource( 4 )
+anims/Wait = SubResource( 3 )
 
 [node name="Attack" type="Area2D" parent="." groups=["Behavior"]]
 

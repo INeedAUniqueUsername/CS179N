@@ -119,6 +119,10 @@ func _on_Damage_area_entered(area):
 	if actor and actor.is_in_group("Player"):
 		flashes = 0
 		actor.damage(self)
+		
+		var velDiff = vel - actor.common.vel
+		actor.common.vel += 2 * velDiff / 2
+		
 		vel = -vel
 var hp_max = 600
 onready var hp = hp_max

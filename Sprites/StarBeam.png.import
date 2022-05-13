@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MissileExplosion.png-22b5f7f859886caa695dac4a689b9f97.stex"
+path="res://.import/StarBeam.png-baf9acf50ec7e7ff437489968efb7cd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/MissileExplosion.png"
-dest_files=[ "res://.import/MissileExplosion.png-22b5f7f859886caa695dac4a689b9f97.stex" ]
+source_file="res://Sprites/StarBeam.png"
+dest_files=[ "res://.import/StarBeam.png-baf9acf50ec7e7ff437489968efb7cd8.stex" ]
 
 [params]
 

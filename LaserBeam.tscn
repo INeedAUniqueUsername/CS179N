@@ -12,6 +12,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 damage = 10.0
 knockback = 0.0
+trail = NodePath(".")
 
 [node name="Area2D" type="Area2D" parent="."]
 

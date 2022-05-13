@@ -14,21 +14,24 @@ func _ready():
 	call_deferred("register_actors")
 	bossType = Levels.bosses[PlayerVariables.level]
 var player
+var boss
 var leaves = []
 var bossSummon = []
+signal registered_player(Node2D)
 func register_actors():
 	var d = get_descendants(self)
 	for l in d:
 		if l.is_in_group("Projectile"):
 			continue
-		if l.is_in_group("Actor"):
-			register(l)
-			if l.is_in_group("Player"):
-				player = l
-			if l.is_in_group("Boss Summon"):
-				bossSummon.append(l)
-	if player == null:
-		pass
+		if !l.is_in_group("Actor"):
+			continue
+		register(l)
+		if l.is_in_group("Player"):
+			player = l
+		if l.is_in_group("Boss Summon"):
+			bossSummon.append(l)
+	if player:
+		emit_signal("registered_player", player)
 func register(a):
 	leaves.append(a)
 	print('register: ' + a.name)
@@ -38,18 +41,23 @@ signal on_boss_destroyed
 func on_destroyed(n):
 	if "score" in n:
 		player.common.levelScore += n.score
-		player.common.Score += n.score
+		PlayerVariables.totalScore += n.score
 	leaves.erase(n)
 	if n.is_in_group("Boss Summon"):
 		bossSummon.erase(n)
 		if len(bossSummon) == 0:
 			var b = bossType.instance()
 			add_child(b)
-			b.connect("on_destroyed", self, "on_boss_destroyed")
 			b.global_position = player.global_position + polar2cartesian(600, rand_range(0, PI*2))
+			
+			for l in get_descendants(b):
+				if !l.is_in_group("Actor"):
+					continue
+				register(l)
+			
 			emit_signal("on_boss_summoned", b)
-func on_boss_destroyed(boss):
-	emit_signal("on_boss_destroyed")
+	elif n == boss:
+		emit_signal("on_boss_destroyed")
 	
 func clear_level():
 	for c in get_children():

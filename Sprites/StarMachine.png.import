@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MissileExplosion.png-22b5f7f859886caa695dac4a689b9f97.stex"
+path="res://.import/StarMachine.png-77309fc6ee6aa48ccc56ea62a8a33fe5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/MissileExplosion.png"
-dest_files=[ "res://.import/MissileExplosion.png-22b5f7f859886caa695dac4a689b9f97.stex" ]
+source_file="res://Sprites/StarMachine.png"
+dest_files=[ "res://.import/StarMachine.png-77309fc6ee6aa48ccc56ea62a8a33fe5.stex" ]
 
 [params]
 
