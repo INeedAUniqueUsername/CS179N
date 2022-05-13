@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/LuneLegSheet.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Lune.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/LuneBodySheet.png" type="Texture" id=3]
 [ext_resource path="res://Characters/Leg.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sound/Lune_Secondary_scroll_005.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/Lune_Primary_forceField_000.ogg" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=8]
 resource_name = "Cast"
@@ -317,6 +319,12 @@ rotation = 2.0944
 [node name="BeamOrigin" type="Node2D" parent="."]
 position = Vector2( 0, -8 )
 scale = Vector2( 0.5, 0.5 )
+
+[node name="PrimaryAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="SecondaryAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_body_animation_finished"]
 [connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]

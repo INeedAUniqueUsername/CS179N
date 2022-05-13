@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Astroknight_secondary_scratch_004.ogg-f99896b194b7386fbc11eeae071b3db8.oggstr"
+
+[deps]
+
+source_file="res://Sound/Astroknight_secondary_scratch_004.ogg"
+dest_files=[ "res://.import/Astroknight_secondary_scratch_004.ogg-f99896b194b7386fbc11eeae071b3db8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

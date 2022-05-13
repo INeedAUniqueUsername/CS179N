@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/starman_secondary_forceField_002.ogg-c91ffbedd535e9b98fe0b3c95bf45d9b.oggstr"
+
+[deps]
+
+source_file="res://Sound/starman_secondary_forceField_002.ogg"
+dest_files=[ "res://.import/starman_secondary_forceField_002.ogg-c91ffbedd535e9b98fe0b3c95bf45d9b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

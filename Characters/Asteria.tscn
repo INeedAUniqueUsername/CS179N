@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/AsteriaBodySheet.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Leg.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/Asteria.gd" type="Script" id=3]
 [ext_resource path="res://Characters/StarmanCannon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/AsteriaLegSheet.png" type="Texture" id=5]
+[ext_resource path="res://Sound/Asteria_secondary_scroll_002.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sound/Asteria_primary_impactPunch_medium_000.ogg" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -248,6 +250,13 @@ position = Vector2( -10, -6 )
 
 [node name="RightCannon" parent="." instance=ExtResource( 4 )]
 position = Vector2( 9, -6 )
+
+[node name="PrimarySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="AsteriaSecondarySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+pitch_scale = 3.0
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_body_animation_finished"]
 [connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]

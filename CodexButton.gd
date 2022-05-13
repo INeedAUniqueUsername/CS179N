@@ -11,12 +11,14 @@ func _ready():
 	
 	connect("pressed", self, "pressed")
 func show_border():
+	$MenuClickSound.play()
 	$Border.visible = true
 	get_parent().get_node("Desc").text = desc
 func hide_border():
 	$Border.visible = false
 	get_parent().get_node("Desc").text = ""
 func pressed():
+	$MenuClickSound.play()
 	if !ap:
 		return
 	var a : AnimationPlayer = ap

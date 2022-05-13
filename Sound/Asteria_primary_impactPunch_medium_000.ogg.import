@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Asteria_primary_impactPunch_medium_000.ogg-d0743e50d8232652118eb749d7aca125.oggstr"
+
+[deps]
+
+source_file="res://Sound/Asteria_primary_impactPunch_medium_000.ogg"
+dest_files=[ "res://.import/Asteria_primary_impactPunch_medium_000.ogg-d0743e50d8232652118eb749d7aca125.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

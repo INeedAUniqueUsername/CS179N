@@ -36,7 +36,7 @@ func _process(delta):
 	if $Anim.current_animation == "Punch":
 		return
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
-		
+		$PrimarySound.play()
 		
 		if common.fireCooldown > -0.1:
 			nextCooldown = max(primaryFireInterval / 3, nextCooldown * nextCooldown / (nextCooldown + 0.003))
@@ -56,6 +56,7 @@ func _process(delta):
 		l.rotation_degrees = rotation_degrees - 90
 		p.get_node("Anim").play("Fire")
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
+		$AsteriaSecondarySound.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
 		

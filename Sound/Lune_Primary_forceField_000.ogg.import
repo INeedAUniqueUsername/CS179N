@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Lune_Primary_forceField_000.ogg-8ebfeb63c5743ff3c609fa04b2c04c2d.oggstr"
+
+[deps]
+
+source_file="res://Sound/Lune_Primary_forceField_000.ogg"
+dest_files=[ "res://.import/Lune_Primary_forceField_000.ogg-8ebfeb63c5743ff3c609fa04b2c04c2d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

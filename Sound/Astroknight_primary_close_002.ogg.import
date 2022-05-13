@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Astroknight_primary_close_002.ogg-e135413dd285e89a22969e7da1f81b70.oggstr"
+
+[deps]
+
+source_file="res://Sound/Astroknight_primary_close_002.ogg"
+dest_files=[ "res://.import/Astroknight_primary_close_002.ogg-e135413dd285e89a22969e7da1f81b70.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
