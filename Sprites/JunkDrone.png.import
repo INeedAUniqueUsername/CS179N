@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Barrier.png-9cc7cc9f4d1063d000a461bf91e3c82f.stex"
+path="res://.import/JunkDrone.png-6f8de30c061505d8f20f43493ba44b4f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Barrier.png"
-dest_files=[ "res://.import/Barrier.png-9cc7cc9f4d1063d000a461bf91e3c82f.stex" ]
+source_file="res://Sprites/JunkDrone.png"
+dest_files=[ "res://.import/JunkDrone.png-6f8de30c061505d8f20f43493ba44b4f.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
