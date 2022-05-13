@@ -4,7 +4,7 @@ var moveSpeed = 50
 
 var vel = Vector2(0, 0)
 
-var base_cooldown = 1
+var base_cooldown = 1.5
 var curr_cooldown = 0
 
 const beam = preload("res://LaserBeam.tscn")
@@ -22,7 +22,7 @@ func _physics_process(delta):
 
 		get_parent().add_child(beam_load)
 		beam_load.set_global_transform(get_global_transform())
-		beam_load.rotation_degrees = rotation_degrees
+		beam_load.rotation = rotation
 
 func _process(delta):
 	if ignore_target > 0:

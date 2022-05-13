@@ -11,7 +11,7 @@
 [ext_resource path="res://Sprites/FuelBarSheet.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/BossWarning.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/ThunderDrone.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Enemies/MissileDrone.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Enemies/LaserSentry.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Sprites/LevelCleared.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/BossBar.png" type="Texture" id=15]
@@ -701,7 +701,8 @@ tracks/14/keys = {
 script = ExtResource( 2 )
 bossType = ExtResource( 11 )
 
-[node name="MissileDrone" parent="Actors" instance=ExtResource( 12 )]
+[node name="LaserSentry" parent="Actors" instance=ExtResource( 12 )]
+position = Vector2( 0, -80 )
 
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )

@@ -37,13 +37,15 @@ func _on_Damage_Area_area_entered(area):
 		ignore_target = ignore_time
 
 # Triggered when player enter's enemy's attack radius
+var attackable = []
 var atk_target
 func _on_Attack_Area_area_entered(area):
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
-		atk_target = actor
+		attackable.append(actor)
+		atk_target = attackable[0]
 		
 # Triggered when player exits enemy's attack radius
 func _on_Attack_Area_area_exited(area):
@@ -51,15 +53,20 @@ func _on_Attack_Area_area_exited(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
-		atk_target = null
-
+		attackable.erase(actor)
+		if attackable.empty():
+			atk_target = null
+		else:
+			atk_target = attackable[0]
+var detected = []
 # Triggered when player enters enemy's detection radius
 func _on_Detect_Area_area_entered(area):
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
-		target = actor
+		detected.append(actor)
+		target = detected[0]
 
 # Triggered when player exits enemy's detection radius 
 func _on_Detect_Area_area_exited(area):
@@ -67,7 +74,11 @@ func _on_Detect_Area_area_exited(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
-		target = null
+		detected.erase(actor)
+		if detected.empty():
+			target = null
+		else:
+			target = detected[0]
 
 # Called every frame to constantly look at the target
 var target
