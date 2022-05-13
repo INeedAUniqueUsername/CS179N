@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://UISettingsCheckBox.gd" type="Script" id=1]
+[ext_resource path="res://Supporting Scenes/UISettingsCheckBox.gd" type="Script" id=1]
 
 [node name="UISettingsCheckBox" type="HBoxContainer"]
 margin_right = 40.0
