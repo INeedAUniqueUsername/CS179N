@@ -20,10 +20,12 @@ onready var lifetime = lifespan
 var ignore = []
 const SpriteFade = preload("res://SpriteFade.tscn")
 var trailTime = 0
+signal on_expired(Node2D)
 func _physics_process(delta):
 	delta *= time_scale
 	lifetime -= delta
 	if lifetime < 0:
+		emit_signal("on_expired", self)
 		queue_free()
 		return
 	if trail:

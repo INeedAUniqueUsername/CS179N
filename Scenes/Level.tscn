@@ -703,8 +703,6 @@ bossType = ExtResource( 11 )
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )
 
-[node name="Thunder Drone" parent="Actors" instance=ExtResource( 11 )]
-
 [node name="Hourglass" parent="Actors" instance=ExtResource( 16 )]
 position = Vector2( -280, 0 )
 

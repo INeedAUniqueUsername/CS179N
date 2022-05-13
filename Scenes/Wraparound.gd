@@ -17,6 +17,7 @@ var player
 var boss
 var leaves = []
 var bossSummon = []
+signal registered_player(Node2D)
 func register_actors():
 	var d = get_descendants(self)
 	for l in d:
@@ -29,8 +30,8 @@ func register_actors():
 			player = l
 		if l.is_in_group("Boss Summon"):
 			bossSummon.append(l)
-	if player == null:
-		pass
+	if player:
+		emit_signal("registered_player", player)
 func register(a):
 	leaves.append(a)
 	print('register: ' + a.name)

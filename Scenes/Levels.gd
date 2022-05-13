@@ -8,6 +8,7 @@ var enemyTables : Array = [
 ]
 var level_count = 5
 var bosses = [
+	preload("res://StarMachine.tscn"),
 	ThunderDrone,
 	SpaceCube
 ]
