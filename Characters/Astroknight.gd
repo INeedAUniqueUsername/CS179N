@@ -71,3 +71,9 @@ func _on_sword_entered(area):
 var damage = 20
 func damage(projectile):
 	common.damage(projectile)
+	
+func add_fuel(f):
+	common.add_fuel(f)
+	
+func add_hp(h):
+	common.add_hp(h)
