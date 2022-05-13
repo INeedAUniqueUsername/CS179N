@@ -9,6 +9,7 @@ func damage(projectile):
 	hp -= projectile.damage
 	if hp < 1:
 		if(is_in_group("Stationary")):
+			emit_signal("on_destroyed", self)
 			get_parent().destroyed()
 		else:
 			emit_signal("on_destroyed", self)
