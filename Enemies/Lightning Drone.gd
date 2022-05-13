@@ -1,9 +1,7 @@
 extends Enemies
-<<<<<<< HEAD
 
-const score = 30
-=======
->>>>>>> c30c1653cb1a87b7493fc7f33aa745229d2ead73
+const score = 100
+
 var vel = Vector2(0, 0)
 var time_scale = 1.0
 func set_time_scale(t:float):
