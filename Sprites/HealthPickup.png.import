@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShieldDrone.png-952f110198c14a1cf05856f2d0bf634a.stex"
+path="res://.import/HealthPickup.png-d2a974dd3e51a5775d963aa4fa84bab9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ShieldDrone.png"
-dest_files=[ "res://.import/ShieldDrone.png-952f110198c14a1cf05856f2d0bf634a.stex" ]
+source_file="res://Sprites/HealthPickup.png"
+dest_files=[ "res://.import/HealthPickup.png-d2a974dd3e51a5775d963aa4fa84bab9.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

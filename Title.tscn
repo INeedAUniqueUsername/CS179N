@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Title.png" type="Texture" id=2]
@@ -14,6 +14,38 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="ShortCut" id=3]
 shortcut = SubResource( 2 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Hover"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 520, 192 ), Vector2( 520, 256 ), Vector2( 520, 192 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 520, 256 ) ]
+}
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -131,14 +163,19 @@ anchor_left = 0.5
 anchor_top = 0.25
 anchor_right = 0.5
 anchor_bottom = 0.25
-margin_left = -401.0
-margin_top = -11.5
-margin_right = -321.0
-margin_bottom = 11.5
+margin_left = 520.0
+margin_top = 256.0
+margin_right = 632.0
+margin_bottom = 279.037
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
+
+[node name="Hover" type="AnimationPlayer" parent="TextureRect"]
+autoplay = "Hover"
+anims/Hover = SubResource( 7 )
+anims/RESET = SubResource( 8 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 64.0
@@ -157,15 +194,19 @@ lost in a zone where space wrapped around itself.
 
 Soon, they were surrounded by hostile drones and
 under attack by their new nemesis, Ad Dastardly Astra"
-percent_visible = -0.00294985
+percent_visible = -0.00286533
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Scroll" type="AnimationPlayer" parent="."]
 autoplay = "Scroll"
 anims/RESET = SubResource( 5 )
 anims/Scroll = SubResource( 6 )
 
 [node name="MenuSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [connection signal="pressed" from="Play" to="." method="play"]
 [connection signal="pressed" from="Codex" to="." method="codex"]
