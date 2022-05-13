@@ -1,4 +1,5 @@
 extends Node2D
+const score = 10
 var extents = 900
 export(int) var count = 20
 const beacon = preload("res://BossBeacon.tscn")

@@ -2,8 +2,10 @@ extends Node
 const LaserDrone = preload("res://Enemies/LaserDrone.tscn")
 const ThunderDrone = preload("res://Enemies/ThunderDrone.tscn")
 const SpaceCube = preload("res://Enemies/SpaceCube.tscn")
+const MissileDrone = preload("res://Enemies/MissileDrone.tscn")
+const LightningDrone = preload("res://Enemies/Lightning Drone.tscn")
 var enemyTables : Array = [
-	EnemyTable.new({LaserDrone: 30}),
+	EnemyTable.new({LaserDrone: 30, MissileDrone: 30, LightningDrone: 30}),
 	EnemyTable.new({LaserDrone: 60, ThunderDrone:1}),
 ]
 var level_count = 5

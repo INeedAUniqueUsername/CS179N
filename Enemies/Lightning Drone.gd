@@ -1,4 +1,7 @@
 extends Enemies
+
+const score = 100
+
 var vel = Vector2(0, 0)
 var time_scale = 1.0
 func set_time_scale(t:float):
