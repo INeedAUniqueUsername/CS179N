@@ -98,16 +98,21 @@ func _on_cannon_entered(area):
 	var actor = Helper.get_parent_actor(area)
 	if !actor:
 		return
-	else:
-		var mass = 1
-		var other_mass = 1
-		if actor.is_in_group("Projectile"):
-			other_mass = 0.001
-		
-		var velDiff = (common.vel * mass - actor.vel * other_mass) / 2
-		actor.vel += velDiff / other_mass
-		common.vel -= velDiff / mass
-		damage = velDiff.length() / 8
-	actor.damage(self)
+	if actor == self:
+		return
+	var n = actor.name
+	var mass = 1
+	var other_mass = 1
+	if actor.is_in_group("Projectile"):
+		other_mass = 0.01
 	
+	var velDiff = (common.vel * mass - actor.vel * other_mass) / 2
+	actor.vel += velDiff / other_mass
+	common.vel -= velDiff / mass
+	damage = velDiff.length() / 8
+	if actor.is_in_group("Projectile"):
+		actor.ignore = [self]
+	else:
+		actor.damage(self)
+		
 	actor.vel += polar2cartesian(120, rotation - PI/2)
