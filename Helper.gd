@@ -30,3 +30,11 @@ func create_sprite_fade(container:Node2D, spr : Sprite, time:float = 0.1):
 	container.add_child(sf)
 	sf.set_global_transform(spr.get_global_transform())
 	sf.get_node("Fade").playback_speed = 1 / time
+func play_sound(stream: AudioStream):
+	var pl = AudioStreamPlayer.new()
+	pl.stream = stream
+	Sounds.add_child(pl)
+	pl.play()
+	pl.connect("finished", pl, "queue_free")
+
+

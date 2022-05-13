@@ -1,5 +1,5 @@
 extends Node2D
-
+const score = 800
 var bossName = "Space Cube"
 func _ready():
 	call_deferred("register_player")

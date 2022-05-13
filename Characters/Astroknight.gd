@@ -61,6 +61,7 @@ func _on_sword_entered(area):
 		return
 	if actor.is_in_group("Laser"):
 		actor.vel = -actor.vel
+		actor.ignore = []
 		var na = actor.name
 		print(na)
 	elif actor.is_in_group("Lightning"):
