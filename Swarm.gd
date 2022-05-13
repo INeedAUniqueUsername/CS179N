@@ -6,6 +6,7 @@ var actors = []
 var hp_max_dead = 0
 var hp setget, get_hp
 var hp_max setget, get_max_hp
+
 func get_hp():
 	var hp = 0
 	for a in actors:

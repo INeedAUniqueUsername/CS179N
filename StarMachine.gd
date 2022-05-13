@@ -3,7 +3,13 @@ var hp : int = 600
 var hp_max : int = 600
 var vel : Vector2 = Vector2(0, 0)
 var player : Node2D
+
+
+var ignore : Array
 func _ready():
+	ignore = [$LeftCannon, $RightCannon]
+	for c in get_parent().get_children():
+		ignore.append(c)
 	call_deferred("register_player")
 func register_player():
 	var p = get_parent().get_parent()
@@ -13,18 +19,25 @@ func register_player():
 func on_registered_player(p):
 	player = p
 signal on_destroyed(Node2D)
+func destroy():
+	for c in [$LeftCannon, $RightCannon]:
+		c.destroy()
+	emit_signal("on_destroyed", self)
+	queue_free()
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp == 0:
-		emit_signal("on_destroyed", self)
-		queue_free()
+		destroy()
 	pass
 var fireCooldown = 0
 const fireInterval = 0.5
 const projectile = preload("res://Sprites/StarBeam.tscn")
+
+var beamCooldown = 6
+const beamInterval = 6
 func _process(delta):
 	fireCooldown = max(0, fireCooldown - delta)
-	
+	beamCooldown = max(0, beamCooldown - delta)
 	if player:
 		var offset = (player.global_position - global_position)
 		var dest_angle = offset
@@ -43,17 +56,18 @@ func _process(delta):
 			if vel.length() < 180:
 				vel += offset.normalized() * min(speed * delta, offset.length())
 				
-	if fireCooldown <= 0 and targetInRange:
-		fireCooldown = 1
-		var ignore = []
-		for c in get_parent().get_children():
-			ignore.append(c)
-		var b = projectile.instance() as Node2D
-		b.ignore = ignore
-		ignore.append(b)
-		get_parent().get_parent().add_child(b)
-		b.global_position = $BeamOrigin.global_position
-		b.vel = vel + polar2cartesian(720, rotation)
+	if targetInRange:
+		if beamCooldown == 0:
+			$Cannons.play("Fire")
+			beamCooldown = beamInterval
+		if fireCooldown == 0:
+			fireCooldown = 1
+			var b = projectile.instance() as Node2D
+			b.ignore = ignore
+			ignore.append(b)
+			get_parent().get_parent().add_child(b)
+			b.global_position = $BeamOrigin.global_position
+			b.vel = vel + polar2cartesian(720, rotation)
 func _physics_process(delta):
 	global_translate(vel * delta)
 

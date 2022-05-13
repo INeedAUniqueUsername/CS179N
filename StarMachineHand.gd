@@ -59,9 +59,13 @@ func _process(delta):
 			diff = atan2(sin(diff), cos(diff))
 			var turnRate = PI * 2 / 3
 			rotation += sign(diff) * min(abs(diff), turnRate * delta)
+			
 			var ignore = []
-			for p in get_parent().get_children():
-				ignore.append(p)
+			if head:
+				ignore = head.ignore
+			else:
+				for c in get_parent().get_children():
+					ignore.append(c)
 			if shootCooldown <= 0 and abs(diff) < PI / 8:
 				var b = projectile.instance() as Node2D
 				b.ignore = ignore
