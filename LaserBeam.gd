@@ -55,5 +55,5 @@ func _on_area_entered(area):
 	actor.damage(self)
 	if pierce < 1:
 		queue_free()
-#func damage(projectile):
-#	var actor = Helper.get_parent_actor(projectile)
+func damage(projectile):
+	var actor = Helper.get_parent_actor(projectile)

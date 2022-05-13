@@ -24,11 +24,13 @@ region_rect = Rect2( 0, 64, 64, 32 )
 script = ExtResource( 2 )
 
 [node name="Attack_Area" type="Area2D" parent="Gun" groups=["Behavior"]]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Attack_Area"]
 shape = SubResource( 1 )
 
 [node name="Detect_Area" type="Area2D" parent="Gun" groups=["Behavior"]]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Detect_Area"]
 shape = SubResource( 2 )

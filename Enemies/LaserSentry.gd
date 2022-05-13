@@ -1,6 +1,8 @@
 extends Enemies
-const score = 100
+const score = 0
 var moveSpeed = 50
+
+var vel = Vector2(0, 0)
 
 var base_cooldown = 1
 var curr_cooldown = 0
