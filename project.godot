@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Starman"
-run/main_scene="res://Scenes/Level.tscn"
+run/main_scene="res://Title.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -55,7 +55,7 @@ enabled=PoolStringArray(  )
 
 [gdnative]
 
-singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+singletons=[  ]
 
 [global]
 

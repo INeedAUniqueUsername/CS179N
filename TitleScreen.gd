@@ -9,6 +9,6 @@ func play():
 func codex():
 	go(preload("res://Codex.tscn"))
 func quit():
-	#$MenuSound.play()
-	#yield($MenuSound, "finished")
+	$MenuSound.play()
+	yield($MenuSound, "finished")
 	get_tree().quit()
