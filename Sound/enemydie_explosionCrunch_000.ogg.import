@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/enemydie_explosionCrunch_000.ogg-14c4cdaaa1719a2c2353a291b1768744.oggstr"
+
+[deps]
+
+source_file="res://Sound/enemydie_explosionCrunch_000.ogg"
+dest_files=[ "res://.import/enemydie_explosionCrunch_000.ogg-14c4cdaaa1719a2c2353a291b1768744.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

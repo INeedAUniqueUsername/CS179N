@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/starman_primary_laserLarge_001.ogg-4ccd95df33a29601698852d85fd93e91.oggstr"
+
+[deps]
+
+source_file="res://Sound/starman_primary_laserLarge_001.ogg"
+dest_files=[ "res://.import/starman_primary_laserLarge_001.ogg-4ccd95df33a29601698852d85fd93e91.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

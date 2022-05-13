@@ -1,6 +1,6 @@
 extends Enemies
 
-
+const score = 30
 var vel = Vector2(0, 0)
 
 

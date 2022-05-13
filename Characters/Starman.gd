@@ -30,6 +30,7 @@ func _process(delta):
 	if common.state != common.State.Active:
 		return
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+		$PrimaryAttackSound.play()
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval
 		var bonus = common.energy / 20
@@ -53,6 +54,7 @@ func _process(delta):
 				Helper.create_sprite_fade(get_parent(), b, 0.3)
 		return
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
+		$SecondaryAttackSound.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
 		

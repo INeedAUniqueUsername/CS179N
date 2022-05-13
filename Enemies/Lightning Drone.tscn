@@ -58,7 +58,7 @@ shape = SubResource( 1 )
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 14
-frame = 6
+frame = 7
 
 [node name="Detect" type="Area2D" parent="." groups=["Behavior"]]
 

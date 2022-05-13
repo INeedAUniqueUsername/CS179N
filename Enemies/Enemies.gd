@@ -12,6 +12,12 @@ func damage(projectile):
 			get_parent().destroyed()
 		else:
 			emit_signal("on_destroyed", self)
+			var enemydie = AudioStreamPlayer.new()
+			get_parent().add_child(enemydie)
+			var dieaudio = preload("res://Sound/enemydie_explosionCrunch_000.ogg")
+			enemydie.stream = dieaudio
+			enemydie.play()
+			remove_child(enemydie)
 			queue_free()
 
 var damage = 30
