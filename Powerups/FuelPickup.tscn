@@ -4,9 +4,10 @@
 [ext_resource path="res://Powerups/FuelPickup.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 7 )
+extents = Vector2( 4, 5 )
 
 [node name="FuelPickup" type="Node2D"]
+scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

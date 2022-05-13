@@ -4,21 +4,37 @@ extends Node2D
 var hp = 100 setget, get_hp
 func get_hp(): return hp
 
+var rng = RandomNumberGenerator.new()
+const health_pickup = preload("res://Powerups/HealthPickup.tscn")
+const fuel_pickup = preload("res://Powerups/FuelPickup.tscn")
+
 signal on_destroyed
 func damage(projectile):
 	hp -= projectile.damage
 	if hp < 1:
+		emit_signal("on_destroyed", self)
+		var enemydie = AudioStreamPlayer.new()
+		get_parent().add_child(enemydie)
+		var dieaudio = preload("res://Sound/enemydie_explosionCrunch_000.ogg")
+		enemydie.stream = dieaudio
+		enemydie.play()
+		remove_child(enemydie)
+		
+		rng.randomize()
+		var rand = rng.randf_range(0, 100)
+		if(rand < 20):
+			if(rand < 10):
+				var health_load = health_pickup.instance()
+				get_parent().add_child(health_load)
+				health_load.set_global_transform(get_global_transform())
+			else:
+				var fuel_load = fuel_pickup.instance()
+				get_parent().add_child(fuel_load)
+				fuel_load.set_global_transform(get_global_transform())
+		
 		if(is_in_group("Stationary")):
-			emit_signal("on_destroyed", self)
 			get_parent().destroyed()
 		else:
-			emit_signal("on_destroyed", self)
-			var enemydie = AudioStreamPlayer.new()
-			get_parent().add_child(enemydie)
-			var dieaudio = preload("res://Sound/enemydie_explosionCrunch_000.ogg")
-			enemydie.stream = dieaudio
-			enemydie.play()
-			remove_child(enemydie)
 			queue_free()
 
 var damage = 30
