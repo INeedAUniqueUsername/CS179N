@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="UILoadStateSelector" type="ColorRect"]
+margin_right = 150.0
+margin_bottom = 20.0
+color = Color( 0.333333, 0.0980392, 0.0980392, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 13.0
+margin_bottom = 27.0
