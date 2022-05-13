@@ -10,7 +10,7 @@ var beamSpeed = 250
 
 const beam = preload("res://Missile.tscn")
 func _physics_process(delta):
-	global_translate(vel * moveSpeed * delta)
+	global_translate(vel * delta)
 	
 	curr_cooldown -= delta
 	# Send a beam every second
@@ -27,17 +27,13 @@ func _physics_process(delta):
 		beam_load.rotation_degrees = rotation_degrees
 		$Attack.play()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-var patrol_time = 2
-var curr_patrol_time = 0
 func _process(delta):
-	vel = forward
+	var destVel = forward * moveSpeed
+	var velDiff = destVel - vel
+	vel += velDiff.normalized() * min(velDiff.length(), 120 * delta)
 	
 	# Patrols in a square formation turning every 2 seconds when no target in sight
 	if target == null:
-		curr_patrol_time -= delta
-		if curr_patrol_time < 0:
-			curr_patrol_time = patrol_time
-			rotate(PI/2)
+		rotate(delta * PI/3)
 	if ignore_target > 0:
 		ignore_target -= delta

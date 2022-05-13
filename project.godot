@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Starman"
-run/main_scene="res://Title.tscn"
+run/main_scene="res://Scenes/Level.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -39,6 +39,7 @@ RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 Helper="*res://Helper.tscn"
 PlayerVariables="*res://Scripts/PlayerVariables.gd"
 Levels="*res://Scenes/Levels.tscn"
+Sounds="*res://Sounds.tscn"
 
 [display]
 

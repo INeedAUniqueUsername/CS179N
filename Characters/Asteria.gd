@@ -94,3 +94,9 @@ func _on_body_entered(area):
 	pass # Replace with function body.
 func damage(projectile):
 	common.damage(projectile)
+	
+func add_fuel(f):
+	common.add_fuel(f)
+	
+func add_hp(h):
+	common.add_hp(h)

@@ -53,4 +53,6 @@ func damage(projectile):
 	hp = max(hp - projectile.damage, 0)
 	if hp == 0:
 		emit_signal("on_destroyed", self)
+		for s in $Shield.get_children():
+			s.destroy()
 		$Anim.play("Destroyed")

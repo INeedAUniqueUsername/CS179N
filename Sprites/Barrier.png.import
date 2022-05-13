@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShieldDrone.png-952f110198c14a1cf05856f2d0bf634a.stex"
+path="res://.import/Barrier.png-9cc7cc9f4d1063d000a461bf91e3c82f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ShieldDrone.png"
-dest_files=[ "res://.import/ShieldDrone.png-952f110198c14a1cf05856f2d0bf634a.stex" ]
+source_file="res://Sprites/Barrier.png"
+dest_files=[ "res://.import/Barrier.png-9cc7cc9f4d1063d000a461bf91e3c82f.stex" ]
 
 [params]
 

@@ -82,6 +82,12 @@ func _on_body_entered(area):
 	
 func damage(projectile):
 	common.damage(projectile)
+	
+func add_fuel(f):
+	common.add_fuel(f)
+	
+func add_hp(h):
+	common.add_hp(h)
 
 var damage
 func _on_cannon_entered(area):
@@ -92,16 +98,21 @@ func _on_cannon_entered(area):
 	var actor = Helper.get_parent_actor(area)
 	if !actor:
 		return
-	else:
-		var mass = 1
-		var other_mass = 1
-		if actor.is_in_group("Projectile"):
-			other_mass = 0.001
-		
-		var velDiff = (common.vel * mass - actor.vel * other_mass) / 2
-		actor.vel += velDiff / other_mass
-		common.vel -= velDiff / mass
-		damage = velDiff.length() / 8
-	actor.damage(self)
+	if actor == self:
+		return
+	var n = actor.name
+	var mass = 1
+	var other_mass = 1
+	if actor.is_in_group("Projectile"):
+		other_mass = 0.01
 	
+	var velDiff = (common.vel * mass - actor.vel * other_mass) / 2
+	actor.vel += velDiff / other_mass
+	common.vel -= velDiff / mass
+	damage = velDiff.length() / 8
+	if actor.is_in_group("Projectile"):
+		actor.ignore = [self]
+	else:
+		actor.damage(self)
+		
 	actor.vel += polar2cartesian(120, rotation - PI/2)
