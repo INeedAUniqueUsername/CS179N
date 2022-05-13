@@ -31,6 +31,7 @@ func _on_area_entered(area):
 	if !actor:
 		return
 	if actor.is_in_group("Projectile"):
+		explode()
 		return
 	if ignore.has(actor):
 		return
