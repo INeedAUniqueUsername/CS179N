@@ -1,5 +1,5 @@
 extends Node2D
-
+const score = 100
 var vel = Vector2(0, 0)
 
 var time_scale = 1.0

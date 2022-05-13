@@ -1,5 +1,5 @@
 extends Node2D
-
+const score = 100
 var enemyName = "Shield Drone"
 var vel = Vector2(0, 0)
 var vel1 = Vector2(0, 0)
