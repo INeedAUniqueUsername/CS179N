@@ -1,5 +1,5 @@
 extends Enemies
-
+const score = 100
 var moveSpeed = 50
 
 var base_cooldown = 1
