@@ -10,14 +10,20 @@ onready var lifetime = lifespan
 var ignore = []
 var target
 
+
 func _physics_process(delta):
 	lifetime -= delta
 	if lifetime < 0:
 		explode()
 		return
-	vel = forward * beamSpeed
 	if target != null:
-		look_at(target.global_position)
+		var offset = (target.global_position - global_position)
+		var targetAngle = atan2(offset.y, offset.x)
+		var angleDiff = atan2(sin(targetAngle - rotation), cos(targetAngle - rotation))
+		var turnRate = PI * 2 / 3
+		vel = vel.rotated(sign(angleDiff) * min(abs(angleDiff), delta * turnRate))
+	rotation = atan2(vel.y, vel.x)
+	
 	global_translate(vel * delta)
 	
 var forward = Vector2(0, 0)
@@ -30,10 +36,10 @@ func _on_area_entered(area):
 	var actor = Helper.get_parent_actor(area)
 	if !actor:
 		return
+	if ignore.has(actor):
+		return
 	if actor.is_in_group("Projectile"):
 		explode()
-		return
-	if ignore.has(actor):
 		return
 	actor.damage(self)
 	explode()

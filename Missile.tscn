@@ -4,16 +4,16 @@
 [ext_resource path="res://Missile.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 2 )
+extents = Vector2( 10, 3 )
 
 [node name="Missile" type="Sprite" groups=["Actor", "Kinetic", "Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="." groups=["Behavior"]]
+[node name="Detonate" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detonate"]
 shape = SubResource( 1 )
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Detonate" to="." method="_on_area_entered"]

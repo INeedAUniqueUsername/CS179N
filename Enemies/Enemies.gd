@@ -28,6 +28,10 @@ func _on_Damage_Area_area_entered(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
+		if 'vel' in self:
+			var velDiff = self.vel - actor.common.vel
+			actor.common.vel += velDiff / 2
+			self.vel -= velDiff
 		actor.damage(self)
 		ignore_target = ignore_time
 
@@ -68,7 +72,12 @@ func _on_Detect_Area_area_exited(area):
 var target
 func _physics_process(delta):
 	if target && ignore_target <= 0:
-		look_at(target.global_position)
+		var offset = target.global_position - global_position
+		var targetAngle = atan2(offset.y, offset.x)
+		var angleDiff = targetAngle - rotation
+		angleDiff = atan2(sin(angleDiff), cos(angleDiff))
+		var turnRate = PI * 2 / 3
+		rotate(sign(angleDiff) * min(abs(angleDiff), delta * turnRate))
 		
 # Called to update forward variable
 var forward = Vector2(0, 0)
