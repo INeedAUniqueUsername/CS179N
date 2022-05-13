@@ -29,6 +29,7 @@ func _process(delta):
 	if common.state != common.State.Active:
 		return
 	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+		$PrimaryAttack.play()
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval
 		
@@ -40,6 +41,7 @@ func _process(delta):
 			l.set_global_transform(p.get_global_transform())
 			l.rotation_degrees = rotation_degrees - 90
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
+		$SecondaryAttack.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
 		$Anim.stop()

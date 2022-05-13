@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MissileDrone_laserRetro_000.ogg-8a92c39a62865bdccec97106eae7d36d.oggstr"
+
+[deps]
+
+source_file="res://Sound/MissileDrone_laserRetro_000.ogg"
+dest_files=[ "res://.import/MissileDrone_laserRetro_000.ogg-8a92c39a62865bdccec97106eae7d36d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

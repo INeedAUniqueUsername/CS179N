@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=1]
 [ext_resource path="res://CodexButton.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Sprites/SpaceCubeArmor.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/MineLayer.png" type="Texture" id=8]
 [ext_resource path="res://Codex.gd" type="Script" id=9]
+[ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=8]
 size = 48
@@ -330,6 +331,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 9 )
 
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 10 )
+
 [node name="Back3" type="ColorRect" parent="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -408,6 +412,9 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 27
 
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/ThunderDrone"]
+stream = ExtResource( 10 )
+
 [node name="Border" type="Sprite" parent="Control/ThunderDrone"]
 visible = false
 scale = Vector2( 2, 2 )
@@ -434,6 +441,9 @@ visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Mine Layer"]
+stream = ExtResource( 10 )
 
 [node name="Space Cube" type="Button" parent="Control"]
 margin_left = -96.0
@@ -484,6 +494,9 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
 
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Space Cube"]
+stream = ExtResource( 10 )
+
 [node name="Lost Vector" type="Button" parent="Control"]
 margin_left = 104.0
 margin_top = -172.0
@@ -500,6 +513,9 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
 
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Lost Vector"]
+stream = ExtResource( 10 )
+
 [node name="Star Machine" type="Button" parent="Control"]
 margin_left = 304.0
 margin_top = -172.0
@@ -515,6 +531,9 @@ visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Star Machine"]
+stream = ExtResource( 10 )
 
 [node name="Desc" type="Label" parent="Control"]
 margin_left = -496.0

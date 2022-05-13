@@ -9,6 +9,8 @@ func _ready():
 	$StartButton.connect("pressed", self, "start_game")
 	select_starman()
 func back():
+	$MenuClickSound.play()
+	yield($MenuClickSound,"finished")
 	get_tree().change_scene("res://Title.tscn")
 func _process(delta):
 	if $Anim.current_animation == "Flash":
@@ -25,6 +27,7 @@ func _process(delta):
 		start_game()
 const shake = preload("res://Shake.tscn")
 func start_game():
+	$MenuClickSound.play()
 	PlayerVariables.reset()
 	var s = shake.instance()
 	s.set_lifetime(4)
@@ -42,21 +45,25 @@ func vis(b):
 	reset_borders()
 	b.visible = true
 func select_starman():
+	$MenuClickSound.play()
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.starman)
 	vis($Starman/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Starman/Sprite.texture
 func select_asteria():
+	$MenuClickSound.play()
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.asteria)
 	vis($Asteria/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Asteria/Sprite.texture
 func select_astroknight():
+	$MenuClickSound.play()
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.astroknight)
 	vis($Astroknight/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Astroknight/Sprite.texture
 func select_lune():
+	$MenuClickSound.play()
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.lune)
 	vis($Lune/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]

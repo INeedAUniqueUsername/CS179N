@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Starman.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/Asteria.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Astroknight.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Lune.png" type="Texture" id=6]
+[ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/CharacterSelect2.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=3]
@@ -473,6 +474,9 @@ margin_right = -20.0
 margin_bottom = -20.0
 rect_scale = Vector2( 2, 2 )
 mouse_filter = 2
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 7 )
 
 [node name="Anim" type="AnimationPlayer" parent="Control"]
 anims/Flash = SubResource( 5 )
