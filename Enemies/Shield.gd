@@ -1,6 +1,6 @@
 extends Sprite
-var hp = 60
-var hp_max = 60
+export(int) var hp_max = 60
+onready var hp = hp_max
 
 var damageDelay = 0
 var vel : Vector2 setget set_vel, get_vel

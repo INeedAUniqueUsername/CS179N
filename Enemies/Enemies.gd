@@ -24,15 +24,15 @@ func damage(projectile):
 		
 		rng.randomize()
 		var rand = rng.randf_range(0, 100)
-		if(rand < 20):
-			if(rand < 10):
-				var health_load = health_pickup.instance()
-				get_parent().add_child(health_load)
-				health_load.set_global_transform(get_global_transform())
-			else:
-				var fuel_load = fuel_pickup.instance()
-				get_parent().add_child(fuel_load)
-				fuel_load.set_global_transform(get_global_transform())
+		
+		if rand < 25:
+			var d = health_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
+		elif rand < 50:
+			var d = fuel_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
 		
 		queue_free()
 

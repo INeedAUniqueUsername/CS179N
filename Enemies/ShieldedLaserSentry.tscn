@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/LaserSentry.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/LaserSentry.gd" type="Script" id=2]
@@ -11,10 +11,7 @@ extents = Vector2( 28, 28 )
 extents = Vector2( 20, 20 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 4, 28 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 6, 2 )
+extents = Vector2( 4, 23 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 400.0
@@ -31,6 +28,7 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 96, 64, 64 )
 script = ExtResource( 3 )
+hp_max = 180
 main = NodePath("..")
 
 [node name="Area" type="Area2D" parent="Shield"]
@@ -65,19 +63,10 @@ script = ExtResource( 3 )
 parent = NodePath("../..")
 
 [node name="Area" type="Area2D" parent="Gun/Shield"]
-visible = false
 
 [node name="Shape" type="CollisionShape2D" parent="Gun/Shield/Area"]
 position = Vector2( 4, 0 )
 shape = SubResource( 5 )
-
-[node name="Shape2" type="CollisionShape2D" parent="Gun/Shield/Area"]
-position = Vector2( -6, -14 )
-shape = SubResource( 6 )
-
-[node name="Shape3" type="CollisionShape2D" parent="Gun/Shield/Area"]
-position = Vector2( -6, 14 )
-shape = SubResource( 6 )
 
 [node name="Attack_Area" type="Area2D" parent="Gun" groups=["Behavior"]]
 visible = false

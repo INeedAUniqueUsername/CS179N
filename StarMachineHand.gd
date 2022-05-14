@@ -25,10 +25,10 @@ const projectiles = [
 	preload("res://Sprites/StarFragment.tscn"),
 	preload("res://PlasmaBall.tscn"),
 	preload("res://SwordBeam.tscn"),
-	preload("res://Missile.tscn")
+	#preload("res://Missile.tscn")
 ]
 var shootCooldown = 0
-var shootInterval = 0.8
+var shootInterval = 1.0
 func _process(delta):
 	if !player:
 		return
@@ -89,8 +89,8 @@ func _process(delta):
 				shootCooldown = shootInterval
 func _physics_process(delta):
 	global_translate(vel * delta)
-var hp : int = 600
 var hp_max : int = 600
+onready var hp : int = hp_max
 var vel : Vector2 = Vector2(0, 0)
 signal on_destroyed(Node2D)
 func damage(projectile):
