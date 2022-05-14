@@ -9,7 +9,7 @@ signal on_destroyed
 export(int) var hp = 600
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
-	if hp < 1:
+	if hp == 0:
 		destroy()
 func destroy():
 	emit_signal("on_destroyed", self)

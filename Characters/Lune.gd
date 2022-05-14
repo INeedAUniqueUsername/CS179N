@@ -12,6 +12,7 @@ func get_fuel(): return common.fuel
 onready var common = load("res://Characters/Common.gd").new(self, $Anim, $LeftLeg/Anim, $RightLeg/Anim)
 
 func set_time_scale(t):
+	#return
 	common.set_time_scale(t)
 
 const primaryFireInterval = 0.3

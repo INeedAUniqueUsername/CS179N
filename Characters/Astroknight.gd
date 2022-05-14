@@ -68,6 +68,8 @@ func _on_sword_entered(area):
 		print(na)
 	elif actor.is_in_group("Lightning"):
 		damage(actor)
+	elif actor.is_in_group("Projectile"):
+		pass
 	else:
 		actor.damage(self)
 var damage = 20

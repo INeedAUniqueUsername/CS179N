@@ -20,8 +20,15 @@ func on_registered_player(p):
 	player = p
 var punchTime = 0
 var punchCooldown = 0
-const projectile = preload("res://Sprites/StarFragment.tscn")
+var punchInterval = 10
+const projectiles = [
+	preload("res://Sprites/StarFragment.tscn"),
+	preload("res://PlasmaBall.tscn"),
+	preload("res://SwordBeam.tscn"),
+	preload("res://Missile.tscn")
+]
 var shootCooldown = 0
+var shootInterval = 0.8
 func _process(delta):
 	if !player:
 		return
@@ -34,7 +41,7 @@ func _process(delta):
 		if targetInRange and punchCooldown <= 0:
 			$Anim.play("Punch")
 			punchTime = 2
-			punchCooldown = 10
+			punchCooldown = punchInterval
 			vel = polar2cartesian(300, rotation)
 		else:
 			var offset: Vector2
@@ -67,27 +74,32 @@ func _process(delta):
 				for c in get_parent().get_children():
 					ignore.append(c)
 			if shootCooldown <= 0 and abs(diff) < PI / 8:
+				var projectile = projectiles[randi() % len(projectiles)]
 				var b = projectile.instance() as Node2D
+				if 'target' in b:
+					b.target = player
 				b.ignore = ignore
 				ignore.append(b)
 				get_parent().get_parent().add_child(b)
 				b.global_position = $BeamOrigin.global_position
-				b.vel = vel + polar2cartesian(720, rotation)
+				var missileSpeed = 480 #720
+				b.vel = vel + polar2cartesian(missileSpeed, rotation)
+				b.global_rotation = global_rotation
 				$Anim.play("Shoot")
-				shootCooldown = 0.85
+				shootCooldown = shootInterval
 func _physics_process(delta):
 	global_translate(vel * delta)
 var hp : int = 600
 var hp_max : int = 600
 var vel : Vector2 = Vector2(0, 0)
-
 signal on_destroyed(Node2D)
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp == 0:
-		emit_signal("on_destroyed", self)
-		queue_free()
-	
+		destroy()
+func destroy():
+	emit_signal("on_destroyed", self)
+	queue_free()
 var targetInRange = false
 func _on_AttackRange_entered(area):
 	if !Helper.is_area_body(area):

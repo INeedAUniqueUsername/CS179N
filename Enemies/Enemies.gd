@@ -1,6 +1,8 @@
 class_name Enemies
 extends Node2D
 
+onready var body = self
+
 var hp = 100 setget, get_hp
 func get_hp(): return hp
 
@@ -32,10 +34,7 @@ func damage(projectile):
 				get_parent().add_child(fuel_load)
 				fuel_load.set_global_transform(get_global_transform())
 		
-		if(is_in_group("Stationary")):
-			get_parent().destroyed()
-		else:
-			queue_free()
+		queue_free()
 
 var damage = 30
 var ignore_target = 0
@@ -102,12 +101,12 @@ func _physics_process(delta):
 	if target && ignore_target <= 0:
 		var offset = target.global_position - global_position
 		var targetAngle = atan2(offset.y, offset.x)
-		var angleDiff = targetAngle - rotation
+		var angleDiff = targetAngle - body.rotation
 		angleDiff = atan2(sin(angleDiff), cos(angleDiff))
 		var turnRate = PI * 2 / 3
-		rotate(sign(angleDiff) * min(abs(angleDiff), delta * turnRate))
+		body.rotate(sign(angleDiff) * min(abs(angleDiff), delta * turnRate))
 		
 # Called to update forward variable
 var forward = Vector2(0, 0)
 func _process(delta):
-	forward = get_global_transform().orthonormalized().x
+	forward = body.get_global_transform().orthonormalized().x

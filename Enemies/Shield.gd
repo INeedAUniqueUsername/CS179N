@@ -4,13 +4,15 @@ var hp_max = 60
 
 var damageDelay = 0
 var vel : Vector2 setget set_vel, get_vel
-onready var main : Node2D = get_parent()
-onready var parent : Node2D = main.get_parent()
+export(NodePath) var main = "../.."
+export(NodePath) var parent = ".."
 func get_vel():
 	return parent.vel
 func set_vel(vel):
 	parent.vel = vel
 func _ready():
+	main = get_node(main)
+	parent = get_node(parent)
 	$Area.connect("area_entered", self, "on_area_entered")
 	$Area.connect("area_exited", self, "on_area_exited")
 var hit = []
@@ -46,7 +48,7 @@ func _process(delta):
 	modulate.a = 1.0 * hp / hp_max
 func damage(projectile):
 	if hp == 0:
-		if projectile.is_in_group("Projectile"):
+		if 'pierce' in projectile:
 			projectile.pierce += 1
 		return
 	hp = max(0, hp - projectile.damage)
@@ -58,3 +60,4 @@ func damage(projectile):
 signal on_destroyed(Node2D)
 func destroy():
 	emit_signal("on_destroyed", self)
+	queue_free()

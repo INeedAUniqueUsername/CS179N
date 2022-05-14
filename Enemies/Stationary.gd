@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 const score = 100
 

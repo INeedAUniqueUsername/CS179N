@@ -33,11 +33,8 @@ var fireCooldown = 0
 const fireInterval = 0.5
 const projectile = preload("res://Sprites/StarBeam.tscn")
 
-var beamCooldown = 6
-const beamInterval = 6
 func _process(delta):
 	fireCooldown = max(0, fireCooldown - delta)
-	beamCooldown = max(0, beamCooldown - delta)
 	if player:
 		var offset = (player.global_position - global_position)
 		var dest_angle = offset
@@ -56,10 +53,7 @@ func _process(delta):
 			if vel.length() < 180:
 				vel += offset.normalized() * min(speed * delta, offset.length())
 				
-	if targetInRange:
-		if beamCooldown == 0:
-			$Cannons.play("Fire")
-			beamCooldown = beamInterval
+	if attackable > 0:
 		if fireCooldown == 0:
 			fireCooldown = 1
 			var b = projectile.instance() as Node2D
@@ -67,20 +61,20 @@ func _process(delta):
 			ignore.append(b)
 			get_parent().get_parent().add_child(b)
 			b.global_position = $BeamOrigin.global_position
-			b.vel = vel + polar2cartesian(720, rotation)
+			b.vel = vel + polar2cartesian(480, rotation)
 func _physics_process(delta):
 	global_translate(vel * delta)
 
-var targetInRange = false
+var attackable = 0
 func _on_BeamRange_entered(area):
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor == player:
-		targetInRange = true
+		attackable += 1
 func _on_BeamRange_exited(area):
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor == player:
-		targetInRange = false
+		attackable -= 1
