@@ -48,8 +48,8 @@ func _on_Damage_Area_area_entered(area):
 			var velDiff = self.vel - actor.common.vel
 			actor.common.vel += velDiff / 2
 			self.vel -= velDiff
-		actor.damage(self)
-		ignore_target = ignore_time
+		#actor.damage(self)
+		#ignore_target = ignore_time
 
 # Triggered when player enter's enemy's attack radius
 var attackable = []

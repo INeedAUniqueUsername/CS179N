@@ -23,6 +23,7 @@ radius = 400.0
 radius = 450.0
 
 [node name="LaserSentry" type="Node2D" groups=["Actor", "Stationary"]]
+scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 2 )
 
 [node name="Shield" type="Sprite" parent="." groups=["Actor"]]
@@ -64,6 +65,7 @@ script = ExtResource( 3 )
 parent = NodePath("../..")
 
 [node name="Area" type="Area2D" parent="Gun/Shield"]
+visible = false
 
 [node name="Shape" type="CollisionShape2D" parent="Gun/Shield/Area"]
 position = Vector2( 4, 0 )
