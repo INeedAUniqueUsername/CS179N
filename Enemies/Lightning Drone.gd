@@ -3,12 +3,11 @@ extends Enemies
 const score = 100
 
 var vel = Vector2(0, 0)
-var time_scale = 1.0
 func set_time_scale(t:float):
-	time_scale = t
+	self.time_scale = t
 	$Anim.playback_speed = t
 func _physics_process(delta):
-	delta *= time_scale
+	delta *= self.time_scale
 	if target:
 		print('target: ' + target.name)
 		var speed = 180 * delta
@@ -43,10 +42,14 @@ func _on_animation_finished(name):
 				fire_salvo_1()
 			else:
 				fire_salvo_2()
+const failureChance = 0.25
 var beam = preload("res://LightningBeam.tscn")
 func fire_salvo_1():
 	var ignore = [self]
+	
 	for angle in [0, PI/2, PI, PI * 1.5]:
+		if randf() < failureChance:
+			continue
 		var l = beam.instance()
 		
 		l.vel = vel + polar2cartesian(480, angle)
@@ -60,6 +63,8 @@ func fire_salvo_1():
 func fire_salvo_2():
 	var ignore = [self]
 	for angle in [0, PI/2, PI, PI * 1.5]:
+		if randf() < failureChance:
+			continue
 		angle += PI/4
 		
 		var l = beam.instance()

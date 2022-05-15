@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if lifetime < 0:
 		explode()
 		return
-	if target != null:
+	if target:
 		var offset = (target.global_position - global_position)
 		var targetAngle = atan2(offset.y, offset.x)
 		var angleDiff = atan2(sin(targetAngle - rotation), cos(targetAngle - rotation))

@@ -95,9 +95,13 @@ func _on_Detect_Area_area_exited(area):
 		else:
 			target = detected[0]
 
+var time_scale = 1.0
+func set_time_scale(t):
+	time_scale = t
 # Called every frame to constantly look at the target
 var target
 func _physics_process(delta):
+	delta *= time_scale
 	if target && ignore_target <= 0:
 		var offset = target.global_position - global_position
 		var targetAngle = atan2(offset.y, offset.x)

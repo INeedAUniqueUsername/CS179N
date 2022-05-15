@@ -17,7 +17,7 @@ func desc(heroName, primary, secondary):
 var heroDesc = {
 	HeroTypes.starman: desc("Starman", "Laser Cannons", "Shooting Star"),
 	HeroTypes.asteria: desc("Asteria", "Plasma Thrower", "Star Burst"),
-	HeroTypes.astroknight: desc("Astroknight", "Blade Beam", "Solar Saber"),
+	HeroTypes.astroknight: desc("Astroknight", "Steel Bolt", "Solar Saber"),
 	HeroTypes.lune: desc("Lune", "Crescent Beam", "Moon Blast")
 }
 

@@ -9,6 +9,7 @@ export(NodePath) var parent = ".."
 func get_vel():
 	return parent.vel
 func set_vel(vel):
+	return
 	parent.vel = vel
 func _ready():
 	main = get_node(main)
@@ -17,6 +18,8 @@ func _ready():
 	$Area.connect("area_exited", self, "on_area_exited")
 var hit = []
 func on_area_entered(area):
+	if hp == 0:
+		return
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
@@ -27,9 +30,9 @@ func on_area_entered(area):
 	main.ignore.append(actor)
 	
 	if actor and actor.is_in_group("Player"):
-		var velDiff = vel - actor.vel
-		actor.common.vel += velDiff
-		parent.vel -= velDiff
+		var velDiff = vel - actor.common.vel
+		actor.common.vel = -actor.common.vel
+		#parent.vel -= velDiff
 func on_area_exited(area):
 	if !Helper.is_area_body(area):
 		return
@@ -47,7 +50,9 @@ func _process(delta):
 		a.monitoring = hp > 0
 	modulate.a = 1.0 * hp / hp_max
 func damage(projectile):
+	#Laser beats shields
 	if hp == 0:
+		#pretend as if the projectile did not hit us
 		if 'pierce' in projectile:
 			projectile.pierce += 1
 		return

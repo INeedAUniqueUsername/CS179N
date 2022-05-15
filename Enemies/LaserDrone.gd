@@ -9,6 +9,7 @@ var curr_cooldown = 0
 const beam = preload("res://LaserBeam.tscn")
 var beamSpeed = 400
 func _physics_process(delta):
+	delta *= self.time_scale
 	global_translate(vel * delta)
 	
 	curr_cooldown -= delta
@@ -28,6 +29,7 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	delta *= self.time_scale
 	var destVel = forward * moveSpeed
 	var velDiff = destVel - vel
 	vel += velDiff.normalized() * min(velDiff.length(), 120 * delta)
