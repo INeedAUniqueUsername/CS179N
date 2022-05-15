@@ -106,13 +106,16 @@ func _on_cannon_entered(area):
 	if actor.is_in_group("Projectile"):
 		other_mass = 0.01
 	
+	
+
 	var velDiff = (common.vel * mass - actor.vel * other_mass) / 2
-	actor.vel += velDiff / other_mass
-	common.vel -= velDiff / mass
-	damage = velDiff.length() / 8
+	damage = velDiff.length() / 8		
 	if actor.is_in_group("Projectile"):
+		if actor.is_in_group("Magic"):
+			return
 		actor.ignore = [self]
 	else:
 		actor.damage(self)
-		
+	actor.vel += velDiff / other_mass
+	common.vel -= velDiff / mass
 	actor.vel += polar2cartesian(120, rotation - PI/2)

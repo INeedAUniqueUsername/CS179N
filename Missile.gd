@@ -10,7 +10,7 @@ onready var lifetime = lifespan
 var ignore = []
 var target
 
-
+var rotationMatchesVel : bool = true
 func _physics_process(delta):
 	lifetime -= delta
 	if lifetime < 0:
@@ -22,8 +22,8 @@ func _physics_process(delta):
 		var angleDiff = atan2(sin(targetAngle - rotation), cos(targetAngle - rotation))
 		var turnRate = PI * 2 / 3
 		vel = vel.rotated(sign(angleDiff) * min(abs(angleDiff), delta * turnRate))
-	rotation = atan2(vel.y, vel.x)
-	
+	if rotationMatchesVel:
+		rotation = atan2(vel.y, vel.x)
 	global_translate(vel * delta)
 	
 var forward = Vector2(0, 0)
@@ -44,6 +44,7 @@ func _on_area_entered(area):
 	actor.damage(self)
 	explode()
 
+signal on_destroyed(Node2D)
 const explosion = preload("res://MissileExplosion.tscn")
 func explode():
 	var explosion_load = explosion.instance()
@@ -51,4 +52,5 @@ func explode():
 	get_parent().add_child(explosion_load)
 	explosion_load.set_global_position(get_global_position())
 	explosion_load.playing = true
+	emit_signal("on_destroyed", self)
 	queue_free()

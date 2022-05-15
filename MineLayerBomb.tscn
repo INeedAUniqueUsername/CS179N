@@ -9,10 +9,10 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14, 4 )
 
-[node name="MineLayerBomb" type="Sprite"]
+[node name="MineLayerBomb" type="Sprite" groups=["Actor", "Kinetic", "Projectile"]]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-lifespan = 5.0
+lifespan = 15.0
 
 [node name="Area" type="Area2D" parent="."]
 

@@ -6,11 +6,16 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.0
 
-[node name="MineLayerSpike" type="Sprite"]
+[node name="MineLayerSpike" type="Sprite" groups=["Actor", "Kinetic", "Projectile"]]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+lifespan = 30.0
+damage = 20.0
+damp = 30.0
 
 [node name="Area" type="Area2D" parent="."]
 
 [node name="Circle" type="CollisionShape2D" parent="Area"]
 shape = SubResource( 1 )
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_entered"]

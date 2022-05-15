@@ -25,7 +25,8 @@ func register_actors():
 			continue
 		if !l.is_in_group("Actor"):
 			continue
-		register(l)
+		if !Helper.get_parent_actor(l.get_parent()):
+			register(l)
 		if l.is_in_group("Player"):
 			player = l
 		if l.is_in_group("Boss Summon"):

@@ -5,7 +5,7 @@ export(float) var lifespan = 1.0
 export(float) var damage = 25.0
 export(float) var drain = 0
 export(int) var pierce = 1
-export(float) var damp = 1.0
+export(float) var damp = 0
 export(float) var knockback = 3.0
 export(NodePath) var trail = null
 func _ready():
@@ -21,12 +21,13 @@ var ignore = []
 const SpriteFade = preload("res://SpriteFade.tscn")
 var trailTime = 0
 signal on_expired(Node2D)
+signal on_destroyed(Node2D)
 func _physics_process(delta):
 	delta *= time_scale
 	lifetime -= delta
 	if lifetime < 0:
 		emit_signal("on_expired", self)
-		queue_free()
+		destroy()
 		return
 	if trail:
 		trailTime -= delta
@@ -54,6 +55,9 @@ func _on_area_entered(area):
 	var n = actor.name
 	actor.damage(self)
 	if pierce < 1:
-		queue_free()
+		destroy()
 func damage(projectile):
 	var actor = Helper.get_parent_actor(projectile)
+func destroy():
+	emit_signal("on_destroyed", self)
+	queue_free()

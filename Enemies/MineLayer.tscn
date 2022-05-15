@@ -1,23 +1,29 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Enemies/MineLayer.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/MineLayer.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/MineLayerBody.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/MineLayerShield.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/MineLayerSideShield.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/Shield.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/MineLayerCannon.png" type="Texture" id=6]
 
 [node name="MineLayer" type="Node2D" groups=["Actor"]]
 script = ExtResource( 1 )
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+offset = Vector2( 0, -5.5 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Area" type="Area2D" parent="Body"]
+visible = false
 
 [node name="Polygon" type="CollisionPolygon2D" parent="Body/Area"]
 scale = Vector2( 2, 2 )
-polygon = PoolVector2Array( 16, -8.5, 10, -11, 7.5, -5, 6, -8, 6, -14.5, 3, -17.5, -3, -17.5, -6, -14.5, -6, -8.5, -7.5, -5, -10, -11, -16, -8, -7.5, 4, -7.5, 6.5, -5, 7, -5, 12, 5, 12, 5, 7, 7.5, 6.5, 7.5, 4 )
+polygon = PoolVector2Array( 7.5, -5, 6, -8, 6, -14.5, 3, -17.5, -3, -17.5, -6, -14.5, -6, -8.5, -7.5, -5, -7.5, 6.5, -5, 7, -5, 12, 5, 12, 5, 7, 7.5, 6.5 )
+
+[node name="Origin" type="Position2D" parent="Body"]
+rotation = -8.74228e-08
 
 [node name="FrontShield" type="Sprite" parent="." groups=["Actor"]]
 position = Vector2( 0, -34 )
@@ -28,6 +34,7 @@ hp_max = 240
 main = NodePath("..")
 
 [node name="Area" type="Area2D" parent="FrontShield"]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FrontShield/Area"]
 polygon = PoolVector2Array( -19, 8, -19, 1, -10, -8, -10, -8, 10, -8, 19, 1, 19, 8, 18, 8, 7, -3, -7, -3, -18, 8 )
@@ -41,6 +48,7 @@ hp_max = 240
 main = NodePath("..")
 
 [node name="Area" type="Area2D" parent="LeftShield"]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftShield/Area"]
 polygon = PoolVector2Array( 10, 15, 3, 15, 2, 14, -9, -8, -9, -11, -5, -15, -4, -15, 10, 13 )
@@ -55,6 +63,36 @@ hp_max = 240
 main = NodePath("..")
 
 [node name="Area" type="Area2D" parent="RightShield"]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightShield/Area"]
 polygon = PoolVector2Array( 10, 15, 3, 15, 2, 14, -9, -8, -9, -11, -5, -15, -4, -15, 10, 13 )
+
+[node name="LeftCannon" type="Sprite" parent="."]
+position = Vector2( -22, -5 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 6 )
+
+[node name="Area" type="Area2D" parent="LeftCannon"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftCannon/Area"]
+polygon = PoolVector2Array( -2, -16, 10, -10, -3, 10, -11, 18, -11, 1 )
+
+[node name="Origin" type="Position2D" parent="LeftCannon"]
+position = Vector2( 4, -13 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+
+[node name="RightCannon" type="Sprite" parent="."]
+position = Vector2( 22, -5 )
+texture = ExtResource( 6 )
+
+[node name="Area" type="Area2D" parent="RightCannon"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightCannon/Area"]
+polygon = PoolVector2Array( -2, -16, 10, -10, -3, 10, -11, 18, -11, 1 )
+
+[node name="Origin" type="Position2D" parent="RightCannon"]
+position = Vector2( 4, -13 )
