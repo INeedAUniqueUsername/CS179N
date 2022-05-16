@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[node name="PlasmaBall" type="Sprite" groups=["Actor", "Projectile"]]
+[node name="PlasmaBall" type="Sprite" groups=["Actor", "Kinetic", "Projectile"]]
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -44,6 +44,7 @@ damp = 300.0
 knockback = 0.0
 
 [node name="Area" type="Area2D" parent="."]
+visible = false
 
 [node name="Shape" type="CollisionPolygon2D" parent="Area"]
 polygon = PoolVector2Array( -6, 1, -6, -1, -1, -6, 1, -6, 6, -1, 6, 1, 1, 6, -1, 6 )

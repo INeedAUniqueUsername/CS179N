@@ -582,33 +582,10 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Mine Layer" type="Button" parent="Control"]
+[node name="Space Cube" type="Button" parent="Control"]
 margin_left = -296.0
 margin_top = -172.0
 margin_right = -200.0
-margin_bottom = -76.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-anims = [ "Open", "Close", "Charge" ]
-desc = "Mine Layer"
-
-[node name="Body" type="Sprite" parent="Control/Mine Layer"]
-position = Vector2( 48, 48 )
-texture = ExtResource( 8 )
-region_rect = Rect2( 0, 0, 32, 32 )
-
-[node name="Border" type="Sprite" parent="Control/Mine Layer"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Mine Layer"]
-stream = ExtResource( 10 )
-
-[node name="Space Cube" type="Button" parent="Control"]
-margin_left = -96.0
-margin_top = -172.0
 margin_bottom = -76.0
 rect_scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
@@ -656,6 +633,28 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Space Cube"]
+stream = ExtResource( 10 )
+
+[node name="Mine Layer" type="Button" parent="Control"]
+margin_left = -96.0
+margin_top = -172.0
+margin_bottom = -76.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+desc = "Mine Layer"
+
+[node name="Body" type="Sprite" parent="Control/Mine Layer"]
+position = Vector2( 48, 48 )
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Border" type="Sprite" parent="Control/Mine Layer"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Mine Layer"]
 stream = ExtResource( 10 )
 
 [node name="Lost Vector" type="Button" parent="Control"]

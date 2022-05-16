@@ -42,7 +42,6 @@ signal on_boss_destroyed
 func on_destroyed(n):
 	if "score" in n:
 		player.common.levelScore += n.score
-		PlayerVariables.totalScore += n.score
 	leaves.erase(n)
 	if n.is_in_group("Boss Summon"):
 		bossSummon.erase(n)

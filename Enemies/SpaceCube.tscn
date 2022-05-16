@@ -226,6 +226,7 @@ texture = ExtResource( 4 )
 vframes = 2
 region_rect = Rect2( 32, 0, 32, 16 )
 script = ExtResource( 3 )
+blockPlayer = true
 
 [node name="Area" type="Area2D" parent="UpperShell" groups=["Behavior"]]
 priority = 1.0
@@ -241,6 +242,7 @@ vframes = 2
 frame = 1
 region_rect = Rect2( 32, 16, 32, 16 )
 script = ExtResource( 3 )
+blockPlayer = true
 
 [node name="Area" type="Area2D" parent="LowerShell" groups=["Behavior"]]
 priority = 1.0
@@ -264,7 +266,9 @@ anims/Idle = SubResource( 5 )
 anims/Open = SubResource( 14 )
 anims/RESET = SubResource( 15 )
 
+[connection signal="on_destroyed" from="UpperShell" to="." method="_on_armor_destroyed"]
 [connection signal="area_entered" from="UpperShell/Area" to="UpperShell" method="_on_area_entered"]
+[connection signal="on_destroyed" from="LowerShell" to="." method="_on_armor_destroyed"]
 [connection signal="area_entered" from="LowerShell/Area" to="LowerShell" method="_on_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="Anim" to="." method="_on_animation_finished"]

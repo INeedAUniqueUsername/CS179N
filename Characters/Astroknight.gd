@@ -66,6 +66,8 @@ func _on_sword_entered(area):
 		actor.ignore = []
 		var na = actor.name
 		print(na)
+	elif actor.is_in_group("Kinetic"):
+		actor.vel += common.vector_up * 240
 	elif actor.is_in_group("Lightning"):
 		damage(actor)
 	elif actor.is_in_group("Projectile"):

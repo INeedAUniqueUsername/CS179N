@@ -92,7 +92,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 5, 35 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0, 0, 350 ]
+"values": [ 0, 0, 351 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Label:modulate")
@@ -158,6 +158,12 @@ custom_fonts/font = SubResource( 1 )
 shortcut = SubResource( 3 )
 text = "Quit"
 
+[node name="Hover" type="AnimationPlayer" parent="."]
+root_node = NodePath("../TextureRect")
+autoplay = "Hover"
+anims/Hover = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.25
@@ -172,18 +178,13 @@ grow_vertical = 2
 rect_scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
 
-[node name="Hover" type="AnimationPlayer" parent="TextureRect"]
-autoplay = "Hover"
-anims/Hover = SubResource( 7 )
-anims/RESET = SubResource( 8 )
-
 [node name="Label" type="Label" parent="."]
 margin_left = 64.0
 margin_top = 568.0
 margin_right = 876.0
 margin_bottom = 975.0
 custom_fonts/font = SubResource( 4 )
-text = "In the year 2100, the Defenders of Earth were named.
+text = "In the year 2100, the Defenders of Earth were chosen.
 They were Starman, Asteria, Astroknight, and Lune.
 
 Using powered exoskeletons called starskeletons,
@@ -193,8 +194,8 @@ They were on a trip to Mars when they were suddenly
 lost in a zone where space wrapped around itself.
 
 Soon, they were surrounded by hostile drones and
-under attack by their new nemesis, Ad Dastardly Astra"
-percent_visible = -0.00286533
+under attack by their new nemesis, Ad Dastardly Astra."
+percent_visible = -0.00293255
 
 [node name="Scroll" type="AnimationPlayer" parent="."]
 autoplay = "Scroll"

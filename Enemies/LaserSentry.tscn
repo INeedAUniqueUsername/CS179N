@@ -13,6 +13,7 @@ radius = 400.0
 radius = 450.0
 
 [node name="LaserSentry" type="Node2D" groups=["Actor", "Stationary"]]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
 [node name="Mount" type="Sprite" parent="."]
@@ -59,6 +60,5 @@ position = Vector2( 44, 0 )
 [connection signal="area_entered" from="Gun/Attack_Area" to="." method="_on_Attack_Area_area_entered"]
 [connection signal="area_exited" from="Gun/Attack_Area" to="." method="_on_Attack_Area_area_exited"]
 [connection signal="area_entered" from="Gun/Detect_Area" to="." method="_on_Detect_Area_area_entered"]
-[connection signal="area_exited" from="Gun/Detect_Area" to="Gun" method="_on_Detect_Area_area_exited"]
+[connection signal="area_exited" from="Gun/Detect_Area" to="." method="_on_Detect_Area_area_exited"]
 [connection signal="area_entered" from="Gun/Damage_Area" to="." method="_on_Damage_Area_area_entered"]
-[connection signal="area_entered" from="Gun/Damage_Area" to="Gun" method="_on_Damage_Area_area_entered"]

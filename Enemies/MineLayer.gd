@@ -12,13 +12,14 @@ var turnTime = 0
 var turnRate = 0
 
 onready var bombCooldown = bombInterval
-var bombInterval = 1
+var bombInterval = 0.8
 const bomb = preload("res://MineLayerBomb.tscn")
 
 onready var mineCooldown = mineInterval
-var mineInterval = 1
+var mineInterval = 1.2
 const mine = preload("res://Sprites/MineLayerSpike.tscn")
 
+var bombCount = 0
 onready var ignore = [self, $FrontShield, $LeftShield, $RightShield]
 func _physics_process(delta):
 	turnTime = max(0, turnTime - delta)
@@ -40,14 +41,15 @@ func _physics_process(delta):
 		var offset = player.global_position - global_position
 		if bombCooldown == 0:
 			bombCooldown = bombInterval
+			bombCount += 1
 			var b = bomb.instance()
 			b.ignore = ignore
 			ignore.append(b)
 			get_parent().add_child(b)
 			get_parent().register(b)
 			b.rotationMatchesVel = false
-			b.global_position = $LeftCannon/Origin.global_position
-			b.vel = vel + polar2cartesian(120, rotation - PI/2 - PI/8)
+			b.global_position = [$LeftCannon/Origin, $RightCannon/Origin][bombCount%2].global_position
+			b.vel = vel + polar2cartesian(120, rotation - PI/2 + [-PI/8, PI/8][bombCount%2])
 			
 		if mineCooldown == 0:
 			mineCooldown = mineInterval

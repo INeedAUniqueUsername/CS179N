@@ -7,7 +7,13 @@ var vel : Vector2 setget set_vel, get_vel
 export(NodePath) var main = "../.."
 export(NodePath) var parent = ".."
 func get_vel():
-	return parent.vel
+	if 'vel' in parent:
+		return parent.vel
+	if 'vel' in main:
+		return main.vel
+	return Vector2(0, 0)
+	# quick fix
+	
 func set_vel(vel):
 	return
 	parent.vel = vel

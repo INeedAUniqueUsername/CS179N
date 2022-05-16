@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/LostVectorSheet.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/Armor.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blade:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Spin"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blade:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0 ]
+}
+
+[node name="Arm" type="Sprite" groups=["Actor"]]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 80, 80, 32 )
+script = ExtResource( 2 )
+blockPlayer = true
+
+[node name="Area" type="Area2D" parent="."]
+visible = false
+priority = 1.0
+
+[node name="Poly" type="CollisionPolygon2D" parent="Area"]
+polygon = PoolVector2Array( -40, -10, -34, -10, -24, -8, -6, -6, 40, -4, 40, 4, -6, 6, -24, 8, -34, 10, -40, 10 )
+
+[node name="Blade" type="Sprite" parent="." groups=["Actor"]]
+position = Vector2( 35, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 48, 48 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area2D" parent="Blade"]
+visible = false
+priority = 2.0
+
+[node name="Poly" type="CollisionPolygon2D" parent="Blade/Area"]
+polygon = PoolVector2Array( -24, -4, -4, -4, -4, -24, 4, -24, 4, -4, 24, -4, 24, 4, 4, 4, 4, 24, -4, 24, -4, 4, -24, 4 )
+
+[node name="Spin" type="AnimationPlayer" parent="."]
+autoplay = "Spin"
+anims/RESET = SubResource( 1 )
+anims/Spin = SubResource( 2 )
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Blade/Area" to="Blade" method="_on_area_entered"]

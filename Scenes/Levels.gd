@@ -1,18 +1,57 @@
 extends Node
-const LaserDrone = preload("res://Enemies/LaserDrone.tscn")
 const ThunderDrone = preload("res://Enemies/ThunderDrone.tscn")
 const SpaceCube = preload("res://Enemies/SpaceCube.tscn")
+const MineLayer = preload("res://Enemies/MineLayer.tscn")
+const LostVector = preload("res://LostVector.tscn")
+const StarMachine = preload("res://StarMachine.tscn")
+
+const LaserDrone = preload("res://Enemies/LaserDrone.tscn")
 const MissileDrone = preload("res://Enemies/MissileDrone.tscn")
+const ShockDrone = preload("res://Enemies/Shock Drone.tscn")
 const LightningDrone = preload("res://Enemies/Lightning Drone.tscn")
+const ShieldDrone = preload("res://Enemies/Shield Drone.tscn")
+
+const LaserSentry = preload("res://Enemies/LaserSentry.tscn")
+const ShieldedLaserSentry = preload("res://Enemies/ShieldedLaserSentry.tscn")
+
 var enemyTables : Array = [
-	EnemyTable.new({LaserDrone: 30, MissileDrone: 30, LightningDrone: 30}),
-	EnemyTable.new({LaserDrone: 60, ThunderDrone:1}),
+	EnemyTable.new({
+		LaserDrone: 60,
+		LaserSentry:20,
+		ShockDrone:10, LightningDrone: 10
+	}),
+	EnemyTable.new({
+		LaserDrone: 60,
+		LaserSentry:20,
+		ShieldedLaserSentry:20,
+		MissileDrone: 10,
+	}),
+	EnemyTable.new({
+		LaserDrone:60,
+		MissileDrone:30,
+		ShieldedLaserSentry:20,
+		ShieldDrone:10,
+	}),
+	EnemyTable.new({
+		LaserDrone:60,
+		MissileDrone:30,
+		ShieldedLaserSentry:20,
+		ShieldDrone:10,
+	}),
+	EnemyTable.new({
+		LaserDrone:60,
+		MissileDrone:30,
+		ShieldedLaserSentry:20,
+		ShieldDrone:10,
+	})
 ]
 var level_count = 5
 var bosses = [
-	preload("res://StarMachine.tscn"),
 	ThunderDrone,
-	SpaceCube
+	SpaceCube,
+	MineLayer,
+	#Boss 4
+	StarMachine
 ]
 
 class EnemyTable:

@@ -30,7 +30,7 @@ func damage(projectile):
 		destroy()
 	pass
 var fireCooldown = 0
-const fireInterval = 0.5
+const fireInterval = 1.5
 const projectile = preload("res://Sprites/StarBeam.tscn")
 
 func _process(delta):
@@ -55,7 +55,7 @@ func _process(delta):
 				
 	if attackable > 0:
 		if fireCooldown == 0:
-			fireCooldown = 1
+			fireCooldown = fireInterval
 			var b = projectile.instance() as Node2D
 			b.ignore = ignore
 			ignore.append(b)

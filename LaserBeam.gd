@@ -33,8 +33,7 @@ func _physics_process(delta):
 		trailTime -= delta
 		if trailTime < 0:
 			trailTime = 1 / 90.0
-			
-			Helper.create_sprite_fade(get_parent(), trail)
+			Helper.create_sprite_fade(get_parent(), trail, 0.1 / time_scale)
 	if damp > 0:
 		vel -= vel.normalized() * min(damp * delta, vel.length())
 	global_translate(vel * delta)
@@ -42,11 +41,11 @@ func _on_area_entered(area):
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
+	if ignore.has(actor):
+		return
 	if !actor:
 		return
 	if actor.is_in_group("Projectile"):
-		return
-	if ignore.has(actor):
 		return
 	pierce -= 1
 	if !actor.is_in_group("Stationary"):

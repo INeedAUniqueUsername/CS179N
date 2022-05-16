@@ -12,8 +12,10 @@ func _ready():
 	self.body = $Gun
 	self.connect("on_destroyed", self, "on_sentry_destroyed")
 func on_sentry_destroyed(a):
-	$Shield.destroy()
-	$Gun/Shield.destroy()
+	
+	for s in [$Shield, $Gun/Shield]:
+		if s:
+			s.destroy()
 func _physics_process(delta):
 	curr_cooldown -= delta
 	
@@ -36,3 +38,4 @@ func _physics_process(delta):
 func _process(delta):
 	if ignore_target > 0:
 		ignore_target -= delta
+

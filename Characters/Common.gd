@@ -7,7 +7,6 @@ var energy = 100
 var fuel = 100
 var levelTime = 0.0
 var levelScore = 0.0
-var Score = 0.0
 
 var fuelUsage = 1.0/2
 var thrustSpeed = 600

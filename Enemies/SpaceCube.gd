@@ -1,16 +1,20 @@
 extends Node2D
 const score = 800
+onready var ignore = [self, $LowerShell, $UpperShell]
 var bossName = "Space Cube"
 func _ready():
 	call_deferred("register_player")
+	$LowerShell.destroy()
+	$UpperShell.destroy()
 var player
 func register_player():
 	player = get_parent().player
 var open = false
+var armorDestroyed = false
 var energy = 100
 var fireCooldown = 0
 const laser = preload("res://LaserBeamLarge.tscn")
-
+const missile = preload("res://Missile.tscn")
 var trailTime = 0
 func _physics_process(delta):
 	global_translate(vel * delta)
@@ -38,40 +42,52 @@ func _physics_process(delta):
 					$Anim.play("Close")
 				else:
 					$Anim.play("Charge")
-			else:
-				if fireCooldown < 0:
-					energy += delta * 50
-					var offset = player.global_position - $Body.global_position
-					if offset.length() < 420:
-						fireCooldown = 1 / 9.0
-						if open:
-							fire_mine()
-						else:
-							$Anim.play("Open")
+			elif fireCooldown < 0:
+				energy += delta * 50
+				var offset = player.global_position - $Body.global_position
+				
+				if armorDestroyed:
+					
+					fireCooldown = 1 / 4.0
+					
+					var l = missile.instance()
+					l.target = player
+					get_parent().add_child(l)
+					l.set_global_transform($Body.get_global_transform())
+					l.ignore = ignore
+					ignore.append(l)
+					var angle = randf() * PI * 2
+					l.rotation = angle
+					l.vel = vel + polar2cartesian(240, angle)
+					energy = max(0, energy - 10)
+				elif offset.length() < 420:
+					fireCooldown = 1 / 9.0
+					if open:
+						fire_mine()
 					else:
+						$Anim.play("Open")
+				else:
+					
+					if !open:
 						
-						if !open:
-							
+					
+						fireCooldown = 1 / 12.0
 						
-							fireCooldown = 1 / 12.0
-							
-							var l = laser.instance()
-							l.z_index = 1
-							get_parent().add_child(l)
-							l.set_global_transform($Body.get_global_transform())
-							l.ignore = [self, $LowerShell, $UpperShell]
-							l.rotation = atan2(offset.y, offset.x)
-							l.vel = offset.normalized() * 1080
-							energy = max(0, energy - 4)
-						else:
-							$Anim.play("Close")
+						var l = laser.instance()
+						get_parent().add_child(l)
+						l.set_global_transform($Body.get_global_transform())
+						l.ignore = [self, $LowerShell, $UpperShell]
+						l.rotation = atan2(offset.y, offset.x)
+						l.vel = offset.normalized() * 1080
+						energy = max(0, energy - 4)
+					else:
+						$Anim.play("Close")
 const mine = preload("res://SpaceCubeMine.tscn")	
 func fire_mine():
 	var l = mine.instance()
-	l.z_index = 1
 	get_parent().add_child(l)
 	l.set_global_transform($Body.get_global_transform())
-	l.ignore = [self, $LowerShell, $UpperShell]
+	l.ignore = ignore
 	l.vel = vel + polar2cartesian(360, rand_range(0, PI*2))
 	energy = max(0, energy - 6)
 var dir_vel : Vector2 = polar2cartesian(120, PI/2 * (randi()%4))
@@ -126,3 +142,9 @@ func _on_animation_finished(anim_name):
 			$Anim.play("Idle")
 			if energy == 0:
 				$Anim.play("Close")
+
+onready var armor = [$LowerShell, $UpperShell]
+func _on_armor_destroyed(a):
+	armor.erase(a)
+	if armor.empty():
+		armorDestroyed = true
