@@ -9,7 +9,7 @@ func set_vel(vel):
 	parent.vel = vel
 
 
-var beamCooldown = 6
+export(float) var beamCooldown = 6
 const beamInterval = 6
 func _process(delta):
 	beamCooldown = max(0, beamCooldown - delta)
@@ -26,6 +26,19 @@ func damage(projectile):
 func destroy():
 	emit_signal("on_destroyed", self)
 	queue_free()
+	
+const sword = preload("res://StarMachineSword.tscn")
+func deploy_sword():
+	var s = sword.instance()
+	var swarm = parent.get_parent()
+	swarm.add_child(s)
+	swarm.actors.append(s)
+	swarm.get_parent().register(s)
+	s.global_position = global_position
+	s.global_rotation = global_rotation
+	s.global_scale = global_scale
+	s.vel = get_parent().vel
+	destroy()
 
 func _on_area_entered(area):
 	if !Helper.is_area_body(area):

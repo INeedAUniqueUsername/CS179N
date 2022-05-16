@@ -5,11 +5,8 @@ var vel : Vector2 = Vector2(0, 0)
 var player : Node2D
 
 
-var ignore : Array
+onready var ignore = [self, $LeftCannon, $RightCannon, $"../LeftHand", $"../RightHand"]
 func _ready():
-	ignore = [$LeftCannon, $RightCannon]
-	for c in get_parent().get_children():
-		ignore.append(c)
 	call_deferred("register_player")
 func register_player():
 	var p = get_parent().get_parent()
@@ -21,7 +18,8 @@ func on_registered_player(p):
 signal on_destroyed(Node2D)
 func destroy():
 	for c in [$LeftCannon, $RightCannon]:
-		c.destroy()
+		if c:
+			c.deploy_sword()
 	emit_signal("on_destroyed", self)
 	queue_free()
 func damage(projectile):

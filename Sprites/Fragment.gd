@@ -35,7 +35,8 @@ func fragment():
 	if !ready:
 		return
 	ready = false
-	var ignore = [p]
+	var ignore = p.ignore
+	ignore.append(self)
 	for i in range(5):
 		var angle = i * PI * 2 / 5.0
 		var b = projectile.instance()

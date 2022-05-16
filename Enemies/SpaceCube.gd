@@ -4,8 +4,8 @@ onready var ignore = [self, $LowerShell, $UpperShell]
 var bossName = "Space Cube"
 func _ready():
 	call_deferred("register_player")
-	$LowerShell.destroy()
-	$UpperShell.destroy()
+	#$LowerShell.destroy()
+	#$UpperShell.destroy()
 var player
 func register_player():
 	player = get_parent().player

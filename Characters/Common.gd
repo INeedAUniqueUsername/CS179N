@@ -55,6 +55,8 @@ var decel_vel
 var decel_turn
 var prevFuel = 100
 func update_systems(delta):
+	hp = 100
+	vel = Vector2(0, 0)
 	delta *= time_scale
 	if state == State.Recovering:
 		fuel = max(0, fuel - delta * 5)

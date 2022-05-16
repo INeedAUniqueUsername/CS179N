@@ -26,8 +26,8 @@ func create_sprite_fade(container:Node2D, spr : Sprite, time:float = 0.1):
 	sf.flip_h = spr.flip_h
 	sf.flip_v = spr.flip_v
 	
-	sf.vframes = spr.vframes
 	sf.hframes = spr.hframes
+	sf.vframes = spr.vframes
 	sf.frame = spr.frame
 	sf.frame_coords = spr.frame_coords
 	

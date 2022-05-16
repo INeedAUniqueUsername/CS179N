@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=1]
 [ext_resource path="res://CodexButton.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sprites/MineLayer.png" type="Texture" id=8]
 [ext_resource path="res://Codex.gd" type="Script" id=9]
 [ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sprites/LostVectorSheet.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/StarMachine.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/StarMachineCannon.png" type="Texture" id=15]
 
@@ -315,6 +316,71 @@ tracks/4/keys = {
 "values": [ 1 ]
 }
 
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blade:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "Spin"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blade:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0 ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "Spin"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0 ]
+}
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 16.0
+
 [sub_resource type="Animation" id=12]
 resource_name = "Fire"
 length = 2.4
@@ -594,7 +660,7 @@ anims = [ "Open", "Close", "Charge" ]
 desc = "Space Cube
 This armored drone flies in four directions. It uses a laser for long-range combat and deploys mines at close-range."
 
-[node name="SpaceCube" type="Node2D" parent="Control/Space Cube" groups=["Actor"]]
+[node name="SpaceCube" type="Node2D" parent="Control/Space Cube"]
 position = Vector2( 48, 48 )
 
 [node name="Body" type="Sprite" parent="Control/Space Cube/SpaceCube"]
@@ -602,14 +668,14 @@ texture = ExtResource( 6 )
 hframes = 13
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="UpperShell" type="Sprite" parent="Control/Space Cube/SpaceCube" groups=["Actor"]]
+[node name="UpperShell" type="Sprite" parent="Control/Space Cube/SpaceCube"]
 position = Vector2( 0, -16 )
 texture = ExtResource( 7 )
 vframes = 2
 region_rect = Rect2( 32, 0, 32, 16 )
 script = ExtResource( 5 )
 
-[node name="LowerShell" type="Sprite" parent="Control/Space Cube/SpaceCube" groups=["Actor"]]
+[node name="LowerShell" type="Sprite" parent="Control/Space Cube/SpaceCube"]
 position = Vector2( 0, 16 )
 texture = ExtResource( 7 )
 vframes = 2
@@ -676,6 +742,124 @@ centered = false
 [node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Lost Vector"]
 stream = ExtResource( 10 )
 
+[node name="LostVector" type="Sprite" parent="Control/Lost Vector" groups=["Actor"]]
+position = Vector2( 45, 45 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 48, 48 )
+
+[node name="Plates" type="Node2D" parent="Control/Lost Vector/LostVector"]
+z_index = -1
+
+[node name="UpperPlate" type="Sprite" parent="Control/Lost Vector/LostVector/Plates" groups=["Actor"]]
+position = Vector2( 0, -26 )
+rotation = -1.5708
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 32, 80 )
+
+[node name="Gun1030" type="Sprite" parent="Control/Lost Vector/LostVector/Plates/UpperPlate" groups=["Actor"]]
+position = Vector2( 1.90735e-06, -26 )
+rotation = -0.785398
+texture = ExtResource( 11 )
+offset = Vector2( 15, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 48, 48, 32 )
+
+[node name="Gun0000" type="Sprite" parent="Control/Lost Vector/LostVector/Plates/UpperPlate" groups=["Actor"]]
+position = Vector2( 7, 3.0598e-07 )
+texture = ExtResource( 11 )
+offset = Vector2( 15, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 48, 48, 32 )
+
+[node name="Gun0130" type="Sprite" parent="Control/Lost Vector/LostVector/Plates/UpperPlate" groups=["Actor"]]
+position = Vector2( -5.72205e-06, 26 )
+rotation = 0.785398
+texture = ExtResource( 11 )
+offset = Vector2( 15, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 48, 48, 32 )
+
+[node name="LowerPlate" type="Sprite" parent="Control/Lost Vector/LostVector/Plates" groups=["Actor"]]
+position = Vector2( 0, 26 )
+rotation = 1.5708
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 32, 80 )
+
+[node name="Gun0430" type="Sprite" parent="Control/Lost Vector/LostVector/Plates/LowerPlate" groups=["Actor"]]
+position = Vector2( -1.90735e-06, -26 )
+rotation = -0.785398
+texture = ExtResource( 11 )
+offset = Vector2( 15, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 48, 48, 32 )
+
+[node name="Gun0600" type="Sprite" parent="Control/Lost Vector/LostVector/Plates/LowerPlate" groups=["Actor"]]
+position = Vector2( 7, -3.0598e-07 )
+texture = ExtResource( 11 )
+offset = Vector2( 15, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 48, 48, 32 )
+
+[node name="Gun0730" type="Sprite" parent="Control/Lost Vector/LostVector/Plates/LowerPlate" groups=["Actor"]]
+position = Vector2( 1.90735e-06, 26 )
+rotation = 0.785398
+texture = ExtResource( 11 )
+offset = Vector2( 15, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 48, 48, 32 )
+
+[node name="Arms" type="Node2D" parent="Control/Lost Vector/LostVector"]
+
+[node name="RightArm" type="Sprite" parent="Control/Lost Vector/LostVector/Arms" groups=["Actor"]]
+position = Vector2( 56, 0 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 80, 80, 32 )
+
+[node name="Blade" type="Sprite" parent="Control/Lost Vector/LostVector/Arms/RightArm"]
+position = Vector2( 35, 0 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 48, 48 )
+
+[node name="Spin" type="AnimationPlayer" parent="Control/Lost Vector/LostVector/Arms/RightArm"]
+autoplay = "Spin"
+anims/RESET = SubResource( 24 )
+anims/Spin = SubResource( 25 )
+
+[node name="LeftArm" type="Sprite" parent="Control/Lost Vector/LostVector/Arms" groups=["Actor"]]
+position = Vector2( -56, 0 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 80, 80, 32 )
+
+[node name="Blade" type="Sprite" parent="Control/Lost Vector/LostVector/Arms/LeftArm"]
+position = Vector2( 35, 0 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 48, 48 )
+
+[node name="Spin" type="AnimationPlayer" parent="Control/Lost Vector/LostVector/Arms/LeftArm"]
+autoplay = "Spin"
+anims/RESET = SubResource( 24 )
+anims/Spin = SubResource( 25 )
+
+[node name="Spin" type="AnimationPlayer" parent="Control/Lost Vector/LostVector/Arms"]
+anims/RESET = SubResource( 26 )
+anims/Spin = SubResource( 27 )
+
+[node name="Area" type="Area2D" parent="Control/Lost Vector/LostVector"]
+
+[node name="Circle" type="CollisionShape2D" parent="Control/Lost Vector/LostVector/Area"]
+shape = SubResource( 5 )
+
 [node name="Star Machine" type="Button" parent="Control"]
 margin_left = 304.0
 margin_top = -172.0
@@ -700,18 +884,18 @@ stream = ExtResource( 10 )
 [node name="StarMachine" type="Node2D" parent="Control/Star Machine"]
 position = Vector2( 48, 48 )
 
-[node name="Head" type="Sprite" parent="Control/Star Machine/StarMachine" groups=["Actor"]]
+[node name="Head" type="Sprite" parent="Control/Star Machine/StarMachine"]
 rotation = -1.5708
 texture = ExtResource( 14 )
 
-[node name="LeftCannon" type="Sprite" parent="Control/Star Machine/StarMachine/Head" groups=["Actor"]]
+[node name="LeftCannon" type="Sprite" parent="Control/Star Machine/StarMachine/Head"]
 position = Vector2( -5.99992, -21 )
 rotation = 3.57628e-06
 scale = Vector2( 1, -1 )
 texture = ExtResource( 15 )
 hframes = 3
 
-[node name="RightCannon" type="Sprite" parent="Control/Star Machine/StarMachine/Head" groups=["Actor"]]
+[node name="RightCannon" type="Sprite" parent="Control/Star Machine/StarMachine/Head"]
 position = Vector2( -6.00008, 21 )
 rotation = 3.57628e-06
 texture = ExtResource( 15 )

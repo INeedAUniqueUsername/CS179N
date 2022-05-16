@@ -19,8 +19,8 @@ func register_player():
 func on_registered_player(p):
 	player = p
 var punchTime = 0
-var punchCooldown = 0
-var punchInterval = 10
+const punchInterval = 10
+var punchCooldown = punchInterval
 const projectiles = [
 	preload("res://Sprites/StarFragment.tscn"),
 	preload("res://PlasmaBall.tscn"),
@@ -36,7 +36,7 @@ func _process(delta):
 	shootCooldown = max(0, shootCooldown - delta)
 	if punchTime > 0:
 		punchTime -= delta
-		Helper.create_sprite_fade(get_parent(), self, 0.1)
+		Helper.create_sprite_fade(get_parent().get_parent(), self, 0.1)
 	else:
 		if targetInRange and punchCooldown <= 0:
 			$Anim.play("Punch")
@@ -67,13 +67,15 @@ func _process(delta):
 			var turnRate = PI * 2 / 3
 			rotation += sign(diff) * min(abs(diff), turnRate * delta)
 			
-			var ignore = []
-			if head:
-				ignore = head.ignore
-			else:
-				for c in get_parent().get_children():
-					ignore.append(c)
 			if shootCooldown <= 0 and abs(diff) < PI / 8:
+				
+				
+				var ignore = []
+				if head:
+					ignore = head.ignore
+				else:
+					for c in get_parent().get_children():
+						ignore.append(c)
 				var projectile = projectiles[randi() % len(projectiles)]
 				var b = projectile.instance() as Node2D
 				if 'target' in b:
@@ -113,7 +115,7 @@ func _on_AttackRange_exited(area):
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor == player:
 		targetInRange = false
-var damage = 20
+var damage = 0
 func _on_PunchArea_entered(area):
 	if punchTime < 0:
 		return
@@ -121,6 +123,8 @@ func _on_PunchArea_entered(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor == player:
-		actor.damage(self)
 		var velDiff = vel - actor.common.vel
+		damage = velDiff.length() / 8
+		actor.damage(self)
+		
 		actor.common.vel += 3 * velDiff / 2

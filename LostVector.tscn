@@ -6,7 +6,7 @@
 [ext_resource path="res://LostVectorArm.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LostVector.gd" type="Script" id=5]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=22]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=23]
 resource_name = "Spin"
 length = 4.0
 loop = true
@@ -38,7 +38,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=26]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -53,7 +53,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=27]
 resource_name = "Spin"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -115,8 +115,8 @@ rotation = 0.785398
 
 [node name="Spin" type="AnimationPlayer" parent="Plates"]
 autoplay = "Spin"
-anims/RESET = SubResource( 1 )
-anims/Spin = SubResource( 2 )
+anims/RESET = SubResource( 22 )
+anims/Spin = SubResource( 23 )
 
 [node name="Arms" type="Node2D" parent="."]
 
@@ -129,8 +129,8 @@ rotation = 3.14159
 scale = Vector2( 1, -1 )
 
 [node name="Spin" type="AnimationPlayer" parent="Arms"]
-anims/RESET = SubResource( 3 )
-anims/Spin = SubResource( 4 )
+anims/RESET = SubResource( 26 )
+anims/Spin = SubResource( 27 )
 
 [node name="Area" type="Area2D" parent="."]
 

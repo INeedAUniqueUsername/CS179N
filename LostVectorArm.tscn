@@ -3,7 +3,7 @@
 [ext_resource path="res://Sprites/LostVectorSheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Armor.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=24]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Blade:rotation_degrees")
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=25]
 resource_name = "Spin"
 length = 0.1
 loop = true
@@ -65,8 +65,8 @@ polygon = PoolVector2Array( -24, -4, -4, -4, -4, -24, 4, -24, 4, -4, 24, -4, 24,
 
 [node name="Spin" type="AnimationPlayer" parent="."]
 autoplay = "Spin"
-anims/RESET = SubResource( 1 )
-anims/Spin = SubResource( 2 )
+anims/RESET = SubResource( 24 )
+anims/Spin = SubResource( 25 )
 
 [connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
 [connection signal="area_entered" from="Blade/Area" to="Blade" method="_on_area_entered"]

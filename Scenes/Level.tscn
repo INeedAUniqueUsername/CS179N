@@ -11,6 +11,7 @@
 [ext_resource path="res://Sprites/FuelBarSheet.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/BossWarning.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/ThunderDrone.tscn" type="PackedScene" id=11]
+[ext_resource path="res://StarMachine.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Sprites/LevelCleared.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/BossBar.png" type="Texture" id=15]
@@ -20,7 +21,6 @@
 [ext_resource path="res://Sprites/GameOver.png" type="Texture" id=19]
 [ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=20]
 [ext_resource path="res://Scenes/PlaceBeacons.gd" type="Script" id=21]
-[ext_resource path="res://Enemies/SpaceCube.tscn" type="PackedScene" id=22]
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -701,6 +701,9 @@ tracks/14/keys = {
 script = ExtResource( 2 )
 bossType = ExtResource( 11 )
 
+[node name="StarMachine" parent="Actors" instance=ExtResource( 12 )]
+position = Vector2( 0, -72 )
+
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )
 
@@ -714,9 +717,6 @@ script = ExtResource( 21 )
 wait_time = 5.0
 autostart = true
 script = ExtResource( 20 )
-
-[node name="SpaceCube" parent="Actors" instance=ExtResource( 22 )]
-position = Vector2( 128, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
