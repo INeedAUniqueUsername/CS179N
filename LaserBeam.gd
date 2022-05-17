@@ -36,6 +36,8 @@ func _physics_process(delta):
 			Helper.create_sprite_fade(get_parent(), trail, 0.1 / time_scale)
 	if damp > 0:
 		vel -= vel.normalized() * min(damp * delta, vel.length())
+	elif damp < 0:
+		vel += polar2cartesian(damp * delta, rotation)
 	global_translate(vel * delta)
 func _on_area_entered(area):
 	if !Helper.is_area_body(area):

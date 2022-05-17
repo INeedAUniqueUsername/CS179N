@@ -16,7 +16,7 @@ func set_time_scale(t):
 	common.set_time_scale(t)
 
 const primaryFireInterval = 0.2
-const secondaryFireInterval = 2
+const secondaryFireInterval = 2.5
 const primaryEnergyUse = 5
 const secondaryEnergyUse = 50
 var fireCount = 0
@@ -59,6 +59,7 @@ func fire_beam():
 	l.set_global_transform(p.get_global_transform())
 	l.rotation_degrees = rotation_degrees - 90
 	
+var beamAccel = preload("res://CrescentBeamAccel.tscn")
 func fire_blast():
 	var p = $BeamOrigin
 	var l = blast.instance()
@@ -67,7 +68,17 @@ func fire_blast():
 	get_parent().add_child(l)
 	l.set_global_transform(p.get_global_transform())
 	l.rotation_degrees = rotation_degrees - 90
-
+	
+	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse:
+		common.energy -= primaryEnergyUse
+		
+		var e = Helper.create_projectile(
+			beamAccel,
+			get_parent(),
+			[self],
+			$BeamOrigin.global_position,
+			common.vel,
+			randf() * PI * 2)
 
 func _on_body_animation_finished(name):
 	if name == "Cast":
