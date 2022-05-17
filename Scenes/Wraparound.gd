@@ -77,6 +77,10 @@ func _process(delta):
 		for l in leaves:
 			var offset = l.global_position - pl
 			while offset.x < -radius:
+				#var inc = (float(abs(offset.x)) / diameter + 1) * diameter
+				#print("Inc: " + inc)
+				#l.global_position.x += inc
+				#offset.x += inc
 				offset.x += diameter
 				l.global_position.x += diameter
 			while offset.x > radius:
