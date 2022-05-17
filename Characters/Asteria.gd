@@ -45,12 +45,12 @@ func _process(delta):
 		$PrimarySound.play()
 		
 		if common.fireCooldown > -0.1:
-			nextCooldown = max(primaryFireInterval / 3, nextCooldown * nextCooldown / (nextCooldown + 0.003))
+			nextCooldown = max(primaryFireInterval / 4, nextCooldown * nextCooldown / (nextCooldown + 0.003))
 		else:
 			nextCooldown = primaryFireInterval
 		common.fireCooldown = nextCooldown
 		
-		common.energy -= max(primaryEnergyUse * nextCooldown / primaryFireInterval, primaryEnergyUse / 3)
+		common.energy -= max(primaryEnergyUse * nextCooldown / primaryFireInterval, primaryEnergyUse / 4)
 		
 		fireCount += 1
 		var p = [$LeftCannon, $RightCannon][fireCount%2]
@@ -93,8 +93,8 @@ func fire_burst():
 	e.damage = 20
 	e.get_node("Anim").playback_speed = 4
 		
-	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse / 4.0:
-		common.energy -= primaryEnergyUse
+	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse * 3:
+		common.energy -= primaryEnergyUse * 3
 		var p = $BurstOrigin
 		for angle in [-30, -20, -10, 0, 10, 20, 30]:
 			var a = rotation_degrees - 90 + angle

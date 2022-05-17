@@ -1,10 +1,9 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=1]
 [ext_resource path="res://CodexButton.gd" type="Script" id=2]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Sprites/Border.png" type="Texture" id=4]
-[ext_resource path="res://Enemies/Armor.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/SpaceCube.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/SpaceCubeArmor.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/MineLayer.png" type="Texture" id=8]
@@ -673,7 +672,6 @@ position = Vector2( 0, -16 )
 texture = ExtResource( 7 )
 vframes = 2
 region_rect = Rect2( 32, 0, 32, 16 )
-script = ExtResource( 5 )
 
 [node name="LowerShell" type="Sprite" parent="Control/Space Cube/SpaceCube"]
 position = Vector2( 0, 16 )
@@ -681,7 +679,6 @@ texture = ExtResource( 7 )
 vframes = 2
 frame = 1
 region_rect = Rect2( 32, 16, 32, 16 )
-script = ExtResource( 5 )
 
 [node name="Anim" type="AnimationPlayer" parent="Control/Space Cube/SpaceCube"]
 autoplay = "Idle"

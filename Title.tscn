@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Title.png" type="Texture" id=2]
@@ -46,6 +46,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 520, 256 ) ]
 }
+
+[sub_resource type="DynamicFont" id=9]
+size = 72
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -145,7 +149,7 @@ custom_fonts/font = SubResource( 1 )
 shortcut = SubResource( 3 )
 text = "Codex"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Credits" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 0.25
 anchor_right = 0.5
@@ -154,6 +158,19 @@ margin_left = -120.0
 margin_top = 460.0
 margin_right = 120.0
 margin_bottom = 523.0
+custom_fonts/font = SubResource( 1 )
+shortcut = SubResource( 3 )
+text = "Credits"
+
+[node name="Quit" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = -120.0
+margin_top = 540.0
+margin_right = 120.0
+margin_bottom = 603.0
 custom_fonts/font = SubResource( 1 )
 shortcut = SubResource( 3 )
 text = "Quit"
@@ -177,6 +194,23 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
+
+[node name="TextureRect2" type="Label" parent="TextureRect"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = 29.0
+margin_top = 19.2588
+margin_right = 509.0
+margin_bottom = 104.259
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.083, 0.083 )
+custom_fonts/font = SubResource( 9 )
+text = "v0.8"
+align = 1
 
 [node name="Label" type="Label" parent="."]
 margin_left = 64.0
@@ -211,4 +245,5 @@ margin_bottom = 40.0
 
 [connection signal="pressed" from="Play" to="." method="play"]
 [connection signal="pressed" from="Codex" to="." method="codex"]
+[connection signal="pressed" from="Credits" to="." method="credits"]
 [connection signal="pressed" from="Quit" to="." method="quit"]
