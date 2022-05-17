@@ -2,8 +2,13 @@ extends Node
 const fragment = preload("res://Sprites/MineLayerSpikeFragment.tscn")
 onready var parent = get_parent()
 signal on_fragmented
-var warmup = 1
+export(float) var warmup = 1
+export(bool) var armed = true
+export(bool) var destroyParent = false
 func _ready():
+	if !armed:
+		queue_free()
+		return
 	parent.connect("on_destroyed", self, "on_destroyed")
 var targets = []
 func _process(delta):
@@ -17,6 +22,8 @@ func on_destroyed(p):
 		return
 	fragment()
 func fragment():
+	if !armed:
+		return
 	var count = 16
 	var speed = 240
 	for i in range(count):
@@ -26,7 +33,11 @@ func fragment():
 			parent.vel + polar2cartesian(speed, angle),
 			angle)
 	emit_signal("on_fragmented")
+	destroy()
+func destroy():
 	queue_free()
+	if destroyParent:
+		parent.destroy()
 func _on_TriggerArea_entered(area):
 	if !Helper.is_area_body(area):
 		return
@@ -39,7 +50,14 @@ func _on_TriggerArea_entered(area):
 			return
 		fragment()
 
-
+func _on_TriggerArea_exited(area):
+	if !Helper.is_area_body(area):
+		return
+	var actor = Helper.get_parent_actor(area)
+	if parent.ignore.has(actor):
+		return
+	if actor and actor.is_in_group("Player"):
+		targets.erase(actor)
 func _on_area_entered(area):
 	if !Helper.is_area_body(area):
 		return
@@ -50,11 +68,3 @@ func _on_area_entered(area):
 		if warmup > 0:
 			return
 		fragment()
-func _on_TriggerArea_exited(area):
-	if !Helper.is_area_body(area):
-		return
-	var actor = Helper.get_parent_actor(area)
-	if parent.ignore.has(actor):
-		return
-	if actor and actor.is_in_group("Projectile"):
-		targets.erase(actor)

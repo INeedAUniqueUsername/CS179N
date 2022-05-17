@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sprites/LostVectorSheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Armor.gd" type="Script" id=2]
+[ext_resource path="res://SimpleGun.gd" type="Script" id=3]
 
-[node name="LostVectorGun" type="Sprite" groups=["Actor"]]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 240, 3 )
+
+[node name="LostVectorGun" type="Sprite" groups=["Actor", "Segment"]]
 texture = ExtResource( 1 )
 offset = Vector2( 15, 0 )
 region_enabled = true
@@ -11,10 +15,24 @@ region_rect = Rect2( 0, 48, 48, 32 )
 script = ExtResource( 2 )
 hp = 150
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area" type="Area2D" parent="."]
 visible = false
 
-[node name="Poly" type="CollisionPolygon2D" parent="Area2D"]
+[node name="Poly" type="CollisionPolygon2D" parent="Area"]
 polygon = PoolVector2Array( -9, -5, -5, -9, 5, -9, 39, -3, 39, 3, 5, 9, -5, 9, -9, 5 )
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[node name="Detect" type="Area2D" parent="." groups=["Behavior"]]
+visible = false
+
+[node name="Poly" type="CollisionShape2D" parent="Detect"]
+position = Vector2( 279, 0 )
+shape = SubResource( 1 )
+
+[node name="Gun" type="Position2D" parent="."]
+position = Vector2( 39, 0 )
+script = ExtResource( 3 )
+fireInterval = 2.0
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Detect" to="Gun" method="_on_detect_entered"]
+[connection signal="area_exited" from="Detect" to="Gun" method="_on_detect_exited"]

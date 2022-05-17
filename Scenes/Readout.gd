@@ -108,6 +108,8 @@ func _process(delta):
 		elif gameOver:
 			
 			get_tree().change_scene("res://Scenes/Ending.tscn")
+	if Input.is_key_pressed(KEY_SPACE) and gameOver:
+		resurrect()
 func check_skip_outro():
 	if skipLevelOutro:
 		go_next_level()
@@ -122,3 +124,8 @@ var gameOver = false
 func game_over():
 	gameOver = true
 	PlayerVariables.set_winner(false)
+func resurrect():
+	gameOver = false
+	PlayerVariables.set_winner(true)
+	player.common.resurrect()
+	$Anim.play("Resurrected")

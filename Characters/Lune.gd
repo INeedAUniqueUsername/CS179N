@@ -15,9 +15,9 @@ func set_time_scale(t):
 	#return
 	common.set_time_scale(t)
 
-const primaryFireInterval = 0.3
+const primaryFireInterval = 0.2
 const secondaryFireInterval = 2
-const primaryEnergyUse = 7
+const primaryEnergyUse = 5
 const secondaryEnergyUse = 50
 var fireCount = 0
 

@@ -16,6 +16,10 @@ func is_area_body(area):
 	if area.is_in_group("Damage"):
 		return false
 	return true
+func get_actor_of_body(area):
+	if is_area_body(area):
+		return get_parent_actor(area)
+	return null
 const SpriteFade = preload("res://SpriteFade.tscn")
 func create_sprite_fade(container:Node2D, spr : Sprite, time:float = 0.1):	
 	var sf = SpriteFade.instance()
@@ -42,7 +46,12 @@ func play_sound(stream: AudioStream):
 	Sounds.add_child(pl)
 	pl.play()
 	pl.connect("finished", pl, "queue_free")
-func create_projectile(projectile: PackedScene, container:Node2D, ignore:Array, pos:Vector2, vel : Vector2, rotation: float = 0):
+func create_projectile(projectile: PackedScene,
+						container:Node2D,
+						ignore:Array,
+						pos:Vector2,
+						vel : Vector2,
+						rotation: float = 0):
 	var p = projectile.instance()
 	p.vel = vel
 	ignore.append(p)
@@ -51,3 +60,7 @@ func create_projectile(projectile: PackedScene, container:Node2D, ignore:Array, 
 	p.global_position = pos
 	p.rotation = rotation
 	return p
+
+
+
+var lightningCount = 0

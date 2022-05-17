@@ -1,24 +1,13 @@
 extends Node
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
+export(bool) var armed = true
 func _ready():
+	if !armed:
+		queue_free()
+		return
 	get_parent().connect("on_expired", self, "on_expired")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 const projectile = preload("res://Sprites/StarFragment.tscn")
 onready var p = get_parent()
-var ready = true
+
 func on_expired(p):
 	fragment()
 func _on_FragmentArea_entered(area):
@@ -32,9 +21,9 @@ func _on_FragmentArea_entered(area):
 		p.queue_free()
 		return
 func fragment():
-	if !ready:
+	if !armed:
 		return
-	ready = false
+	armed = false
 	var ignore = p.ignore
 	ignore.append(self)
 	for i in range(5):

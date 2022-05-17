@@ -10,15 +10,15 @@ func set_vel(vel):
 
 
 export(float) var beamCooldown = 6
-const beamInterval = 6
+const beamInterval = 12
 func _process(delta):
 	beamCooldown = max(0, beamCooldown - delta)
-	if parent.attackable > 0 and beamCooldown == 0:
+	if beamCooldown == 0: # and parent.attackable > 0:
 		$Anim.play("Fire")
 		beamCooldown = beamInterval
 signal on_destroyed(Node2D)
-var hp = 300
-var hp_max = 300
+var hp = 600
+var hp_max = 600
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp == 0:
@@ -32,12 +32,15 @@ func deploy_sword():
 	var s = sword.instance()
 	var swarm = parent.get_parent()
 	swarm.add_child(s)
-	swarm.actors.append(s)
+	swarm.register(s)
 	swarm.get_parent().register(s)
 	s.global_position = global_position
 	s.global_rotation = global_rotation
 	s.global_scale = global_scale
-	s.vel = get_parent().vel
+	s.vel = parent.vel
+	s.player = parent.player
+	s.ignore = parent.ignore
+	parent.ignore.append(s)
 	destroy()
 
 func _on_area_entered(area):

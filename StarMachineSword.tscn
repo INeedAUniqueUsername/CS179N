@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://StarMachineSword.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/StarMachineSword.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Deploy"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -13,7 +12,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -25,7 +24,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ PoolVector2Array( 22, -2, 22, 2, 22, 4, 18, 8, -4, 8, -10, 8, -14, 4, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 ), PoolVector2Array( 26, -2, 30, 2, 30, 4, 26, 8, -4, 8, -3.99993, 11, -6.99995, 7.99998, -9.99995, 8.00001, -14, 4.00003, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 ), PoolVector2Array( 34, -2, 38, 2, 38, 4, 34, 8, -4, 8, -3.99992, 13, -8.99995, 8, -9.99995, 8.00001, -14, 4.00003, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 ), PoolVector2Array( 42, -2, 46, 2, 46, 4, 42, 8, -4, 8, -3.9999, 15, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 ), PoolVector2Array( 50, -2, 54, 2, 54, 4, 50, 8, -4, 8, -3.99989, 17, -15, 6.00004, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 ), PoolVector2Array( 58, -2, 62, 2, 62, 4, 58, 8, -4, 8, -3.99987, 19, -15, 8, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 ) ]
@@ -58,29 +57,121 @@ tracks/1/keys = {
 "values": [ PoolVector2Array( 58, -2, 62, 2, 62, 4, 58, 8, -4, 8, -4, 18, -15, 8, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 ) ]
 }
 
-[node name="RightSword" type="Sprite" groups=["Actor"]]
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.000204906 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Slash"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2 ),
+"transitions": PoolRealArray( -2, 2, 0.5, 2, 0.5, 2, 0.5, 2, 0.5, -2, 0.5 ),
+"update": 0,
+"values": [ 0.000204906, -90.0, 0.000204906, 120.0, 0.000204906, -120.0, 0.000204906, 120.0, 0.000204906, -30.0, 0.000204906 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Spin"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 0.9, 1.1, 1.5 ),
+"transitions": PoolRealArray( -2, 2, 1, 1, 0.5, 1 ),
+"update": 0,
+"values": [ 0.000204906, -60.0, 360.0, 720.0, 1080.0, 1440.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 5 ]
+}
+
+[node name="RightSword" type="Node2D" groups=["Actor"]]
+script = ExtResource( 1 )
+
+[node name="Body" type="Sprite" parent="."]
 rotation = 3.57628e-06
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -5.5, -10.5 )
-vframes = 6
+vframes = 7
 frame = 5
-script = ExtResource( 1 )
 
-[node name="BeamOrigin" type="Position2D" parent="."]
+[node name="BeamOrigin" type="Position2D" parent="Body"]
 position = Vector2( 40.5, -1.99992 )
 rotation = 3.57628e-06
 
-[node name="Area" type="Area2D" parent="."]
+[node name="Area" type="Area2D" parent="Body"]
 position = Vector2( 18.5, -2.5 )
 rotation = 3.57628e-06
 
-[node name="Polygon" type="CollisionPolygon2D" parent="Area"]
+[node name="Polygon" type="CollisionPolygon2D" parent="Body/Area"]
 polygon = PoolVector2Array( 58, -2, 62, 2, 62, 4, 58, 8, -4, 8, -4, 18, -15, 8, -15, 4, -18, 7, -19, 7, -23, 3, -23, 2, -19, -2, -18, -2, -15, 1, -14, 1, -4, -9, -4, -2 )
 
-[node name="Anim" type="AnimationPlayer" parent="."]
+[node name="Anim" type="AnimationPlayer" parent="Body"]
 autoplay = "Deploy"
 anims/Deploy = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
+[node name="Slash" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/Slash = SubResource( 4 )
+anims/Spin = SubResource( 5 )
+
+[connection signal="area_entered" from="Body/Area" to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="Body/Anim" to="." method="_on_animation_finished"]
+[connection signal="animation_finished" from="Slash" to="." method="_on_animation_finished"]

@@ -64,6 +64,7 @@ anims/Spin = SubResource( 2 )
 
 [node name="Fragment" type="Node" parent="."]
 script = ExtResource( 3 )
+armed = false
 
 [node name="FragmentArea" type="Area2D" parent="."]
 

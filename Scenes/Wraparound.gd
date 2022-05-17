@@ -23,6 +23,8 @@ func register_actors():
 	for l in d:
 		if l.is_in_group("Projectile"):
 			continue
+		if l.is_in_group("Segment"):
+			continue
 		if !l.is_in_group("Actor"):
 			continue
 		if !Helper.get_parent_actor(l.get_parent()):
@@ -52,6 +54,8 @@ func on_destroyed(n):
 			
 			for l in get_descendants(b):
 				if !l.is_in_group("Actor"):
+					continue
+				if l.is_in_group("Segment"):
 					continue
 				register(l)
 			

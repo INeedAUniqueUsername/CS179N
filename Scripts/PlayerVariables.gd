@@ -30,7 +30,7 @@ var winner = true
 var totalScore = 0
 var totalTime = 0
 func reset():
-	level = 0
+	level = 2
 	winner = true
 	totalScore = 0
 	totalTime = 0

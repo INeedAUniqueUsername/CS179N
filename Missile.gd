@@ -44,6 +44,9 @@ func _on_area_entered(area):
 	actor.damage(self)
 	explode()
 
+func damage(projectile):
+	explode()
+
 signal on_destroyed(Node2D)
 const explosion = preload("res://MissileExplosion.tscn")
 func explode():

@@ -22,30 +22,15 @@ const secondaryEnergyUse = 50
 
 const beam = preload("res://LaserBeam.tscn")
 const SpriteFade = preload("res://SpriteFade.tscn")
-
+var ignore = [self]
 var trailTime = 0
 func _process(delta):
 	common.update_systems(delta)
 	common.update_controls(delta)
 	if common.state != common.State.Active:
 		return
-	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
-		$PrimaryAttackSound.play()
-		common.energy -= primaryEnergyUse
-		common.fireCooldown = primaryFireInterval
-		var bonus = common.energy / 10
-		var ignore = [self]
-		for p in [$LeftCannon, $RightCannon]:
-			var l = beam.instance()
-			l.damage += bonus
-			l.ignore = ignore
-			ignore.append(l)
-			l.vel = common.vel + common.vector_up * 1024
-			get_parent().add_child(l)
-			l.set_global_transform(p.get_global_transform())
-			l.rotation_degrees = rotation_degrees - 90
-			p.get_node("Anim").play("Fire")
 	if $Anim.current_animation == "Punch":
+		check_primary_fire()
 		trailTime -= delta
 		if trailTime < 0:
 			trailTime = 1 / 15.0
@@ -71,6 +56,26 @@ func _process(delta):
 		$RightLeg/Anim.play("StraightThrust")
 		$LeftCannon/Anim.play("Punch")
 		$RightCannon/Anim.play("Punch")
+	
+	check_primary_fire()
+func check_primary_fire():
+	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+		$PrimaryAttackSound.play()
+		common.energy -= primaryEnergyUse
+		common.fireCooldown = primaryFireInterval
+		if $Anim.current_animation == "Punch":
+			common.fireCooldown /= 2.0
+		var bonus = common.energy / 10
+		for p in [$LeftCannon, $RightCannon]:
+			var l = beam.instance()
+			l.damage += bonus
+			l.ignore = ignore
+			ignore.append(l)
+			l.vel = common.vel + common.vector_up * 1024
+			get_parent().add_child(l)
+			l.set_global_transform(p.get_global_transform())
+			l.rotation_degrees = rotation_degrees - 90
+			p.get_node("Anim").play("Fire")
 func _physics_process(delta):
 	common.update_physics(delta)
 func _on_body_animation_finished(anim_name):

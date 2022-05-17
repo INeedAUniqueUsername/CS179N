@@ -8,6 +8,8 @@ var curr_cooldown = 0
 
 const beam = preload("res://LaserBeam.tscn")
 var beamSpeed = 400
+func _ready():
+	hp = 80
 func _physics_process(delta):
 	delta *= self.time_scale
 	global_translate(vel * delta)

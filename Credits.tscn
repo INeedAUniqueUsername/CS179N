@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Codex.gd" type="Script" id=9]
+[ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=10]
+
+[sub_resource type="DynamicFont" id=8]
+size = 48
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 54
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+font_data = ExtResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -656, -239 )
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 9 )
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 10 )
+
+[node name="Back3" type="ColorRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1940.0
+margin_top = -1100.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_scale = Vector2( 2, 2 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Back2" type="ColorRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -980.0
+margin_top = -560.0
+margin_right = 940.0
+margin_bottom = 520.0
+color = Color( 0.0588235, 0.137255, 0.27451, 1 )
+
+[node name="Back" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 472.0
+margin_bottom = 260.0
+color = Color( 0.129412, 0.211765, 0.360784, 1 )
+
+[node name="BackButton" type="Button" parent="Control"]
+margin_left = -492.0
+margin_top = 217.0
+margin_right = -372.0
+margin_bottom = 280.0
+custom_fonts/font = SubResource( 8 )
+text = "Back"
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = -236.0
+margin_top = -252.0
+margin_right = 240.0
+margin_bottom = -176.0
+custom_fonts/font = SubResource( 9 )
+text = "Credits"
+align = 1
+
+[node name="Desc" type="Label" parent="Control"]
+margin_left = -496.0
+margin_top = -84.0
+margin_right = 464.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 10 )
+text = "Team Starman
+[Project Lead] Alex Chen  |  Patrick Dang  |  Yunjie Fang  |  Austin Lee  |  Matthew Shum
+
+Sprites by Alex Chen
+Sounds by Kenney.NL"
+autowrap = true

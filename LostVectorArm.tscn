@@ -35,7 +35,7 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0 ]
 }
 
-[node name="Arm" type="Sprite" groups=["Actor"]]
+[node name="Arm" type="Sprite" groups=["Actor", "Segment"]]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 80, 80, 32 )
@@ -49,15 +49,15 @@ priority = 1.0
 [node name="Poly" type="CollisionPolygon2D" parent="Area"]
 polygon = PoolVector2Array( -40, -10, -34, -10, -24, -8, -6, -6, 40, -4, 40, 4, -6, 6, -24, 8, -34, 10, -40, 10 )
 
-[node name="Blade" type="Sprite" parent="." groups=["Actor"]]
+[node name="Blade" type="Sprite" parent="." groups=["Actor", "Segment"]]
 position = Vector2( 35, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 112, 48, 48 )
 script = ExtResource( 2 )
+playerDamage = 20
 
 [node name="Area" type="Area2D" parent="Blade"]
-visible = false
 priority = 2.0
 
 [node name="Poly" type="CollisionPolygon2D" parent="Blade/Area"]

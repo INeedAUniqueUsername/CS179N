@@ -20,8 +20,10 @@ func get_max_hp():
 func _ready():
 	for c in get_descendants(self):
 		if c.is_in_group("Actor"):
-			actors.append(c)
-			c.connect("on_destroyed", self, "on_actor_destroyed")
+			register(c)
+func register(c):
+	actors.append(c)
+	c.connect("on_destroyed", self, "on_actor_destroyed")
 func on_actor_destroyed(a):
 	actors.erase(a)
 	hp_max_dead += a.hp_max

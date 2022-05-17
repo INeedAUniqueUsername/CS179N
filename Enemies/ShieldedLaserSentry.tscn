@@ -23,12 +23,12 @@ radius = 450.0
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
-[node name="Shield" type="Sprite" parent="." groups=["Actor"]]
+[node name="Shield" type="Sprite" parent="." groups=["Actor", "Segment"]]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 96, 64, 64 )
 script = ExtResource( 3 )
-hp_max = 180
+hp_max = 120
 main = NodePath("..")
 
 [node name="Area" type="Area2D" parent="Shield"]
@@ -54,12 +54,13 @@ offset = Vector2( 16, 0 )
 region_enabled = true
 region_rect = Rect2( 0, 64, 64, 32 )
 
-[node name="Shield" type="Sprite" parent="Gun" groups=["Actor"]]
+[node name="Shield" type="Sprite" parent="Gun" groups=["Actor", "Segment"]]
 position = Vector2( 48, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 160, 32, 64 )
 script = ExtResource( 3 )
+hp_max = 240
 parent = NodePath("../..")
 
 [node name="Area" type="Area2D" parent="Gun/Shield"]

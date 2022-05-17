@@ -49,7 +49,10 @@ func _on_area_entered(area):
 		return
 	pierce -= 1
 	if !actor.is_in_group("Stationary"):
-		actor.vel += vel.normalized() * knockback
+		var mass = 1.0
+		if 'mass' in actor:
+			mass *= actor.mass
+		actor.vel += vel.normalized() * knockback / mass
 	var s = self.name
 	var n = actor.name
 	actor.damage(self)

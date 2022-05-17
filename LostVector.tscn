@@ -1,10 +1,43 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sprites/LostVectorSheet.png" type="Texture" id=1]
 [ext_resource path="res://LostVectorGun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://LostVectorPlate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://LostVectorArm.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LostVector.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/LostVectorFlash.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=29]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "SelfDestruct"
+length = 7.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.4, 2.8, 3.2, 3.6, 3.9, 4.2, 4.5, 4.8, 5, 5.2, 5.4, 5.6, 5.7, 5.8, 5.9, 6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.55, 6.6, 6.65, 6.7, 6.75, 6.8, 6.85, 6.9, 6.95, 7, 7.05, 7.1, 7.15, 7.2, 7.25, 7.3, 7.35, 7.4, 7.45, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=22]
 length = 0.001
@@ -24,7 +57,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=23]
 resource_name = "Spin"
 length = 4.0
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
@@ -53,8 +85,9 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=27]
-resource_name = "Spin"
+[sub_resource type="Animation" id=28]
+resource_name = "SpinCCW"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
@@ -62,7 +95,23 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -180.0 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "SpinCW"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 180.0 ]
@@ -77,8 +126,21 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 48, 48 )
 script = ExtResource( 5 )
 
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 6 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 29 )
+anims/SelfDestruct = SubResource( 30 )
+
 [node name="Plates" type="Node2D" parent="."]
 z_index = -1
+
+[node name="Anim" type="AnimationPlayer" parent="Plates"]
+root_node = NodePath(".")
+anims/RESET = SubResource( 22 )
+anims/Spin = SubResource( 23 )
 
 [node name="UpperPlate" parent="Plates" instance=ExtResource( 3 )]
 position = Vector2( 0, -26 )
@@ -88,7 +150,6 @@ blockPlayer = true
 [node name="Gun1030" parent="Plates/UpperPlate" instance=ExtResource( 2 )]
 position = Vector2( 1.90735e-06, -26 )
 rotation = -0.785398
-scale = Vector2( 1, 1 )
 
 [node name="Gun0000" parent="Plates/UpperPlate" instance=ExtResource( 2 )]
 position = Vector2( 7, 3.0598e-07 )
@@ -113,29 +174,29 @@ position = Vector2( 7, -3.0598e-07 )
 position = Vector2( 1.90735e-06, 26 )
 rotation = 0.785398
 
-[node name="Spin" type="AnimationPlayer" parent="Plates"]
-autoplay = "Spin"
-anims/RESET = SubResource( 22 )
-anims/Spin = SubResource( 23 )
-
 [node name="Arms" type="Node2D" parent="."]
 
-[node name="RightArm" parent="Arms" instance=ExtResource( 4 )]
+[node name="Anim" type="AnimationPlayer" parent="Arms"]
+anims/RESET = SubResource( 26 )
+anims/SpinCCW = SubResource( 28 )
+anims/SpinCW = SubResource( 27 )
+
+[node name="RightArm" parent="Arms" groups=["Segment"] instance=ExtResource( 4 )]
 position = Vector2( 56, 0 )
 
-[node name="LeftArm" parent="Arms" instance=ExtResource( 4 )]
+[node name="LeftArm" parent="Arms" groups=["Segment"] instance=ExtResource( 4 )]
 position = Vector2( -56, 0 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 
-[node name="Spin" type="AnimationPlayer" parent="Arms"]
-anims/RESET = SubResource( 26 )
-anims/Spin = SubResource( 27 )
-
 [node name="Area" type="Area2D" parent="."]
+visible = false
 
 [node name="Circle" type="CollisionShape2D" parent="Area"]
 shape = SubResource( 5 )
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_self_destruct_finished"]
+[connection signal="animation_finished" from="Arms/Anim" to="." method="_on_spin_finished"]
 
 [editable path="Plates/UpperPlate/Gun1030"]
 [editable path="Plates/UpperPlate/Gun0130"]

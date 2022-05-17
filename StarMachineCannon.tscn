@@ -99,7 +99,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[node name="RightCannon" type="Sprite" groups=["Actor"]]
+[node name="RightCannon" type="Sprite" groups=["Actor", "Segment"]]
 rotation = 3.57628e-06
 texture = ExtResource( 2 )
 centered = false

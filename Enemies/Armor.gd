@@ -1,30 +1,38 @@
 extends Sprite
 
-var parent
+var root
 func _ready():
-	parent = Helper.get_root_actor(self)
+	root = Helper.get_root_actor(self)
+	var p = Helper.get_parent_actor(get_parent())
+	p.connect("on_destroyed", self, "on_parent_destroyed")
+func on_parent_destroyed(p):
+	destroy()
 var vel setget set_vel, get_vel
 func set_vel(v):
-	parent.vel = v
+	root.vel = v
 func get_vel():
-	return parent.vel
+	return root.vel
 signal on_destroyed
 export(int) var hp = 600
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp == 0:
 		destroy()
+var destroyed = false
 func destroy():
+	if destroyed:
+		return
+	destroyed = true
 	emit_signal("on_destroyed", self)
 	queue_free()
 
 export(bool) var blockPlayer = false
+export(int) var playerDamage = 0
+var damage = 0
 
 func _on_area_entered(area):
-	if !Helper.is_area_body(area):
-		return
-	var actor = Helper.get_parent_actor(area)
-	if !actor:
+	var actor = Helper.get_actor_of_body(area)
+	if !actor or root.ignore.has(actor):
 		return
 	var n = actor.name
 	if actor.is_in_group("Projectile"):
@@ -33,11 +41,15 @@ func _on_area_entered(area):
 		damage(actor)
 		if actor.is_in_group("Magic"):
 			return
-		actor.ignore = parent.ignore
+		actor.ignore = root.ignore
 		
 		var velDiff = get_vel() - actor.vel
 		actor.vel = get_vel() + velDiff
-	elif actor.is_in_group("Player") and blockPlayer:
-		var velDiff = self.vel - actor.common.vel
-		actor.common.vel += velDiff
-		self.vel -= velDiff/2
+	elif actor.is_in_group("Player"):
+		if blockPlayer:
+			var velDiff = self.vel - actor.common.vel
+			actor.common.vel += velDiff
+			self.vel -= velDiff/2
+	if playerDamage > 0:
+		damage = playerDamage
+		actor.damage(self)

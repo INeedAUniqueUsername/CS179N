@@ -10,6 +10,7 @@ extents = Vector2( 10, 3 )
 z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+damage = 15.0
 
 [node name="Detonate" type="Area2D" parent="."]
 

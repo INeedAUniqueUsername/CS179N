@@ -20,13 +20,13 @@ func destroy():
 	for c in [$LeftCannon, $RightCannon]:
 		if c:
 			c.deploy_sword()
+			remove_child(c)
 	emit_signal("on_destroyed", self)
 	queue_free()
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp == 0:
 		destroy()
-	pass
 var fireCooldown = 0
 const fireInterval = 1.5
 const projectile = preload("res://Sprites/StarBeam.tscn")
@@ -40,7 +40,7 @@ func _process(delta):
 		var diff = dest_angle - rotation
 		diff = atan2(sin(diff), cos(diff))
 		
-		var turnRate = PI * 2 / 3
+		var turnRate = PI * 1/2
 		rotation += sign(diff) * min(abs(diff), turnRate * delta)
 		
 		var speed = 180

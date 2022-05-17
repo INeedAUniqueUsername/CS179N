@@ -2,9 +2,12 @@ class_name Common
 var vel = Vector2(0, 0)
 var turn = 0
 
-var hp = 100
-var energy = 100
-var fuel = 100
+var hp_max = 100
+var energy_max = 100
+var fuel_max = 100
+var hp = hp_max
+var energy = energy_max
+var fuel = fuel_max
 var levelTime = 0.0
 var levelScore = 0.0
 
@@ -53,10 +56,12 @@ signal on_fuel_warning
 signal on_fuel_depleted
 var decel_vel
 var decel_turn
-var prevFuel = 100
+onready var prevFuel = fuel_max
 func update_systems(delta):
-	hp = 100
-	vel = Vector2(0, 0)
+	
+	#hp = hp_max
+	#energy = energy_max
+	#vel = Vector2(0, 0)
 	delta *= time_scale
 	if state == State.Recovering:
 		fuel = max(0, fuel - delta * 5)
@@ -81,20 +86,20 @@ func update_systems(delta):
 	fireCooldown -= delta
 	if fireCooldown < 0:
 		var rechargeRate = 10 - fireCooldown*5
-		var inc = min(100 - energy, delta * rechargeRate)
+		var inc = min(energy_max - energy, delta * rechargeRate)
 		if inc > 0:
 			energy += inc
 			fuel -= inc / 60.0
 	if damageDelay < 0:
 		var rechargeRate = 0.75 * (1 - damageDelay)
-		var inc = min(100 - hp, delta * rechargeRate)
+		var inc = min(hp_max - hp, delta * rechargeRate)
 		if inc > 0:
 			hp += inc
 			fuel -= inc / 20.0
 	if fuel == 0:
 		emit_signal("on_fuel_depleted", self)
 		state = State.Dying
-	elif fuel < 30 and prevFuel > 30:
+	elif fuel < 40 and prevFuel > 40:
 		emit_signal("on_fuel_warning", self)
 	prevFuel = fuel
 signal on_mortal
@@ -139,8 +144,14 @@ func damage(attacker):
 func recover():
 	if state == State.Dead:
 		return
-	hp = 100
+	#change to hp_max
+	hp = hp_max
 	state = State.Active
+func resurrect():
+	state = State.Active
+	hp = hp_max
+	energy = energy_max
+	fuel = fuel_max
 var vector_up
 func thrust(dest_vel, delta):
 	var rejection = vel * (1 - vel.normalized().dot(dest_vel.normalized()))
