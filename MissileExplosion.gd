@@ -6,7 +6,7 @@ var ignore = []
 
 func _ready():
 	$Area2D/CollisionShape2D.shape.radius = 1
-	$AnimationPlayer.play("Explode")
+	$Anim.play("Explode")
 func _physics_process(delta):
 	global_translate(vel * delta)
 func _on_Area2D_area_entered(area):

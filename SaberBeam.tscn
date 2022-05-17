@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://LaserBeam.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/SwordBeamCharged.png" type="Texture" id=2]
+
+[node name="SaberBeam" type="Sprite" groups=["Actor", "Plasma", "Projectile"]]
+z_index = -1
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+lifespan = 0.75
+damage = 20.0
+pierce = 3
+damp = 1500.0
+knockback = 30.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 14, -2, 14, 0, 9, 5, 6, 5, 6, 3, -14, 3, -14, -2 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

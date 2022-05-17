@@ -21,9 +21,8 @@ const primaryEnergyUse = 10
 const secondaryEnergyUse = 50
 
 const beam = preload("res://SwordBeam.tscn")
-
+const beamCharged = preload("res://SaberBeam.tscn")
 func _process(delta):
-	
 	common.update_systems(delta)
 	common.update_controls(delta)
 	if common.state != common.State.Active:
@@ -47,17 +46,24 @@ func fire_primary():
 		$GunRight:Vector2(1, 1)
 	}
 	for p in [$GunLeft, $GunRight]:
-		var l = beam.instance()
+		var l
+		if $Anim.current_animation == "Slash":
+			l = beamCharged.instance()
+			l.vel = common.vel + polar2cartesian(1024, p.global_rotation - PI/2)
+		else:
+			l = beam.instance()
+			l.vel = common.vel + polar2cartesian(512, p.global_rotation - PI/2)
+			
 		l.ignore.append(self)
-		l.vel = common.vel + polar2cartesian(512, p.global_rotation - PI/2)
+		
 		get_parent().add_child(l)
 		l.global_position = p.global_position
 		l.global_rotation = p.global_rotation - PI/2
 		l.scale = scale[p]
 func check_slash_fire():
-	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse:
+	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse / 4.0:
 		#$PrimaryAttack.play()
-		common.energy -= primaryEnergyUse
+		common.energy -= primaryEnergyUse / 4.0
 		fire_primary()
 	pass
 func _physics_process(delta):
