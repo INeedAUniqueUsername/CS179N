@@ -124,7 +124,7 @@ func _on_Damage_area_entered(area):
 		actor.common.vel += 2 * velDiff / 2
 		
 		vel = -vel
-var hp_max = 600
+var hp_max = 1200
 onready var hp = hp_max
 func damage(projectile):
 	hp -= projectile.damage

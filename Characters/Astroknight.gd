@@ -28,24 +28,38 @@ func _process(delta):
 	common.update_controls(delta)
 	if common.state != common.State.Active:
 		return
-	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
-		$PrimaryAttack.play()
-		common.energy -= primaryEnergyUse
-		common.fireCooldown = primaryFireInterval
-		
-		for p in [$GunLeft, $GunRight]:
-			var l = beam.instance()
-			l.ignore.append(self)
-			l.vel = common.vel + common.vector_up * 512
-			get_parent().add_child(l)
-			l.set_global_transform(p.get_global_transform())
-			l.rotation_degrees = rotation_degrees - 90
+	if $Anim.current_animation == "Slash":
+		return
 	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		$SecondaryAttack.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
 		$Anim.stop()
 		$Anim.play("Slash")
+	elif Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+		$PrimaryAttack.play()
+		common.energy -= primaryEnergyUse
+		common.fireCooldown = primaryFireInterval
+		fire_primary()
+func fire_primary():
+	var scale = {
+		$GunLeft:Vector2(1, -1),
+		$GunRight:Vector2(1, 1)
+	}
+	for p in [$GunLeft, $GunRight]:
+		var l = beam.instance()
+		l.ignore.append(self)
+		l.vel = common.vel + polar2cartesian(512, p.global_rotation - PI/2)
+		get_parent().add_child(l)
+		l.global_position = p.global_position
+		l.global_rotation = p.global_rotation - PI/2
+		l.scale = scale[p]
+func check_slash_fire():
+	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse:
+		#$PrimaryAttack.play()
+		common.energy -= primaryEnergyUse
+		fire_primary()
+	pass
 func _physics_process(delta):
 	common.update_physics(delta)
 
@@ -60,6 +74,8 @@ func _on_sword_entered(area):
 		return
 	var actor = Helper.get_parent_actor(area)
 	if !actor or actor == self:
+		return
+	if actor.is_in_group("Projectile") and actor.ignore.has(self):
 		return
 	if actor.is_in_group("Laser"):
 		actor.vel = -actor.vel
