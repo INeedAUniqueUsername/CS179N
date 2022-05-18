@@ -15,5 +15,3 @@ func quit():
 	$MenuSound.play()
 	yield($MenuSound, "finished")
 	get_tree().quit()
-
-

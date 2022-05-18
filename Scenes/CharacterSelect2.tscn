@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Starman.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Sprites/Lune.png" type="Texture" id=6]
 [ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/CharacterSelect2.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/CharacterBackgroundRegular.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
@@ -357,11 +358,16 @@ text = "Character Select"
 align = 1
 
 [node name="Starman" type="Button" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -324.0
 margin_top = -180.0
 margin_right = -276.0
 margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
+
+[node name="Back" type="Sprite" parent="Control/Starman"]
+texture = ExtResource( 9 )
+centered = false
 
 [node name="Border" type="Sprite" parent="Control/Starman"]
 texture = ExtResource( 3 )
@@ -372,11 +378,16 @@ position = Vector2( 24, 28 )
 texture = ExtResource( 2 )
 
 [node name="Asteria" type="Button" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -156.0
 margin_top = -180.0
 margin_right = -108.0
 margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
+
+[node name="Back" type="Sprite" parent="Control/Asteria"]
+texture = ExtResource( 9 )
+centered = false
 
 [node name="Border" type="Sprite" parent="Control/Asteria"]
 texture = ExtResource( 3 )
@@ -387,12 +398,17 @@ position = Vector2( 24, 28 )
 texture = ExtResource( 4 )
 
 [node name="Astroknight" type="Button" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 12.0
 margin_top = -180.0
 margin_right = 60.0
 margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
 shortcut = SubResource( 4 )
+
+[node name="Back" type="Sprite" parent="Control/Astroknight"]
+texture = ExtResource( 9 )
+centered = false
 
 [node name="Border" type="Sprite" parent="Control/Astroknight"]
 texture = ExtResource( 3 )
@@ -403,11 +419,16 @@ position = Vector2( 24, 28 )
 texture = ExtResource( 5 )
 
 [node name="Lune" type="Button" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 180.0
 margin_top = -180.0
 margin_right = 228.0
 margin_bottom = -132.0
 rect_scale = Vector2( 3, 3 )
+
+[node name="Back" type="Sprite" parent="Control/Lune"]
+texture = ExtResource( 9 )
+centered = false
 
 [node name="Border" type="Sprite" parent="Control/Lune"]
 texture = ExtResource( 3 )

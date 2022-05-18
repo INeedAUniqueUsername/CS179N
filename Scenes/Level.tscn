@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Sprites/MortalBorder.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Wraparound.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Sprites/FuelBarSheet.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/BossWarning.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/ThunderDrone.tscn" type="PackedScene" id=11]
-[ext_resource path="res://StarMachine.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Sprites/LevelCleared.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/BossBar.png" type="Texture" id=15]
@@ -755,8 +754,6 @@ tracks/3/keys = {
 script = ExtResource( 2 )
 bossType = ExtResource( 11 )
 
-[node name="StarMachine" parent="Actors" instance=ExtResource( 12 )]
-
 [node name="CreatePlayer" type="Node" parent="Actors"]
 script = ExtResource( 18 )
 
@@ -765,7 +762,7 @@ position = Vector2( -280, 0 )
 
 [node name="BossSummon" type="Node2D" parent="Actors"]
 script = ExtResource( 21 )
-count = 1
+count = 16
 
 [node name="EnemySpawner" type="Timer" parent="Actors"]
 wait_time = 5.0

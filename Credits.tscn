@@ -84,13 +84,18 @@ align = 1
 
 [node name="Desc" type="Label" parent="Control"]
 margin_left = -496.0
-margin_top = -84.0
+margin_top = -156.0
 margin_right = 464.0
-margin_bottom = 73.0
+margin_bottom = 161.0
 custom_fonts/font = SubResource( 10 )
 text = "Team Starman
 [Project Lead] Alex Chen  |  Patrick Dang  |  Yunjie Fang  |  Austin Lee  |  Matthew Shum
 
 Sprites by Alex Chen
-Sounds by Kenney.NL"
+Sounds by Kenney.NL
+
+Developed for UCR CS179N, Spring 2022
+
+Starman 64 is free and open source software.
+https://github.com/INeedAUniqueUsername/CS179N"
 autowrap = true

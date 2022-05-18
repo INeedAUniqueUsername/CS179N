@@ -37,7 +37,7 @@ func on_area_entered(area):
 	
 	if actor and actor.is_in_group("Player"):
 		var velDiff = vel - actor.common.vel
-		actor.common.vel = -actor.common.vel
+		actor.common.vel = vel + velDiff
 		#parent.vel -= velDiff
 func on_area_exited(area):
 	if !Helper.is_area_body(area):

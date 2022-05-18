@@ -62,7 +62,6 @@ func on_destroyed(n):
 			emit_signal("on_boss_summoned", b)
 	elif n == boss:
 		emit_signal("on_boss_destroyed")
-	
 func clear_level():
 	for c in get_children():
 		if c != player:

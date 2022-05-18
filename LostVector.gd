@@ -1,6 +1,7 @@
 extends Sprite
 var bossName = "Rawbawjaw"
 var vel = Vector2(0, 0)
+var mass = 20.0
 func get_segments():
 	return [
 		$Plates/UpperPlate, $Plates/UpperPlate/Gun1030, $Plates/UpperPlate/Gun0000, $Plates/UpperPlate/Gun0130,
