@@ -1,4 +1,6 @@
 extends Control
+
+const HeroTypes = PlayerVariables.HeroTypes
 func _ready():
 	var s = "button_down"
 	$Starman.connect(s, self, "select_starman")
@@ -7,7 +9,33 @@ func _ready():
 	$Lune.connect(s, self, "select_lune")
 	$BackButton.connect("pressed", self, "back")
 	$StartButton.connect("pressed", self, "start_game")
-	select_starman()
+	
+	if PlayerVariables.gold[HeroTypes.starman]:
+		set_gold($Starman/Back)
+	if PlayerVariables.gold[HeroTypes.asteria]:
+		set_gold($Asteria/Back)
+	if PlayerVariables.gold[HeroTypes.astroknight]:
+		set_gold($Astroknight/Back)
+	if PlayerVariables.gold[HeroTypes.lune]:
+		set_gold($Lune/Back)
+	match PlayerVariables.hero:
+		HeroTypes.starman:
+			vis($Starman/Border)
+			$Character.texture = $Starman/Sprite.texture
+		HeroTypes.asteria:
+			vis($Asteria/Border)
+			$Character.texture = $Asteria/Sprite.texture
+		HeroTypes.astroknight:
+			vis($Astroknight/Border)
+			$Character.texture = $Astroknight/Sprite.texture
+		HeroTypes.lune:
+			vis($Lune/Border)
+			$Character.texture = $Lune/Sprite.texture
+	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
+
+const gold = preload("res://Sprites/CharacterBackgroundGold.png")
+func set_gold(back : Sprite):
+	back.texture = gold
 func back():
 	$MenuClickSound.play()
 	yield($MenuClickSound,"finished")
@@ -46,25 +74,25 @@ func vis(b):
 	b.visible = true
 func select_starman():
 	$MenuClickSound.play()
-	PlayerVariables.setHero(PlayerVariables.HeroTypes.starman)
+	PlayerVariables.setHero(HeroTypes.starman)
 	vis($Starman/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Starman/Sprite.texture
 func select_asteria():
 	$MenuClickSound.play()
-	PlayerVariables.setHero(PlayerVariables.HeroTypes.asteria)
+	PlayerVariables.setHero(HeroTypes.asteria)
 	vis($Asteria/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Asteria/Sprite.texture
 func select_astroknight():
 	$MenuClickSound.play()
-	PlayerVariables.setHero(PlayerVariables.HeroTypes.astroknight)
+	PlayerVariables.setHero(HeroTypes.astroknight)
 	vis($Astroknight/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Astroknight/Sprite.texture
 func select_lune():
 	$MenuClickSound.play()
-	PlayerVariables.setHero(PlayerVariables.HeroTypes.lune)
+	PlayerVariables.setHero(HeroTypes.lune)
 	vis($Lune/Border)
 	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Lune/Sprite.texture

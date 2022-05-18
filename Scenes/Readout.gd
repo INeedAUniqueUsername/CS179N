@@ -106,7 +106,6 @@ func _process(delta):
 			$Anim.stop()
 			$Anim.play("NextLevel")
 		elif gameOver:
-			
 			get_tree().change_scene("res://Scenes/Ending.tscn")
 	if Input.is_key_pressed(KEY_SPACE) and gameOver:
 		resurrect()

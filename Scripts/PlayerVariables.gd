@@ -12,6 +12,13 @@ enum HeroTypes {
 	starman
 }
 
+var gold = {
+	HeroTypes.starman: false,
+	HeroTypes.asteria: false,
+	HeroTypes.astroknight: false,
+	HeroTypes.lune: false
+}
+
 func desc(heroName, primary, secondary):
 	return "%s\n\n[X] %s\n[Z] %s" % [heroName, primary, secondary]
 var heroDesc = {
