@@ -53,6 +53,16 @@ func on_boss_summoned(b):
 const shake = preload("res://Shake.tscn")
 func on_boss_destroyed(b):
 	boss = null
+	
+	if player.common.state != player.common.State.Active:
+		yield(player.common, "on_recovered")
+		
+		var t = Timer.new()
+		t.wait_time = 4
+		add_child(t)
+		t.start()
+		yield(t, "timeout")
+		t.queue_free()
 	get_parent().add_child(shake.instance())
 	$Anim.stop()
 	$Anim.play("LevelCleared")

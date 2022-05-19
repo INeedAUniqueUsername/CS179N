@@ -12,6 +12,11 @@ func set_vel(v):
 	root.vel = v
 func get_vel():
 	return root.vel
+var mass setget , get_mass
+func get_mass():
+	if 'mass' in root:
+		return root.mass
+	return 1.0
 signal on_destroyed
 export(int) var hp = 600
 func damage(projectile):

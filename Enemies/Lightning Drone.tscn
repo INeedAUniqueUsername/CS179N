@@ -61,6 +61,7 @@ hframes = 14
 
 [node name="Detect" type="Area2D" parent="." groups=["Behavior"]]
 visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
 shape = SubResource( 2 )
@@ -72,6 +73,7 @@ anims/Wait = SubResource( 3 )
 
 [node name="Attack" type="Area2D" parent="." groups=["Behavior"]]
 visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 shape = SubResource( 5 )

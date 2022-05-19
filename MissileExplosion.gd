@@ -23,6 +23,7 @@ func _on_Area2D_area_entered(area):
 
 func expand():
 	$Area2D/CollisionShape2D.shape.radius += 1
-
+signal on_destroyed(Node2D)
 func _on_AnimationPlayer_animation_finished(anim_name):
+	emit_signal("on_destroyed", self)
 	queue_free()

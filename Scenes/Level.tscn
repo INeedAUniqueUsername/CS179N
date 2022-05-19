@@ -52,7 +52,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.6, 1, 1.1, 1.6, 2, 2.1, 3.2, 3.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../Boss:modulate")
@@ -270,6 +270,54 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("../Arrows:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("../Keys:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../Boss:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../Border:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "MortalFlash"
@@ -302,31 +350,31 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=13]
 resource_name = "NextLevel"
 length = 2.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Center/ClearFlash:modulate")
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "go_next_level"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../OpeningFlash:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -608,6 +656,30 @@ tracks/12/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("../Arrows:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("../Keys:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=14]
 resource_name = "Resurrected"
@@ -824,7 +896,7 @@ region_enabled = true
 region_rect = Rect2( 0, 16, 420, 16 )
 
 [node name="Banner" type="Sprite" parent="Camera2D/Control/Boss"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.5 )
 position = Vector2( 0, 196 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 10 )
@@ -923,16 +995,6 @@ anims/OutOfFuel2 = SubResource( 11 )
 anims/RESET = SubResource( 2 )
 anims/Resurrected = SubResource( 14 )
 
-[node name="Center" type="Control" parent="Camera2D/Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-
-[node name="ClearFlash" type="Sprite" parent="Camera2D/Control/Center"]
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 17 )
-
 [node name="Border" type="Control" parent="Camera2D/Control"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
@@ -957,6 +1019,16 @@ theme = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Initiating emergency repairs..."
 align = 1
+
+[node name="Center" type="Control" parent="Camera2D/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="ClearFlash" type="Sprite" parent="Camera2D/Control/Center"]
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 17 )
 
 [node name="GameOver" type="Control" parent="Camera2D/Control"]
 modulate = Color( 1, 1, 1, 0 )
@@ -1054,9 +1126,9 @@ texture_pressed = ExtResource( 30 )
 [node name="Keys" type="Control" parent="Camera2D/Control"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 56.0
+margin_left = 64.0
 margin_top = -56.0
-margin_right = 56.0
+margin_right = 64.0
 margin_bottom = -56.0
 
 [node name="Z" type="TextureButton" parent="Camera2D/Control/Keys"]

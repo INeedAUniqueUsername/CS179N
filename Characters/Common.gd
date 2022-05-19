@@ -124,6 +124,7 @@ var damageDelay = 0
 enum State {
 	Active, Recovering, Dying, Dead, Winner
 }
+signal on_recovered(Node2D)
 var state = State.Active
 var lastDamage = 0
 var lastDrain = 0
@@ -149,24 +150,26 @@ func damage(attacker):
 		emit_signal("on_mortal", owner)
 		var t = Timer.new()
 		t.wait_time = 6
-		t.connect("timeout", self, "recover")
-		t.connect("timeout", t, "queue_free")
 		owner.add_child(t)
 		t.start()
 		state = State.Recovering
 		animLeftLeg.play("Idle")
 		animRightLeg.play("Idle")
-func recover():
-	if state == State.Dead:
-		return
-	#change to hp_max
-	hp = hp_max
-	state = State.Active
+		
+		yield(t, "timeout")
+		t.queue_free()
+		if state == State.Dead:
+			return
+		#change to hp_max
+		hp = hp_max
+		state = State.Active
+		emit_signal("on_recovered", self)
 func resurrect():
 	state = State.Active
 	hp = hp_max
 	energy = energy_max
 	fuel = fuel_max
+	emit_signal("on_recovered", self)
 var vector_up
 func thrust(dest_vel, delta):
 	var rejection = vel * (1 - vel.normalized().dot(dest_vel.normalized()))

@@ -49,7 +49,7 @@ func on_destroyed(n):
 		bossSummon.erase(n)
 		if len(bossSummon) == 0:
 			var b = bossType.instance()
-			add_child(b)
+			call_deferred("add_child", b)
 			b.global_position = player.global_position + polar2cartesian(600, rand_range(0, PI*2))
 			
 			for l in get_descendants(b):

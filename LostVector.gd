@@ -1,7 +1,7 @@
 extends Sprite
 var bossName = "Rawbawjaw"
 var vel = Vector2(0, 0)
-var mass = 20.0
+var mass = 10.0
 func get_segments():
 	return [
 		$Plates/UpperPlate, $Plates/UpperPlate/Gun1030, $Plates/UpperPlate/Gun0000, $Plates/UpperPlate/Gun0130,
@@ -132,4 +132,12 @@ func explode():
 	e.damage *= 10
 func _on_self_destruct_finished(an):
 	explode()
+	
+	#wait some time 
+	var t = Timer.new()
+	t.wait_time = 8
+	get_parent().add_child(t)
+	get_parent().remove_child(self)
+	t.start()
+	yield(t, "timeout")
 	destroy()

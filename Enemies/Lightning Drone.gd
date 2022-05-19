@@ -12,36 +12,37 @@ func _physics_process(delta):
 		print('target: ' + target.name)
 		var speed = 180 * delta
 		var offset = target.global_position - global_position
-		if $Anim.current_animation == "Wait":
-			vel -= vel.normalized() * speed / 2
-			if offset.length_squared() > 180 * 180:
-				vel += offset.rotated(PI/4).normalized() * speed
-			else:
-				vel += offset.rotated(PI/2).normalized() * speed
-		elif $Anim.current_animation == "Charge":
-			
-			var rejection = vel * (1 - vel.normalized().dot(offset.normalized()))
-			vel -= rejection.normalized() * min(rejection.length(), speed)
-			vel += offset.normalized() * speed
+		match $Anim.current_animation:
+			"Wait":
+				vel -= vel.normalized() * speed / 2
+				if offset.length_squared() > 180 * 180:
+					vel += offset.rotated(PI/4).normalized() * speed
+				else:
+					vel += offset.rotated(PI/2).normalized() * speed
+			"Charge":
+				var rejection = vel * (1 - vel.normalized().dot(offset.normalized()))
+				vel -= rejection.normalized() * min(rejection.length(), speed)
+				vel += offset.normalized() * speed
 	global_translate(vel * delta)
 func _ready():
 	hp = 50
 	$Anim.connect("animation_finished", self, "_on_animation_finished")
 var salvo = 0
 func _on_animation_finished(name):
-	if name == "Wait":
-		if target:
-			$Anim.play("Charge")
-		else:
-			$Anim.play("Wait")
-	if name == "Charge":
-		$Anim.play("Wait")
-		if target:
-			salvo += 1
-			if salvo % 2 == 0:
-				fire_salvo_1()
+	match name:
+		"Wait":
+			if target:
+				$Anim.play("Charge")
 			else:
-				fire_salvo_2()
+				$Anim.play("Wait")
+		"Charge":
+			$Anim.play("Wait")
+			if target:
+				salvo += 1
+				if salvo % 2 == 0:
+					fire_salvo_1()
+				else:
+					fire_salvo_2()
 const failureChance = 0.25
 var beam = preload("res://LightningBeam.tscn")
 func fire_salvo_1():
