@@ -43,7 +43,7 @@ func on_player_destroyed(pl):
 	$Anim.play("GameOver")
 func on_boss_summoned(b):
 	boss = b
-	$BossLabel.text = b.bossName
+	$Boss/Name.text = b.bossName
 	$Anim.stop()
 	$Anim.play("BossWarning")
 	
@@ -95,20 +95,28 @@ func _process(delta):
 	$Bars/FuelFront.region_rect.size.x = ceil(width.fuel)
 	$Bars/Time.text = "Time: %.2f sec" % player.common.levelTime
 	$Bars/Score.text = "Score: %d" % player.common.levelScore
-	$BossFront.region_rect.size.x = ceil(width.boss)
+	$Boss/Front.region_rect.size.x = ceil(width.boss)
 	if Input.is_key_pressed(KEY_ENTER):
-		if $Anim.current_animation == "LevelCleared" and $Anim.current_animation_position < 4:
-			skipLevelOutro = true
-		elif levelOutroReady:
-			var s = shake.instance()
-			s.set_lifetime(3)
-			get_parent().add_child(s)
-			$Anim.stop()
-			$Anim.play("NextLevel")
-		elif gameOver:
-			get_tree().change_scene("res://Scenes/Ending.tscn")
-	if Input.is_key_pressed(KEY_SPACE) and gameOver:
-		resurrect()
+		check_next_screen()
+	if Input.is_key_pressed(KEY_SPACE):
+		check_resurrect()
+func check_next_screen():
+	if $Anim.current_animation == "LevelCleared" and $Anim.current_animation_position < 4:
+		skipLevelOutro = true
+	elif levelOutroReady:
+		var s = shake.instance()
+		s.set_lifetime(3)
+		get_parent().add_child(s)
+		$Anim.stop()
+		$Anim.play("NextLevel")
+	elif gameOver:
+		get_tree().change_scene("res://Scenes/Ending.tscn")
+func check_resurrect():
+	if gameOver:
+		gameOver = false
+		PlayerVariables.set_winner(true)
+		player.common.resurrect()
+		$Anim.play("Resurrected")
 func check_skip_outro():
 	if skipLevelOutro:
 		go_next_level()
@@ -123,8 +131,3 @@ var gameOver = false
 func game_over():
 	gameOver = true
 	PlayerVariables.set_winner(false)
-func resurrect():
-	gameOver = false
-	PlayerVariables.set_winner(true)
-	player.common.resurrect()
-	$Anim.play("Resurrected")

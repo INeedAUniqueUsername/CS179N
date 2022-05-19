@@ -28,7 +28,7 @@ func _process(delta):
 	common.update_controls(delta)
 	if common.state != common.State.Active:
 		return
-	if Input.is_key_pressed(KEY_X) && common.canFire() && common.energy > primaryEnergyUse:
+	if common.is_control_pressed(KEY_X) && common.canFire() && common.energy > primaryEnergyUse:
 		$PrimaryAttack.play()
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval
@@ -42,7 +42,7 @@ func _process(delta):
 		get_parent().add_child(l)
 		l.set_global_transform(p.get_global_transform())
 		l.rotation_degrees = rotation_degrees - 90
-	if Input.is_key_pressed(KEY_Z) && common.canFire() && common.energy > secondaryEnergyUse:
+	if common.is_control_pressed(KEY_Z) && common.canFire() && common.energy > secondaryEnergyUse:
 		$SecondaryAttack.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
@@ -69,7 +69,7 @@ func fire_blast():
 	l.set_global_transform(p.get_global_transform())
 	l.rotation_degrees = rotation_degrees - 90
 	
-	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse:
+	if common.is_control_pressed(KEY_X) and common.energy > primaryEnergyUse:
 		common.energy -= primaryEnergyUse
 		
 		var e = Helper.create_projectile(

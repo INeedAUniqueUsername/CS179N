@@ -45,7 +45,7 @@ func _process(delta):
 				"Thrust":
 					la.play("StraightThrust")
 		return
-	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
+	if common.is_control_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		$SecondaryAttackSound.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
@@ -59,7 +59,7 @@ func _process(delta):
 	
 	check_primary_fire()
 func check_primary_fire():
-	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+	if common.is_control_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		$PrimaryAttackSound.play()
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval

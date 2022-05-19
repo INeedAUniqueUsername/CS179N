@@ -29,13 +29,13 @@ func _process(delta):
 		return
 	if $Anim.current_animation == "Slash":
 		return
-	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
+	if common.is_control_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		$SecondaryAttack.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
 		$Anim.stop()
 		$Anim.play("Slash")
-	elif Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+	elif common.is_control_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		$PrimaryAttack.play()
 		common.energy -= primaryEnergyUse
 		common.fireCooldown = primaryFireInterval
@@ -61,7 +61,7 @@ func fire_primary():
 		l.global_rotation = p.global_rotation - PI/2
 		l.scale = scale[p]
 func check_slash_fire():
-	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse / 4.0:
+	if common.is_control_pressed(KEY_X) and common.energy > primaryEnergyUse / 4.0:
 		#$PrimaryAttack.play()
 		common.energy -= primaryEnergyUse / 4.0
 		fire_primary()

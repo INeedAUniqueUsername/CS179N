@@ -34,13 +34,28 @@ func set_time_scale(t):
 	animLeftLeg.playback_speed = t
 	animRightLeg.playback_speed = t
 
+func is_control_pressed(k):
+	var b = Input.is_key_pressed(k)
+	if k in buttons.keys():
+		b = b or buttons[k].pressed
+	return b
+
+var buttons : Dictionary
 func _init(owner: Node2D, animBody: AnimationPlayer, animLeftLeg: AnimationPlayer, animRightLeg: AnimationPlayer):
 	self.owner = owner
 	self.animBody = animBody
 	self.animLeftLeg = animLeftLeg
 	self.animRightLeg = animRightLeg
-	
-	
+	owner.connect("tree_entered", self, "register_buttons")
+func register_buttons():
+	buttons = {
+		KEY_UP: owner.get_node("../../Camera2D/Control/Arrows/Up"),
+		KEY_RIGHT: owner.get_node("../../Camera2D/Control/Arrows/Right"),
+		KEY_LEFT: owner.get_node("../../Camera2D/Control/Arrows/Left"),
+		KEY_DOWN: owner.get_node("../../Camera2D/Control/Arrows/Down"),
+		KEY_X: owner.get_node("../../Camera2D/Control/Keys/X"),
+		KEY_Z: owner.get_node("../../Camera2D/Control/Keys/Z"),
+	}
 
 func update_physics(delta):
 	levelTime += delta
@@ -180,6 +195,9 @@ func add_hp(h):
 func update_controls(delta):
 	delta *= time_scale
 	
+	#for k in [KEY_UP, KEY_RIGHT, KEY_LEFT, KEY_DOWN, KEY_X, KEY_Z]:
+	#	buttons[k].pressed = Input.is_key_pressed(k)
+	
 	match state:
 		State.Recovering, State.Dead, State.Dying:
 			decel_vel = false
@@ -193,10 +211,10 @@ func update_controls(delta):
 			animLeftLeg.play("Idle")
 			animRightLeg.play("Idle")
 			return
-	var up = Input.is_key_pressed(KEY_UP)
-	var left = Input.is_key_pressed(KEY_LEFT)
-	var right = Input.is_key_pressed(KEY_RIGHT)
-	var down = Input.is_key_pressed(KEY_DOWN)
+	var up = is_control_pressed(KEY_UP)
+	var left = is_control_pressed(KEY_LEFT)
+	var right = is_control_pressed(KEY_RIGHT)
+	var down = is_control_pressed(KEY_DOWN)
 	
 	decel_vel = true
 	decel_turn = true

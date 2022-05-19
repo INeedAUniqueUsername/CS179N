@@ -41,7 +41,7 @@ func _process(delta):
 				"Thrust":
 					la.play("StraightThrust")
 		return
-	if Input.is_key_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+	if common.is_control_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		$PrimarySound.play()
 		
 		if common.fireCooldown > -0.1:
@@ -61,7 +61,7 @@ func _process(delta):
 		l.set_global_transform(p.get_global_transform())
 		l.rotation_degrees = rotation_degrees - 90
 		p.get_node("Anim").play("Fire")
-	if Input.is_key_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
+	if common.is_control_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
 		#$AsteriaSecondarySound.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval
@@ -93,7 +93,7 @@ func fire_burst():
 	e.damage = 20
 	e.get_node("Anim").playback_speed = 4
 		
-	if Input.is_key_pressed(KEY_X) and common.energy > primaryEnergyUse * 3:
+	if common.is_control_pressed(KEY_X) and common.energy > primaryEnergyUse * 3:
 		common.energy -= primaryEnergyUse * 3
 		var p = $BurstOrigin
 		for angle in [-30, -20, -10, 0, 10, 20, 30]:
