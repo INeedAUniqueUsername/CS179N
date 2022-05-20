@@ -118,6 +118,7 @@ func _on_Damage_area_entered(area):
 	var actor = Helper.get_parent_actor(area)
 	if actor and actor.is_in_group("Player"):
 		flashes = 0
+		$Dash.play()
 		actor.damage(self)
 		
 		var velDiff = vel - actor.common.vel

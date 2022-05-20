@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/BossBeacon.png" type="Texture" id=1]
 [ext_resource path="res://BossBeacon.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/HPBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sound/boss_summon_doorOpen_002.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11, 11 )
@@ -126,3 +127,6 @@ autoplay = "Flash"
 anims/Destroy = SubResource( 4 )
 anims/Flash = SubResource( 2 )
 anims/RESET = SubResource( 3 )
+
+[node name="BeaconBurst" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

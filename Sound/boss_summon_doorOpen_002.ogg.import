@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boss_summon_doorOpen_002.ogg-43382a42a78fa787db401cd638ceea16.oggstr"
+
+[deps]
+
+source_file="res://Sound/boss_summon_doorOpen_002.ogg"
+dest_files=[ "res://.import/boss_summon_doorOpen_002.ogg-43382a42a78fa787db401cd638ceea16.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
