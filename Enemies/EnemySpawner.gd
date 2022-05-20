@@ -6,6 +6,9 @@ onready var actors = get_parent()
 func rand_coord():
 	return rand_range(-extents, extents)
 func _on_random_generation_timer_timeout():
+	if len(actors.leaves) > 16 + 1 + 16:
+		return
+	
 	if enemyTypes.empty():
 		queue_free()
 		return

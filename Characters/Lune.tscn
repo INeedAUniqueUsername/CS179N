@@ -282,6 +282,7 @@ hframes = 6
 
 [node name="Area" type="Area2D" parent="Body"]
 scale = Vector2( 0.5, 0.5 )
+collision_layer = 3
 
 [node name="Shape" type="CollisionPolygon2D" parent="Body/Area"]
 polygon = PoolVector2Array( 12, -10, 18, -4, 22, 0, 22, 12, 26, 12, 26, 18, 20, 18, 10, 8, -10, 8, -20, 18, -26, 18, -26, 12, -22, 12, -22, 10, -22, 1, -12, -10, -8, -10, -8, -22, -6, -24, 8, -24, 8, -10 )
