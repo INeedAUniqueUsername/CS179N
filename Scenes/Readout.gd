@@ -53,7 +53,6 @@ func on_boss_summoned(b):
 const shake = preload("res://Shake.tscn")
 func on_boss_destroyed(b):
 	boss = null
-	
 	if player.common.state != player.common.State.Active:
 		yield(player.common, "on_recovered")
 		

@@ -1083,68 +1083,60 @@ custom_fonts/font = ExtResource( 12 )
 text = "[Space] Resurrect"
 
 [node name="Arrows" type="Control" parent="Camera2D/Control"]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -136.0
-margin_top = -56.0
-margin_right = -136.0
-margin_bottom = -56.0
+margin_left = -160.0
+margin_top = -64.0
+margin_right = -160.0
+margin_bottom = -64.0
 
-[node name="Up" type="TextureButton" parent="Camera2D/Control/Arrows"]
-margin_left = -32.0
-margin_top = -104.0
-margin_bottom = -72.0
-rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 13 )
-texture_pressed = ExtResource( 27 )
+[node name="Up" type="TouchScreenButton" parent="Camera2D/Control/Arrows"]
+position = Vector2( -32, -128 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 13 )
+pressed = ExtResource( 27 )
 
-[node name="Right" type="TextureButton" parent="Camera2D/Control/Arrows"]
-margin_left = 40.0
-margin_top = -32.0
-margin_right = 72.0
-rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 22 )
-texture_pressed = ExtResource( 28 )
+[node name="Right" type="TouchScreenButton" parent="Camera2D/Control/Arrows"]
+position = Vector2( 64, -32 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 22 )
+pressed = ExtResource( 28 )
 
-[node name="Left" type="TextureButton" parent="Camera2D/Control/Arrows"]
-margin_left = -104.0
-margin_top = -32.0
-margin_right = -72.0
-rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 23 )
-texture_pressed = ExtResource( 29 )
+[node name="Left" type="TouchScreenButton" parent="Camera2D/Control/Arrows"]
+position = Vector2( -128, -32 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 23 )
+pressed = ExtResource( 29 )
 
-[node name="Down" type="TextureButton" parent="Camera2D/Control/Arrows"]
-margin_left = -32.0
-margin_top = -32.0
-rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 24 )
-texture_pressed = ExtResource( 30 )
+[node name="Down" type="TouchScreenButton" parent="Camera2D/Control/Arrows"]
+position = Vector2( -32, -32 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 24 )
+pressed = ExtResource( 30 )
 
 [node name="Keys" type="Control" parent="Camera2D/Control"]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 64.0
-margin_top = -56.0
-margin_right = 64.0
-margin_bottom = -56.0
+margin_left = 72.0
+margin_top = -64.0
+margin_right = 72.0
+margin_bottom = -64.0
 
-[node name="Z" type="TextureButton" parent="Camera2D/Control/Keys"]
-margin_left = -32.0
-margin_top = -32.0
-rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 25 )
-texture_pressed = ExtResource( 31 )
+[node name="Z" type="TouchScreenButton" parent="Camera2D/Control/Keys"]
+position = Vector2( -32, -32 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 25 )
+pressed = ExtResource( 31 )
 
-[node name="X" type="TextureButton" parent="Camera2D/Control/Keys"]
-margin_left = 48.0
-margin_top = -32.0
-margin_right = 80.0
-rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 26 )
-texture_pressed = ExtResource( 32 )
+[node name="X" type="TouchScreenButton" parent="Camera2D/Control/Keys"]
+position = Vector2( 64, -32 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 26 )
+pressed = ExtResource( 32 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
