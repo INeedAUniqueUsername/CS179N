@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Starman.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/CharacterSelect2.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/CharacterBackgroundRegular.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/setDifficulty.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
@@ -307,6 +308,7 @@ anchor_bottom = 0.5
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 8 )
+dropdown_path = NodePath("DifficultyButton")
 
 [node name="Back3" type="ColorRect" parent="Control"]
 anchor_left = 0.5
@@ -339,6 +341,13 @@ margin_top = -300.0
 margin_right = 472.0
 margin_bottom = 260.0
 color = Color( 0.129412, 0.211765, 0.360784, 1 )
+
+[node name="DifficultyButton" type="OptionButton" parent="Control"]
+margin_left = -456.0
+margin_top = 107.0
+margin_right = -174.0
+margin_bottom = 149.0
+text = "Difficulty"
 
 [node name="BackButton" type="Button" parent="Control"]
 margin_left = -492.0
@@ -495,6 +504,7 @@ margin_right = -20.0
 margin_bottom = -20.0
 rect_scale = Vector2( 2, 2 )
 mouse_filter = 2
+script = ExtResource( 10 )
 
 [node name="Anim" type="AnimationPlayer" parent="Control"]
 anims/Flash = SubResource( 5 )

@@ -25,6 +25,8 @@ var animRightLeg
 # if negative, indicates excess time that has passed (used for battery recharge)
 var fireCooldown = 0
 
+
+
 func canFire(): return fireCooldown < 0
 
 var time_scale = 1
@@ -131,16 +133,23 @@ var lastDrain = 0
 func damage(attacker):
 	if state != State.Active:
 		return
+	var atk_dmg
+	if SetDifficulty.state == 0:
+		atk_dmg = attacker.damage * 0.5
+	elif SetDifficulty.state == 1:
+		atk_dmg = attacker.damage
+	elif SetDifficulty.state == 2:
+		atk_dmg = attacker.damage * 2
 	if damageDelay > 0:
-		var inc = attacker.damage - lastDamage
+		var inc = atk_dmg - lastDamage
 		if inc > 0:
 			hp = max(0, hp - inc)
-			lastDamage = attacker.damage
+			lastDamage = atk_dmg
 		else:
 			return
 	else:
-		hp = max(0, hp - attacker.damage)
-		lastDamage = attacker.damage
+		hp = max(0, hp - atk_dmg)
+		lastDamage = atk_dmg
 		if 'drain' in attacker:
 			energy = max(0, energy - attacker.drain)
 			lastDrain = attacker.drain
