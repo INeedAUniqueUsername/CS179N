@@ -16,6 +16,7 @@ func damage(projectile):
 	if hp == 0:
 		emit_signal("on_destroyed", self)
 		$Anim.play("Destroy")
+		$BeaconBurst.play()
 		$Sprite/Area.queue_free()
 func _physics_process(delta):
 	global_translate(vel * delta)

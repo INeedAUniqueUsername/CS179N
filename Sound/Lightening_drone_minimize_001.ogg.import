@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Lightening_drone_minimize_001.ogg-e4a253b95da0138ae3b662781049812a.oggstr"
+
+[deps]
+
+source_file="res://Sound/Lightening_drone_minimize_001.ogg"
+dest_files=[ "res://.import/Lightening_drone_minimize_001.ogg-e4a253b95da0138ae3b662781049812a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

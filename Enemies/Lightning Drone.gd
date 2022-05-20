@@ -77,6 +77,7 @@ func fire_salvo_2():
 		get_parent().add_child(l)
 		l.set_global_transform(get_global_transform())
 		l.rotation += angle
+		$Burst.play()
 		
 
 

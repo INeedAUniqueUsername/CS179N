@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Thunderdrone_attack_explosionCrunch_004.ogg-911b9cc72b3c0be3477ef0daf6cf603a.oggstr"
+
+[deps]
+
+source_file="res://Sound/Thunderdrone_attack_explosionCrunch_004.ogg"
+dest_files=[ "res://.import/Thunderdrone_attack_explosionCrunch_004.ogg-911b9cc72b3c0be3477ef0daf6cf603a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

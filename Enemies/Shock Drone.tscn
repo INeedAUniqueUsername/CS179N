@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Sprites/ShockDroneSheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Shock Drone.gd" type="Script" id=2]
-[ext_resource path="res://Sound/shockdrone_attack_explosionCrunch_004.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sound/Shock_drone_laserRetro_004.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=8]
 radius = 12.0
