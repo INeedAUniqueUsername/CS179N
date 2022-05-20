@@ -169,7 +169,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 4 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -490,7 +490,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 4 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -896,7 +896,6 @@ region_enabled = true
 region_rect = Rect2( 0, 16, 420, 16 )
 
 [node name="Banner" type="Sprite" parent="Camera2D/Control/Boss"]
-modulate = Color( 1, 1, 1, 0.5 )
 position = Vector2( 0, 196 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 10 )
@@ -1083,7 +1082,6 @@ custom_fonts/font = ExtResource( 12 )
 text = "[Space] Resurrect"
 
 [node name="Arrows" type="Control" parent="Camera2D/Control"]
-visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -1098,27 +1096,34 @@ position = Vector2( -32, -128 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 13 )
 pressed = ExtResource( 27 )
+passby_press = true
+visibility_mode = 1
 
 [node name="Right" type="TouchScreenButton" parent="Camera2D/Control/Arrows"]
 position = Vector2( 64, -32 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 22 )
 pressed = ExtResource( 28 )
+passby_press = true
+visibility_mode = 1
 
 [node name="Left" type="TouchScreenButton" parent="Camera2D/Control/Arrows"]
 position = Vector2( -128, -32 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 23 )
 pressed = ExtResource( 29 )
+passby_press = true
+visibility_mode = 1
 
 [node name="Down" type="TouchScreenButton" parent="Camera2D/Control/Arrows"]
 position = Vector2( -32, -32 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 24 )
 pressed = ExtResource( 30 )
+passby_press = true
+visibility_mode = 1
 
 [node name="Keys" type="Control" parent="Camera2D/Control"]
-visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 72.0
@@ -1131,12 +1136,16 @@ position = Vector2( -32, -32 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 25 )
 pressed = ExtResource( 31 )
+passby_press = true
+visibility_mode = 1
 
 [node name="X" type="TouchScreenButton" parent="Camera2D/Control/Keys"]
 position = Vector2( 64, -32 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 26 )
 pressed = ExtResource( 32 )
+passby_press = true
+visibility_mode = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -37,7 +37,7 @@ func set_time_scale(t):
 func is_control_pressed(k):
 	var b = Input.is_key_pressed(k)
 	if k in buttons.keys():
-		b = b or buttons[k].pressed
+		b = b or buttons[k].is_pressed()
 	return b
 
 var buttons : Dictionary

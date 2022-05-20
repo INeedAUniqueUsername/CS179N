@@ -88,6 +88,7 @@ var dest_width = {
 var skipLevelOutro = false
 var levelOutroReady = false
 func _process(delta):
+	
 	dest_width.hp = int(96 * player.hp / 100)
 	dest_width.energy = int(96 * player.energy / 100)
 	dest_width.fuel = int(96 * player.fuel / 100)
