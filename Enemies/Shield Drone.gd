@@ -6,6 +6,11 @@ var vel1 = Vector2(0, 0)
 
 var ignore = [self]
 
+var rng = RandomNumberGenerator.new()
+const health_pickup = preload("res://Powerups/HealthPickup.tscn")
+const fuel_pickup = preload("res://Powerups/FuelPickup.tscn")
+const energy_pickup = preload("res://Powerups/EnergyPickup.tscn")
+
 signal on_destroyed
 signal on_damaged
 var player
@@ -57,3 +62,19 @@ func damage(projectile):
 		for s in $Shield.get_children():
 			s.destroy()
 		$Anim.play("Destroyed")
+		
+		rng.randomize()
+		var rand = rng.randf_range(0, 100)
+		
+		if rand < 25:
+			var d = health_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
+		elif rand < 50:
+			var d = fuel_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
+		elif rand < 75:
+			var d = energy_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
