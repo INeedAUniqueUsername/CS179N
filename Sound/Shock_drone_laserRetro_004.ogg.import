@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Shock_drone_laserRetro_004.ogg-9253672cbf54c05be358a8a787680bb4.oggstr"
+
+[deps]
+
+source_file="res://Sound/Shock_drone_laserRetro_004.ogg"
+dest_files=[ "res://.import/Shock_drone_laserRetro_004.ogg-9253672cbf54c05be358a8a787680bb4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -25,6 +25,8 @@ var animRightLeg
 # if negative, indicates excess time that has passed (used for battery recharge)
 var fireCooldown = 0
 
+
+
 func canFire(): return fireCooldown < 0
 
 var time_scale = 1
@@ -131,16 +133,23 @@ var lastDrain = 0
 func damage(attacker):
 	if state != State.Active:
 		return
+	var atk_dmg
+	if SetDifficulty.state == 0:
+		atk_dmg = attacker.damage * 0.5
+	elif SetDifficulty.state == 1:
+		atk_dmg = attacker.damage
+	elif SetDifficulty.state == 2:
+		atk_dmg = attacker.damage * 2
 	if damageDelay > 0:
-		var inc = attacker.damage - lastDamage
+		var inc = atk_dmg - lastDamage
 		if inc > 0:
 			hp = max(0, hp - inc)
-			lastDamage = attacker.damage
+			lastDamage = atk_dmg
 		else:
 			return
 	else:
-		hp = max(0, hp - attacker.damage)
-		lastDamage = attacker.damage
+		hp = max(0, hp - atk_dmg)
+		lastDamage = atk_dmg
 		if 'drain' in attacker:
 			energy = max(0, energy - attacker.drain)
 			lastDrain = attacker.drain
@@ -189,11 +198,23 @@ func turn(dest_turn, delta):
 func consume_fuel(f):
 	fuel = max(0, fuel - f)
 	
-func add_fuel(f):
-	fuel = min(100, fuel + f)
+func add_fuel(f, fm):
+	fuel_max += fm
+	fuel = min(fuel_max, fuel + f)
+	print(fuel)
+	print(fuel_max)
 	
-func add_hp(h):
-	hp = min(100, hp + h)
+func add_hp(h, hm):
+	hp_max += hm
+	hp = min(hp_max, hp + h)
+	print(hp)
+	print(hp_max)
+	
+func add_energy(e, em):
+	energy_max += em
+	energy = min(energy_max, energy + e)
+	print(energy)
+	print(energy_max)
 	
 func update_controls(delta):
 	delta *= time_scale

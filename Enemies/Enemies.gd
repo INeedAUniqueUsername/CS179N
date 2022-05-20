@@ -9,6 +9,7 @@ func get_hp(): return hp
 var rng = RandomNumberGenerator.new()
 const health_pickup = preload("res://Powerups/HealthPickup.tscn")
 const fuel_pickup = preload("res://Powerups/FuelPickup.tscn")
+const energy_pickup = preload("res://Powerups/EnergyPickup.tscn")
 
 signal on_destroyed
 func damage(projectile):
@@ -31,6 +32,10 @@ func damage(projectile):
 			d.global_position = global_position
 		elif rand < 50:
 			var d = fuel_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
+		elif rand < 75:
+			var d = energy_pickup.instance()
 			get_parent().add_child(d)
 			d.global_position = global_position
 		

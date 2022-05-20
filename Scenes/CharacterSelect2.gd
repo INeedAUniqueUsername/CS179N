@@ -1,14 +1,25 @@
 extends Control
 
+
 const HeroTypes = PlayerVariables.HeroTypes
+
+export (NodePath) var dropdown_path
+onready var dropdown = get_node(dropdown_path)
+
+var difficulty_array = ["Easy", "Normal", "Hard"]
+
+
 func _ready():
 	var s = "button_down"
+	add_difficulty_items()
+	dropdown.connect("item_selected", self, "on_item_selected")
 	$Starman.connect(s, self, "select_starman")
 	$Asteria.connect(s, self, "select_asteria")
 	$Astroknight.connect(s, self, "select_astroknight")
 	$Lune.connect(s, self, "select_lune")
 	$BackButton.connect("pressed", self, "back")
 	$StartButton.connect("pressed", self, "start_game")
+
 	
 	if PlayerVariables.gold[HeroTypes.starman]:
 		set_gold($Starman/Back)
@@ -36,6 +47,15 @@ func _ready():
 const gold = preload("res://Sprites/CharacterBackgroundGold.png")
 func set_gold(back : Sprite):
 	back.texture = gold
+
+	select_starman()
+func add_difficulty_items():
+	for item in difficulty_array:
+		dropdown.add_item(item)
+
+func on_item_selected(id):
+	SetDifficulty.state = id
+	SetDifficulty.emit_signal("level_difficulty")
 func back():
 	$MenuClickSound.play()
 	yield($MenuClickSound,"finished")

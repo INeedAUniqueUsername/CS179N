@@ -100,8 +100,11 @@ var damage = 20
 func damage(projectile):
 	common.damage(projectile)
 	
-func add_fuel(f):
-	common.add_fuel(f)
+func add_fuel(f, fm):
+	common.add_fuel(f, fm)
 	
-func add_hp(h):
-	common.add_hp(h)
+func add_hp(h, hm):
+	common.add_hp(h, hm)
+	
+func add_energy(e, em):
+	common.add_energy(e, em)
