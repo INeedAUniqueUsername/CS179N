@@ -19,4 +19,6 @@ texture = ExtResource( 1 )
 position = Vector2( -0.5, 0 )
 shape = SubResource( 1 )
 
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+
 [connection signal="area_entered" from="Pickup_Area" to="." method="_on_Pickup_Area_area_entered"]
