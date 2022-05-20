@@ -92,6 +92,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="TimeSlow" type="Area2D" parent="." groups=["Damage"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TimeSlow"]
 shape = SubResource( 1 )

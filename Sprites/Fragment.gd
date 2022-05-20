@@ -26,12 +26,13 @@ func fragment():
 	armed = false
 	var ignore = p.ignore
 	ignore.append(self)
-	for i in range(5):
-		var angle = i * PI * 2 / 5.0
+	var c = 3.0
+	for i in range(c):
+		var angle = i * PI * 2 / c
 		var b = projectile.instance()
 		b.ignore = ignore
 		b.ignore.append(b)
-		p.get_parent().add_child(b)
+		p.get_parent().call_deferred("add_child", b)
 		b.global_position = p.global_position
 		b.global_position += polar2cartesian(16, angle)
 		b.vel = p.vel + polar2cartesian(360, angle)
