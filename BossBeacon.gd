@@ -1,7 +1,7 @@
 extends Node2D
 
 var vel = Vector2(0, 0)
-const hp_max = 100
+onready var hp_max = [50, 100, 150][PlayerVariables.difficulty]
 onready var hp = hp_max
 signal on_damaged
 signal on_destroyed

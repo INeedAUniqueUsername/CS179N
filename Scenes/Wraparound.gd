@@ -27,6 +27,8 @@ func register_actors():
 			continue
 		if !(l.is_in_group("Actor") or l.is_in_group("Fog")):
 			continue
+		if leaves.has(l):
+			continue
 		if !Helper.get_parent_actor(l.get_parent()):
 			register(l)
 		if l.is_in_group("Player"):

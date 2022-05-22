@@ -89,16 +89,16 @@ var skipLevelOutro = false
 var levelOutroReady = false
 func _process(delta):
 	
-	dest_width.hp = int(96 * player.hp / 100)
-	dest_width.energy = int(96 * player.energy / 100)
-	dest_width.fuel = int(96 * player.fuel / 100)
+	dest_width.hp = int(96 * player.hp / player.common.hp_max)
+	dest_width.energy = int(96 * player.energy / player.common.energy_max)
+	dest_width.fuel = int(96 * player.fuel / player.common.fuel_max)
 	if boss:
 		dest_width.boss = int(420 * boss.hp / boss.hp_max)
 	
-	width.hp += (dest_width.hp - width.hp)/15.0
-	width.energy += (dest_width.energy - width.energy)/15.0
-	width.fuel += (dest_width.fuel - width.fuel)/15.0
-	width.boss += (dest_width.boss - width.boss) / 15.0
+	width.hp += (dest_width.hp - width.hp)/10.0
+	width.energy += (dest_width.energy - width.energy)/10.0
+	width.fuel += (dest_width.fuel - width.fuel)/10.0
+	width.boss += (dest_width.boss - width.boss) / 10.0
 	
 	$Bars/HealthFront.region_rect.size.x = ceil(width.hp)
 	$Bars/EnergyFront.region_rect.size.x = ceil(width.energy)
@@ -122,6 +122,8 @@ func check_next_screen():
 	elif gameOver:
 		get_tree().change_scene("res://Scenes/Ending.tscn")
 func check_resurrect():
+	if levelOutroReady:
+		return
 	if gameOver:
 		gameOver = false
 		PlayerVariables.set_winner(true)

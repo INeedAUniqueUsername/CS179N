@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/github-integration/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Title.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://SomeLabel.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Sprites/SystemSun.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/SystemEarth.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -30,7 +32,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 3, 6 ),
 "transitions": PoolRealArray( -2, -2, -2 ),
 "update": 0,
-"values": [ Vector2( 520, 192 ), Vector2( 520, 256 ), Vector2( 520, 192 ) ]
+"values": [ Vector2( 520, 160 ), Vector2( 520, 224 ), Vector2( 520, 160 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -106,6 +108,122 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Orbit"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Earth/Z:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 200, 0 ), Vector2( -200, 0 ), Vector2( 200, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Earth/Z:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Earth/Z:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 1 ),
+"update": 0,
+"values": [ 0, 200, 0, -200, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Earth:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ), Vector2( 0, 0 ), Vector2( 0, -20 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Earth/Z:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 200, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Earth:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Earth/Z:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Earth/Z:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Earth:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [node name="Control" type="Control"]
@@ -236,6 +354,24 @@ stream = ExtResource( 4 )
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="Planetarium" type="Node2D" parent="."]
+position = Vector2( 960, 480 )
+z_index = 4096
+
+[node name="Sun" type="Sprite" parent="Planetarium"]
+texture = ExtResource( 7 )
+
+[node name="Orbit" type="AnimationPlayer" parent="Planetarium"]
+autoplay = "Orbit"
+anims/Orbit = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="Earth" type="Node2D" parent="Planetarium"]
+
+[node name="Z" type="Sprite" parent="Planetarium/Earth"]
+position = Vector2( 200, 0 )
+texture = ExtResource( 8 )
 
 [connection signal="pressed" from="Play" to="." method="play"]
 [connection signal="pressed" from="Codex" to="." method="codex"]

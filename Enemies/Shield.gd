@@ -12,7 +12,6 @@ func get_vel():
 	if 'vel' in main:
 		return main.vel
 	return Vector2(0, 0)
-	# quick fix
 	
 func set_vel(vel):
 	return
@@ -36,8 +35,9 @@ func on_area_entered(area):
 	main.ignore.append(actor)
 	
 	if actor and actor.is_in_group("Player"):
-		var velDiff = vel - actor.common.vel
-		actor.common.vel = vel + velDiff
+		var v = self.vel
+		var velDiff = v - actor.common.vel
+		actor.common.vel = v + velDiff
 		#parent.vel -= velDiff
 func on_area_exited(area):
 	if !Helper.is_area_body(area):

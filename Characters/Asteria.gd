@@ -44,8 +44,10 @@ func _process(delta):
 	if common.is_control_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
 		$PrimarySound.play()
 		
+		var speed = 1024 * 3/4.0
 		if common.fireCooldown > -0.1:
 			nextCooldown = max(primaryFireInterval / 4, nextCooldown * nextCooldown / (nextCooldown + 0.003))
+			speed *= max(1, primaryFireInterval / (nextCooldown * 3.0))
 		else:
 			nextCooldown = primaryFireInterval
 		common.fireCooldown = nextCooldown
@@ -56,8 +58,8 @@ func _process(delta):
 		var p = [$LeftCannon, $RightCannon][fireCount%2]
 		var l = beam.instance()
 		l.ignore.append(self)
-		l.vel = common.vel + common.vector_up * 1024 * 3/4
-		get_parent().add_child(l)
+		l.vel = common.vel + common.vector_up * speed
+		get_parent().call_deferred("add_child", l)
 		l.set_global_transform(p.get_global_transform())
 		l.rotation_degrees = rotation_degrees - 90
 		p.get_node("Anim").play("Fire")
@@ -86,7 +88,7 @@ func fire_burst():
 		explosion,
 		get_parent(),
 		[self],
-		global_position,
+		$BurstOrigin.global_position,
 		common.vel,
 		0)
 	e.scale *= 2
@@ -102,8 +104,7 @@ func fire_burst():
 			var l = beam.instance()
 			l.ignore.append(self)
 			l.vel = common.vel + polar2cartesian(1024 * 3/4, a * PI / 180)
-			get_parent().add_child(l)
-			
+			get_parent().call_deferred("add_child", l)
 			l.set_global_transform(p.get_global_transform())
 			
 			l.position += polar2cartesian(30, a * PI / 180)

@@ -19,7 +19,7 @@ func _on_Pickup_Area_area_entered(area):
 	if !Helper.is_area_body(area):
 		return
 	var actor = Helper.get_parent_actor(area)
-	if actor and actor.is_in_group("Player"):
+	if actor and actor.is_in_group("Player") and actor.common.state == actor.common.State.Active:
 		var lbl = pickupLbl.instance()
 #		$Pickup.play()
 #		yield($Pickup, "finished")

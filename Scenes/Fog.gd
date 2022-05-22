@@ -9,7 +9,14 @@ const dy = ry * 2
 
 var dark = preload("res://Darkness.tscn")
 func _ready():
-	if PlayerVariables.level != 3:
+	var table = {
+		0: true,
+		1: false,
+		2: false,
+		3: true,
+		4: false
+	}
+	if !table[PlayerVariables.level]:
 		queue_free()
 		return
 	

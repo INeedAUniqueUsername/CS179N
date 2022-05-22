@@ -10,7 +10,6 @@ extents = Vector2( 4, 2 )
 texture = ExtResource( 1 )
 offset = Vector2( 1, 0 )
 script = ExtResource( 2 )
-lifespan = 2.0
 damage = 5.0
 knockback = 20.0
 

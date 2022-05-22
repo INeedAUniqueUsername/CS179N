@@ -41,3 +41,8 @@ func reset():
 	winner = true
 	totalScore = 0
 	totalTime = 0
+
+enum DifficultyModes {
+	Easy, Medium, Hard
+}
+var difficulty = DifficultyModes.Medium

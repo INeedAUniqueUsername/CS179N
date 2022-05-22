@@ -55,7 +55,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 120.0
+radius = 90.0
 
 [node name="MineLayerSpike" type="Sprite" groups=["Actor", "Kinetic", "Projectile"]]
 texture = ExtResource( 1 )

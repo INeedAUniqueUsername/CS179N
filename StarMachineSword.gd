@@ -21,7 +21,7 @@ func _process(delta):
 		var offset = player.global_position - global_position
 		
 		slashCooldown = max(0, slashCooldown - delta)
-		if offset.length() > 180:
+		if offset.length() > 320:
 			var rejection = vel * (1 - vel.normalized().dot(offset.normalized()))
 			vel -= rejection.normalized() * min(rejection.length(), speed * delta)
 			if vel.length() < 240:
