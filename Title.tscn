@@ -242,12 +242,25 @@ anchor_top = 0.25
 anchor_right = 0.5
 anchor_bottom = 0.25
 margin_left = -120.0
+margin_top = 218.0
+margin_right = 120.0
+margin_bottom = 281.0
+custom_fonts/font = SubResource( 1 )
+shortcut = SubResource( 3 )
+text = "Play"
+
+[node name="Tutorial" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = -120.0
 margin_top = 300.0
 margin_right = 120.0
 margin_bottom = 363.0
 custom_fonts/font = SubResource( 1 )
 shortcut = SubResource( 3 )
-text = "Play"
+text = "Tutorial"
 
 [node name="Codex" type="Button" parent="."]
 anchor_left = 0.5
@@ -374,6 +387,7 @@ position = Vector2( 200, 0 )
 texture = ExtResource( 8 )
 
 [connection signal="pressed" from="Play" to="." method="play"]
+[connection signal="pressed" from="Tutorial" to="." method="tutorial"]
 [connection signal="pressed" from="Codex" to="." method="codex"]
 [connection signal="pressed" from="Credits" to="." method="credits"]
 [connection signal="pressed" from="Quit" to="." method="quit"]

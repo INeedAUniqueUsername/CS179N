@@ -7,6 +7,8 @@ func go(scene: PackedScene):
 	get_tree().change_scene_to(scene)
 func play():
 	go(preload("res://Scenes/CharacterSelect2.tscn"))
+func tutorial():
+	go(preload("res://Tutorial.tscn"))
 func codex():
 	go(preload("res://Codex.tscn"))
 func credits():
