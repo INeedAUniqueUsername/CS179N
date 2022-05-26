@@ -12,11 +12,25 @@ enum HeroTypes {
 	starman
 }
 
-var gold = {
-	HeroTypes.starman: false,
-	HeroTypes.asteria: false,
-	HeroTypes.astroknight: false,
-	HeroTypes.lune: false
+var records = {
+	DifficultyModes.Easy: {
+		HeroTypes.starman: false,
+		HeroTypes.asteria: false,
+		HeroTypes.astroknight: false,
+		HeroTypes.lune: false
+	},
+	DifficultyModes.Medium: {
+		HeroTypes.starman: false,
+		HeroTypes.asteria: false,
+		HeroTypes.astroknight: false,
+		HeroTypes.lune: false
+	},
+	DifficultyModes.Hard: {
+		HeroTypes.starman: false,
+		HeroTypes.asteria: false,
+		HeroTypes.astroknight: false,
+		HeroTypes.lune: false
+	}
 }
 
 func desc(heroName, primary, secondary):

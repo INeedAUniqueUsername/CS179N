@@ -16,7 +16,7 @@ const ShieldedLaserSentry = preload("res://Enemies/ShieldedLaserSentry.tscn")
 
 var enemyTables : Array = [
 	EnemyTable.new({
-		LaserDrone: 60,
+		LaserDrone: 90,
 		ShockDrone:10, LightningDrone: 5
 	}),
 	EnemyTable.new({

@@ -226,7 +226,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -354,7 +354,7 @@ lost in a zone where space wrapped around itself.
 
 Soon, they were surrounded by hostile drones and
 under attack by their new nemesis, Ad Dastardly Astra."
-percent_visible = -0.00293255
+percent_visible = -0.002849
 
 [node name="Scroll" type="AnimationPlayer" parent="."]
 autoplay = "Scroll"

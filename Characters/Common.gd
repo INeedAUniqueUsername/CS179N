@@ -11,7 +11,7 @@ var fuel = fuel_max
 var levelTime = 0.0
 var levelScore = 0.0
 
-var fuelUsage = 1.0/2
+var fuelUsage = 1/2.0
 var thrustSpeed = 600
 var turnSpeed = 720
 
@@ -69,8 +69,8 @@ func update_physics(delta):
 		vel -= delta * vel.normalized() * min(vel.length() * 2, thrustSpeed * 2)
 	if decel_turn:
 		turn -= delta * sign(turn) * min(abs(turn) * 15, 16 * turnSpeed)
-signal on_fuel_warning
-signal on_fuel_depleted
+signal on_fuel_warning(Node2D)
+signal on_fuel_depleted(Node2D)
 var decel_vel
 var decel_turn
 onready var prevFuel = fuel_max
@@ -102,13 +102,13 @@ func update_systems(delta):
 	damageDelay -= delta
 	fireCooldown -= delta
 	if fireCooldown < 0:
-		var rechargeRate = 10 - fireCooldown*5
+		var rechargeRate = (-fireCooldown * 5 + 10) * rechargeFactor
 		var inc = min(energy_max - energy, delta * rechargeRate)
 		if inc > 0:
 			energy += inc
 			fuel -= inc / 60.0
 	if damageDelay < 0:
-		var rechargeRate = 0.75 * (1 - damageDelay)
+		var rechargeRate = 0.75 * (1 - damageDelay) * rechargeFactor
 		var inc = min(hp_max - hp, delta * rechargeRate)
 		if inc > 0:
 			hp += inc
@@ -122,7 +122,6 @@ func update_systems(delta):
 signal on_mortal
 signal on_destroyed
 var damageDelay = 0
-
 enum State {
 	Active, Recovering, Dying, Dead, Winner
 }
@@ -134,12 +133,14 @@ func damage(attacker):
 	if state != State.Active:
 		return
 	var atk_dmg
-	if SetDifficulty.state == 0:
-		atk_dmg = attacker.damage * 0.5
-	elif SetDifficulty.state == 1:
-		atk_dmg = attacker.damage
-	elif SetDifficulty.state == 2:
-		atk_dmg = attacker.damage * 2
+	var Modes = PlayerVariables.DifficultyModes
+	match PlayerVariables.difficulty:
+		Modes.Easy:
+			atk_dmg = attacker.damage * 0.5
+		Modes.Medium:
+			atk_dmg = attacker.damage
+		Modes.Hard:
+			atk_dmg = attacker.damage * 2.0
 	if damageDelay > 0:
 		var inc = atk_dmg - lastDamage
 		if inc > 0:
@@ -198,9 +199,11 @@ func turn(dest_turn, delta):
 func consume_fuel(f):
 	fuel = max(0, fuel - f)
 	
+var rechargeFactor = fuel_max / 100.0
 func add_fuel(f, fm):
 	fuel_max += fm
 	fuel = min(fuel_max, fuel + f)
+	rechargeFactor = fuel_max / 100.0
 	print(fuel)
 	print(fuel_max)
 	

@@ -18,7 +18,6 @@ func rand_coord():
 func generate_random_enemy():
 	if len(actors.leaves) > 16 + 1 + 16:
 		return
-	
 	if enemyTypes.empty():
 		queue_free()
 		return
