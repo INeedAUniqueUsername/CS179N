@@ -12,6 +12,8 @@ var rng = RandomNumberGenerator.new()
 
 var is_broken = false
 
+const laserdrone = preload("res://Enemies/LaserDrone.tscn")
+
 func _ready():
 	if PlayerVariables.difficulty == 0:
 		hp = 50
@@ -42,13 +44,23 @@ func damage(projectile):
 		remove_child(enemydie)
 		
 		if !is_broken:
+			spawn_laserdrone()
 			spawn_broken()
-		
+			
 		queue_free()
 
+func spawn_laserdrone():
+	for i in range(2):
+		var laserdrone_load = laserdrone.instance()
+		
+		get_parent().add_child(laserdrone_load)
+		rng.randomize()
+		var x = rng.randf_range(-50, 50)
+		laserdrone_load.global_position = global_position + Vector2(x, x)
+		laserdrone_load.rotation_degrees = rng.randf_range(0, 360)
+
 func spawn_broken():
-	self.scale = Vector2(0.75, 0.75)
-	for i in 3:
+	for i in range(3):
 		var broken_load = self.duplicate()
 		rng.randomize()
 		var x = rng.randf_range(-1, 1)
@@ -57,7 +69,8 @@ func spawn_broken():
 		broken_load.is_broken = true
 		
 		get_parent().add_child(broken_load)
-		broken_load.set_global_transform(get_global_transform())
+		broken_load.scale = Vector2(0.75, 0.75)
+		broken_load.global_position = global_position
 
 func _on_Damage_Area_area_entered(area):
 	if !Helper.is_area_body(area):
