@@ -92,7 +92,7 @@ func _process(delta):
 	dest_width.hp = int(96 * player.hp / player.common.hp_max)
 	dest_width.energy = int(96 * player.energy / player.common.energy_max)
 	dest_width.fuel = int(96 * player.fuel / player.common.fuel_max)
-	if boss:
+	if boss and boss.hp:
 		dest_width.boss = int(420 * boss.hp / boss.hp_max)
 	
 	width.hp += (dest_width.hp - width.hp)/10.0

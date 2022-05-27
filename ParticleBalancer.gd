@@ -1,6 +1,6 @@
 extends Particles2D
 func _ready():
-	if Helper.lightningCount == 5:
+	if Helper.lightningCount == 20:
 		queue_free()
 		return
 	Helper.lightningCount += 1
