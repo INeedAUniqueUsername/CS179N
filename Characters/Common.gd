@@ -132,15 +132,15 @@ var lastDrain = 0
 func damage(attacker):
 	if state != State.Active:
 		return
-	var atk_dmg
+	var atk_dmg = attacker.damage
 	var Modes = PlayerVariables.DifficultyModes
 	match PlayerVariables.difficulty:
 		Modes.Easy:
-			atk_dmg = attacker.damage * 0.5
+			atk_dmg *= 0.5
 		Modes.Medium:
-			atk_dmg = attacker.damage
+			atk_dmg *= 1.0
 		Modes.Hard:
-			atk_dmg = attacker.damage * 2.0
+			atk_dmg *= 2.0
 	if damageDelay > 0:
 		var inc = atk_dmg - lastDamage
 		if inc > 0:
