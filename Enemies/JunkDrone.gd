@@ -9,6 +9,12 @@ func get_hp(): return hp
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	if PlayerVariables.difficulty == 0:
+		hp = 50
+	elif PlayerVariables.difficulty == 1:
+		hp = 100
+	elif PlayerVariables.difficulty == 2:
+		hp = 150
 	# Start out at a random direction
 	rng.randomize()
 	var x = rng.randf_range(-1, 1)

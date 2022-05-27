@@ -49,7 +49,7 @@ func _on_Detect_area_entered(area):
 	if actor and actor.is_in_group("Player"):
 		player = actor
 
-var hp_max = 300
+onready var hp_max = [150, 300, 450][PlayerVariables.difficulty]
 onready var hp = hp_max
 
 func damage(projectile):
