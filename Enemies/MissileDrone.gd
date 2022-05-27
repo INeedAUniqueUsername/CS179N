@@ -8,7 +8,7 @@ var curr_cooldown = 0
 
 var beamSpeed = 250
 
-
+var ignore = [self]
 const beam = preload("res://Missile.tscn")
 
 func _ready():
