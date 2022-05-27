@@ -369,7 +369,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Planetarium" type="Node2D" parent="."]
-position = Vector2( 960, 480 )
+position = Vector2( 960, 448 )
 z_index = 4096
 
 [node name="Sun" type="Sprite" parent="Planetarium"]

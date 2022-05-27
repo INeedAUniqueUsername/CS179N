@@ -764,11 +764,8 @@ wait_time = 5.0
 autostart = true
 script = ExtResource( 20 )
 
-[node name="Fog" type="Node2D" parent="Actors"]
-z_index = 1
-script = ExtResource( 34 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 10
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
@@ -1158,6 +1155,10 @@ normal = ExtResource( 26 )
 pressed = ExtResource( 32 )
 passby_press = true
 visibility_mode = 1
+
+[node name="Fog" type="Node2D" parent="Camera2D"]
+z_index = -5
+script = ExtResource( 34 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -99,8 +99,8 @@ func turn():
 	dir_vel = dir_vel.rotated([-PI/2, PI/2][randi()%2])
 	vel += dir_vel
 signal on_destroyed
-var hp = 900
-var hp_max = 900
+onready var hp_max = [450, 900, 1350][PlayerVariables.difficulty]
+onready var hp = hp_max
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp > 0:

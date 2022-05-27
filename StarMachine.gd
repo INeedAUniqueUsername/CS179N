@@ -1,6 +1,6 @@
 extends Sprite
-var hp : int = 600
-var hp_max : int = 600
+onready var hp_max = [300, 600, 900][PlayerVariables.difficulty]
+onready var hp = hp_max
 var vel : Vector2 = Vector2(0, 0)
 var player : Node2D
 

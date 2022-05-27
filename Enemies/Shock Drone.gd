@@ -91,7 +91,7 @@ func _on_Damage_area_entered(area):
 		$AttackSound.play()
 		actor.damage(self)
 		vel = -vel
-var hp_max = 100
+onready var hp_max = [50, 100, 150][PlayerVariables.difficulty]
 onready var hp = hp_max
 func damage(projectile):
 	hp -= projectile.damage

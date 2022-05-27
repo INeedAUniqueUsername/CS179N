@@ -63,8 +63,8 @@ func _physics_process(delta):
 			m.vel = vel# + polar2cartesian(120, rotation + PI/2)
 var vel : Vector2 = Vector2(0, 0)
 signal on_destroyed
+onready var hp_max = [1500, 3000, 4500][PlayerVariables.difficulty]
 onready var hp = hp_max
-var hp_max = 3000
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp > 0:

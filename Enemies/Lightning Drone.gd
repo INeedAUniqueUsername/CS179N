@@ -25,7 +25,12 @@ func _physics_process(delta):
 				vel += offset.normalized() * speed
 	global_translate(vel * delta)
 func _ready():
-	hp = 50
+	if PlayerVariables.difficulty == 0:
+		hp = 25
+	elif PlayerVariables.difficulty == 1:
+		hp = 50
+	elif PlayerVariables.difficulty == 2:
+		hp = 75
 	$Anim.connect("animation_finished", self, "_on_animation_finished")
 var salvo = 0
 func _on_animation_finished(name):
