@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Tutorial.gd" type="Script" id=2]
@@ -6,9 +6,9 @@
 [ext_resource path="res://Sprites/Starman.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/BossBeacon.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/BossRing.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/AstroknightFull.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Asteria.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/LuneFull.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/EnergyBar.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/FuelBar.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/HealthBar.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Border.png" type="Texture" id=11]
 [ext_resource path="res://CodexButton.gd" type="Script" id=12]
@@ -18,6 +18,9 @@
 [ext_resource path="res://Sprites/SpaceCubeArmor.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/StarMachine.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/MineLayer.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/HealthPickup.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/FuelPickup.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/EnergyPickup.png" type="Texture" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -604,53 +607,70 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 2.0
-margin_top = -6.0
-margin_right = 1920.0
-margin_bottom = 1082.0
+margin_left = 4.0
+margin_top = -17.0
+margin_right = 1922.0
+margin_bottom = 1071.0
 color = Color( 0.0588235, 0.137255, 0.27451, 1 )
 
+[node name="EnergyBar" type="Sprite" parent="."]
+position = Vector2( 193, 420 )
+scale = Vector2( 1.5625, 2.13333 )
+texture = ExtResource( 7 )
+
+[node name="HealthBar" type="Sprite" parent="."]
+position = Vector2( 194, 508 )
+scale = Vector2( 1.59178, 2.13334 )
+texture = ExtResource( 9 )
+
+[node name="FuelBar" type="Sprite" parent="."]
+position = Vector2( 198, 594 )
+scale = Vector2( 1.56029, 1.98823 )
+texture = ExtResource( 8 )
+
+[node name="EnergyPickup" type="Sprite" parent="."]
+position = Vector2( 1096, 407 )
+scale = Vector2( 4.9375, 5.25 )
+texture = ExtResource( 21 )
+
+[node name="HealthPickup" type="Sprite" parent="."]
+position = Vector2( 1093, 498 )
+scale = Vector2( 5.125, 4.875 )
+texture = ExtResource( 19 )
+
+[node name="FuelPickup" type="Sprite" parent="."]
+position = Vector2( 1095, 582 )
+scale = Vector2( 5.125, 4.875 )
+texture = ExtResource( 20 )
+
 [node name="BossBeacon" type="Sprite" parent="."]
-position = Vector2( 1738.12, 410 )
+position = Vector2( 1758, 272 )
 scale = Vector2( 4.16016, 4.375 )
 texture = ExtResource( 5 )
 
 [node name="BossRing" type="Sprite" parent="."]
-position = Vector2( 1104.81, 403.25 )
+position = Vector2( 1096, 276 )
 scale = Vector2( 4.17578, 3.92187 )
 texture = ExtResource( 6 )
 
 [node name="Starman" type="Sprite" parent="."]
-position = Vector2( 235, 305 )
+position = Vector2( 203, 277 )
 scale = Vector2( 3.73438, 4.04688 )
 texture = ExtResource( 4 )
 
-[node name="Asteria" type="Sprite" parent="."]
-position = Vector2( 815, 307 )
-scale = Vector2( 3.73438, 4.04688 )
-texture = ExtResource( 8 )
-
-[node name="LuneFull" type="Sprite" parent="."]
-position = Vector2( 235, 475 )
-texture = ExtResource( 9 )
-
-[node name="AstroknightFull" type="Sprite" parent="."]
-position = Vector2( 807, 489 )
-texture = ExtResource( 7 )
-
 [node name="BackButton" type="Button" parent="."]
-margin_left = 128.0
-margin_top = 913.0
-margin_right = 248.0
-margin_bottom = 976.0
+margin_left = 101.0
+margin_top = 933.0
+margin_right = 221.0
+margin_bottom = 996.0
 custom_fonts/font = SubResource( 1 )
 text = "Back"
 
 [node name="ThunderDrone" type="Button" parent="."]
-margin_left = 276.0
-margin_top = 683.0
-margin_right = 372.0
-margin_bottom = 779.0
+margin_left = 265.0
+margin_top = 738.0
+margin_right = 361.0
+margin_bottom = 834.0
 rect_scale = Vector2( 2, 2 )
 script = ExtResource( 12 )
 ap = NodePath("Thunder Drone/Anim")
@@ -685,10 +705,10 @@ texture = ExtResource( 11 )
 centered = false
 
 [node name="Space Cube" type="Button" parent="."]
-margin_left = 593.0
-margin_top = 682.0
-margin_right = 689.0
-margin_bottom = 778.0
+margin_left = 582.0
+margin_top = 737.0
+margin_right = 678.0
+margin_bottom = 833.0
 rect_scale = Vector2( 2, 2 )
 script = ExtResource( 12 )
 ap = NodePath("SpaceCube/Anim")
@@ -736,10 +756,10 @@ centered = false
 stream = ExtResource( 3 )
 
 [node name="Mine Layer" type="Button" parent="."]
-margin_left = 920.0
-margin_top = 685.0
-margin_right = 1016.0
-margin_bottom = 781.0
+margin_left = 911.0
+margin_top = 740.0
+margin_right = 1007.0
+margin_bottom = 836.0
 rect_scale = Vector2( 2, 2 )
 script = ExtResource( 12 )
 desc = "Mine Layer
@@ -760,10 +780,10 @@ centered = false
 stream = ExtResource( 3 )
 
 [node name="Rawbawjaw" type="Button" parent="."]
-margin_left = 1245.0
-margin_top = 680.0
-margin_right = 1341.0
-margin_bottom = 776.0
+margin_left = 1236.0
+margin_top = 735.0
+margin_right = 1332.0
+margin_bottom = 831.0
 rect_scale = Vector2( 2, 2 )
 script = ExtResource( 12 )
 anims = [ "Open", "Close", "Charge" ]
@@ -898,10 +918,10 @@ anims/Spin = SubResource( 21 )
 shape = SubResource( 22 )
 
 [node name="Star Machine" type="Button" parent="."]
-margin_left = 1564.0
-margin_top = 680.0
-margin_right = 1660.0
-margin_bottom = 776.0
+margin_left = 1553.0
+margin_top = 728.0
+margin_right = 1649.0
+margin_bottom = 824.0
 rect_scale = Vector2( 2, 2 )
 script = ExtResource( 12 )
 ap = NodePath("StarMachine/Head/Cannons")
@@ -944,7 +964,7 @@ anims/Fire = SubResource( 23 )
 anims/Idle = SubResource( 24 )
 anims/RESET = SubResource( 25 )
 
-[node name="Label" type="Label" parent="."]
+[node name="Tutorial" type="Label" parent="."]
 margin_left = 648.0
 margin_top = 78.0
 margin_right = 1124.0
@@ -953,33 +973,97 @@ custom_fonts/font = SubResource( 2 )
 text = "Tutorial"
 align = 1
 
-[node name="Desc" type="Label" parent="."]
-margin_left = 317.0
-margin_top = 342.0
-margin_right = 917.0
-margin_bottom = 520.0
+[node name="Character" type="Label" parent="."]
+margin_left = 305.0
+margin_top = 231.0
+margin_right = 753.0
+margin_bottom = 339.0
 custom_fonts/font = SubResource( 3 )
 text = "Use  arrow keys to move your character
 [ X ] - Primary Attack
 [ Z ] - Secondary Attack"
 autowrap = true
 
-[node name="Desc2" type="Label" parent="."]
-margin_left = 1206.0
-margin_top = 334.0
-margin_right = 1622.0
-margin_bottom = 517.0
+[node name="Boss Beacon" type="Label" parent="."]
+margin_left = 1191.0
+margin_top = 228.0
+margin_right = 1607.0
+margin_bottom = 343.0
 custom_fonts/font = SubResource( 3 )
 text = "Attack enemies to achieve scores. Don't forget to break all boss beacons or boss rings to summon the boss."
 autowrap = true
 
-[node name="Desc3" type="Label" parent="."]
-margin_left = 560.0
-margin_top = 618.0
-margin_right = 1430.0
-margin_bottom = 705.0
+[node name="Kill the boss" type="Label" parent="."]
+margin_left = 483.0
+margin_top = 651.0
+margin_right = 1509.0
+margin_bottom = 738.0
 custom_fonts/font = SubResource( 3 )
-text = "Kill the boss to clear the level. There are five bosses in total, one for each level."
+text = "Kill the boss to clear the level. There are five bosses in total, one for each level.
+You lose if you don't have enough fuel for emergency repairs when your hp reaches 0."
+autowrap = true
+
+[node name="EnergyBar2" type="Label" parent="."]
+margin_left = 306.0
+margin_top = 389.0
+margin_right = 726.0
+margin_bottom = 482.0
+custom_fonts/font = SubResource( 3 )
+text = "Energy Bar - Characters need to have enough enery to attack.
+"
+autowrap = true
+
+[node name="HpBar" type="Label" parent="."]
+margin_left = 306.0
+margin_top = 465.0
+margin_right = 724.0
+margin_bottom = 590.0
+custom_fonts/font = SubResource( 3 )
+text = "Health Bar - Shows the current character's hp. Character needs emergency repairs once it gets to 0.
+"
+autowrap = true
+
+[node name="FuelBar2" type="Label" parent="."]
+margin_left = 306.0
+margin_top = 566.0
+margin_right = 721.0
+margin_bottom = 659.0
+custom_fonts/font = SubResource( 3 )
+text = "Fuel Bar - Character uses fuel to initiate the emerency repairs.
+"
+autowrap = true
+
+[node name="EnergyPowerUp" type="Label" parent="."]
+margin_left = 1187.0
+margin_top = 356.0
+margin_right = 1602.0
+margin_bottom = 481.0
+custom_fonts/font = SubResource( 3 )
+text = "Energy Power Up - Showed up randomly when an enemy got killed.  
++50 Energy     +10 Max Energy
+"
+autowrap = true
+
+[node name="HpPowerUP" type="Label" parent="."]
+margin_left = 1184.0
+margin_top = 451.0
+margin_right = 1599.0
+margin_bottom = 576.0
+custom_fonts/font = SubResource( 3 )
+text = "Health Power Up - Showed up randomly when an enemy got killed.  
++50 Hp     +10 Max Hp
+"
+autowrap = true
+
+[node name="FuelPowerUp" type="Label" parent="."]
+margin_left = 1177.0
+margin_top = 547.0
+margin_right = 1592.0
+margin_bottom = 672.0
+custom_fonts/font = SubResource( 3 )
+text = "Energy Power Up - Showed up randomly when an enemy got killed.  
++25 Fuel     +5 Max Fuel
+"
 autowrap = true
 
 [connection signal="pressed" from="BackButton" to="." method="back"]
