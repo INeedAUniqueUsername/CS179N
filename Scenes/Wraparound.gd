@@ -50,20 +50,25 @@ func on_destroyed(n):
 	if n.is_in_group("Boss Summon"):
 		bossSummon.erase(n)
 		if len(bossSummon) == 0:
-			var b = bossType.instance()
-			call_deferred("add_child", b)
-			b.global_position = player.global_position + polar2cartesian(600, rand_range(0, PI*2))
-			
-			for l in get_descendants(b):
-				if !l.is_in_group("Actor"):
-					continue
-				if l.is_in_group("Segment"):
-					continue
-				register(l)
-			
-			emit_signal("on_boss_summoned", b)
+			summon_boss()
 	elif n == boss:
 		emit_signal("on_boss_destroyed")
+		
+var bossAppeared = false
+func summon_boss():
+	if bossAppeared:
+		return
+	bossAppeared = true
+	var b = bossType.instance()
+	call_deferred("add_child", b)
+	b.global_position = player.global_position + polar2cartesian(600, rand_range(0, PI*2))
+	for l in get_descendants(b):
+		if !l.is_in_group("Actor"):
+			continue
+		if l.is_in_group("Segment"):
+			continue
+		register(l)
+	emit_signal("on_boss_summoned", b)
 func clear_level():
 	for c in get_children():
 		if c != player:
@@ -71,6 +76,10 @@ func clear_level():
 	leaves.clear()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if Input.is_key_pressed(KEY_BACKSPACE):
+		summon_boss()
+		return
 	time += delta
 	if time > 0.4:
 		time = 0
