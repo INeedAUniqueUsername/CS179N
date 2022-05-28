@@ -2,33 +2,24 @@ extends Control
 
 
 const HeroTypes = PlayerVariables.HeroTypes
-
-export (NodePath) var dropdown_path
-onready var dropdown = get_node(dropdown_path)
-
 var difficulty_array = ["Easy", "Normal", "Hard"]
 
 
 func _ready():
 	var s = "button_down"
-	add_difficulty_items()
-	dropdown.connect("item_selected", self, "on_item_selected")
+	
+	for item in difficulty_array:
+		$DifficultyButton.add_item(item)
+	$DifficultyButton.connect("item_selected", self, "on_item_selected")
+	$DifficultyButton.select(PlayerVariables.difficulty)
 	$Starman.connect(s, self, "select_starman")
 	$Asteria.connect(s, self, "select_asteria")
 	$Astroknight.connect(s, self, "select_astroknight")
 	$Lune.connect(s, self, "select_lune")
 	$BackButton.connect("pressed", self, "back")
 	$StartButton.connect("pressed", self, "start_game")
-
 	
-	if PlayerVariables.gold[HeroTypes.starman]:
-		set_gold($Starman/Back)
-	if PlayerVariables.gold[HeroTypes.asteria]:
-		set_gold($Asteria/Back)
-	if PlayerVariables.gold[HeroTypes.astroknight]:
-		set_gold($Astroknight/Back)
-	if PlayerVariables.gold[HeroTypes.lune]:
-		set_gold($Lune/Back)
+	update_frames()
 	match PlayerVariables.hero:
 		HeroTypes.starman:
 			vis($Starman/Border)
@@ -42,20 +33,21 @@ func _ready():
 		HeroTypes.lune:
 			vis($Lune/Border)
 			$Character.texture = $Lune/Sprite.texture
-	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
-
-const gold = preload("res://Sprites/CharacterBackgroundGold.png")
-func set_gold(back : Sprite):
-	back.texture = gold
-
-	select_starman()
-func add_difficulty_items():
-	for item in difficulty_array:
-		dropdown.add_item(item)
-
+	show_stats()
+const back_regular = preload("res://Sprites/CharacterBackgroundRegular.png")
+const back_gold = preload("res://Sprites/CharacterBackgroundGold.png")
+func set_back(back : Sprite, gold: bool = true):
+	back.texture = {false:back_regular, true:back_gold}[gold]
+func update_frames():
+	var d = PlayerVariables.records[PlayerVariables.difficulty]
+	set_back($Starman/Back, !!d[HeroTypes.starman])
+	set_back($Asteria/Back, !!d[HeroTypes.asteria])
+	set_back($Astroknight/Back, !!d[HeroTypes.astroknight])
+	set_back($Lune/Back, !!d[HeroTypes.lune])
 func on_item_selected(id):
-	SetDifficulty.state = id
-	SetDifficulty.emit_signal("level_difficulty")
+	PlayerVariables.difficulty = id
+	update_frames()
+	show_stats()
 func back():
 	$MenuClickSound.play()
 	yield($MenuClickSound,"finished")
@@ -96,23 +88,30 @@ func select_starman():
 	$MenuClickSound.play()
 	PlayerVariables.setHero(HeroTypes.starman)
 	vis($Starman/Border)
-	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Starman/Sprite.texture
+	show_stats()
 func select_asteria():
 	$MenuClickSound.play()
 	PlayerVariables.setHero(HeroTypes.asteria)
 	vis($Asteria/Border)
-	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Asteria/Sprite.texture
+	show_stats()
 func select_astroknight():
 	$MenuClickSound.play()
 	PlayerVariables.setHero(HeroTypes.astroknight)
 	vis($Astroknight/Border)
-	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Astroknight/Sprite.texture
+	show_stats()
 func select_lune():
 	$MenuClickSound.play()
 	PlayerVariables.setHero(HeroTypes.lune)
 	vis($Lune/Border)
-	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
 	$Character.texture = $Lune/Sprite.texture
+	show_stats()
+func show_stats():
+	$Desc.text = PlayerVariables.heroDesc[PlayerVariables.hero]
+	var entry = PlayerVariables.records[PlayerVariables.difficulty][PlayerVariables.hero]
+	if entry:
+		$Stats.text = "Best Time: %.2f sec\nHigh Score: %d pts" % [entry.bestTime, entry.highScore]
+	else:
+		$Stats.text = "Best Time: ???\nHigh Score: ???"

@@ -8,7 +8,17 @@ var curr_cooldown = 0
 
 var beamSpeed = 250
 
+var ignore = [self]
 const beam = preload("res://Missile.tscn")
+
+func _ready():
+	if PlayerVariables.difficulty == 0:
+		hp = 50
+	elif PlayerVariables.difficulty == 1:
+		hp = 100
+	elif PlayerVariables.difficulty == 2:
+		hp = 150
+
 func _physics_process(delta):
 	global_translate(vel * delta)
 	

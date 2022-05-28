@@ -1,7 +1,7 @@
 extends Node2D
 
 var vel = Vector2(0, 0)
-const hp_max = 100
+onready var hp_max = [50, 100, 150][PlayerVariables.difficulty]
 onready var hp = hp_max
 signal on_damaged
 signal on_destroyed
@@ -16,6 +16,7 @@ func damage(projectile):
 	if hp == 0:
 		emit_signal("on_destroyed", self)
 		$Anim.play("Destroy")
+		$BeaconBurst.play()
 		$Sprite/Area.queue_free()
 func _physics_process(delta):
 	global_translate(vel * delta)

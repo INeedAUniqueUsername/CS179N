@@ -25,7 +25,7 @@ func fragment():
 	if !armed:
 		return
 	var count = 16
-	var speed = 240
+	var speed = 360
 	for i in range(count):
 		var angle = i * PI * 2 / count
 		Helper.create_projectile(fragment, parent.get_parent(), parent.ignore,

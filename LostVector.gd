@@ -95,8 +95,8 @@ func _process(delta):
 		m.target = player
 		m.lifespan = 5
 		m.lifetime = 5
-var hp_max = 900
-var hp = hp_max
+onready var hp_max = [450, 900, 1350][PlayerVariables.difficulty]
+onready var hp = hp_max
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp == 0:

@@ -56,7 +56,7 @@ func fire_primary():
 			
 		l.ignore.append(self)
 		
-		get_parent().add_child(l)
+		get_parent().call_deferred("add_child", l)
 		l.global_position = p.global_position
 		l.global_rotation = p.global_rotation - PI/2
 		l.scale = scale[p]

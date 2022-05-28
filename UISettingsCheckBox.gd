@@ -10,8 +10,6 @@ onready var label := $Label
 func _ready():
 	pass # Replace with function body.
 
-
-
 func _on_CheckBox_toggled(button_pressed: bool) -> void:
 	emit_signal("toggled", button_pressed)
 

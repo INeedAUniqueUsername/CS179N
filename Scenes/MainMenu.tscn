@@ -43,6 +43,18 @@ text = "LOAD"
 align = 1
 valign = 1
 
+[node name="Settings" type="ColorRect" parent="."]
+margin_left = 70.0
+margin_top = 140.0
+margin_right = 250.0
+margin_bottom = 160.0
+
+[node name="Label" type="Label" parent="Settings"]
+margin_right = 60.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "QUIT"
+
 [node name="Quit" type="ColorRect" parent="."]
 margin_left = 70.0
 margin_top = 110.0

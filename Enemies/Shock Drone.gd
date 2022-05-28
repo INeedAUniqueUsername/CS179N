@@ -12,6 +12,10 @@ func _ready():
 	$Anim.connect("animation_finished", self, "_on_animation_finished")
 	call_deferred("register_player")
 	
+var rng = RandomNumberGenerator.new()
+const health_pickup = preload("res://Powerups/HealthPickup.tscn")
+const fuel_pickup = preload("res://Powerups/FuelPickup.tscn")
+const energy_pickup = preload("res://Powerups/EnergyPickup.tscn")	
 	
 signal on_destroyed
 var player
@@ -87,10 +91,25 @@ func _on_Damage_area_entered(area):
 		$AttackSound.play()
 		actor.damage(self)
 		vel = -vel
-var hp_max = 100
+onready var hp_max = [50, 100, 150][PlayerVariables.difficulty]
 onready var hp = hp_max
 func damage(projectile):
 	hp -= projectile.damage
 	if hp < 1:
 		emit_signal("on_destroyed", self)
+		rng.randomize()
+		var rand = rng.randf_range(0, 100)
+		
+		if rand < 25:
+			var d = health_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
+		elif rand < 50:
+			var d = fuel_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
+		elif rand < 75:
+			var d = energy_pickup.instance()
+			get_parent().add_child(d)
+			d.global_position = global_position
 		queue_free()

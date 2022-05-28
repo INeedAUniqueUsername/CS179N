@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Starman.png" type="Texture" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://Scenes/CharacterSelect2.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/CharacterBackgroundRegular.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/setDifficulty.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/CharacterSelectDesc.tres" type="DynamicFont" id=11]
+
+[sub_resource type="Theme" id=7]
+default_font = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
@@ -20,10 +24,6 @@ size = 54
 font_data = ExtResource( 1 )
 
 [sub_resource type="ShortCut" id=4]
-
-[sub_resource type="DynamicFont" id=2]
-size = 36
-font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "Flash"
@@ -308,7 +308,6 @@ anchor_bottom = 0.5
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 8 )
-dropdown_path = NodePath("DifficultyButton")
 
 [node name="Back3" type="ColorRect" parent="Control"]
 anchor_left = 0.5
@@ -343,10 +342,12 @@ margin_bottom = 260.0
 color = Color( 0.129412, 0.211765, 0.360784, 1 )
 
 [node name="DifficultyButton" type="OptionButton" parent="Control"]
-margin_left = -456.0
+margin_left = -448.0
 margin_top = 107.0
-margin_right = -174.0
-margin_bottom = 149.0
+margin_right = -166.0
+margin_bottom = 156.0
+theme = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Difficulty"
 
 [node name="BackButton" type="Button" parent="Control"]
@@ -452,16 +453,16 @@ margin_left = -444.0
 margin_top = 12.0
 margin_right = 77.0
 margin_bottom = 193.0
-custom_fonts/font = SubResource( 2 )
-text = "Best Time: N/A
-High Score: N/A"
+custom_fonts/font = ExtResource( 11 )
+text = "Best Time: ???
+High Score: ???"
 
 [node name="Desc" type="Label" parent="Control"]
 margin_left = 124.0
 margin_top = 12.0
 margin_right = 645.0
 margin_bottom = 193.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 11 )
 text = "Starman
 
 [X] Laser Cannons

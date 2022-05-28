@@ -1,11 +1,22 @@
 extends Control
-func get_fate():
-	if PlayerVariables.winner:
-		return "Escaped the Anomalous Zone"
-	else:
-		return "Destroyed"
 func _ready():
-	$Stats.text %= [get_fate(), PlayerVariables.totalTime, PlayerVariables.totalScore]
+	var text
+	if PlayerVariables.winner:
+		var entry = PlayerVariables.records[PlayerVariables.difficulty][PlayerVariables.hero]
+		if !entry:
+			entry = {
+				'highScore': 0,
+				'bestTime': INF
+			}
+		PlayerVariables.records[PlayerVariables.difficulty][PlayerVariables.hero] = {
+			'highScore': max(entry.highScore, PlayerVariables.totalScore),
+			'bestTime': min(entry.bestTime, PlayerVariables.totalTime)
+		}
+		
+		text = "Escaped the Anomalous Zone"
+	else:
+		text = "Destroyed"
+	$Stats.text %= [text, PlayerVariables.totalTime, PlayerVariables.totalScore]
 	$Button.connect("pressed", self, "go_title_screen")
 	pass # Replace with function body.
 func go_title_screen():

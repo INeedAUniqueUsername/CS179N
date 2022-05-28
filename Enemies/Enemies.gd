@@ -11,11 +11,15 @@ const health_pickup = preload("res://Powerups/HealthPickup.tscn")
 const fuel_pickup = preload("res://Powerups/FuelPickup.tscn")
 const energy_pickup = preload("res://Powerups/EnergyPickup.tscn")
 
-signal on_destroyed
+var dead = false
+
+signal on_destroyed(Node2D)
 func damage(projectile):
-	hp -= projectile.damage
-	if hp < 1:
-		emit_signal("on_destroyed", self)
+	if dead:
+		return
+	hp = max(0, hp - projectile.damage)
+	if hp == 0:
+		dead = true
 		var enemydie = AudioStreamPlayer.new()
 		get_parent().add_child(enemydie)
 		var dieaudio = preload("res://Sound/enemydie_explosionCrunch_000.ogg")
@@ -26,19 +30,21 @@ func damage(projectile):
 		rng.randomize()
 		var rand = rng.randf_range(0, 100)
 		
+		var p = get_parent()
 		if rand < 25:
 			var d = health_pickup.instance()
-			get_parent().add_child(d)
+			p.call_deferred("add_child", d)
 			d.global_position = global_position
 		elif rand < 50:
 			var d = fuel_pickup.instance()
-			get_parent().add_child(d)
+			p.call_deferred("add_child", d)
 			d.global_position = global_position
 		elif rand < 75:
 			var d = energy_pickup.instance()
-			get_parent().add_child(d)
+			p.call_deferred("add_child", d)
 			d.global_position = global_position
 		
+		emit_signal("on_destroyed", self)
 		queue_free()
 
 var damage = 30
