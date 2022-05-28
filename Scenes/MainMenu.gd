@@ -9,6 +9,7 @@ func changeMenuColor():
 	$Play.color = Color.gray
 	$Resume.color = Color.gray
 	$Quit.color = Color.gray
+	$Settings.color = Color.gray
 	
 	match selected_menu:
 		0:
@@ -17,13 +18,15 @@ func changeMenuColor():
 			$Resume.color = Color.greenyellow
 		2:
 			$Quit.color = Color.greenyellow
+		3:
+			$Settings.color = Color.greenyellow
 	
 func _input(event):
 	if Input.is_action_just_pressed("ui_down"):
-		selected_menu = (selected_menu + 1) % 3
+		selected_menu = (selected_menu + 1) % 4
 		changeMenuColor()
 	elif Input.is_action_just_pressed("ui_up"):
-		if selected_menu> 0:
+		if selected_menu > 0:
 			selected_menu = selected_menu - 1
 		else:
 			selected_menu = 2
@@ -36,4 +39,7 @@ func _input(event):
 				# implement Load Game later
 				print("INITIALIZE LATER")
 			2:
+				print("CREATE AND INSERT SETTINGS SCENE HERE")
+				get_tree().change_scene("res://Scenes/Settings.tscn")
+			3:
 				get_tree().quit()

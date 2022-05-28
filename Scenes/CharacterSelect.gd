@@ -5,6 +5,7 @@ func _ready():
 	#$VBoxContainer/HBoxContainer2/Asteria.connect("pressed", self, "on_button_Asteria_pressed")
 	pass
 	
+#before each of the setHeros, render the current selected character
 func _on_button_Asteria_pressed():
 	PlayerVariables.setHero(PlayerVariables.HeroTypes.asteria)
 func _on_button_AstroKnight_pressed():

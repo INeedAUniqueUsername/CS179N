@@ -288,7 +288,7 @@ custom_fonts/font = SubResource( 1 )
 shortcut = SubResource( 3 )
 text = "Credits"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Settings" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 0.25
 anchor_right = 0.5
@@ -297,6 +297,19 @@ margin_left = -120.0
 margin_top = 540.0
 margin_right = 120.0
 margin_bottom = 603.0
+custom_fonts/font = SubResource( 1 )
+shortcut = SubResource( 3 )
+text = "Settings"
+
+[node name="Quit" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = -120.0
+margin_top = 620.0
+margin_right = 120.0
+margin_bottom = 683.0
 custom_fonts/font = SubResource( 1 )
 shortcut = SubResource( 3 )
 text = "Quit"
@@ -312,10 +325,10 @@ anchor_left = 0.5
 anchor_top = 0.25
 anchor_right = 0.5
 anchor_bottom = 0.25
-margin_left = 520.0
-margin_top = 256.0
-margin_right = 632.0
-margin_bottom = 279.037
+margin_left = -440.0
+margin_top = -14.0
+margin_right = -328.0
+margin_bottom = 9.03699
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 8, 8 )
@@ -390,4 +403,5 @@ texture = ExtResource( 8 )
 [connection signal="pressed" from="Tutorial" to="." method="tutorial"]
 [connection signal="pressed" from="Codex" to="." method="codex"]
 [connection signal="pressed" from="Credits" to="." method="credits"]
+[connection signal="pressed" from="Settings" to="." method="settings"]
 [connection signal="pressed" from="Quit" to="." method="quit"]

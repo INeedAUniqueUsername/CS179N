@@ -13,6 +13,9 @@ func codex():
 	go(preload("res://Codex.tscn"))
 func credits():
 	go(preload("res://Credits.tscn"))
+
+func settings():
+	go(preload("res://Scenes/MasterSettings.tscn"))
 func quit():
 	$MenuSound.play()
 	yield($MenuSound, "finished")
