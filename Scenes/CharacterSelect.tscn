@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://MenuFonts.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scenes/CharacterSelect.gd" type="Script" id=2]
-[ext_resource path="res://CharacterSelectionButtonGroup.tres" type="ButtonGroup" id=3]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -12,58 +10,48 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 330.0
-margin_bottom = 15.0
+margin_right = 305.0
+margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
 text = "CREATE HERO"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 19.0
-margin_right = 330.0
-margin_bottom = 19.0
+margin_top = 18.0
+margin_right = 305.0
+margin_bottom = 18.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 23.0
-margin_right = 330.0
-margin_bottom = 44.0
+margin_top = 22.0
+margin_right = 305.0
+margin_bottom = 42.0
 
 [node name="Asteria" type="Button" parent="VBoxContainer/HBoxContainer2"]
-margin_right = 75.0
-margin_bottom = 21.0
-custom_fonts/font = ExtResource( 1 )
-group = ExtResource( 3 )
+margin_right = 64.0
+margin_bottom = 20.0
 text = "ASTERIA"
 
 [node name="AstroKnight" type="Button" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 79.0
-margin_right = 199.0
-margin_bottom = 21.0
-custom_fonts/font = ExtResource( 1 )
-group = ExtResource( 3 )
+margin_left = 68.0
+margin_right = 177.0
+margin_bottom = 20.0
 text = "ASTRO-KNIGHT"
 
 [node name="Lune" type="Button" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 203.0
-margin_right = 251.0
-margin_bottom = 21.0
-custom_fonts/font = ExtResource( 1 )
-group = ExtResource( 3 )
+margin_left = 181.0
+margin_right = 227.0
+margin_bottom = 20.0
 text = "LUNE"
 
 [node name="Starman" type="Button" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 255.0
-margin_right = 330.0
-margin_bottom = 21.0
-custom_fonts/font = ExtResource( 1 )
-group = ExtResource( 3 )
+margin_left = 231.0
+margin_right = 305.0
+margin_bottom = 20.0
 text = "STARMAN"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 48.0
-margin_right = 330.0
-margin_bottom = 69.0
-custom_fonts/font = ExtResource( 1 )
+margin_top = 46.0
+margin_right = 305.0
+margin_bottom = 66.0
 text = "Create Character"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Asteria" to="." method="_on_button_Asteria_pressed"]

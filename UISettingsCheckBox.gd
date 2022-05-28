@@ -10,12 +10,6 @@ onready var label := $Label
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_CheckBox_toggled(button_pressed: bool) -> void:
 	emit_signal("toggled", button_pressed)
 
