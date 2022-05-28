@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/MissileDrone.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/MissileDrone.gd" type="Script" id=2]
+[ext_resource path="res://Sound/MissileDrone_laserRetro_000.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Enemies/Shield.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Barrier.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 250.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 300.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 4 )
+
+[node name="MissileDrone" type="Node2D" groups=["Actor"]]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="Attack_Area" type="Area2D" parent="." groups=["Behavior"]]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
+shape = SubResource( 1 )
+
+[node name="Detect_Area" type="Area2D" parent="." groups=["Behavior"]]
+visible = false
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect_Area"]
+shape = SubResource( 2 )
+
+[node name="Damage_Area" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Damage_Area"]
+polygon = PoolVector2Array( 16, 0, -10, -12, -10, 13 )
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Shield" type="Node2D" parent="."]
+
+[node name="Left" type="Sprite" parent="Shield" groups=["Actor"]]
+texture = ExtResource( 5 )
+offset = Vector2( 0, -25 )
+script = ExtResource( 4 )
+
+[node name="Area" type="Area2D" parent="Shield/Left"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield/Left/Area"]
+position = Vector2( 0, -25 )
+shape = SubResource( 3 )
+
+[node name="Right" type="Sprite" parent="Shield" groups=["Actor"]]
+texture = ExtResource( 5 )
+offset = Vector2( 0, 25 )
+script = ExtResource( 4 )
+
+[node name="Area" type="Area2D" parent="Shield/Right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield/Right/Area"]
+position = Vector2( 0, -25 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Attack_Area" to="." method="_on_Attack_Area_area_entered"]
+[connection signal="area_exited" from="Attack_Area" to="." method="_on_Attack_Area_area_exited"]
+[connection signal="area_entered" from="Detect_Area" to="." method="_on_Detect_Area_area_entered"]
+[connection signal="area_exited" from="Detect_Area" to="." method="_on_Detect_Area_area_exited"]
+[connection signal="area_entered" from="Damage_Area" to="." method="_on_Damage_Area_area_entered"]
