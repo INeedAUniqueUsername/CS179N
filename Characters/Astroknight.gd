@@ -52,7 +52,7 @@ func fire_primary():
 			l.vel = common.vel + polar2cartesian(1024, p.global_rotation - PI/2)
 		else:
 			l = beam.instance()
-			l.vel = common.vel + polar2cartesian(512, p.global_rotation - PI/2)
+			l.vel = common.vel + polar2cartesian(512 + 256, p.global_rotation - PI/2)
 			
 		l.ignore.append(self)
 		

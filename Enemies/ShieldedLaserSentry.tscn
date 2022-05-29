@@ -20,7 +20,7 @@ radius = 400.0
 radius = 450.0
 
 [node name="LaserSentry" type="Node2D" groups=["Actor", "Stationary"]]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 2 )
 
 [node name="Shield" type="Sprite" parent="." groups=["Actor", "Segment"]]

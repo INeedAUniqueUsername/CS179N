@@ -13,7 +13,7 @@ func _ready():
 func show_border():
 	$MenuClickSound.play()
 	$Border.visible = true
-	#get_parent().get_node("Desc").text = desc
+	get_node("../Desc").text = desc
 func hide_border():
 	$Border.visible = false
 	#get_parent().get_node("Desc").text = ""

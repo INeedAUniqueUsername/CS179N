@@ -8,7 +8,6 @@ z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 lifespan = 2.0
-damage = 20.0
 pierce = 3
 knockback = 30.0
 trail = NodePath(".")
