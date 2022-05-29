@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MissileSentry.png-a2644ec48d0de56b5b59b972060706f5.stex"
+path="res://.import/KineticDrone.png-fbbc1cd4b72294ecadcd23eb37b1d33c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/MissileSentry.png"
-dest_files=[ "res://.import/MissileSentry.png-a2644ec48d0de56b5b59b972060706f5.stex" ]
+source_file="res://Sprites/KineticDrone.png"
+dest_files=[ "res://.import/KineticDrone.png-fbbc1cd4b72294ecadcd23eb37b1d33c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
