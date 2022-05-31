@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Tutorial.gd" type="Script" id=2]
@@ -10,14 +10,7 @@
 [ext_resource path="res://Sprites/FuelBar.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/HealthBar.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Border.png" type="Texture" id=11]
-[ext_resource path="res://CodexButton.gd" type="Script" id=12]
-[ext_resource path="res://Sprites/StarMachineCannon.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/SpaceCube.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/LostVectorSheet.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/SpaceCubeArmor.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/StarMachine.png" type="Texture" id=17]
-[ext_resource path="res://Sprites/MineLayer.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/LaserDrone.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/HealthPickup.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/FuelPickup.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/EnergyPickup.png" type="Texture" id=21]
@@ -25,556 +18,6 @@
 [sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 1 )
-
-[sub_resource type="Animation" id=4]
-resource_name = "Charging"
-length = 4.0
-step = 0.15
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.95, 2.1, 2.25, 2.4, 2.55, 2.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "Flashing"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18 ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "Ready"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.50025, 1.0005 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 15, 16, 17 ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "Recovering"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 20 ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "Waiting"
-length = 0.7
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 21, 22, 23, 24, 25, 26, 21 ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "Charge"
-length = 3.5
-step = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3, 3.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "Close"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("UpperShell:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -24 ), Vector2( 0, -16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("LowerShell:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 24 ), Vector2( 0, 16 ) ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "Fire"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("UpperShell:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -16 ), Vector2( 0, -24 ), Vector2( 0, -24 ), Vector2( 0, -16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("LowerShell:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 16 ), Vector2( 0, 24 ), Vector2( 0, 24 ), Vector2( 0, 16 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "fire_mine"
-}, {
-"args": [  ],
-"method": "fire_mine"
-}, {
-"args": [  ],
-"method": "fire_mine"
-}, {
-"args": [  ],
-"method": "fire_mine"
-}, {
-"args": [  ],
-"method": "fire_mine"
-}, {
-"args": [  ],
-"method": "fire_mine"
-} ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "Idle"
-length = 0.001
-loop = true
-
-[sub_resource type="Animation" id=14]
-resource_name = "Open"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("UpperShell:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -16 ), Vector2( 0, -24 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("LowerShell:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 16 ), Vector2( 0, 24 ) ]
-}
-
-[sub_resource type="Animation" id=15]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("UpperShell:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -16 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("LowerShell:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 16 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("UpperShell:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("LowerShell:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1 ]
-}
-
-[sub_resource type="Animation" id=16]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Blade:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=17]
-resource_name = "Spin"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Blade:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 90.0 ]
-}
-
-[sub_resource type="Animation" id=18]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Blade:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=19]
-resource_name = "Spin"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Blade:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 90.0 ]
-}
-
-[sub_resource type="Animation" id=20]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=21]
-resource_name = "Spin"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 180.0 ]
-}
-
-[sub_resource type="CircleShape2D" id=22]
-radius = 16.0
-
-[sub_resource type="Animation" id=23]
-resource_name = "Fire"
-length = 2.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Head/LeftCannon:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 2.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Head/RightCannon:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 2.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 0 ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("Head/LeftCannon")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("Head/RightCannon")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-}, {
-"args": [  ],
-"method": "fire"
-} ]
-}
-
-[sub_resource type="Animation" id=24]
-resource_name = "Idle"
-length = 0.001
-
-[sub_resource type="Animation" id=25]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Head/LeftCannon:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Head/RightCannon:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
 
 [sub_resource type="DynamicFont" id=2]
 size = 54
@@ -613,46 +56,6 @@ margin_right = 1922.0
 margin_bottom = 1071.0
 color = Color( 0.0588235, 0.137255, 0.27451, 1 )
 
-[node name="EnergyBar" type="Sprite" parent="."]
-position = Vector2( 193, 420 )
-scale = Vector2( 1.5625, 2.13333 )
-texture = ExtResource( 7 )
-
-[node name="HealthBar" type="Sprite" parent="."]
-position = Vector2( 194, 508 )
-scale = Vector2( 1.59178, 2.13334 )
-texture = ExtResource( 9 )
-
-[node name="FuelBar" type="Sprite" parent="."]
-position = Vector2( 198, 594 )
-scale = Vector2( 1.56029, 1.98823 )
-texture = ExtResource( 8 )
-
-[node name="EnergyPickup" type="Sprite" parent="."]
-position = Vector2( 1096, 407 )
-scale = Vector2( 4.9375, 5.25 )
-texture = ExtResource( 21 )
-
-[node name="HealthPickup" type="Sprite" parent="."]
-position = Vector2( 1093, 498 )
-scale = Vector2( 5.125, 4.875 )
-texture = ExtResource( 19 )
-
-[node name="FuelPickup" type="Sprite" parent="."]
-position = Vector2( 1095, 582 )
-scale = Vector2( 5.125, 4.875 )
-texture = ExtResource( 20 )
-
-[node name="BossBeacon" type="Sprite" parent="."]
-position = Vector2( 1758, 272 )
-scale = Vector2( 4.16016, 4.375 )
-texture = ExtResource( 5 )
-
-[node name="BossRing" type="Sprite" parent="."]
-position = Vector2( 1096, 276 )
-scale = Vector2( 4.17578, 3.92187 )
-texture = ExtResource( 6 )
-
 [node name="Starman" type="Sprite" parent="."]
 position = Vector2( 203, 277 )
 scale = Vector2( 3.73438, 4.04688 )
@@ -666,304 +69,6 @@ margin_bottom = 996.0
 custom_fonts/font = SubResource( 1 )
 text = "Back"
 
-[node name="ThunderDrone" type="Button" parent="."]
-margin_left = 265.0
-margin_top = 738.0
-margin_right = 361.0
-margin_bottom = 834.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 12 )
-ap = NodePath("Thunder Drone/Anim")
-anims = [ "Charging", "Ready", "Flashing", "Recovering", "Waiting" ]
-desc = "Thunder Drone
-Like a dark cloud rolling in from beyond the horizon, the Thunder Drone floats with grace as it charges up energy and fires lightning salvos. Then, like a ball lightning flashing with pure electrical energy, the Thunder Drone zips at its target three times. If it hits you, then it will drain your battery and rebound away."
-
-[node name="Thunder Drone" type="Node2D" parent="ThunderDrone"]
-position = Vector2( 48, 48 )
-
-[node name="Anim" type="AnimationPlayer" parent="ThunderDrone/Thunder Drone"]
-autoplay = "Waiting"
-anims/Charging = SubResource( 4 )
-anims/Flashing = SubResource( 5 )
-anims/RESET = SubResource( 6 )
-anims/Ready = SubResource( 7 )
-anims/Recovering = SubResource( 8 )
-anims/Waiting = SubResource( 9 )
-
-[node name="Body" type="Sprite" parent="ThunderDrone/Thunder Drone"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 10 )
-hframes = 27
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="ThunderDrone"]
-stream = ExtResource( 3 )
-
-[node name="Border" type="Sprite" parent="ThunderDrone"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 11 )
-centered = false
-
-[node name="Space Cube" type="Button" parent="."]
-margin_left = 582.0
-margin_top = 737.0
-margin_right = 678.0
-margin_bottom = 833.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 12 )
-ap = NodePath("SpaceCube/Anim")
-anims = [ "Open", "Close", "Charge" ]
-desc = "Space Cube
-This armored battleship flies in four directions. It uses a laser for long-range combat and deploys mines at close-range. If its armor gets destroyed, it will fire off missiles as a last resort."
-
-[node name="SpaceCube" type="Node2D" parent="Space Cube"]
-position = Vector2( 48, 48 )
-
-[node name="Body" type="Sprite" parent="Space Cube/SpaceCube"]
-texture = ExtResource( 14 )
-hframes = 13
-region_rect = Rect2( 0, 0, 32, 32 )
-
-[node name="UpperShell" type="Sprite" parent="Space Cube/SpaceCube"]
-position = Vector2( 0, -16 )
-texture = ExtResource( 16 )
-vframes = 2
-region_rect = Rect2( 32, 0, 32, 16 )
-
-[node name="LowerShell" type="Sprite" parent="Space Cube/SpaceCube"]
-position = Vector2( 0, 16 )
-texture = ExtResource( 16 )
-vframes = 2
-frame = 1
-region_rect = Rect2( 32, 16, 32, 16 )
-
-[node name="Anim" type="AnimationPlayer" parent="Space Cube/SpaceCube"]
-autoplay = "Idle"
-anims/Charge = SubResource( 10 )
-anims/Close = SubResource( 11 )
-anims/Fire = SubResource( 12 )
-anims/Idle = SubResource( 13 )
-anims/Open = SubResource( 14 )
-anims/RESET = SubResource( 15 )
-
-[node name="Border" type="Sprite" parent="Space Cube"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 11 )
-centered = false
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Space Cube"]
-stream = ExtResource( 3 )
-
-[node name="Mine Layer" type="Button" parent="."]
-margin_left = 911.0
-margin_top = 740.0
-margin_right = 1007.0
-margin_bottom = 836.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 12 )
-desc = "Mine Layer
-This tough machine does not directly fight targets, but instead works to cover the field in fragmenting mines and heavy bombs. It is protected by energy shields."
-
-[node name="Body" type="Sprite" parent="Mine Layer"]
-position = Vector2( 48, 48 )
-texture = ExtResource( 18 )
-region_rect = Rect2( 0, 0, 32, 32 )
-
-[node name="Border" type="Sprite" parent="Mine Layer"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 11 )
-centered = false
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Mine Layer"]
-stream = ExtResource( 3 )
-
-[node name="Rawbawjaw" type="Button" parent="."]
-margin_left = 1236.0
-margin_top = 735.0
-margin_right = 1332.0
-margin_bottom = 831.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 12 )
-anims = [ "Open", "Close", "Charge" ]
-desc = "Rawbawjaw
-A terrifying machine from another universe, Rawbawjaw fires a rotating battery of lasers and spins its dual sawblades as it hutles towards its target. Its creation is banned in several timelines and its usage is tightly controlled in several other timelines."
-
-[node name="Border" type="Sprite" parent="Rawbawjaw"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 11 )
-centered = false
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Rawbawjaw"]
-stream = ExtResource( 3 )
-
-[node name="Rawbawjaw" type="Sprite" parent="Rawbawjaw" groups=["Actor"]]
-position = Vector2( 45, 45 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
-texture = ExtResource( 15 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 48, 48 )
-
-[node name="Plates" type="Node2D" parent="Rawbawjaw/Rawbawjaw"]
-z_index = -1
-
-[node name="UpperPlate" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates" groups=["Actor"]]
-position = Vector2( 0, -26 )
-rotation = -1.5708
-texture = ExtResource( 15 )
-region_enabled = true
-region_rect = Rect2( 48, 0, 32, 80 )
-
-[node name="Gun1030" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates/UpperPlate" groups=["Actor"]]
-position = Vector2( 1.90735e-06, -26 )
-rotation = -0.785398
-texture = ExtResource( 15 )
-offset = Vector2( 15, 0 )
-region_enabled = true
-region_rect = Rect2( 0, 48, 48, 32 )
-
-[node name="Gun0000" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates/UpperPlate" groups=["Actor"]]
-position = Vector2( 7, 3.0598e-07 )
-texture = ExtResource( 15 )
-offset = Vector2( 15, 0 )
-region_enabled = true
-region_rect = Rect2( 0, 48, 48, 32 )
-
-[node name="Gun0130" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates/UpperPlate" groups=["Actor"]]
-position = Vector2( -5.72205e-06, 26 )
-rotation = 0.785398
-texture = ExtResource( 15 )
-offset = Vector2( 15, 0 )
-region_enabled = true
-region_rect = Rect2( 0, 48, 48, 32 )
-
-[node name="LowerPlate" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates" groups=["Actor"]]
-position = Vector2( 0, 26 )
-rotation = 1.5708
-texture = ExtResource( 15 )
-region_enabled = true
-region_rect = Rect2( 48, 0, 32, 80 )
-
-[node name="Gun0430" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates/LowerPlate" groups=["Actor"]]
-position = Vector2( -1.90735e-06, -26 )
-rotation = -0.785398
-texture = ExtResource( 15 )
-offset = Vector2( 15, 0 )
-region_enabled = true
-region_rect = Rect2( 0, 48, 48, 32 )
-
-[node name="Gun0600" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates/LowerPlate" groups=["Actor"]]
-position = Vector2( 7, -3.0598e-07 )
-texture = ExtResource( 15 )
-offset = Vector2( 15, 0 )
-region_enabled = true
-region_rect = Rect2( 0, 48, 48, 32 )
-
-[node name="Gun0730" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Plates/LowerPlate" groups=["Actor"]]
-position = Vector2( 1.90735e-06, 26 )
-rotation = 0.785398
-texture = ExtResource( 15 )
-offset = Vector2( 15, 0 )
-region_enabled = true
-region_rect = Rect2( 0, 48, 48, 32 )
-
-[node name="Arms" type="Node2D" parent="Rawbawjaw/Rawbawjaw"]
-
-[node name="RightArm" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Arms" groups=["Actor"]]
-position = Vector2( 56, 0 )
-texture = ExtResource( 15 )
-region_enabled = true
-region_rect = Rect2( 0, 80, 80, 32 )
-
-[node name="Blade" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Arms/RightArm"]
-position = Vector2( 35, 0 )
-texture = ExtResource( 15 )
-region_enabled = true
-region_rect = Rect2( 0, 112, 48, 48 )
-
-[node name="Spin" type="AnimationPlayer" parent="Rawbawjaw/Rawbawjaw/Arms/RightArm"]
-autoplay = "Spin"
-anims/RESET = SubResource( 16 )
-anims/Spin = SubResource( 17 )
-
-[node name="LeftArm" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Arms" groups=["Actor"]]
-position = Vector2( -56, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-texture = ExtResource( 15 )
-region_enabled = true
-region_rect = Rect2( 0, 80, 80, 32 )
-
-[node name="Blade" type="Sprite" parent="Rawbawjaw/Rawbawjaw/Arms/LeftArm"]
-position = Vector2( 35, 0 )
-texture = ExtResource( 15 )
-region_enabled = true
-region_rect = Rect2( 0, 112, 48, 48 )
-
-[node name="Spin" type="AnimationPlayer" parent="Rawbawjaw/Rawbawjaw/Arms/LeftArm"]
-autoplay = "Spin"
-anims/RESET = SubResource( 18 )
-anims/Spin = SubResource( 19 )
-
-[node name="Spin" type="AnimationPlayer" parent="Rawbawjaw/Rawbawjaw/Arms"]
-anims/RESET = SubResource( 20 )
-anims/Spin = SubResource( 21 )
-
-[node name="Area" type="Area2D" parent="Rawbawjaw/Rawbawjaw"]
-
-[node name="Circle" type="CollisionShape2D" parent="Rawbawjaw/Rawbawjaw/Area"]
-shape = SubResource( 22 )
-
-[node name="Star Machine" type="Button" parent="."]
-margin_left = 1553.0
-margin_top = 728.0
-margin_right = 1649.0
-margin_bottom = 824.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 12 )
-ap = NodePath("StarMachine/Head/Cannons")
-anims = [ "Idle", "Fire" ]
-desc = "Star Machine
-The Star Machine is a superweapon with two attached side cannons and two independently fighting hands. The main gun fires energy-draining magic projectiles while the side cannons fire long-ramge magic blasts. The hands can shoot as well as punch. If the main hull is destroyed, then the remaining cannons transform into swords."
-
-[node name="Border" type="Sprite" parent="Star Machine"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 11 )
-centered = false
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Star Machine"]
-stream = ExtResource( 3 )
-
-[node name="StarMachine" type="Node2D" parent="Star Machine"]
-position = Vector2( 48, 48 )
-
-[node name="Head" type="Sprite" parent="Star Machine/StarMachine"]
-rotation = -1.5708
-texture = ExtResource( 17 )
-
-[node name="LeftCannon" type="Sprite" parent="Star Machine/StarMachine/Head"]
-position = Vector2( -5.99992, -21 )
-rotation = 3.57628e-06
-scale = Vector2( 1, -1 )
-texture = ExtResource( 13 )
-hframes = 3
-
-[node name="RightCannon" type="Sprite" parent="Star Machine/StarMachine/Head"]
-position = Vector2( -6.00008, 21 )
-rotation = 3.57628e-06
-texture = ExtResource( 13 )
-hframes = 3
-
-[node name="Cannons" type="AnimationPlayer" parent="Star Machine/StarMachine/Head"]
-root_node = NodePath("../..")
-anims/Fire = SubResource( 23 )
-anims/Idle = SubResource( 24 )
-anims/RESET = SubResource( 25 )
-
 [node name="Tutorial" type="Label" parent="."]
 margin_left = 648.0
 margin_top = 78.0
@@ -975,96 +80,162 @@ align = 1
 
 [node name="Character" type="Label" parent="."]
 margin_left = 305.0
-margin_top = 231.0
+margin_top = 159.0
 margin_right = 753.0
-margin_bottom = 339.0
+margin_bottom = 380.0
 custom_fonts/font = SubResource( 3 )
-text = "Use  arrow keys to move your character
+text = "[Up] - Move Forward
+[Left] - Turn Left
+[Right] - Turn Right
+[Down] - Preserve momentum
 [ X ] - Primary Attack
 [ Z ] - Secondary Attack"
 autowrap = true
 
-[node name="Boss Beacon" type="Label" parent="."]
-margin_left = 1191.0
-margin_top = 228.0
-margin_right = 1607.0
-margin_bottom = 343.0
-custom_fonts/font = SubResource( 3 )
-text = "Attack enemies to achieve scores. Don't forget to break all boss beacons or boss rings to summon the boss."
-autowrap = true
-
-[node name="Kill the boss" type="Label" parent="."]
-margin_left = 483.0
-margin_top = 651.0
-margin_right = 1509.0
-margin_bottom = 738.0
-custom_fonts/font = SubResource( 3 )
-text = "Kill the boss to clear the level. There are five bosses in total, one for each level.
-You lose if you don't have enough fuel for emergency repairs when your hp reaches 0."
-autowrap = true
-
-[node name="EnergyBar2" type="Label" parent="."]
+[node name="Energy" type="Label" parent="."]
 margin_left = 306.0
-margin_top = 389.0
-margin_right = 726.0
-margin_bottom = 482.0
+margin_top = 407.0
+margin_right = 786.0
+margin_bottom = 471.0
 custom_fonts/font = SubResource( 3 )
-text = "Energy Bar - Characters need to have enough enery to attack.
-"
+text = "[Energy] - You need it to attack"
 autowrap = true
 
-[node name="HpBar" type="Label" parent="."]
+[node name="Bar" type="Sprite" parent="Energy"]
+position = Vector2( -144, 24 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="HP" type="Label" parent="."]
 margin_left = 306.0
-margin_top = 465.0
-margin_right = 724.0
-margin_bottom = 590.0
+margin_top = 469.0
+margin_right = 786.0
+margin_bottom = 533.0
 custom_fonts/font = SubResource( 3 )
-text = "Health Bar - Shows the current character's hp. Character needs emergency repairs once it gets to 0.
-"
+text = "[HP] - You need it to survive."
 autowrap = true
 
-[node name="FuelBar2" type="Label" parent="."]
+[node name="Bar" type="Sprite" parent="HP"]
+position = Vector2( -144, 24 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+
+[node name="Fuel" type="Label" parent="."]
 margin_left = 306.0
-margin_top = 566.0
-margin_right = 721.0
-margin_bottom = 659.0
+margin_top = 534.0
+margin_right = 786.0
+margin_bottom = 598.0
 custom_fonts/font = SubResource( 3 )
-text = "Fuel Bar - Character uses fuel to initiate the emerency repairs.
-"
+text = "[Fuel] - You need it to move around
+and regenerate Energy or HP"
 autowrap = true
+
+[node name="Bar" type="Sprite" parent="Fuel"]
+position = Vector2( -144, 24 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+
+[node name="BossSummon" type="Label" parent="."]
+margin_left = 303.0
+margin_top = 644.0
+margin_right = 719.0
+margin_bottom = 708.0
+custom_fonts/font = SubResource( 3 )
+text = "Destroy all the beacons / fly through all the rings to summon the boss."
+valign = 1
+autowrap = true
+
+[node name="Beacon" type="Sprite" parent="BossSummon"]
+position = Vector2( -175, 32 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Ring" type="Sprite" parent="BossSummon"]
+position = Vector2( -71, 32 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 6 )
+
+[node name="Drones" type="Label" parent="."]
+margin_left = 963.0
+margin_top = 295.0
+margin_right = 1378.0
+margin_bottom = 359.0
+custom_fonts/font = SubResource( 3 )
+text = "Enemy drones appear over time.
+Destroy drones to gain upgrades."
+valign = 1
+autowrap = true
+
+[node name="ThunderDrone" type="Sprite" parent="Drones"]
+position = Vector2( -64, 32 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="EnergyPowerUp" type="Label" parent="."]
-margin_left = 1187.0
-margin_top = 356.0
-margin_right = 1602.0
-margin_bottom = 481.0
+margin_left = 963.0
+margin_top = 415.0
+margin_right = 1378.0
+margin_bottom = 447.0
 custom_fonts/font = SubResource( 3 )
-text = "Energy Power Up - Showed up randomly when an enemy got killed.  
-+50 Energy     +10 Max Energy
-"
+text = "+50 Energy, +10 Max Energy"
+valign = 1
 autowrap = true
+
+[node name="EnergyPickup" type="Sprite" parent="EnergyPowerUp"]
+position = Vector2( -32, 16 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 21 )
 
 [node name="HpPowerUP" type="Label" parent="."]
-margin_left = 1184.0
-margin_top = 451.0
-margin_right = 1599.0
-margin_bottom = 576.0
+margin_left = 963.0
+margin_top = 477.0
+margin_right = 1378.0
+margin_bottom = 509.0
 custom_fonts/font = SubResource( 3 )
-text = "Health Power Up - Showed up randomly when an enemy got killed.  
-+50 Hp     +10 Max Hp
-"
+text = "+50 HP, +10 Max HP"
+valign = 1
 autowrap = true
+
+[node name="HealthPickup" type="Sprite" parent="HpPowerUP"]
+position = Vector2( -32, 16 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 19 )
 
 [node name="FuelPowerUp" type="Label" parent="."]
-margin_left = 1177.0
-margin_top = 547.0
-margin_right = 1592.0
-margin_bottom = 672.0
+margin_left = 963.0
+margin_top = 543.0
+margin_right = 1378.0
+margin_bottom = 575.0
 custom_fonts/font = SubResource( 3 )
-text = "Energy Power Up - Showed up randomly when an enemy got killed.  
-+25 Fuel     +5 Max Fuel
-"
+text = "+25 Fuel, +5 Max Fuel"
+valign = 1
 autowrap = true
 
+[node name="FuelPickup" type="Sprite" parent="FuelPowerUp"]
+position = Vector2( -32, 16 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 20 )
+
+[node name="Boss" type="Label" parent="."]
+margin_left = 963.0
+margin_top = 639.0
+margin_right = 1378.0
+margin_bottom = 703.0
+custom_fonts/font = SubResource( 3 )
+text = "Destroy the boss to clear the level.
+There are five levels."
+valign = 1
+autowrap = true
+
+[node name="ThunderDrone" type="Sprite" parent="Boss"]
+position = Vector2( -64, 32 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 48, 48 )
+
 [connection signal="pressed" from="BackButton" to="." method="back"]
-[connection signal="animation_finished" from="Space Cube/SpaceCube/Anim" to="Space Cube/SpaceCube" method="_on_animation_finished"]

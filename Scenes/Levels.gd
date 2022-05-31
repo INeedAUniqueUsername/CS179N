@@ -6,39 +6,51 @@ const LostVector = preload("res://LostVector.tscn")
 const StarMachine = preload("res://StarMachine.tscn")
 
 const LaserDrone = preload("res://Enemies/LaserDrone.tscn")
+
 const MissileDrone = preload("res://Enemies/MissileDrone.tscn")
+const ShieldedMissileDrone = preload("res://Enemies/ShieldedMissileDrone.tscn")
+
 const ShockDrone = preload("res://Enemies/Shock Drone.tscn")
 const LightningDrone = preload("res://Enemies/Lightning Drone.tscn")
+
 const ShieldDrone = preload("res://Enemies/Shield Drone.tscn")
+
+const JunkDrone = preload("res://Enemies/JunkDrone.tscn")
 
 const LaserSentry = preload("res://Enemies/LaserSentry.tscn")
 const ShieldedLaserSentry = preload("res://Enemies/ShieldedLaserSentry.tscn")
+const MissileSentry = preload("res://Enemies/MissileSentry.tscn")
+const ShieldedMissileSentry = preload("res://Enemies/ShieldedMissileSentry.tscn")
 
 var enemyTables : Array = [
 	EnemyTable.new({
-		LaserDrone: 90,
-		ShockDrone:10, LightningDrone: 5
+		LaserDrone: 	90,
+		LaserSentry:	30,
+		ShockDrone:		10,
+		LightningDrone:	5
 	}),
 	EnemyTable.new({
-		LaserDrone: 60,
-		LaserSentry:20,
-		ShieldedLaserSentry:20,
-		MissileDrone: 10,
+		LaserSentry:	90,
+		ShieldedLaserSentry:30,
+		MissileDrone: 		30,
+		MissileSentry: 		10,
 	}),
 	EnemyTable.new({
-		LaserDrone:60,
+		LaserSentry:90,
+		ShieldedLaserSentry:30,
+		ShieldedMissileSentry: 30,
+		JunkDrone: 30,
+		ShieldDrone:10,
+		
+	}),
+	EnemyTable.new({
+		LaserDrone:90,
 		MissileDrone:30,
 		ShieldedLaserSentry:20,
 		ShieldDrone:10,
 	}),
 	EnemyTable.new({
-		LaserDrone:60,
-		MissileDrone:30,
-		ShieldedLaserSentry:20,
-		ShieldDrone:10,
-	}),
-	EnemyTable.new({
-		LaserDrone:60,
+		LaserDrone:90,
 		MissileDrone:30,
 		ShieldedLaserSentry:20,
 		ShieldDrone:10,
