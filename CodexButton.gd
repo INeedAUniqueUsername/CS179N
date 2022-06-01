@@ -5,6 +5,16 @@ export(Array, String) var anims : Array
 export(String, MULTILINE) var desc : String
 var index = -1
 func _ready():
+	if !PlayerVariables.bossesMet[name]:
+		disabled = true
+		
+		var q = $Question
+		for c in get_children():
+			remove_child(c)
+		add_child(q)
+		q.show()
+		return
+	
 	ap=get_node(ap)
 	connect("mouse_entered", self, "show_border")
 	connect("mouse_exited", self, "hide_border")

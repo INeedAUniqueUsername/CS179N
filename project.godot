@@ -57,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Starman"
-run/main_scene="res://Title.tscn"
+run/main_scene="res://Codex.tscn"
 config/icon="res://icon.png"
 
 [autoload]

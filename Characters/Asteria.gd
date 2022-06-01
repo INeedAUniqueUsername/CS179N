@@ -19,7 +19,7 @@ func set_time_scale(t):
 const primaryFireInterval = 0.12
 const secondaryFireInterval = 2
 const primaryEnergyUse = 4
-const secondaryEnergyUse = 50
+const secondaryEnergyUse = 100
 
 var nextCooldown = primaryFireInterval
 
@@ -41,7 +41,7 @@ func _process(delta):
 				"Thrust":
 					la.play("StraightThrust")
 		return
-	if common.is_control_pressed(KEY_X) && common.fireCooldown < 0 && common.energy > primaryEnergyUse:
+	if common.is_control_pressed(KEY_X) && common.fireCooldown < 0 && common.energy >= primaryEnergyUse:
 		$PrimarySound.play()
 		
 		var speed = 1024 * 3/4.0
@@ -63,7 +63,7 @@ func _process(delta):
 		l.set_global_transform(p.get_global_transform())
 		l.rotation_degrees = rotation_degrees - 90
 		p.get_node("Anim").play("Fire")
-	if common.is_control_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy > secondaryEnergyUse:
+	if common.is_control_pressed(KEY_Z) && common.fireCooldown < 0 && common.energy >= secondaryEnergyUse:
 		#$AsteriaSecondarySound.play()
 		common.energy -= secondaryEnergyUse
 		common.fireCooldown = secondaryFireInterval

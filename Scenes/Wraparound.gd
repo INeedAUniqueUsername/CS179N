@@ -41,18 +41,23 @@ func register(a):
 	leaves.append(a)
 	print('register: ' + a.name)
 	a.connect("on_destroyed", self, "on_destroyed")
-signal on_boss_summoned
-signal on_boss_destroyed
+signal on_actor_destroyed(Node2D)
+signal on_beacon_destroyed(Node2D)
+signal on_boss_summoned(Node2D)
+signal on_boss_destroyed()
 func on_destroyed(n):
 	if "score" in n:
 		player.common.levelScore += n.score
 	leaves.erase(n)
 	if n.is_in_group("Boss Summon"):
 		bossSummon.erase(n)
+		emit_signal("on_beacon_destroyed", n)
 		if len(bossSummon) == 0:
 			summon_boss()
 	elif n == boss:
 		emit_signal("on_boss_destroyed")
+	else:
+		emit_signal("on_actor_destroyed", n)
 		
 var bossAppeared = false
 func summon_boss():
@@ -60,6 +65,10 @@ func summon_boss():
 		return
 	bossAppeared = true
 	var b = bossType.instance()
+	
+	#Mark this boss as met
+	PlayerVariables.bossesMet[b.bossName] = true
+	
 	call_deferred("add_child", b)
 	b.global_position = player.global_position + polar2cartesian(600, rand_range(0, PI*2))
 	for l in get_descendants(b):

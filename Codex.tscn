@@ -1,9 +1,10 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=1]
 [ext_resource path="res://CodexButton.gd" type="Script" id=2]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Sprites/Border.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Question.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/SpaceCube.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/SpaceCubeArmor.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/MineLayer.png" type="Texture" id=8]
@@ -609,7 +610,7 @@ custom_fonts/font = SubResource( 9 )
 text = "Codex"
 align = 1
 
-[node name="ThunderDrone" type="Button" parent="Control"]
+[node name="Thunder Drone" type="Button" parent="Control"]
 margin_left = -496.0
 margin_top = -172.0
 margin_right = -400.0
@@ -621,10 +622,10 @@ anims = [ "Charging", "Ready", "Flashing", "Recovering", "Waiting" ]
 desc = "Thunder Drone
 Like a dark cloud rolling in from beyond the horizon, the Thunder Drone floats with grace as it charges up energy and fires lightning salvos. Then, like a ball lightning flashing with pure electrical energy, the Thunder Drone zips at its target three times. If it hits you, then it will drain your battery and rebound away."
 
-[node name="Thunder Drone" type="Node2D" parent="Control/ThunderDrone"]
+[node name="Thunder Drone" type="Node2D" parent="Control/Thunder Drone"]
 position = Vector2( 48, 48 )
 
-[node name="Anim" type="AnimationPlayer" parent="Control/ThunderDrone/Thunder Drone"]
+[node name="Anim" type="AnimationPlayer" parent="Control/Thunder Drone/Thunder Drone"]
 autoplay = "Waiting"
 anims/Charging = SubResource( 1 )
 anims/Flashing = SubResource( 2 )
@@ -633,19 +634,26 @@ anims/Ready = SubResource( 6 )
 anims/Recovering = SubResource( 4 )
 anims/Waiting = SubResource( 7 )
 
-[node name="Body" type="Sprite" parent="Control/ThunderDrone/Thunder Drone"]
+[node name="Body" type="Sprite" parent="Control/Thunder Drone/Thunder Drone"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 27
 
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/ThunderDrone"]
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Thunder Drone"]
 stream = ExtResource( 10 )
 
-[node name="Border" type="Sprite" parent="Control/ThunderDrone"]
+[node name="Border" type="Sprite" parent="Control/Thunder Drone"]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
+
+[node name="Question" type="Sprite" parent="Control/Thunder Drone"]
+visible = false
+position = Vector2( 48, 48 )
+scale = Vector2( 6, 6 )
+z_index = 10
+texture = ExtResource( 5 )
 
 [node name="Space Cube" type="Button" parent="Control"]
 margin_left = -296.0
@@ -654,33 +662,33 @@ margin_right = -200.0
 margin_bottom = -76.0
 rect_scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-ap = NodePath("SpaceCube/Anim")
+ap = NodePath("Space Cube/Anim")
 anims = [ "Open", "Close", "Charge" ]
 desc = "Space Cube
 This armored battleship flies in four directions. It uses a laser for long-range combat and deploys mines at close-range. If its armor gets destroyed, it will fire off missiles as a last resort."
 
-[node name="SpaceCube" type="Node2D" parent="Control/Space Cube"]
+[node name="Space Cube" type="Node2D" parent="Control/Space Cube"]
 position = Vector2( 48, 48 )
 
-[node name="Body" type="Sprite" parent="Control/Space Cube/SpaceCube"]
+[node name="Body" type="Sprite" parent="Control/Space Cube/Space Cube"]
 texture = ExtResource( 6 )
 hframes = 13
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="UpperShell" type="Sprite" parent="Control/Space Cube/SpaceCube"]
+[node name="UpperShell" type="Sprite" parent="Control/Space Cube/Space Cube"]
 position = Vector2( 0, -16 )
 texture = ExtResource( 7 )
 vframes = 2
 region_rect = Rect2( 32, 0, 32, 16 )
 
-[node name="LowerShell" type="Sprite" parent="Control/Space Cube/SpaceCube"]
+[node name="LowerShell" type="Sprite" parent="Control/Space Cube/Space Cube"]
 position = Vector2( 0, 16 )
 texture = ExtResource( 7 )
 vframes = 2
 frame = 1
 region_rect = Rect2( 32, 16, 32, 16 )
 
-[node name="Anim" type="AnimationPlayer" parent="Control/Space Cube/SpaceCube"]
+[node name="Anim" type="AnimationPlayer" parent="Control/Space Cube/Space Cube"]
 autoplay = "Idle"
 anims/Charge = SubResource( 16 )
 anims/Close = SubResource( 17 )
@@ -689,14 +697,21 @@ anims/Idle = SubResource( 19 )
 anims/Open = SubResource( 20 )
 anims/RESET = SubResource( 21 )
 
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Space Cube"]
+stream = ExtResource( 10 )
+
 [node name="Border" type="Sprite" parent="Control/Space Cube"]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Space Cube"]
-stream = ExtResource( 10 )
+[node name="Question" type="Sprite" parent="Control/Space Cube"]
+visible = false
+position = Vector2( 48, 48 )
+scale = Vector2( 6, 6 )
+z_index = 10
+texture = ExtResource( 5 )
 
 [node name="Mine Layer" type="Button" parent="Control"]
 margin_left = -96.0
@@ -707,10 +722,13 @@ script = ExtResource( 2 )
 desc = "Mine Layer
 This tough machine does not directly fight targets, but instead works to cover the field in fragmenting mines and heavy bombs. It is protected by energy shields."
 
-[node name="Body" type="Sprite" parent="Control/Mine Layer"]
+[node name="Mine Layer" type="Sprite" parent="Control/Mine Layer"]
 position = Vector2( 48, 48 )
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Mine Layer"]
+stream = ExtResource( 10 )
 
 [node name="Border" type="Sprite" parent="Control/Mine Layer"]
 visible = false
@@ -718,8 +736,12 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Mine Layer"]
-stream = ExtResource( 10 )
+[node name="Question" type="Sprite" parent="Control/Mine Layer"]
+visible = false
+position = Vector2( 48, 48 )
+scale = Vector2( 6, 6 )
+z_index = 10
+texture = ExtResource( 5 )
 
 [node name="Rawbawjaw" type="Button" parent="Control"]
 margin_left = 104.0
@@ -731,15 +753,6 @@ script = ExtResource( 2 )
 anims = [ "Open", "Close", "Charge" ]
 desc = "Rawbawjaw
 A terrifying machine from another universe, Rawbawjaw fires a rotating battery of lasers and spins its dual sawblades as it hutles towards its target. Its creation is banned in several timelines and its usage is tightly controlled in several other timelines."
-
-[node name="Border" type="Sprite" parent="Control/Rawbawjaw"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Rawbawjaw"]
-stream = ExtResource( 10 )
 
 [node name="Rawbawjaw" type="Sprite" parent="Control/Rawbawjaw" groups=["Actor"]]
 position = Vector2( 45, 45 )
@@ -859,6 +872,22 @@ anims/Spin = SubResource( 27 )
 [node name="Circle" type="CollisionShape2D" parent="Control/Rawbawjaw/Rawbawjaw/Area"]
 shape = SubResource( 5 )
 
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Rawbawjaw"]
+stream = ExtResource( 10 )
+
+[node name="Border" type="Sprite" parent="Control/Rawbawjaw"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Question" type="Sprite" parent="Control/Rawbawjaw"]
+visible = false
+position = Vector2( 48, 48 )
+scale = Vector2( 6, 6 )
+z_index = 10
+texture = ExtResource( 5 )
+
 [node name="Star Machine" type="Button" parent="Control"]
 margin_left = 304.0
 margin_top = -172.0
@@ -870,15 +899,6 @@ ap = NodePath("StarMachine/Head/Cannons")
 anims = [ "Idle", "Fire" ]
 desc = "Star Machine
 The Star Machine is a superweapon with two attached side cannons and two independently fighting hands. The main gun fires energy-draining magic projectiles while the side cannons fire long-ramge magic blasts. The hands can shoot as well as punch. If the main hull is destroyed, then the remaining cannons transform into swords."
-
-[node name="Border" type="Sprite" parent="Control/Star Machine"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Star Machine"]
-stream = ExtResource( 10 )
 
 [node name="StarMachine" type="Node2D" parent="Control/Star Machine"]
 position = Vector2( 48, 48 )
@@ -906,6 +926,22 @@ anims/Fire = SubResource( 12 )
 anims/Idle = SubResource( 13 )
 anims/RESET = SubResource( 14 )
 
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Star Machine"]
+stream = ExtResource( 10 )
+
+[node name="Border" type="Sprite" parent="Control/Star Machine"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Question" type="Sprite" parent="Control/Star Machine"]
+visible = false
+position = Vector2( 48, 48 )
+scale = Vector2( 6, 6 )
+z_index = 10
+texture = ExtResource( 5 )
+
 [node name="Desc" type="Label" parent="Control"]
 margin_left = -496.0
 margin_top = 36.0
@@ -915,4 +951,4 @@ custom_fonts/font = SubResource( 10 )
 text = "Click on a boss to see its animations"
 autowrap = true
 
-[connection signal="animation_finished" from="Control/Space Cube/SpaceCube/Anim" to="Control/Space Cube/SpaceCube" method="_on_animation_finished"]
+[connection signal="animation_finished" from="Control/Space Cube/Space Cube/Anim" to="Control/Space Cube/Space Cube" method="_on_animation_finished"]

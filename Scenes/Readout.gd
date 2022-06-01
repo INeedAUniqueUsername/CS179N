@@ -2,8 +2,9 @@ extends Control
 var boss
 func _ready():
 	call_deferred("register_player")
+var actors
 func register_player():
-	var actors = get_parent().get_parent().get_node("Actors")
+	actors = get_parent().get_parent().get_node("Actors")
 	player = actors.player
 	var c = player.common
 	c.connect("on_mortal", self, "on_player_mortal")
@@ -11,6 +12,9 @@ func register_player():
 	c.connect("on_fuel_warning", self, "on_player_fuel_warning")
 	c.connect("on_fuel_depleted", self, "on_player_fuel_depleted")
 	actors.connect("on_boss_summoned", self, "on_boss_summoned")
+	actors.connect("on_beacon_destroyed", self, "on_beacon_destroyed")
+	
+	$Beacons.text = "Beacons remaining: %d" % len(actors.bossSummon)
 func on_player_fuel_warning(pl):
 	if $Anim.current_animation == "MortalFlash":
 		$Anim.stop()
@@ -41,6 +45,8 @@ func on_player_mortal(pl):
 func on_player_destroyed(pl):
 	$Anim.stop()
 	$Anim.play("GameOver")
+func on_beacon_destroyed(n):
+	$Beacons.text = "Beacons remaining: %d" % len(actors.bossSummon)
 func on_boss_summoned(b):
 	boss = b
 	$Boss/Name.text = b.bossName
