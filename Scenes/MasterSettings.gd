@@ -3,7 +3,17 @@ extends Control
 signal apply_button_pressed(settings)
 
 var _settings := {resolution = Vector2(640, 480), fullscreen = false, vsync = false}
-
+func _ready():
+	$"Control/VBoxContainer/HBoxContainer/UIFullScreenSelector".pressed = OS.window_fullscreen
+	$Control/VBoxContainer/HBoxContainer2/UIVSyncCheckbox.pressed = OS.vsync_enabled
+	match OS.window_size:
+		Vector2(640, 360):
+			$Control/VBoxContainer/HBoxContainer3/UIResolutionSelector/OptionButton.select(0)
+		Vector2(1280, 720):
+			$Control/VBoxContainer/HBoxContainer3/UIResolutionSelector/OptionButton.select(1)
+		Vector2(1920, 1080):
+			$Control/VBoxContainer/HBoxContainer3/UIResolutionSelector/OptionButton.select(2)
+			
 func _on_ApplyButton_toggled() -> void:
 	emit_signal("apply_button_pressed", _settings)
 

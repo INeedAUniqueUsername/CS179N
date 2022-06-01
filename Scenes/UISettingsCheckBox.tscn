@@ -2,18 +2,15 @@
 
 [ext_resource path="res://UISettingsCheckBox.gd" type="Script" id=1]
 
-[node name="UISettingsCheckBox" type="HBoxContainer"]
+[node name="UISettingsCheckBox" type="CheckBox"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="."]
-margin_top = 13.0
-margin_bottom = 27.0
-
 [node name="CheckBox" type="CheckBox" parent="."]
-margin_left = 4.0
-margin_right = 28.0
+margin_right = 24.0
 margin_bottom = 40.0
 
+[connection signal="toggled" from="." to="." method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="." to="." method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="CheckBox" to="." method="_on_CheckBox_toggled"]

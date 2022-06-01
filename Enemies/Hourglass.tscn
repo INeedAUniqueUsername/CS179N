@@ -88,7 +88,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Hourglass" type="Node2D" groups=["Actor"]]
+[node name="Hourglass" type="Node2D" groups=["Actor", "Hourglass"]]
 script = ExtResource( 1 )
 
 [node name="TimeSlow" type="Area2D" parent="." groups=["Damage"]]

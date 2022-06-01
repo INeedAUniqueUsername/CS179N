@@ -1,6 +1,6 @@
 extends Node
 const ThunderDrone = preload("res://Enemies/ThunderDrone.tscn")
-const SpaceCube = preload("res://Enemies/SpaceCube.tscn")
+const SpaceCube = preload("res://Enemies/SpaceCubeAndTimePilot.tscn")
 const MineLayer = preload("res://Enemies/MineLayer.tscn")
 const LostVector = preload("res://LostVector.tscn")
 const StarMachine = preload("res://StarMachine.tscn")

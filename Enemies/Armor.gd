@@ -19,6 +19,7 @@ func get_mass():
 	return 1.0
 signal on_destroyed
 export(int) var hp = 600
+var hp_max = hp
 func damage(projectile):
 	hp = max(0, hp - projectile.damage)
 	if hp == 0:

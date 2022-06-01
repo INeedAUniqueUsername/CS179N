@@ -10,7 +10,9 @@ extends Node2D
 func _ready():
 	turn()
 func _physics_process(delta):
-	
+	var dv = 120 - vel.length()
+	if dv < 0:
+		vel -= vel.normalized() * min(abs(dv), delta * 60)
 	for actor in nearby:
 		var sc = max(0.01, (actor.global_position - global_position).length() / $TimeSlow/CollisionShape2D.shape.radius)
 		actor.set_time_scale(sc)

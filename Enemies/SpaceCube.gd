@@ -8,7 +8,13 @@ func _ready():
 	#$UpperShell.destroy()
 var player
 func register_player():
-	player = get_parent().player
+	
+	var p = get_parent()
+	while p and !p.is_in_group("World"):
+		p = p.get_parent()
+	if !p:
+		return
+	player = p.player
 var open = false
 var armorDestroyed = false
 var energy = 100
@@ -88,7 +94,7 @@ func fire_mine():
 	get_parent().add_child(l)
 	l.set_global_transform($Body.get_global_transform())
 	l.ignore = ignore
-	l.vel = vel + polar2cartesian(360, rand_range(0, PI*2))
+	l.vel = vel# + polar2cartesian(360, rand_range(0, PI*2))
 	energy = max(0, energy - 6)
 var dir_vel : Vector2 = polar2cartesian(120, PI/2 * (randi()%4))
 var vel : Vector2 = dir_vel

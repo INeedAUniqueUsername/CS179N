@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Sprites/ThunderDrone.png" type="Texture" id=1]
 [ext_resource path="res://CodexButton.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Codex.gd" type="Script" id=9]
 [ext_resource path="res://Sound/menu_click_003.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Sprites/LostVectorSheet.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/TimePyramid.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/StarMachine.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/StarMachineCannon.png" type="Texture" id=15]
 
@@ -655,7 +656,7 @@ scale = Vector2( 6, 6 )
 z_index = 10
 texture = ExtResource( 5 )
 
-[node name="Space Cube" type="Button" parent="Control"]
+[node name="Space Cube & Time Pilot" type="Button" parent="Control"]
 margin_left = -296.0
 margin_top = -172.0
 margin_right = -200.0
@@ -664,31 +665,32 @@ rect_scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 ap = NodePath("Space Cube/Anim")
 anims = [ "Open", "Close", "Charge" ]
-desc = "Space Cube
-This armored battleship flies in four directions. It uses a laser for long-range combat and deploys mines at close-range. If its armor gets destroyed, it will fire off missiles as a last resort."
+desc = "Space Cube & Time Pilot
+The heavily armored Space Cube flies in four directions with a laser for long-range combat and mines for close-range. If its armor gets destroyed, it will fire off missiles as a last resort.
+The Time Pilot seeks the Cosmic Hourglass and throws it at the player"
 
-[node name="Space Cube" type="Node2D" parent="Control/Space Cube"]
-position = Vector2( 48, 48 )
+[node name="Space Cube" type="Node2D" parent="Control/Space Cube & Time Pilot"]
+position = Vector2( 32, 32 )
 
-[node name="Body" type="Sprite" parent="Control/Space Cube/Space Cube"]
+[node name="Body" type="Sprite" parent="Control/Space Cube & Time Pilot/Space Cube"]
 texture = ExtResource( 6 )
 hframes = 13
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="UpperShell" type="Sprite" parent="Control/Space Cube/Space Cube"]
+[node name="UpperShell" type="Sprite" parent="Control/Space Cube & Time Pilot/Space Cube"]
 position = Vector2( 0, -16 )
 texture = ExtResource( 7 )
 vframes = 2
 region_rect = Rect2( 32, 0, 32, 16 )
 
-[node name="LowerShell" type="Sprite" parent="Control/Space Cube/Space Cube"]
+[node name="LowerShell" type="Sprite" parent="Control/Space Cube & Time Pilot/Space Cube"]
 position = Vector2( 0, 16 )
 texture = ExtResource( 7 )
 vframes = 2
 frame = 1
 region_rect = Rect2( 32, 16, 32, 16 )
 
-[node name="Anim" type="AnimationPlayer" parent="Control/Space Cube/Space Cube"]
+[node name="Anim" type="AnimationPlayer" parent="Control/Space Cube & Time Pilot/Space Cube"]
 autoplay = "Idle"
 anims/Charge = SubResource( 16 )
 anims/Close = SubResource( 17 )
@@ -697,16 +699,21 @@ anims/Idle = SubResource( 19 )
 anims/Open = SubResource( 20 )
 anims/RESET = SubResource( 21 )
 
-[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Space Cube"]
+[node name="TimePilot" type="Sprite" parent="Control/Space Cube & Time Pilot" groups=["Actor", "Time"]]
+position = Vector2( 52, 64 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Control/Space Cube & Time Pilot"]
 stream = ExtResource( 10 )
 
-[node name="Border" type="Sprite" parent="Control/Space Cube"]
+[node name="Border" type="Sprite" parent="Control/Space Cube & Time Pilot"]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Question" type="Sprite" parent="Control/Space Cube"]
+[node name="Question" type="Sprite" parent="Control/Space Cube & Time Pilot"]
 visible = false
 position = Vector2( 48, 48 )
 scale = Vector2( 6, 6 )
@@ -951,4 +958,4 @@ custom_fonts/font = SubResource( 10 )
 text = "Click on a boss to see its animations"
 autowrap = true
 
-[connection signal="animation_finished" from="Control/Space Cube/Space Cube/Anim" to="Control/Space Cube/Space Cube" method="_on_animation_finished"]
+[connection signal="animation_finished" from="Control/Space Cube & Time Pilot/Space Cube/Anim" to="Control/Space Cube & Time Pilot/Space Cube" method="_on_animation_finished"]

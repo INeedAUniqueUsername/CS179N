@@ -108,6 +108,8 @@ func _on_cannon_entered(area):
 		return
 	if actor == self:
 		return
+	if actor.is_in_group("Time"):
+		return
 	var n = actor.name
 	var mass = 1
 	var other_mass = 1

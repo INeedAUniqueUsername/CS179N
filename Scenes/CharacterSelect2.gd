@@ -67,6 +67,9 @@ func _process(delta):
 		start_game()
 const shake = preload("res://Shake.tscn")
 func start_game():
+	if $Anim.current_animation == "Flash":
+		return
+	
 	$MenuClickSound.play()
 	PlayerVariables.reset()
 	var s = shake.instance()
@@ -115,3 +118,6 @@ func show_stats():
 		$Stats.text = "Best Time: %.2f sec\nHigh Score: %d pts" % [entry.bestTime, entry.highScore]
 	else:
 		$Stats.text = "Best Time: ???\nHigh Score: ???"
+func select_level(n):
+	start_game()
+	PlayerVariables.set_level(n)

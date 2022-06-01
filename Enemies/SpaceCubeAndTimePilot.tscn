@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Swarm.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/SpaceCube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/TimePilot.tscn" type="PackedScene" id=3]
+
+[node name="SpaceCubeAndTimePilot" type="Node2D"]
+script = ExtResource( 1 )
+bossName = "Space Cube & Time Pilot"
+
+[node name="SpaceCube" parent="." instance=ExtResource( 2 )]
+
+[node name="TimePilot" parent="." instance=ExtResource( 3 )]
+position = Vector2( 64, 0 )

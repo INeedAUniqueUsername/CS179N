@@ -62,7 +62,7 @@ enum DifficultyModes {
 var difficulty = DifficultyModes.Medium
 var bossesMet = {
 	"Thunder Drone": false,
-	"Space Cube": false,
+	"Space Cube & Time Pilot": false,
 	"Mine Layer": false,
 	"Rawbawjaw": false,
 	"Star Machine": false

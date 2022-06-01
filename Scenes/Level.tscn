@@ -744,7 +744,7 @@ tracks/3/keys = {
 
 [node name="World" type="Node"]
 
-[node name="Actors" type="Node2D" parent="."]
+[node name="Actors" type="Node2D" parent="." groups=["World"]]
 z_index = -100
 script = ExtResource( 2 )
 bossType = ExtResource( 11 )
