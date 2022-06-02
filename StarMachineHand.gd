@@ -89,6 +89,7 @@ func _process(delta):
 				b.global_rotation = global_rotation
 				$Anim.play("Shoot")
 				shootCooldown = shootInterval
+const mass = 10.0
 func _physics_process(delta):
 	global_translate(vel * delta)
 var hp_max : int = 600

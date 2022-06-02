@@ -5,6 +5,8 @@ var vel : Vector2 = Vector2(0, 0)
 var player : Node2D
 
 
+const mass = 20.0
+
 onready var ignore = [self, $LeftCannon, $RightCannon, $"../LeftHand", $"../RightHand"]
 func _ready():
 	call_deferred("register_player")

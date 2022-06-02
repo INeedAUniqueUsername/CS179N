@@ -10,6 +10,8 @@ var ready = false
 var slashing = false
 
 var time = randi()
+
+const mass = 10.0
 func _physics_process(delta):
 	global_translate(vel * delta)
 func _process(delta):

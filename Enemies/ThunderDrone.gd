@@ -19,6 +19,7 @@ func register_player():
 	player = get_parent().player
 	
 var trailTime = 0
+const mass = 5.0
 func _physics_process(delta):
 	delta *= time_scale
 	trailTime -= delta

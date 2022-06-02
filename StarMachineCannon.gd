@@ -8,6 +8,7 @@ func get_vel():
 func set_vel(vel):
 	parent.vel = vel
 
+const mass = 10.0
 
 export(float) var beamCooldown = 6
 const beamInterval = 12

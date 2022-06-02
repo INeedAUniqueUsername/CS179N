@@ -22,6 +22,8 @@ var fireCooldown = 0
 const laser = preload("res://LaserBeamLarge.tscn")
 const missile = preload("res://Missile.tscn")
 var trailTime = 0
+
+const mass = 10.0
 func _physics_process(delta):
 	global_translate(vel * delta)
 	#vel -= vel.normalized() * min(vel.length(), 120 * delta)

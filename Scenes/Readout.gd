@@ -128,7 +128,7 @@ func check_next_screen():
 	elif gameOver:
 		get_tree().change_scene("res://Scenes/Ending.tscn")
 func check_resurrect():
-	if levelOutroReady:
+	if $Anim.current_animation == "LevelCleared" or levelOutroReady:
 		return
 	if gameOver:
 		gameOver = false

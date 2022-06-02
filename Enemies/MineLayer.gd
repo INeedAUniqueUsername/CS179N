@@ -1,6 +1,6 @@
 extends Node2D
 var bossName = "Mine Layer"
-var mass = 20
+var mass = 20.0
 func _ready():
 	player = get_parent().player
 	if !player:
@@ -22,6 +22,7 @@ const mine = preload("res://Sprites/MineLayerSpike.tscn")
 
 var bombCount = 0
 onready var ignore = [self, $FrontShield, $LeftShield, $RightShield]
+
 func _physics_process(delta):
 	turnTime = max(0, turnTime - delta)
 	if turnTime > 0:
