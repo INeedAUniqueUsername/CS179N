@@ -12,8 +12,10 @@ func _ready():
 			'highScore': max(entry.highScore, PlayerVariables.totalScore),
 			'bestTime': min(entry.bestTime, PlayerVariables.totalTime)
 		}
+		PlayerVariables.save()
 		
 		text = "Escaped the Anomalous Zone"
+		
 	else:
 		text = "Destroyed"
 	$Stats.text %= [text, PlayerVariables.totalTime, PlayerVariables.totalScore]
