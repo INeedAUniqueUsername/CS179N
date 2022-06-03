@@ -28,6 +28,7 @@ _global_script_class_icons={
 
 config/name="Starman"
 run/main_scene="res://Scenes/Level.tscn"
+config/use_custom_user_dir=true
 config/icon="res://icon.png"
 
 [autoload]
