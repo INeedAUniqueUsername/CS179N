@@ -1,4 +1,7 @@
 # CS179N: *Starman*
+
+[Play online](https://ineedauniqueuserna.me/starman/)
+
 Here is the repository for the CS179N Spring 2022 game project, *Starman 64*.
 
 > The Heroes of Earth were on their way to a Martian diplomacy meeting when they suddenly found themselves stuck in an Anomalous Zone, where space seemed to wrap around itself. Enemy drone ships began to appear out of nowhere and fire at the heroes. Soon enough, they heard the voice of the evil Ad Dastardly Astra announce his intentions to destroy the Heroes of Earth. "If you want to save your friends, solve my maze!" Dastardly's voice rang out. Then there is no time to waste!
