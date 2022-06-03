@@ -188,6 +188,7 @@ anims/RESET = SubResource( 3 )
 
 [node name="BeaconBurst" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -6.0
 
 [node name="BeaconFlash" type="Sprite" parent="."]
 z_index = -1

@@ -7,7 +7,7 @@
 [ext_resource path="res://Enemies/Shield.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/MineLayerCannon.png" type="Texture" id=6]
 
-[node name="MineLayer" type="Node2D" groups=["Actor"]]
+[node name="MineLayer" type="Node2D" groups=["Actor", "Boss"]]
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 

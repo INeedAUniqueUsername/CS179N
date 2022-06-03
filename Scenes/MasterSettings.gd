@@ -16,8 +16,6 @@ func _ready():
 			
 func _on_ApplyButton_toggled() -> void:
 	emit_signal("apply_button_pressed", _settings)
-
-
 func _on_UIResolutionSelector_resolution_changed(new_resolution: Vector2) -> void:
 	_settings.resolution = new_resolution
 	update_settings(_settings)

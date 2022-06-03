@@ -54,6 +54,5 @@ func explode():
 	explosion_load.ignore = [ignore, explosion_load]
 	get_parent().add_child(explosion_load)
 	explosion_load.set_global_position(get_global_position())
-	explosion_load.playing = true
 	emit_signal("on_destroyed", self)
 	queue_free()

@@ -5,10 +5,12 @@ func _ready():
 		var entry = PlayerVariables.records[PlayerVariables.difficulty][PlayerVariables.hero]
 		if !entry:
 			entry = {
+				'clears': 0,
 				'highScore': 0,
 				'bestTime': INF
 			}
 		PlayerVariables.records[PlayerVariables.difficulty][PlayerVariables.hero] = {
+			'clears': entry.clears + 1,
 			'highScore': max(entry.highScore, PlayerVariables.totalScore),
 			'bestTime': min(entry.bestTime, PlayerVariables.totalTime)
 		}

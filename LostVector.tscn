@@ -120,7 +120,7 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=5]
 radius = 16.0
 
-[node name="Rawbawjaw" type="Sprite" groups=["Actor"]]
+[node name="Rawbawjaw" type="Sprite" groups=["Actor", "Boss"]]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 48, 48 )

@@ -27,6 +27,15 @@ var fireCooldown = 0
 
 
 
+# restores back to 1.0 over time
+var time_factor = 1.0
+func set_time_factor(t):
+	time_factor = min(t, time_factor)
+func inc_time_factor(t):
+	time_factor = max(0, time_factor + t)
+
+
+
 func canFire(): return fireCooldown < 0
 
 var time_scale = 1

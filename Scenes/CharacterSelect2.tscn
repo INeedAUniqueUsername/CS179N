@@ -11,9 +11,6 @@
 [ext_resource path="res://Sprites/CharacterBackgroundRegular.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/CharacterSelectDesc.tres" type="DynamicFont" id=11]
 
-[sub_resource type="Theme" id=7]
-default_font = ExtResource( 11 )
-
 [sub_resource type="DynamicFont" id=3]
 size = 48
 font_data = ExtResource( 1 )
@@ -23,6 +20,9 @@ size = 54
 font_data = ExtResource( 1 )
 
 [sub_resource type="ShortCut" id=4]
+
+[sub_resource type="Theme" id=7]
+default_font = ExtResource( 11 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "Flash"
@@ -339,15 +339,6 @@ margin_right = 512.0
 margin_bottom = 300.0
 color = Color( 0.129412, 0.211765, 0.360784, 1 )
 
-[node name="DifficultyButton" type="OptionButton" parent="Control"]
-margin_left = -448.0
-margin_top = 107.0
-margin_right = -166.0
-margin_bottom = 156.0
-theme = SubResource( 7 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Difficulty"
-
 [node name="BackButton" type="Button" parent="Control"]
 margin_left = -492.0
 margin_top = 217.0
@@ -455,6 +446,15 @@ custom_fonts/font = ExtResource( 11 )
 text = "Best Time: ???
 High Score: ???"
 
+[node name="DifficultyButton" type="OptionButton" parent="Control"]
+margin_left = -448.0
+margin_top = 107.0
+margin_right = -166.0
+margin_bottom = 156.0
+theme = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Difficulty"
+
 [node name="Desc" type="Label" parent="Control"]
 margin_left = 124.0
 margin_top = 12.0
@@ -555,8 +555,8 @@ margin_bottom = 49.0
 text = "5"
 
 [connection signal="animation_finished" from="Control/Anim" to="Control" method="change_scene"]
-[connection signal="mouse_entered" from="Control/Control" to="Control/Control/Control" method="show"]
 [connection signal="mouse_entered" from="Control/Control" to="Control/Control/Timer" method="start"]
+[connection signal="mouse_entered" from="Control/Control" to="Control/Control/Control" method="show"]
 [connection signal="timeout" from="Control/Control/Timer" to="Control/Control/Control" method="hide"]
 [connection signal="pressed" from="Control/Control/Control/b1" to="Control" method="select_level" binds= [ 0 ]]
 [connection signal="pressed" from="Control/Control/Control/b2" to="Control" method="select_level" binds= [ 1 ]]

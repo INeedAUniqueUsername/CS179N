@@ -53,7 +53,7 @@ tracks/0/keys = {
 "values": [ 1, 0 ]
 }
 
-[node name="RightHand" type="Sprite" groups=["Actor"]]
+[node name="RightHand" type="Sprite" groups=["Actor", "Boss"]]
 position = Vector2( 92, 0 )
 rotation = -1.5708
 texture = ExtResource( 2 )

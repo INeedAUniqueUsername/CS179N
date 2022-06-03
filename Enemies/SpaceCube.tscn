@@ -226,6 +226,7 @@ texture = ExtResource( 4 )
 vframes = 2
 region_rect = Rect2( 32, 0, 32, 16 )
 script = ExtResource( 3 )
+hp = 450
 blockPlayer = true
 
 [node name="Area" type="Area2D" parent="UpperShell" groups=["Behavior"]]
@@ -242,6 +243,7 @@ vframes = 2
 frame = 1
 region_rect = Rect2( 32, 16, 32, 16 )
 script = ExtResource( 3 )
+hp = 450
 blockPlayer = true
 
 [node name="Area" type="Area2D" parent="LowerShell" groups=["Behavior"]]

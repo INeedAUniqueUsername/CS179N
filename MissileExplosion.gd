@@ -1,4 +1,4 @@
-extends AnimatedSprite
+extends Sprite
 
 export(float) var damage = 25.0
 var vel = Vector2(0, 0)

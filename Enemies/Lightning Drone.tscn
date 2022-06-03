@@ -81,6 +81,7 @@ shape = SubResource( 5 )
 
 [node name="Burst" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -6.0
 
 [connection signal="area_entered" from="Damage" to="." method="_on_Damage_Area_area_entered"]
 [connection signal="area_entered" from="Detect" to="." method="_on_Detect_Area_area_entered"]

@@ -13,7 +13,7 @@ extents = Vector2( 2, 180 )
 script = ExtResource( 1 )
 bossName = "Star Machine"
 
-[node name="Head" type="Sprite" parent="." groups=["Actor"]]
+[node name="Head" type="Sprite" parent="." groups=["Actor", "Boss"]]
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )

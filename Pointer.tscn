@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sprites/Pointer.png" type="Texture" id=1]
+
+[node name="Pointer" type="Sprite"]
+modulate = Color( 1, 1, 1, 0.501961 )
+texture = ExtResource( 1 )

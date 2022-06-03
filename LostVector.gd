@@ -38,6 +38,11 @@ func on_registered_player(pl):
 	
 var turnRate = PI/2
 var destTurnRate = PI/2
+
+var shockwaveInterval = 0.8
+var shockwaveCooldown = 0
+
+const shockwave = preload("res://LostVectorShockwave.tscn")
 func _physics_process(delta):
 	global_translate(vel * delta)
 	vel -= vel.normalized() * min(vel.length(), 120 * delta)
@@ -45,9 +50,17 @@ func _physics_process(delta):
 	rotation += delta * turnRate
 	if !player:
 		return
+	var off = player.global_position - global_position
+	if off.length() < 32:
+		player.common.consume_fuel(20 / 60.0)
+		if shockwaveCooldown < 0:
+			var s = shockwave.instance()
+			s.global_position = global_position
+			get_parent().call_deferred("add_child", s)
+			shockwaveCooldown = shockwaveInterval
 	var an = $Arms/Anim.current_animation
 	if an == "SpinCCW" or an == "SpinCW" or $Anim.current_animation == "SelfDestruct":
-		vel += (player.global_position - global_position).normalized() * 360 * delta
+		vel += off.normalized() * 360 * delta
 var spinInterval = 4
 var spinCooldown = spinInterval
 
@@ -78,6 +91,7 @@ func _process(delta):
 		reverseCooldown = reverseInterval
 		destTurnRate *= -1
 	
+	shockwaveCooldown -= delta
 	if !player:
 		return
 	missileCooldown -= delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/AsteriaBodySheet.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Leg.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Sprites/AsteriaLegSheet.png" type="Texture" id=5]
 [ext_resource path="res://Sound/Asteria_secondary_scroll_002.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Sound/Asteria_primary_impactPunch_medium_000.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Indicator.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -317,7 +318,7 @@ position = Vector2( 0, 4 )
 texture = ExtResource( 5 )
 
 [node name="BurstOrigin" type="Node2D" parent="."]
-position = Vector2( 0, -8 )
+position = Vector2( 0, -16 )
 
 [node name="LeftCannon" parent="." instance=ExtResource( 4 )]
 position = Vector2( -10, -6 )
@@ -331,6 +332,8 @@ stream = ExtResource( 7 )
 [node name="AsteriaSecondarySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 pitch_scale = 3.0
+
+[node name="Indicator" parent="." instance=ExtResource( 8 )]
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_body_animation_finished"]
 [connection signal="area_entered" from="Body/Area" to="." method="_on_body_entered"]

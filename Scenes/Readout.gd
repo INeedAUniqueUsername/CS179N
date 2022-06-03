@@ -126,13 +126,13 @@ func check_next_screen():
 		$Anim.stop()
 		$Anim.play("NextLevel")
 	elif gameOver:
+		PlayerVariables.set_winner(false)
 		get_tree().change_scene("res://Scenes/Ending.tscn")
 func check_resurrect():
 	if $Anim.current_animation == "LevelCleared" or levelOutroReady:
 		return
 	if gameOver:
 		gameOver = false
-		PlayerVariables.set_winner(true)
 		player.common.resurrect()
 		$Anim.play("Resurrected")
 func check_skip_outro():
@@ -148,4 +148,3 @@ func go_next_level():
 var gameOver = false
 func game_over():
 	gameOver = true
-	PlayerVariables.set_winner(false)
